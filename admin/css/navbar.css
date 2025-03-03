@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for overall layout */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr; /* 1fr for left margin, 8fr for content, 1fr for right margin */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-area {
+    grid-column: 2 / 3; /* Content takes the middle column */
+}
+
+/* Empty columns for margins */
+.left-margin {
+    grid-column: 1 / 2;
+}
+
+.right-margin {
+    grid-column: 3 / 4;
+}
+
+/* Header Styles */
+.news-bar {
+    background-color: #FF0033;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 1 / 4; /* Header spans all columns */
+}
+
+.news-left {
+    display: flex;
+    align-items: center;
+}
+
+.news-left span {
+    margin-right: 15px;
+}
+
+.icon-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0 5px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info a img {
+    margin-right: 5px;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background-color: #AA0022;
+    display: flex;
+    padding: 15px 20px;
+    grid-column: 1 / 4; /* Nav bar spans all columns */
+}
+
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.mywmsu-button {
+    margin-left: auto;
+    background-color: #3684D6;
+    padding: 5px 15px;
+    color: white;
+    border: none;
+}
+.office-title {
+    color: black;
+    padding: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
