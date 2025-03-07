@@ -164,13 +164,18 @@
             </div>
             <div class="board-title">Administrative Officials</div>
 
-            <div class="position-title">President</div>
+
+            <div class="title-row">
+            <div class="position-title">President - </div>
+            </div>
+
         <div class="official-row">
             <div class="official-name">
                 <h3>Dr. Ma. Carla A. Ochotorena</h3>
             </div>
             <div class="official-position">
                 <p>University President</p>
+                <a href="../Offices/office-of-president.php" class="Offices">Office of the President</a>
             </div>
         </div>
 
@@ -182,6 +187,7 @@
             </div>
             <div class="official-position">
                 <p>Vice President for Academic Affairs</p>
+                <a href="../Offices/ovp-for-academic-affair.php" class="Offices">Office of the Vice President for Academic Affairs</a>
             </div>
         </div>
 
@@ -191,6 +197,7 @@
             </div>
             <div class="official-position">
                 <p>Vice President for Research Extension Services & External Linkages</p>
+                <a href="../Offices/ovp-for-research-and-extension.php" class="Offices">Office of the Vice President for Research Extension Services & External Linkages</a>
             </div>
         </div>
 
@@ -200,6 +207,7 @@
             </div>
             <div class="official-position">
                 <p>Vice President for Administration and Finance</p>
+                <a href="../Offices/ovp-for-administrative-and-finance.php" class="Offices">Office of the Vice President for Administration and Finance</a>
             </div>
         </div>
 
@@ -209,6 +217,7 @@
             </div>
             <div class="official-position">
                 <p>Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair</p>
+                <a href="../Offices/ovp-for-resource-generation.php" class="Offices">Office of the Vice President for Resource Generation</a>
             </div>
         </div>
 
@@ -218,6 +227,7 @@
             </div>
             <div class="official-position">
                 <p>Vice President for Student Affairs and Services in concurrent capacity as Director of Special Programs and Projects Office</p>
+                <a href="../Offices/ovp-for-student-affairs-and-services.php" class="Offices">Office of the Vice President for Student Affairs and Services</a>
             </div>
         </div>
 
