@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <?php  require_once '../../includes/navbar.php';?>
-    <div class="office-title">Office of the Vice President for Resource Generation</div>
+    <?php  require_once '../__includes/navbar.php';?>
+  <div class="office-title">Office of the Vice President for Academic Affair</div>
 </body>
 </html>
