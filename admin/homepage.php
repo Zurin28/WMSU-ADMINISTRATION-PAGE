@@ -1685,7 +1685,7 @@
             Academic Deans
         </div>
 
-        <div class="container">
+       
             <div class="official-row">
                 <div class="official-name">
                     <h3>Asso. Prof. Abdel-Azeem A. Moammad Siddique</h3>
@@ -2114,7 +2114,7 @@
             </div>
 
         
-        <div class="right-margin"></div>
+        
 
         
     </div>
