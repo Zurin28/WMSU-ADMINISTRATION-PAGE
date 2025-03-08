@@ -2,11 +2,10 @@
 class Database {
     private static $instance = null;
     protected $db;
-
     function connect() {
         try {
             if ($this->db === null) {
-                $this->db = new PDO("mysql:host=localhost;dbname=Administration", "root", "");
+                $this->db = new PDO("mysql:host=localhost;dbname=wmsu_administrationdb", "root", "");
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             return $this->db;
@@ -14,7 +13,6 @@ class Database {
             die("Database connection failed: " . $e->getMessage());
         }
     }
-
     // Singleton pattern to ensure we're using the same connection
     public static function getInstance() {
         if (self::$instance === null) {
