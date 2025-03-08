@@ -1,8 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMSU ADMINISTRATION</title>
+
+
 <?php
     require_once '../__includes/head.php';
+    require_once '../classes/Pres.class.php';
+    require_once '../classes/VicePres.class.php';
+    require_once '../classes/OpStaff.class.php';
+    require_once '../classes/UniversityBoardSecretary.class.php';
+    require_once '../classes/Directors.class.php';
+    require_once '../classes/CampusAdministrators.class.php';
+    require_once '../classes/ILSPrincipals.class.php';
+    require_once '../classes/AssistantDirectors.class.php';
+    require_once '../classes/TechnicalAssistants.class.php';
+    require_once '../classes/Chairpersons.class.php';
+    require_once '../classes/Managers.class.php';
+    require_once '../classes/GraduateSchoolHead.class.php';
+    require_once '../classes/Coordinators.class.php';
+    require_once '../classes/SectionChiefs.class.php';
+    require_once '../classes/OtherServices.class.php';
+
 ?>
 <body>
-
     <?php require_once '../__includes/navbar.php'; ?>
     
     <!-- Main Content with side margins -->
@@ -18,7 +42,7 @@
                 <!-- First Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/ronald-adamat.jpg" alt="Hon. Ronald L. Adamat">
+                        <img src="../Board of Regents/ronald-adamat.jpg" alt="Hon. Ronald L. Adamat">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. RONALD L. ADAMAT</div>
@@ -28,7 +52,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/carla-ochotorena.jpg" alt="Hon. Ma. Carla A. Ochotorena">
+                        <img src="../Board of Regents/carla-ochotorena.jpg" alt="Hon. Ma. Carla A. Ochotorena">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. MA. CARLA A. OCHOTORENA</div>
@@ -39,7 +63,7 @@
                 <!-- Second Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/cayetano.jpg" alt="Hon. Alan Peter S. Cayetano">
+                        <img src="../Board of Regents/cayetano.jpg" alt="Hon. Alan Peter S. Cayetano">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. ALAN PETER S. CAYETANO</div>
@@ -49,7 +73,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/macasaet-1.jpg" alt="Hon. Rolando L. Macasaet">
+                        <img src="../Board of Regents/macasaet-1.jpg" alt="Hon. Rolando L. Macasaet">
                     </div>
                     <div class="member-info">
                         <div class="represented-by">Represented by:</div>
@@ -60,7 +84,7 @@
                 <!-- Third Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/mark-ogo.jpg" alt="Hon. Mark O. Go">
+                        <img src="../Board of Regents/mark-ogo.jpg" alt="Hon. Mark O. Go">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. MARK O. GO</div>
@@ -70,7 +94,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/yanga.jpg" alt="Hon. Emmylou B. Yanga">
+                        <img src="../Board of Regents/yanga.jpg" alt="Hon. Emmylou B. Yanga">
                     </div>
                     <div class="member-info">
                         <div class="represented-by">Represented by:</div>
@@ -81,7 +105,7 @@
                 <!-- Fourth Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/guerrero.jpg" alt="Hon. Maria Felicidad R. Guerrero">
+                        <img src="../Board of Regents/guerrero.jpg" alt="Hon. Maria Felicidad R. Guerrero">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. MARIA FELICIDAD R. GUERRERO</div>
@@ -91,7 +115,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/martin-wee.jpg" alt="Hon. Martin A. Wee">
+                        <img src="../Board of Regents/martin-wee.jpg" alt="Hon. Martin A. Wee">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. MARTIN A. WEE</div>
@@ -102,7 +126,7 @@
                 <!-- Fifth Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/LOCSON.jpg" alt="Hon. Inocente P. Locson">
+                        <img src="../Board of Regents/LOCSON.jpg" alt="Hon. Inocente P. Locson">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. INOCENTE P. LOCSON</div>
@@ -112,7 +136,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/lobregat.jpg" alt="Hon. Jose L. Lobregat">
+                        <img src="../Board of Regents/lobregat.jpg" alt="Hon. Jose L. Lobregat">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. JOSE L. LOBREGAT</div>
@@ -123,7 +147,7 @@
                 <!-- Sixth Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/florencioblank.jpg" alt="Hon. Florencio M. Liong, Jr">
+                        <img src="../Board of Regents/florencioblank.jpg" alt="Hon. Florencio M. Liong, Jr">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. FLORENCIO M. LIONG, JR</div>
@@ -133,7 +157,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/semorlan.jpg" alt="Hon. Adrian P. Semorlan">
+                        <img src="../Board of Regents/semorlan.jpg" alt="Hon. Adrian P. Semorlan">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. ADRIAN P. SEMORLAN</div>
@@ -144,7 +168,7 @@
                 <!-- Seventh Row -->
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/mundoc_blank.jpg" alt="Hon. Ahmad G. Mundoc">
+                        <img src="../Board of Regents/mundoc_blank.jpg" alt="Hon. Ahmad G. Mundoc">
                     </div>
                     <div class="member-info">
                         <div class="member-name">HON. AHMAD G. MUNDOC</div>
@@ -154,7 +178,7 @@
                 
                 <div class="board-member">
                     <div class="member-image">
-                        <img src="Board of Regents/MOHAMMAD.jpg" alt="Prof. Al-Ghani D. Mohammad">
+                        <img src="../Board of Regents/MOHAMMAD.jpg" alt="Prof. Al-Ghani D. Mohammad">
                     </div>
                     <div class="member-info">
                         <div class="member-name">PROF. AL-GHANI D. MOHAMMAD</div>
@@ -239,6 +263,7 @@
             </div>
             <div class="official-position">
                 <p>Chief of Staff, Office of the President</p>
+                <a href="../Offices/chief-of-staff.php" class="Offices"> Chief of Staff</a>
             </div>
         </div>
 
@@ -248,6 +273,7 @@
             </div>
             <div class="official-position">
                 <p>Special Assistant to the President</p>
+                <a href="../Offices/special-assistant-to-president.php" class="Offices"> Special Assistant to the President</a>
             </div>
         </div>
 
@@ -257,6 +283,7 @@
             </div>
             <div class="official-position">
                 <p>Executive Assistant to the Office of the President</p>
+                <a href="../Offices/executive-assistant-to-president.php" class="Offices"> Executive Assistant to the Office of the President</a>
             </div>
         </div>
 
@@ -266,6 +293,7 @@
             </div>
             <div class="official-position">
                 <p>University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns</p>
+                <a href="../Offices/university-curriculum-chair.php" class="Offices"> University Curriculum Chair</a>
             </div>
         </div>
 
@@ -1860,10 +1888,6 @@
                 </div>
             </div>
 
-        
-        
-
-        
     </div>
 </body>
 </html>
