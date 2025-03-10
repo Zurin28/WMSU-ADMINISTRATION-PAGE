@@ -2,20 +2,27 @@
 require_once 'database.class.php';
 
 class ILSPrincipals {
-    private $db;
+    protected $db;
 
-    public function __construct() {
-        $this->db = Database::getInstance()->connect();
+    function __construct()
+    {
+        $this->db = new Database();
     }
 
-    public function fetchAll() {
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM ils_principals");
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die("Error fetching values: " . $e->getMessage());
+        // Fetch all products
+        function fetchAll()
+        {
+            $sql = "SELECT * FROM ils_principals";
+            // Prepare the query
+            $query = $this->db->connect()->prepare($sql);
+            // Execute the query and fetch data
+            $data = null;
+            if ($query->execute()) {
+                $data = $query->fetchAll(PDO::FETCH_ASSOC);
+            }
+        
+            // Return the data
+            return $data;
         }
-    }
 }
 ?>
