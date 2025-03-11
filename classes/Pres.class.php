@@ -25,5 +25,31 @@ class Pres {
             // Return the data
             return $data;
         }
+
+           // Upload
+           function upload($name, $title, $file_name)
+{
+    try {
+        $sql = "INSERT INTO president (name, title, page_link) VALUES (:name, :title, :page_link)";
+        $query = $this->db->connect()->prepare($sql);
+        
+        $query->bindParam(':name', $name);
+        $query->bindParam(':title', $title);
+        $query->bindParam(':page_link', $file_name);
+        
+        if ($query->execute()) {
+            return true;
+        } else {
+            // Print error if insertion fails
+            print_r($query->errorInfo());
+            return false;
+        }
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+        return false;
+    }
+}
+
+           
 }
 ?>
