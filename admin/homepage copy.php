@@ -22,29 +22,154 @@
             <div class="board-title">Board of Regents</div>
             
             <div class="board-grid">
-            <?php
-require_once '../classes/bor.class.php';
 
-$bor = new Board();
-$boardMembers = $bor->fetchAll(); // Fetch all board members
 
-foreach ($boardMembers as $member) {
-    echo '<div class="board-member">';
-    echo '    <div class="member-image">';
-    echo '        <img src="images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '" width="200px">';
-    echo '    </div>';
-    echo '    <div class="member-info">';
-    echo '        <div class="member-name">' . htmlspecialchars($member['name']) . '</div>';
-    echo '        <div class="member-title">' . htmlspecialchars($member['title']) . '</div>';
-    
-    if (!empty($member['link_to_office'])) {
-        echo '        <a href="' . htmlspecialchars($member['link_to_office']) . '" class="Offices">Office of the President</a>';
-    }
-    
-    echo '    </div>';
-    echo '</div>';
-}
-?>
+                <!-- First Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/ronald-adamat.jpg" alt="Hon. Ronald L. Adamat">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. RONALD L. ADAMAT</div>
+                        <div class="member-title">COMMISSIONER, CHED<br>CHAIR-DESIGNATE, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/carla-ochotorena.jpg" alt="Hon. Ma. Carla A. Ochotorena">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. MA. CARLA A. OCHOTORENA</div>
+                        <div class="member-title">PRESIDENT, WMSU<br>VICE-CHAIRPERSON, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <!-- Second Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/cayetano.jpg" alt="Hon. Alan Peter S. Cayetano">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. ALAN PETER S. CAYETANO</div>
+                        <div class="member-title">CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS,<br>MEMBER – WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/macasaet-1.jpg" alt="Hon. Rolando L. Macasaet">
+                    </div>
+                    <div class="member-info">
+                        <div class="represented-by">Represented by:</div>
+                        <div class="member-name">HON. ROLANDO L. MACASAET</div>
+                    </div>
+                </div>
+                
+                <!-- Third Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/mark-ogo.jpg" alt="Hon. Mark O. Go">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. MARK O. GO</div>
+                        <div class="member-title">CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION,<br>MEMBER – WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/yanga.jpg" alt="Hon. Emmylou B. Yanga">
+                    </div>
+                    <div class="member-info">
+                        <div class="represented-by">Represented by:</div>
+                        <div class="member-name">HON. EMMYLOU B. YANGA</div>
+                    </div>
+                </div>
+                
+                <!-- Fourth Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/guerrero.jpg" alt="Hon. Maria Felicidad R. Guerrero">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. MARIA FELICIDAD R. GUERRERO</div>
+                        <div class="member-title">OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX<br>WMSU BOARD OF REGENTS</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/martin-wee.jpg" alt="Hon. Martin A. Wee">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. MARTIN A. WEE</div>
+                        <div class="member-title">REGIONAL DIRECTOR, DOST IX<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <!-- Fifth Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/LOCSON.jpg" alt="Hon. Inocente P. Locson">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. INOCENTE P. LOCSON</div>
+                        <div class="member-title">PRIVATE SECTOR REPRESENTATIVE<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/lobregat.jpg" alt="Hon. Jose L. Lobregat">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. JOSE L. LOBREGAT</div>
+                        <div class="member-title">PRIVATE SECTOR REPRESENTATIVE<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <!-- Sixth Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/florencioblank.jpg" alt="Hon. Florencio M. Liong, Jr">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. FLORENCIO M. LIONG, JR</div>
+                        <div class="member-title">PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC.<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/semorlan.jpg" alt="Hon. Adrian P. Semorlan">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. ADRIAN P. SEMORLAN</div>
+                        <div class="member-title">PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <!-- Seventh Row -->
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/mundoc_blank.jpg" alt="Hon. Ahmad G. Mundoc">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">HON. AHMAD G. MUNDOC</div>
+                        <div class="member-title">PRESIDENT, UNIVERSITY STUDENT COUNCIL<br>MEMBER, WMSU-BOR</div>
+                    </div>
+                </div>
+                
+                <div class="board-member">
+                    <div class="member-image">
+                        <img src="../Board of Regents/MOHAMMAD.jpg" alt="Prof. Al-Ghani D. Mohammad">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">PROF. AL-GHANI D. MOHAMMAD</div>
+                        <div class="member-title">UNIVERSITY AND BOARD SECRETARY</div>
+                    </div>
+                </div>
             </div>
             <div class="board-title">Administrative Officials</div>
 
@@ -53,133 +178,401 @@ foreach ($boardMembers as $member) {
             <div class="position-title">President - </div>
             </div>
 
-            <div class="official-row">
-    <?php
-    require_once '../classes/pres.class.php';
-
-    $pres = new Pres();
-    $PresOfficials = $pres->fetchAll(); // Fetch all officials
-
-    foreach ($PresOfficials as $Presofficial) {
-        echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($Presofficial['name']) . '</h3>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($Presofficial['title']) . '</p>';
-        
-        if (!empty($Presofficial['page_link'])) {
-            echo '<a href="' . htmlspecialchars($Presofficial['page_link']) . '" class="Offices">Office of the President</a>';
-        }
-        
-        echo '</div>';
-    }
-    ?>
-</div>
-
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Ma. Carla A. Ochotorena</h3>
+            </div>
+            <div class="official-position">
+                <p>University President</p>
+                <a href="../Offices/office-of-president.php" class="Offices">Office of the President</a>
+            </div>
+        </div>
 
         <!-- Vice Presidents -->
         <div class="position-title">Vice Presidents</div>
-        <?php
-    require_once '../classes/Vicepres.class.php';
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Nursia M. Barjose</h3>
+            </div>
+            <div class="official-position">
+                <p>Vice President for Academic Affairs</p>
+                <a href="../Offices/ovp-for-academic-affair.php" class="Offices">Office of the Vice President for Academic Affairs</a>
+            </div>
+        </div>
 
-    $vicePres = new VicePres();
-    $VicePresOfficials = $vicePres->fetchAll(); // Fetch all officials
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Joel G. Fernando</h3>
+            </div>
+            <div class="official-position">
+                <p>Vice President for Research Extension Services & External Linkages</p>
+                <a href="../Offices/ovp-for-research-and-extension.php" class="Offices">Office of the Vice President for Research Extension Services & External Linkages</a>
+            </div>
+        </div>
 
-    foreach ($VicePresOfficials as $VicePresofficial) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($VicePresofficial['name']) . '</h3>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($VicePresofficial['title']) . '</p>';
-        
-        if (!empty($VicePresofficial['page_link'])) {
-            echo '<a href="' . htmlspecialchars($VicePresofficial['page_link']) . '" class="Offices">Office of the Vice President</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Joselito D. Madroñal</h3>
+            </div>
+            <div class="official-position">
+                <p>Vice President for Administration and Finance</p>
+                <a href="../Offices/ovp-for-administrative-and-finance.php" class="Offices">Office of the Vice President for Administration and Finance</a>
+            </div>
+        </div>
 
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Teresita A. Narvaez</h3>
+            </div>
+            <div class="official-position">
+                <p>Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair</p>
+                <a href="../Offices/ovp-for-resource-generation.php" class="Offices">Office of the Vice President for Resource Generation</a>
+            </div>
+        </div>
 
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Fredelino M. San Juan</h3>
+            </div>
+            <div class="official-position">
+                <p>Vice President for Student Affairs and Services in concurrent capacity as Director of Special Programs and Projects Office</p>
+                <a href="../Offices/ovp-for-student-affairs-and-services.php" class="Offices">Office of the Vice President for Student Affairs and Services</a>
+            </div>
+        </div>
 
         <!-- Office of the President Staff -->
         <div class="position-title">Office of the President Staff</div>
-        <?php
-    require_once '../classes/opstaff.class.php';
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Berhana I. Flores</h3>
+            </div>
+            <div class="official-position">
+                <p>Chief of Staff, Office of the President</p>
+                <a href="../Offices/chief-of-staff.php" class="Offices"> Chief of Staff</a>
+            </div>
+        </div>
 
-    $opstaffobj = new OpStaff();
-    $opstaff = $opstaffobj->fetchAll(); // Fetch all officials
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Darlyn P. Flores</h3>
+            </div>
+            <div class="official-position">
+                <p>Special Assistant to the President</p>
+                <a href="../Offices/special-assistant-to-president.php" class="Offices"> Special Assistant to the President</a>
+            </div>
+        </div>
 
-    foreach ($opstaff as $opstaffs) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($opstaffs['name']) . '</h3>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($opstaffs['title']) . '</p>';
-        
-        if (!empty($opstaffs['page_link'])) {
-            echo '<a href="' . htmlspecialchars($opstaffs['page_link']) . '" class="Offices">Office of the President Staff</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asst. Prof. Aldrin S. Valerio</h3>
+            </div>
+            <div class="official-position">
+                <p>Executive Assistant to the Office of the President</p>
+                <a href="../Offices/executive-assistant-to-president.php" class="Offices"> Executive Assistant to the Office of the President</a>
+            </div>
+        </div>
 
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Shamir R. Kassim</h3>
+            </div>
+            <div class="official-position">
+                <p>University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns</p>
+                <a href="../Offices/university-curriculum-chair.php" class="Offices"> University Curriculum Chair</a>
+            </div>
+        </div>
 
         <!-- University and Board Secretary -->
         <div class="position-title">University and Board Secretary</div>
-        <?php
-    require_once '../classes/UniversityBoardSecretary.class.php';
-
-    $uniBoardSecretaryObj = new UniversityBoardSecretary();
-    $uniBoardSecretary = $uniBoardSecretaryObj->fetchAll(); // Fetch all officials
-
-    foreach ($uniBoardSecretary as $uniBoardSecretarys) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($uniBoardSecretarys['name']) . '</h3>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($uniBoardSecretarys['title']) . '</p>';
-        
-        if (!empty($uniBoardSecretarys['page_link'])) {
-            echo '<a href="' . htmlspecialchars($uniBoardSecretarys['page_link']) . '" class="Offices">Office of the President Staff</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Al-Ghani D. Mohammad</h3>
+            </div>
+            <div class="official-position">
+                <p>Univ. and Board Secretary</p>
+            </div>
+        </div>
 
         <!-- Directors -->
         <div class="position-title">Directors</div>
-        <?php
-    require_once '../classes/Directors.class.php';
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Leonilo B. Abella</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, WESMAARRDEC Consortium</p>
+            </div>
+        </div>
 
-    $directorsObj = new Directors();
-    $director = $directorsObj->fetchAll(); // Fetch all officials
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Reynante E. Autida</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Research Development & Eval. Center</p>
+            </div>
+        </div>
 
-    foreach ($director as $directors) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($directors['name']) . '</h3>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($directors['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Joselito R. Custodio</h3>
+            </div>
+            <div class="official-position">
+                <p>OIC – Director, Office of the Center for Continuing Education</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Engr. Mark L. Flores</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Data Protection and IT Security Officer</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Engr. Ferdinand S. Guardo</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Management Information Systems & Technology Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asst. Prof. Al-Rashid T. Jama</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, University Disaster Risk Reduction Management Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asst. Prof. Norman Lloyd B. Manginsay</h3>
+            </div>
+            <div class="official-position">
+                <p>OIC – Director of University Sports Development Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Engr. Evelyn N. Angeles</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Office of the Student Affairs</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Mario R. Obra, Jr.</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Quality Management Office, International Relations Office & External Linkages</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Engr. Hernan N. Rosaldo II</h3>
+            </div>
+            <div class="official-position">
+                <p>OIC-Director, Department of Extension Services and Community Development</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Arch. Joseph Andrew L. Sahial</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Physical Plant concurrent capacity as the University Architect</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Roberto M. Sala</h3>
+            </div>
+            <div class="official-position">
+                <p>Director of WMSU – Affiliated Renewable Energy Center (AREC)</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Bernard Q. Suriaga</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, University Center for Local Governance</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Ms. Rosalie T. Arcillas</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Finance</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Fuvie R. Bayot</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Distance Education</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Fini Joy P. Buenafe</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Guidance & Counseling Center</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asst. Prof. Mary Grace M. Buñol</h3>
+            </div>
+            <div class="official-position">
+                <p>OIC – Director for Testing and Evaluation Center (TEC)</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Nerlyne C. Concepcion</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, WMSU Career and Job Placement Center</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asst. Prof. Ludivina B. Dekit</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Peace & Human Security Institute</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Marilou C. Elago</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Office of the Univ. Biosafety and Biosecurity Committee</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Vicenta T. Escobar</h3>
+            </div>
+            <div class="official-position">
+                <p>Director for Admissions Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Mariam Z. Julkarnain</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Gender Research & Resource Center</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Ma. Nora D. Lai</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Alumni Relations Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Melanie F. Lear</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Centro de Estudio Mindanao, concurrent capacity as Community Outreach and Development Advocacy Program (CODAP)</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Glory Jean G. Leonin</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Scholarship Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Asso. Prof. Maria Dolores J. Macrohon</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Office of Auxiliary Services</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Almira E. Nochefranca</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Office of the Culture and the Arts</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Aubrey F. Reyes</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Sentro ng Wika at Kultura</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Mrs. Ma. Teresita J. Rodriguez</h3>
+            </div>
+            <div class="official-position">
+                <p>Director for Administration</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Ms. Girlie C. Tangalin</h3>
+            </div>
+            <div class="official-position">
+                <p>Director National Service Training Program Office</p>
+            </div>
+        </div>
+
+        <div class="official-row">
+            <div class="official-name">
+                <h3>Dr. Lea E. Usman</h3>
+            </div>
+            <div class="official-position">
+                <p>Director, Public Affairs Office in concurrent capacity as Director of the Language Development Resource Center</p>
+            </div>
+        </div>
 
         <!-- Campus Administrators -->
         <div class="position-title">Campus Administrators</div>
