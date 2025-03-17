@@ -34,6 +34,7 @@
                     echo '<div class="official-row">';
                     echo '<div class="official-name"><h3>' . $vicePresident['name'] . '</h3></div>';
                     echo '<div class="official-position"><p>' . $vicePresident['title'] . '</p>';
+                    echo "<img src='images/" . htmlspecialchars($vicepresident['page_link']) . "' width='200px' alt='Image'>";
                     if (!empty($vicePresident['link_to_office'])) {
                         echo '<a href="' . $vicePresident['link_to_office'] . '" class="Offices">Office of the Vice President</a>';
                     }

@@ -9,7 +9,10 @@
 
 
 <body>
-    <?php require_once '../__includes/navbar.php'; ?>
+    
+    <?php 
+    require_once '../__includes/head.php';
+    require_once '../__includes/navbar.php'; ?>
     
     <!-- Main Content with side margins -->
     <div class="container">
