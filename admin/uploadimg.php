@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/Pres.class.php';
+require_once '../classes/bor.class.php';
 
 if(isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -12,9 +12,9 @@ if(isset($_POST['submit'])) {
 
     // Move uploaded file to the 'images' folder
     if(move_uploaded_file($tempname, $folder)) {
-        $pres = new Pres();
+        $boardobj = new Board();
         
-        if ($pres->upload($name, $title, $file_name)) {
+        if ($boardobj->upload($name, $title, $file_name)) {
             echo "Uploaded successfully!";
         } else {
             echo "Failed to insert into the database.";

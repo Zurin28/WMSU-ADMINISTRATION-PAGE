@@ -27,7 +27,7 @@ class Pres {
         }
 
            // Upload
-           function upload($name, $title, $file_name)
+           function add_official($name, $title, $file_name)
 {
     try {
         $sql = "INSERT INTO president (name, title, page_link) VALUES (:name, :title, :page_link)";
