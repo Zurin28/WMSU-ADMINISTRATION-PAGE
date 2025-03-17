@@ -7,25 +7,7 @@
     <title>WMSU ADMINISTRATION</title>
 
 
-<?php
-    require_once '../__includes/head.php';
-    require_once '../classes/Pres.class.php';
-    require_once '../classes/VicePres.class.php';
-    require_once '../classes/OpStaff.class.php';
-    require_once '../classes/UniversityBoardSecretary.class.php';
-    require_once '../classes/Directors.class.php';
-    require_once '../classes/CampusAdministrators.class.php';
-    require_once '../classes/ILSPrincipals.class.php';
-    require_once '../classes/AssistantDirectors.class.php';
-    require_once '../classes/TechnicalAssistants.class.php';
-    require_once '../classes/Chairpersons.class.php';
-    require_once '../classes/Managers.class.php';
-    require_once '../classes/GraduateSchoolHead.class.php';
-    require_once '../classes/Coordinators.class.php';
-    require_once '../classes/SectionChiefs.class.php';
-    require_once '../classes/OtherServices.class.php';
 
-?>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
     

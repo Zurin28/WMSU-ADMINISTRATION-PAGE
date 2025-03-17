@@ -2,20 +2,54 @@
 require_once 'database.class.php';
 
 class Pres {
-    private $db;
 
-    public function __construct() {
-        $this->db = Database::getInstance()->connect();
+    protected $db;
+
+    function __construct()
+    {
+        $this->db = new Database();
     }
 
-    public function fetchAll() {
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM pres");
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die("Error fetching values: " . $e->getMessage());
+        // Fetch all products
+        function fetchAll()
+        {
+            $sql = "SELECT * FROM president";
+            // Prepare the query
+            $query = $this->db->connect()->prepare($sql);
+            // Execute the query and fetch data
+            $data = null;
+            if ($query->execute()) {
+                $data = $query->fetchAll(PDO::FETCH_ASSOC);
+            }
+        
+            // Return the data
+            return $data;
         }
+
+           // Upload
+           function upload($name, $title, $file_name)
+{
+    try {
+        $sql = "INSERT INTO president (name, title, page_link) VALUES (:name, :title, :page_link)";
+        $query = $this->db->connect()->prepare($sql);
+        
+        $query->bindParam(':name', $name);
+        $query->bindParam(':title', $title);
+        $query->bindParam(':page_link', $file_name);
+        
+        if ($query->execute()) {
+            return true;
+        } else {
+            // Print error if insertion fails
+            print_r($query->errorInfo());
+            return false;
+        }
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+        return false;
     }
+}
+
+           
 }
 ?>
