@@ -65,16 +65,20 @@
             </div>
             <a class="inter-extralight" id="Academic" href="">ACADEMIC <img src="../imgs/Expand Arrow.png" alt=""></a>
             <div id="Academic-dropdown" class="nav-dropdown">
-            <div class="dropdown-cont">
+                <div class="dropdown-cont">
                     <div class="dropdown-title">
                         <div class="dropdown-content">
-                            <h6 class="inter-bold">College of Architecture</h6>
-                            <h6 class="inter-bold">College of Agriculture</h6>
-                            <h6 class="inter-bold">College of Asian & Islamic Studies</h6>
+                            <h1>Academic</h1>
                         </div>
-                        <div class="nav-divider"></div>
+                    </div>
+                </div>
+            </div>
+            <a class="inter-extralight" id="Administration" href="">ADMINISTRATION <img src="../imgs/Expand Arrow.png" alt=""></a>
+            <div id="Administration-dropdown" class="nav-dropdown">
+                <div class="dropdown-cont">
+                    <div class="dropdown-title">
                         <div class="dropdown-content">
-                            <h6 class="inter-bold">SCHEDULE OF FEES</h6>
+                            <h1>Administration</h1>
                         </div>
                     </div>
                 </div>
