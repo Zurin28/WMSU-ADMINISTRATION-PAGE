@@ -1,15 +1,16 @@
 <?php
-require_once '../../classes/OtherServices.class.php';
+require_once '../../classes/AssistantDirectors.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
 
-    $otherService = new OtherServices();
+    $coordinator = new AssistantDirectors();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($otherService->add_official($name, $title)) {
+    if ($coordinator->add_official($name, $title)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }

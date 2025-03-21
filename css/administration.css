@@ -1,0 +1,57 @@
+/* Add spacing between each table card */
+.card {
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Make the tables look more refined */
+.table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table header styling */
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 16px;
+}
+
+/* Table row styling */
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.table tbody tr:hover {
+    background-color: #f2f4f7;
+}
+
+/* Cell padding */
+.table td, .table th {
+    padding: 14px;
+    vertical-align: middle;
+}
+
+/* Add spacing between action buttons */
+.btn {
+    margin-right: 4px;
+}
+
+/* Smoothen Add Official button */
+.btn.brand-bg-color {
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+/* Make table scroll look nicer */
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}

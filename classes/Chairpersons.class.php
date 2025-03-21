@@ -45,5 +45,12 @@ class Chairpersons {
                 return false;
             }
         }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM chairpersons WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

@@ -1,15 +1,17 @@
 <?php
-require_once '../../classes/TechnicalAssistants.class.php';
+require_once '../../classes/pres.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $page_link = $_POST['page_link'];
 
-    $techAssistant = new TechnicalAssistants();
+    $presobj = new Pres();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($techAssistant->add_official($name, $title)) {
+    if ($presobj->add_official($name, $title, $page_link)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }
@@ -30,6 +32,9 @@ if (isset($_POST['submit'])) {
 
         <label for="title">Title</label>
         <input type="text" name="title" id="title" required>
+
+        <label for="page_link">Page Link</label>
+        <input type="text" name="page_link" id="page_link" required>
 
         <button type="submit" name="submit">Submit</button>
     </form>

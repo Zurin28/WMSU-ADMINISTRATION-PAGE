@@ -49,6 +49,12 @@ class Pres {
         return false;
     }
 }
+function deleteOfficial($id) {
+    $sql = "DELETE FROM president WHERE id = :id";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':id', $id);
+    return $query->execute();
+}
 
            
 }

@@ -25,27 +25,34 @@ class OpStaff {
             return $data;
         }
 
-        function add_official($name, $title, $file_name)
-        {
-            try {
-                $sql = "INSERT INTO opstaff (name, title, page_link) VALUES (:name, :title, :page_link)";
-                $query = $this->db->connect()->prepare($sql);
-                
-                $query->bindParam(':name', $name);
-                $query->bindParam(':title', $title);
-                $query->bindParam(':page_link', $file_name);
-                
-                if ($query->execute()) {
-                    return true;
-                } else {
-                    // Print error if insertion fails
-                    print_r($query->errorInfo());
-                    return false;
-                }
-            } catch (PDOException $e) {
-                echo "Database error: " . $e->getMessage();
+    function add_official($name, $title, $file_name)
+    {
+        try {
+            $sql = "INSERT INTO opstaff (name, title, page_link) VALUES (:name, :title, :page_link)";
+            $query = $this->db->connect()->prepare($sql);
+            
+            $query->bindParam(':name', $name);
+            $query->bindParam(':title', $title);
+            $query->bindParam(':page_link', $file_name);
+            
+            if ($query->execute()) {
+                return true;
+            } else {
+                // Print error if insertion fails
+                print_r($query->errorInfo());
                 return false;
             }
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
         }
+    }
+
+    function deleteOfficial($id) {
+        $sql = "DELETE FROM opstaff WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        return $query->execute();
+    }
 }
 ?>

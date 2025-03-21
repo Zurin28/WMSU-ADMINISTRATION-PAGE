@@ -45,5 +45,12 @@ class ILSPrincipals {
                 return false;
             }
         }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM ils_principals WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

@@ -1,15 +1,16 @@
 <?php
-require_once '../../classes/AcademicDean.class.php';
+require_once '../../classes/Coordinators.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
 
-    $academicDean = new AcademicDean();
+    $coordinator = new Coordinators();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($academicDean->add_official($name, $title)) {
+    if ($coordinator->add_official($name, $title)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }

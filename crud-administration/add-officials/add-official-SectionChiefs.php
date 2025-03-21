@@ -1,15 +1,16 @@
 <?php
-require_once '../../classes/ILSPrincipals.class.php';
+require_once '../../classes/SectionChiefs.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
 
-    $ILSPrincipals = new ILSPrincipals();
+    $sectionChief = new SectionChiefs();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($ILSPrincipals->add_official($name, $title)) {
+    if ($sectionChief->add_official($name, $title)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }
