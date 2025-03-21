@@ -45,5 +45,12 @@ class SectionChiefs {
                 return false;
             }
         }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM section_chiefs WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

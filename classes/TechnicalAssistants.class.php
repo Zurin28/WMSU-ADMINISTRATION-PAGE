@@ -45,5 +45,12 @@ class TechnicalAssistants {
                 return false;
             }
         }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM technical_assistants WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

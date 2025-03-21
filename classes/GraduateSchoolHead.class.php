@@ -45,5 +45,12 @@ class GraduateSchoolHead {
                 return false;
             }
         }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM graduate_school_head WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

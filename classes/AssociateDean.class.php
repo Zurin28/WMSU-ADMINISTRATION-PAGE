@@ -45,5 +45,12 @@ class AssociateDean {
             return false;
         }
     }
+
+    function deleteOfficial($id) {
+        $sql = "DELETE FROM associate_deans WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        return $query->execute();
+    }
 }
 ?>

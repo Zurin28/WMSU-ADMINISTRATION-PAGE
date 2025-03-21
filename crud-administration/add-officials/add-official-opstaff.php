@@ -1,15 +1,17 @@
 <?php
-require_once '../../classes/Coordinators.class.php';
+require_once '../../classes/opstaff.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $page_link = $_POST['page_link'];
 
-    $coordinator = new Coordinators();
+    $opstaffobj = new OpStaff();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($coordinator->add_official($name, $title)) {
+    if ($opstaffobj->add_official($name, $title, $page_link)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }
@@ -30,6 +32,9 @@ if (isset($_POST['submit'])) {
 
         <label for="title">Title</label>
         <input type="text" name="title" id="title" required>
+
+        <label for="page_link">Page Link</label>
+        <input type="text" name="page_link" id="page_link" required>
 
         <button type="submit" name="submit">Submit</button>
     </form>
