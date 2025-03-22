@@ -731,7 +731,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="page-title-right d-flex align-items-center">
-                            <a href="./crud-administration/add-officials/add-official-GraduateScholHead.php" class="btn btn-primary brand-bg-color">Add Official</a>
+                            <a href="../crud-administration/add-officials/add-official-GraduateSchoolHead.php" class="btn btn-primary brand-bg-color">Add Official</a>
                         </div>
                     </div>
 
