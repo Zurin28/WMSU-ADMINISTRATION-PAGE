@@ -24,5 +24,33 @@ class Coordinators {
             // Return the data
             return $data;
         }
+        function add_official($name, $title)
+        {
+            try {
+                $sql = "INSERT INTO coordinators (name, title) VALUES (:name, :title)";
+                $query = $this->db->connect()->prepare($sql);
+                
+                $query->bindParam(':name', $name);
+                $query->bindParam(':title', $title);
+                
+                if ($query->execute()) {
+                    return true;
+                } else {
+                    // Print error if insertion fails
+                    print_r($query->errorInfo());
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo "Database error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM coordinators WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
 }
 ?>

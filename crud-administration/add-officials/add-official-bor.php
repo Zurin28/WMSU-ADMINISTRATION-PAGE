@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/bor.class.php';
+require_once '../../classes/bor.class.php';
 
 if(isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -16,6 +16,7 @@ if(isset($_POST['submit'])) {
         
         if ($boardobj->upload($name, $title, $file_name)) {
             echo "Uploaded successfully!";
+            header('Location: ../../sample-admin/administration');
         } else {
             echo "Failed to insert into the database.";
         }

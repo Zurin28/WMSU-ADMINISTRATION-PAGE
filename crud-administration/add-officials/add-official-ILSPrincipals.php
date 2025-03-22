@@ -1,16 +1,16 @@
 <?php
-require_once '../../classes/Vicepres.class.php';
+require_once '../../classes/ILSPrincipals.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
-    $page_link = $_POST['page_link'];
 
-    $vicepresobj = new VicePres();
+    $ILSPrincipals = new ILSPrincipals();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($vicepresobj->add_official($name, $title, $page_link)) {
+    if ($ILSPrincipals->add_official($name, $title)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }
@@ -31,9 +31,6 @@ if (isset($_POST['submit'])) {
 
         <label for="title">Title</label>
         <input type="text" name="title" id="title" required>
-
-        <label for="page_link">Page Link</label>
-        <input type="text" name="page_link" id="page_link" required>
 
         <button type="submit" name="submit">Submit</button>
     </form>

@@ -1,5 +1,5 @@
 <?php
-require_once '../../classes/Pres.class.php';
+require_once '../../classes/pres.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     // Assuming `add_official()` accepts name and title as parameters
     if ($presobj->add_official($name, $title, $page_link)) {
         echo "Official added successfully!";
+        header('Location: ../../sample-admin/administration');
     } else {
         echo "Failed to insert into the database.";
     }
