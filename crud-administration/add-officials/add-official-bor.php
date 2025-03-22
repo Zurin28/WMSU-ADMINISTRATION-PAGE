@@ -8,7 +8,7 @@ if(isset($_POST['submit'])) {
     // Correctly retrieve file information
     $file_name = $_FILES['page_link']['name'];
     $tempname = $_FILES['page_link']['tmp_name'];
-    $folder = 'images/' . $file_name;
+    $folder = '../../images/' . $file_name;
 
     // Move uploaded file to the 'images' folder
     if(move_uploaded_file($tempname, $folder)) {

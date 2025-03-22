@@ -55,5 +55,28 @@ class VicePres {
     $query->bindParam(':id', $id);
     return $query->execute();
 }
+
+function fetchRecord($recordID)
+{
+    $sql = "SELECT * FROM vice_presidents WHERE id = :recordID;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':recordID', $recordID);
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetch();
+    }
+    return $data;
+}
+
+function edit()
+{
+    $sql = "UPDATE vice_presidents SET name = :name, title = :title, page_link = :page_link WHERE id = :id;";
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':name', $this->name);
+    $query->bindParam(':title', $this->title);
+    $query->bindParam(':page_link', $this->page_link);
+    $query->bindParam(':id', $this->id);
+    return $query->execute();
+}
 }
 ?>

@@ -55,5 +55,56 @@ class Board {
         return $query->execute();
     }
 
+    function fetchRecord($recordID)
+    {
+        $sql = "SELECT * FROM board_of_regents WHERE id = :recordID;";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':recordID', $recordID);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetch();
+        }
+        return $data;
+    }
+
+    function edit($id, $name, $title, $file_name)
+{
+    try {
+        // Build the base SQL query
+        if ($file_name) {
+            // Update including the image
+            $sql = "UPDATE board_of_regents 
+                    SET name = :name, title = :title, image = :image 
+                    WHERE id = :id";
+        } else {
+            // Update without changing the image
+            $sql = "UPDATE board_of_regents 
+                    SET name = :name, title = :title 
+                    WHERE id = :id";
+        }
+
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':name', $name);
+        $query->bindParam(':title', $title);
+        $query->bindParam(':id', $id);
+
+        if ($file_name) {
+            $query->bindParam(':image', $file_name);
+        }
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            print_r($query->errorInfo());
+            return false;
+        }
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+        return false;
+    }
+}
+
+
 }
 ?>
