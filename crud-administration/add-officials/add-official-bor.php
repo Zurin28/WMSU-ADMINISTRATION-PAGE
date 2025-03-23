@@ -6,8 +6,8 @@ if(isset($_POST['submit'])) {
     $title = $_POST['title'];
     
     // Correctly retrieve file information
-    $file_name = $_FILES['page_link']['name'];
-    $tempname = $_FILES['page_link']['tmp_name'];
+    $file_name = $_FILES['image']['name'];
+    $tempname = $_FILES['image']['tmp_name'];
     $folder = '../../images/' . $file_name;
 
     // Move uploaded file to the 'images' folder
@@ -41,8 +41,8 @@ if(isset($_POST['submit'])) {
         <label for="title">Title</label>
         <input type="text" name="title" id="title" required>
 
-        <label for="page_link">Upload Image</label>
-        <input type="file" name="page_link" id="page_link" required>
+        <label for="image">Upload Image</label>
+        <input type="file" name="image" id="image" required>
 
         <button type="submit" name="submit">Submit</button>
     </form>

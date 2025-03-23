@@ -268,20 +268,25 @@ $(document).ready(function () {
 
     // Function to update a new official
     function updateMember(id) {
+      var form = $('#form-edit-member')[0];
+      var formData = new FormData(form);
+      
       $.ajax({
           type: "POST",
-          url: `../crud-administration/update-officials/update-bor.php?id=${id}`, // Correct URL
-          data: $("form").serialize(),
+          url: `../crud-administration/update-officials/update-bor.php?id=${id}`,
+          data: formData,
+          processData: false,
+          contentType: false,
           dataType: "json",
           success: function (response) {
               if (response.status === "success") {
                   $("#staticBackdropeditmember").modal("hide");
-                  $("form")[0].reset();
-                  viewAdministration(); // Reload accounts after update
+                  $("#form-edit-member")[0].reset();
+                  viewAdministration();
               }
           },
       });
-  }
+    }      
     
 
     
