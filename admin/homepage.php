@@ -31,7 +31,7 @@ $boardMembers = $bor->fetchAll(); // Fetch all board members
 foreach ($boardMembers as $member) {
     echo '<div class="board-member">';
     echo '    <div class="member-image">';
-    echo '        <img src="images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '" width="200px">';
+    echo '        <img src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '" width="200px">';
     echo '    </div>';
     echo '    <div class="member-info">';
     echo '        <div class="member-name">' . htmlspecialchars($member['name']) . '</div>';

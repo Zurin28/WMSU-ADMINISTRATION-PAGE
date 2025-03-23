@@ -52,5 +52,27 @@ class Coordinators {
             $query->bindParam(':id', $id);
             return $query->execute();
         }
+
+        function fetchRecord($recordID)
+        {
+            $sql = "SELECT * FROM coordinators WHERE id = :recordID;";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':recordID', $recordID);
+            $data = null;
+            if ($query->execute()) {
+                $data = $query->fetch();
+            }
+            return $data;
+        }
+        
+        function edit()
+        {
+            $sql = "UPDATE coordinators SET name = :name, title = :title WHERE id = :id;";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':name', $this->name);
+            $query->bindParam(':title', $this->title);
+            $query->bindParam(':id', $this->id);
+            return $query->execute();
+        }
 }
 ?>
