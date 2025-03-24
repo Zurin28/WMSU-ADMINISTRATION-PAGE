@@ -1,14 +1,14 @@
 <?php
-require_once '../../classes/Directors.class.php';
+require_once '../../classes/CampusAdministrators.class.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
 
-    $directors = new Directors();
+    $campusAdmin = new CampusAdministrators();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($directors->add_official($name, $title)) {
+    if ($campusAdmin->add_official($name, $title)) {
         echo "Official added successfully!";
         header('Location: ../../sample-admin/administration');
     } else {
