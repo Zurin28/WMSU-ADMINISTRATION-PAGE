@@ -36,6 +36,28 @@ $(document).ready(function () {
           dataType: "html", // Expect HTML response
           success: function (response) {
             $(".content-page").html(response); // Load the response into the content area
+
+             // Initialize DataTable for product table
+        var table = $("#table-administration").DataTable({
+          dom: "rtp", // Set DataTable options
+          pageLength: 10, // Default page length
+          ordering: false, // Disable ordering
+        });
+
+        // Bind custom input to DataTable search
+        $("#custom-search").on("keyup", function () {
+          table.search(this.value).draw(); // Search products based on input
+        });
+
+        // Bind change event for category filter
+        $("#category-filter").on("change", function () {
+          if (this.value !== "choose") {
+            table.column(3).search(this.value).draw(); // Filter products by selected category
+          }
+        });
+
+
+        
     
           // Event listener for editing a product and deleting product
           $(".edit-member").on("click", function (e) {

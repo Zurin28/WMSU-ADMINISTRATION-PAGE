@@ -1,8 +1,4 @@
-@font-face {
-    font-family: OpenSans;
-    src: url("../vendor/OpenSans-VariableFont_wdth,wght.ttf");
-  }
-  
+
   * {
     font-family: OpenSans;
     box-sizing: border-box;
@@ -31,6 +27,11 @@
     align-items: center;
     padding-left: 20px;
     font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 28px;
     font-weight: bold;
   }
   

@@ -1,4 +1,4 @@
-<div class="sidebar flex-column flex-shrink-0">
+<div class="sidebar flex-column ">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
         <a href="Administration" id="Administration-link" class="nav-link">
