@@ -48,42 +48,42 @@ $(document).ready(function () {
             deletingMember(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-Presofficial").on("click", function (e) {
+          $(".edit-pres").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editPresofficial(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-Presofficial").on("click", function (e) {
+          $(".delete-pres").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingPresofficial(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-VicePresofficial").on("click", function (e) {
+          $(".edit-vicepres").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editVicePresofficial(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-VicePresofficial").on("click", function (e) {
+          $(".delete-vicepres").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingVicePresofficial(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-opstaffs").on("click", function (e) {
+          $(".edit-opstaff").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editopstaffs(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-opstaffs").on("click", function (e) {
+          $(".delete-opstaff").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingopstaffs(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-uniBoardSecretarys").on("click", function (e) {
+          $(".edit-universityboardsecretary").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             edituniBoardSecretarys(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-uniBoardSecretarys").on("click", function (e) {
+          $(".delete-universityboardsecretary").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletinguniBoardSecretarys(this.dataset.id); // Call function to edit product
           });
@@ -98,42 +98,42 @@ $(document).ready(function () {
             deletingdirectors(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-campusAdmins").on("click", function (e) {
+          $(".edit-campusadministrators").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editcampusAdmins(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-campusAdmins").on("click", function (e) {
+          $(".delete-campusadministrators").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingcampusAdmins(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-ILSPrincipals").on("click", function (e) {
+          $(".edit-ilsprincipals").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editILSPrincipals(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-ILSPrincipals").on("click", function (e) {
+          $(".delete-ilsprincipals").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingILSPrincipals(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-assistantDirectors").on("click", function (e) {
+          $(".edit-assistantdirectors").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editassistantDirectors(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-assistantDirectors").on("click", function (e) {
+          $(".delete-assistantdirectors").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingassistantDirectors(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-techAssists").on("click", function (e) {
+          $(".edit-technicalassistants").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             edittechAssists(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-techAssists").on("click", function (e) {
+          $(".delete-technicalassistants").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingtechAssists(this.dataset.id); // Call function to edit product
           });
@@ -158,12 +158,12 @@ $(document).ready(function () {
             deletingmanagers(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-graduateSchoolHeads").on("click", function (e) {
+          $(".edit-graduateschoolheads").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editgraduateSchoolHeads(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-graduateSchoolHeads").on("click", function (e) {
+          $(".delete-graduateschoolheads").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletinggraduateSchoolHeads(this.dataset.id); // Call function to edit product
           });
@@ -178,22 +178,22 @@ $(document).ready(function () {
             deletingcoordinators(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-sectionChiefs").on("click", function (e) {
+          $(".edit-sectionchiefs").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editsectionChiefs(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-sectionChiefs").on("click", function (e) {
+          $(".delete-sectionchiefs").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingsectionChiefs(this.dataset.id); // Call function to edit product
           });
 
-          $(".edit-otherServices").on("click", function (e) {
+          $(".edit-otherservices").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             editotherServices(this.dataset.id); // Call function to edit product
           });
 
-          $(".delete-otherServices").on("click", function (e) {
+          $(".delete-otherservices").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
             deletingotherServices(this.dataset.id); // Call function to edit product
           });
