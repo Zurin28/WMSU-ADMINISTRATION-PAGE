@@ -13,7 +13,7 @@
     <?php require_once '../__includes/head.php'; ?>
     
     <!-- Main Content with side margins -->
-    <div class="container">
+<div class="container">
         <div class="left-margin"></div>
         
         <div class="content-area">
@@ -425,7 +425,7 @@ foreach ($boardMembers as $member) {
         echo '</div>';
     }
     ?>
-            </div>
+        
 
             <!-- Associate Dean -->
             <div class="position-title">Associate Dean</div>
@@ -470,7 +470,7 @@ foreach ($boardMembers as $member) {
         echo '</div>';
     }
     ?>
-
     </div>
+</div>
 </body>
 </html>
