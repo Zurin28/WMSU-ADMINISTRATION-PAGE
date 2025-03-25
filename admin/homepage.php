@@ -411,7 +411,7 @@ foreach ($boardMembers as $member) {
 
     $academicDeanObj = new AcademicDean();
     $academicDean = $academicDeanObj->fetchAll(); // Fetch all officials
-
+        echo "<br>";
     foreach ($academicDean as $academicDeans) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
