@@ -69,7 +69,7 @@ foreach ($boardMembers as $member) {
         echo '<p>' . htmlspecialchars($Presofficial['title']) . '</p>';
         
         if (!empty($Presofficial['page_link'])) {
-            echo '<a href="' . htmlspecialchars($Presofficial['page_link']) . '" class="Offices">Office of the President</a>';
+            echo '<a href="../Offices/' . htmlspecialchars($Presofficial['page_link']) . '" class="Offices">Office of the President</a>';
         }
         
         echo '</div>';
@@ -96,7 +96,7 @@ foreach ($boardMembers as $member) {
         echo '<p>' . htmlspecialchars($VicePresofficial['title']) . '</p>';
         
         if (!empty($VicePresofficial['page_link'])) {
-            echo '<a href="' . htmlspecialchars($VicePresofficial['page_link']) . '" class="Offices">Office of the Vice President</a>';
+            echo '<a href="../Offices/' . htmlspecialchars($VicePresofficial['page_link']) . '" class="Offices">Office of the Vice President</a>';
         }
         
         echo '</div>';
@@ -124,7 +124,7 @@ foreach ($boardMembers as $member) {
         echo '<p>' . htmlspecialchars($opstaffs['title']) . '</p>';
         
         if (!empty($opstaffs['page_link'])) {
-            echo '<a href="' . htmlspecialchars($opstaffs['page_link']) . '" class="Offices">Office of the President Staff</a>';
+            echo '<a href="../Offices/' . htmlspecialchars($opstaffs['page_link']) . '" class="Offices">Office of the President Staff</a>';
         }
         
         echo '</div>';
@@ -151,7 +151,7 @@ foreach ($boardMembers as $member) {
         echo '<p>' . htmlspecialchars($uniBoardSecretarys['title']) . '</p>';
         
         if (!empty($uniBoardSecretarys['page_link'])) {
-            echo '<a href="' . htmlspecialchars($uniBoardSecretarys['page_link']) . '" class="Offices">Office of the President Staff</a>';
+            echo '<a href="../Offices/' . htmlspecialchars($uniBoardSecretarys['page_link']) . '" class="Offices">Office of the President Staff</a>';
         }
         
         echo '</div>';
