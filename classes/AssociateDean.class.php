@@ -20,7 +20,6 @@ class AssociateDean {
         if ($query->execute()) {
             $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
-    
         // Return the data
         return $data;
     }
