@@ -11,7 +11,7 @@ require_once '../__includes/head.php';
         ?>
         <div class="content-page px-3">
             <!-- dynamic content here -->
-        </div>
+        </div>      
     </div>
     </div>
     <?php

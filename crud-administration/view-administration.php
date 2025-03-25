@@ -251,7 +251,7 @@
         <div class="section">
           <div class="section-header">
           External Studies Units
-            <a href="../crud-administration/add-officials/add-official-AssociateDean.php" class="insert-btn">Insert</a>
+            <a href="../crud-administration/add-officials/add-official-ExternalStudiesUnit.php" class="insert-btn">Insert</a>
           </div>
           <div class="modal-container"></div>
           <table>

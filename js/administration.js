@@ -431,22 +431,71 @@ function deletePresofficial(id) {
        // Function to show the edit modal
        function editVicePresofficial(id) {
         $.ajax({
-          type: "GET", // Use GET request
-          url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
-          dataType: "html", // Expect JSON response
+          type: "GET",
+          url: "../crud-administration/edit-officials/edit-w-page_link.html",
+          dataType: "html",
           success: function (view) {
-            fetchRecordVicePresofficial(id);
-            // Assuming 'view' contains the new content you want to display
-            $(".modal-container").empty().html(view); // Load the modal view
-            $("#staticBackdropeditpage_link").modal("show"); // Show the modal
-            $("#staticBackdropeditpage_link").attr("data-id", id);
-    
-            // Event listener for the add product form submission
-            $("#form-edit-page_link").on("submit", function (e) {
-              e.preventDefault(); // Prevent default form submission
-              updateVicePresofficial(id); // Call function to save product
+            // First load the modal content
+            $(".modal-container").empty().html(view);
+            
+            // Then fetch and populate the data
+            $.ajax({
+              url: `../crud-administration/fetching/fetch-Vicepres.php?id=${id}`,
+              type: "POST",
+              dataType: "json",
+              success: function (data) {
+                // Populate form fields
+                $("#staticBackdropeditpage_link #name").val(data.name);
+                $("#staticBackdropeditpage_link #title").val(data.title);
+                $("#staticBackdropeditpage_link #page_link").val(data.page_link);
+                
+                // Store ID in modal
+                $("#staticBackdropeditpage_link").attr("data-id", id);
+                
+                // Show modal
+                $("#staticBackdropeditpage_link").modal("show");
+              },
+              error: function(xhr, status, error) {
+                console.error("Error fetching data:", error);
+              }
+            });
+      
+            // Handle form submission
+            $("#form-edit-page_link").off('submit').on("submit", function (e) {
+              e.preventDefault();
+              
+              // Get form data
+              const formData = {
+                name: $("#staticBackdropeditpage_link #name").val(),
+                title: $("#staticBackdropeditpage_link #title").val(), 
+                page_link: $("#staticBackdropeditpage_link #page_link").val(),
+                id: id
+              };
+      
+              // Submit update
+              $.ajax({
+                type: "POST",
+                url: `../crud-administration/update-officials/update-Vicepres.php?id=${id}`,
+                data: formData,
+                dataType: "json",
+                success: function (response) {
+                  if (response.status === "success") {
+                    $("#staticBackdropeditpage_link").modal("hide");
+                    $("#form-edit-page_link")[0].reset();
+                    viewAdministration();
+                  } else {
+                    console.error("Update failed:", response);
+                  }
+                },
+                error: function(xhr, status, error) {
+                  console.error("Error updating:", error);
+                }
+              });
             });
           },
+          error: function(xhr, status, error) {
+            console.error("Error loading modal:", error);
+          }
         });
       }
     
