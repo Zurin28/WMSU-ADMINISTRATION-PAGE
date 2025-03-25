@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2025 at 02:38 PM
+-- Generation Time: Mar 25, 2025 at 01:43 AM
 -- Server version: 11.4.5-MariaDB
 -- PHP Version: 8.0.30
 
@@ -53,6 +53,20 @@ CREATE TABLE `assistant_directors` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `associate_deans`
+--
+
+CREATE TABLE `associate_deans` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `board_of_regents`
 --
 
@@ -64,6 +78,14 @@ CREATE TABLE `board_of_regents` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `board_of_regents`
+--
+
+INSERT INTO `board_of_regents` (`id`, `name`, `title`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'HON. RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', '2025-03-17 03:42:36', '2025-03-17 03:42:36'),
+(2, 'HON. ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', '2025-03-17 03:43:41', '2025-03-17 03:43:41');
 
 -- --------------------------------------------------------
 
@@ -93,6 +115,13 @@ CREATE TABLE `chairpersons` (
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `chairpersons`
+--
+
+INSERT INTO `chairpersons` (`id`, `name`, `title`, `created_at`, `updated_at`) VALUES
+(1, '', '', '2025-03-25 00:06:36', '2025-03-25 00:22:54');
+
 -- --------------------------------------------------------
 
 --
@@ -114,6 +143,27 @@ CREATE TABLE `coordinators` (
 --
 
 CREATE TABLE `directors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `directors`
+--
+
+INSERT INTO `directors` (`id`, `name`, `title`, `created_at`, `updated_at`) VALUES
+(1, '', '', '2025-03-25 00:05:09', '2025-03-25 00:29:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `external_studies_unit`
+--
+
+CREATE TABLE `external_studies_unit` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
@@ -178,6 +228,14 @@ CREATE TABLE `opstaff` (
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `opstaff`
+--
+
+INSERT INTO `opstaff` (`id`, `name`, `title`, `page_link`, `created_at`, `updated_at`) VALUES
+(1, 'opstaff guy', 'pres staff', 'uwa1', '2025-03-17 04:57:14', '2025-03-17 04:57:14'),
+(2, 'opstaff', 'op staff guy', '../../homepage.php', '2025-03-25 00:05:51', '2025-03-25 00:05:51');
+
 -- --------------------------------------------------------
 
 --
@@ -206,6 +264,13 @@ CREATE TABLE `president` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `president`
+--
+
+INSERT INTO `president` (`id`, `name`, `title`, `page_link`, `created_at`, `updated_at`) VALUES
+(2, 'ochotorena', 'president', 'uwu', '2025-03-17 04:29:06', '2025-03-17 04:29:06');
 
 -- --------------------------------------------------------
 
@@ -249,6 +314,16 @@ CREATE TABLE `university_board_secretary` (
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `university_board_secretary`
+--
+
+INSERT INTO `university_board_secretary` (`id`, `name`, `title`, `created_at`, `updated_at`) VALUES
+(1, 'pres boa secre', 'uwu', '2025-03-17 05:14:43', '2025-03-17 05:14:43'),
+(2, 'uni board sec', 'uni bo secretary', '2025-03-17 05:14:54', '2025-03-17 05:14:54'),
+(3, 'director', 'directory', '2025-03-17 05:22:47', '2025-03-17 05:22:47'),
+(4, 'unibsec', 'ok', '2025-03-25 00:06:15', '2025-03-25 00:06:15');
+
 -- --------------------------------------------------------
 
 --
@@ -265,6 +340,14 @@ CREATE TABLE `vice_presidents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `vice_presidents`
+--
+
+INSERT INTO `vice_presidents` (`id`, `name`, `title`, `page_link`, `created_at`, `updated_at`) VALUES
+(1, 'Cellphone 10', 'vice president', 'uwu', '2025-03-17 04:44:22', '2025-03-17 04:44:22'),
+(2, 'vice pres', 'vice', 'uwus', '2025-03-24 04:45:04', '2025-03-24 04:45:04');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -278,6 +361,12 @@ ALTER TABLE `academic_deans`
 -- Indexes for table `assistant_directors`
 --
 ALTER TABLE `assistant_directors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `associate_deans`
+--
+ALTER TABLE `associate_deans`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -308,6 +397,12 @@ ALTER TABLE `coordinators`
 -- Indexes for table `directors`
 --
 ALTER TABLE `directors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `external_studies_unit`
+--
+ALTER TABLE `external_studies_unit`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -387,10 +482,16 @@ ALTER TABLE `assistant_directors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `associate_deans`
+--
+ALTER TABLE `associate_deans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `campus_administrators`
@@ -402,7 +503,7 @@ ALTER TABLE `campus_administrators`
 -- AUTO_INCREMENT for table `chairpersons`
 --
 ALTER TABLE `chairpersons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `coordinators`
@@ -414,6 +515,12 @@ ALTER TABLE `coordinators`
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `external_studies_unit`
+--
+ALTER TABLE `external_studies_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -438,7 +545,7 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `opstaff`
 --
 ALTER TABLE `opstaff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `other_services`
@@ -450,7 +557,7 @@ ALTER TABLE `other_services`
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `section_chiefs`
@@ -468,13 +575,13 @@ ALTER TABLE `technical_assistants`
 -- AUTO_INCREMENT for table `university_board_secretary`
 --
 ALTER TABLE `university_board_secretary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vice_presidents`
 --
 ALTER TABLE `vice_presidents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
