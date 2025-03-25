@@ -20,7 +20,7 @@
           aria-label="Close"
         ></button>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" id="form-edit-page_link">
+      <form action="update_member.php" method="post" enctype="multipart/form-data" id="form-edit-page_link">
         <div class="modal-body">
           <div class="mb-2">
             <label for="name" class="form-label">Name</label>
@@ -39,6 +39,8 @@
             <input type="text" class="form-control" id="page_link" name="page_link" required />
             <div class="invalid-feedback"></div>
           </div>
+
+          <input type="hidden" name="id" id="member-id">
         </div>
         <div class="modal-footer">
           <button
@@ -56,3 +58,5 @@
     </div>
   </div>
 </div>
+
+
