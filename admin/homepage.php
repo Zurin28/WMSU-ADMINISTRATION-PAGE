@@ -403,7 +403,7 @@ foreach ($boardMembers as $member) {
     ?>
 
         <!-- ACADEMIC DEANS -->
-        <div class="section-header">
+        <div class="board-title">
             Academic Deans
         </div>
         <?php
