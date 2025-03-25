@@ -9,6 +9,6 @@
 <body>
     <!-- Navigation Bar -->
     <?php require_once '../__includes/navbar.php'; ?>
-    <div class="office-title">Special Assistant to the President</div>
+    <div class="office-title" style="text-align: center; font-weight: bold; font-size: 2em;">Special Assistant to the President</div>
 </body>
 </html>

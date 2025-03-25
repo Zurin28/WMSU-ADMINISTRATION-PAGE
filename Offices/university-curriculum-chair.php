@@ -9,6 +9,6 @@
 <body>
     <!-- Navigation Bar -->
     <?php require_once '../__includes/navbar.php'; ?>
-    <div class="office-title">University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns</div>
+    <div class="office-title" style="text-align: center; font-weight: bold; font-size: 2em;">University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns</div>
 </body>
 </html>

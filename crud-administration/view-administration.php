@@ -61,37 +61,6 @@
             <a href="../crud-administration/add-administrativeOfficials.php" class="insert-btn">Insert</a>
           </div>
           <div class="modal-container"></div>
-          <div class="d-flex justify-content-center align-items-center">
-            <form class="d-flex me-2">
-                <div class="input-group w-100">
-                    <input type="text" class="form-control form-control-light" id="custom-search" placeholder="Search products...">
-                    <span class="input-group-text bg-primary border-primary text-white brand-bg-color">
-                        <i class="bi bi-search"></i>
-                    </span>
-                </div>
-            </form>
-            <div class="d-flex align-items-center">
-                <label for="category-filter" class="me-2">Category</label>
-                <select id="category-filter" class="form-select">
-                    <option value="">All</option>
-                    <option value="President">President</option>
-                    <option value="Vice President">Vice President</option>
-                    <option value="Office of the President Staff">Office of the President Staff</option>
-                    <option value="University and Board Secretary">University and Board Secretary</option>
-                    <option value="Directors">Directors</option>
-                    <option value="Campus Administrators">Campus Administrators</option>
-                    <option value="Integrated Laboratory School Principals & Asst. Principals">Integrated Laboratory School Principals & Asst. Principals</option>
-                    <option value="Assistant & Associate Directors | Assistant Chairpersons | Special Assistants">Assistant & Associate Directors | Assistant Chairpersons | Special Assistants</option>
-                    <option value="Technical Assistants">Technical Assistants</option>
-                    <option value="Chairpersons">Chairpersons</option>
-                    <option value="Managers">Managers</option>
-                    <option value="HEAD/CHAIR OF THE GRADUATE SCHOOL">HEAD/CHAIR OF THE GRADUATE SCHOOL</option>
-                    <option value="Coordinator">Coordinator</option>
-                    <option value="Section Chief">Section Chief</option>
-                    <option value="Other Services">Other Services</option>
-                </select>
-            </div>
-        </div>
           <div class="table-responsive">
           <table id="table-administration">
             <thead class="table-light">

@@ -9,6 +9,6 @@
 <body>
     <!-- Navigation Bar -->
   <<?php  require_once '../__includes/navbar.php';?>
-  <div class="office-title">Office of the Vice President for Administrative and Finance</div>
+  <div class="office-title" style="text-align: center; font-weight: bold; font-size: 2em;">Office of the Vice President for Administrative and Finance</div>
 </body>
 </html>

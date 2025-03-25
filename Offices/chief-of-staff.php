@@ -9,6 +9,6 @@
 <body>
     <!-- Navigation Bar -->
     <?php require_once '../__includes/navbar.php'; ?>
-    <div class="office-title">Chief of Staff, Office of the President</div>
+    <div class="office-title" style="text-align: center; font-weight: bold; font-size: 2em;">Chief of Staff, Office of the President</div>
 </body>
 </html>
