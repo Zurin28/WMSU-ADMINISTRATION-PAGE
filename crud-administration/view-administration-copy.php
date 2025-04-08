@@ -10,7 +10,8 @@
                 <tr>
                     <th width="20%">IMAGE</th>
                     <th width="30%">NAME</th>
-                    <th width="30%">TITLE</th>
+                    <th width="20%">TITLE</th>
+                    <th width="10%">Rank</th>
                     <th width="20%">ACTIONS</th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                     </td>
                     <td class="name-cell"><?= htmlspecialchars($regent['name']) ?></td>
                     <td><?= htmlspecialchars($regent['title_bor']) ?></td>
+                    <td><?= htmlspecialchars($regent['rank']) ?></td>
                     <td class="action-cell">
                         <a href="#" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Edit</a>
                         <a href="#" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Delete</a>

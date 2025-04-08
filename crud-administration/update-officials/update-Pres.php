@@ -5,7 +5,7 @@ require_once('../../tools/functions.php');
 require_once('../../classes/Pres.class.php');
 
 $id = $_GET['id'];
-$name = $title = $title_bor = $page_link = '';
+$name = $title = $title_bor = $page_link = $rank = '';
 
 $pres = new Pres();
 
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = clean_input($_POST['title']);
     $title_bor = clean_input($_POST['title']);
     $page_link = clean_input($_POST['page_link']);
+    $rank = clean_input($_POST['rank']);
 
     $file_name = null; // Default to null if no image is provided
 
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Perform the update (with or without image)
-    if ($pres->edit($id, $name, $title, $title_bor, $page_link, $file_name)) {
+    if ($pres->edit($id, $name, $title, $title_bor, $page_link, $file_name, $rank)) {
         echo json_encode(['status' => 'success']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Something went wrong when updating the record.']);

@@ -2286,6 +2286,7 @@ function fetchRecordMember(id) {
     success: function (member) {
       $("#name").val(member.name);
       $("#title_bor").val(member.title_bor);
+      $("#rank").val(member.rank);
     },
   });
 }
@@ -2386,6 +2387,7 @@ function deleteMember(id) {
           $("#title").val(Presofficial.title);
           $("#title_bor").val(Presofficial.title_bor);
           $("#page_link").val(Presofficial.page_link);
+          $("#rank").val(Presofficial.rank);
         },
       });
     }

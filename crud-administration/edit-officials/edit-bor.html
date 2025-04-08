@@ -35,6 +35,20 @@
           </div>
 
           <div class="mb-2">
+            <label for="rank" class="form-label">Rank</label>
+            <input
+              type="number"
+              class="form-control"
+              id="rank"
+              name="rank"
+              min="1"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+          
+
+          <div class="mb-2">
             <label for="image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" id="image" name="image" />
             <div class="invalid-feedback"></div>
