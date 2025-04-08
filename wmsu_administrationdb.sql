@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2025 at 03:12 PM
+-- Generation Time: Apr 08, 2025 at 06:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -137,7 +137,7 @@ INSERT INTO `associate_deans` (`id`, `name`, `title`, `created_at`, `updated_at`
 CREATE TABLE `board_of_regents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
+  `title_bor` varchar(100) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `rank` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -148,7 +148,7 @@ CREATE TABLE `board_of_regents` (
 -- Dumping data for table `board_of_regents`
 --
 
-INSERT INTO `board_of_regents` (`id`, `name`, `title`, `image`, `rank`, `created_at`, `updated_at`) VALUES
+INSERT INTO `board_of_regents` (`id`, `name`, `title_bor`, `image`, `rank`, `created_at`, `updated_at`) VALUES
 (3, 'HON. MA. CARLA A. OCHOTORENA', 'PRESIDENT, WMSU VICE-CHAIRPERSON, WMSU-BOR', 'carla-ochotorena.jpg', 1, '2025-03-24 18:24:19', '2025-04-05 12:48:13'),
 (1, 'HON. RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', 2, '2025-03-16 19:42:36', '2025-04-05 12:48:13'),
 (4, 'HON. ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, '2025-03-24 18:24:46', '2025-03-24 18:24:46'),
@@ -470,8 +470,10 @@ CREATE TABLE `president` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
+  `title_bor` varchar(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `rank` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -480,8 +482,8 @@ CREATE TABLE `president` (
 -- Dumping data for table `president`
 --
 
-INSERT INTO `president` (`id`, `name`, `title`, `page_link`, `image`, `created_at`, `updated_at`) VALUES
-(4, 'Dr. Ma. Carla A. Ochotorena', 'University President', 'office-of-president', 'none pa', '2025-03-24 19:05:15', '2025-03-24 19:05:15');
+INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `created_at`, `updated_at`) VALUES
+(5, 'HON. MA. CARLA A. OCHOTORENA', 'University President', 'PRESIDENT, WMSU VICE-CHAIRPERSON, WMSU-BOR', 'uwa', 'Screenshot 2025-02-08 012300.png', 0, '2025-04-08 04:37:11', '2025-04-08 04:37:11');
 
 -- --------------------------------------------------------
 
@@ -696,7 +698,8 @@ ALTER TABLE `other_services`
 -- Indexes for table `president`
 --
 ALTER TABLE `president`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rank` (`rank`);
 
 --
 -- Indexes for table `section_chiefs`
@@ -808,7 +811,7 @@ ALTER TABLE `other_services`
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `section_chiefs`

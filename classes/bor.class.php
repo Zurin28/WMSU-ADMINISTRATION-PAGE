@@ -9,21 +9,31 @@ class Board {
         $this->db = new Database();
     }
 
-        // Fetch all products
-        function fetchAll()
-        {
-            $sql = "SELECT * FROM board_of_regents";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
-        }
+        // Fetch all board of regents and president, merged and ranked
+function fetchAll()
+{
+    $sql = "
+        SELECT id, name, title_bor, image, rank, 'president' AS type 
+        FROM president
+        UNION
+        SELECT id, name, title_bor, image, rank, 'board' AS type 
+        FROM board_of_regents
+        ORDER BY rank
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Return the data
+    return $data;
+}
+
         // Upload
         function upload($name, $title, $file_name)
         {

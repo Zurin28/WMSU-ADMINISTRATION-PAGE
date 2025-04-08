@@ -35,7 +35,7 @@ foreach ($boardMembers as $member) {
     echo '    </div>';
     echo '    <div class="member-info">';
     echo '        <div class="member-name">' . htmlspecialchars($member['name']) . '</div>';
-    echo '        <div class="member-title">' . htmlspecialchars($member['title']) . '</div>';
+    echo '        <div class="member-title">' . htmlspecialchars($member['title_bor']) . '</div>';
     
     if (!empty($member['link_to_office'])) {
         echo '        <a href="' . htmlspecialchars($member['link_to_office']) . '" class="Offices">Office of the President</a>';
