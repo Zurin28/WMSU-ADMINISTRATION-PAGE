@@ -1,47 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU ADMINISTRATION</title>
-
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
     <?php require_once '../__includes/head.php'; ?>
     
-    <!-- Main Content with side margins -->
-<div class="container">
-        <div class="left-margin"></div>
-        
-        <div class="content-area">
-            <h1 class="administration-title">ADMINISTRATION</h1>
-            
-            <div class="board-title">Board of Regents</div>
-            
-            <div class="board-grid">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-main">ADMINISTRATION</span>
+                <span class="hero-title-sub">PAGE</span>
+            </h1>
+            <p>The WMSU Administration page offers a comprehensive look into the <strong>individuals who lead and shape Western Mindanao State University</strong>. Here, you will find the <strong>Board of Regents, university officials</strong>, and key representatives whose leadership, dedication, and vision continue to drive the university toward <strong>academic excellence, innovation, and inclusive growth</strong>.</p>
+            <p>This section highlights the people behind WMSU's progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">Board of Regents</div>
+        <div class="divider-line"></div>
+    </div>
+
+    <section class="board-section">
+        <div class="board-container">
+            <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
+            <div class="board-description">
+                <p>The <span class="highlight">Board of Regents</span> is the highest policy-making body of <span class="highlight">Western Mindanao State University</span>. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution's alignment with its academic mission and public mandate.</p>
+                <br>
+                <p>Through collaborative governance and informed decision-making, the <span class="highlight">Board of Regents plays a vital role in upholding WMSU's standards of excellence</span> and fostering its continued growth as a premier institution in the region.</p>
+            </div>
+
+            <!-- Board Members Grid -->
+            <div class="members-grid">
             <?php
 require_once '../classes/bor.class.php';
 
 $bor = new Board();
 $boardMembers = $bor->fetchAll(); // Fetch all board members
+$count = 0;
 
 foreach ($boardMembers as $member) {
-    echo '<div class="board-member">';
-    echo '    <div class="member-image">';
-    echo '        <img src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '" width="200px">';
-    echo '    </div>';
-    echo '    <div class="member-info">';
-    echo '        <div class="member-name">' . htmlspecialchars($member['name']) . '</div>';
-    echo '        <div class="member-title">' . htmlspecialchars($member['title']) . '</div>';
-    
-    if (!empty($member['link_to_office'])) {
-        echo '        <a href="' . htmlspecialchars($member['link_to_office']) . '" class="Offices">Office of the President</a>';
+    // Skip "represented by" members
+    if (strpos($member['title'], 'represented by') !== false) {
+        continue;
     }
     
-    echo '    </div>';
+    // Limit to 12 members
+    if ($count >= 12) {
+        break;
+    }
+    $count++;
+
+    echo '<div class="member-card">';
+    echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
+    echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
+    echo '    <p>' . htmlspecialchars($member['title']) . '</p>';
+    
+    // Add "See More" button matching hero section style
+    echo '    <a href="#" class="btn">See More</a>';
+    
     echo '</div>';
 }
 ?>
@@ -50,7 +76,7 @@ foreach ($boardMembers as $member) {
 
 
             <div class="title-row">
-            <div class="position-title">President - </div>
+            <div class="position-title">President</div>
             </div>
 
             <div class="official-row">
@@ -62,7 +88,7 @@ foreach ($boardMembers as $member) {
 
     foreach ($PresOfficials as $Presofficial) {
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($Presofficial['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($Presofficial['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -86,10 +112,10 @@ foreach ($boardMembers as $member) {
     $vicePres = new VicePres();
     $VicePresOfficials = $vicePres->fetchAll(); // Fetch all officials
 
-    foreach ($VicePresOfficials as $VicePresofficial) {
+        foreach ($VicePresOfficials as $VicePresofficial) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($VicePresofficial['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($VicePresofficial['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -114,10 +140,10 @@ foreach ($boardMembers as $member) {
     $opstaffobj = new OpStaff();
     $opstaff = $opstaffobj->fetchAll(); // Fetch all officials
 
-    foreach ($opstaff as $opstaffs) {
+        foreach ($opstaff as $opstaffs) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($opstaffs['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($opstaffs['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -141,10 +167,10 @@ foreach ($boardMembers as $member) {
     $uniBoardSecretaryObj = new UniversityBoardSecretary();
     $uniBoardSecretary = $uniBoardSecretaryObj->fetchAll(); // Fetch all officials
 
-    foreach ($uniBoardSecretary as $uniBoardSecretarys) {
+        foreach ($uniBoardSecretary as $uniBoardSecretarys) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($uniBoardSecretarys['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($uniBoardSecretarys['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -167,10 +193,10 @@ foreach ($boardMembers as $member) {
     $directorsObj = new Directors();
     $director = $directorsObj->fetchAll(); // Fetch all officials
 
-    foreach ($director as $directors) {
+        foreach ($director as $directors) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($directors['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($directors['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -189,10 +215,10 @@ foreach ($boardMembers as $member) {
     $campusAdminObj = new CampusAdministrators();
     $campusAdmin = $campusAdminObj->fetchAll(); // Fetch all officials
 
-    foreach ($campusAdmin as $campusAdmins) {
+        foreach ($campusAdmin as $campusAdmins) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($campusAdmins['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($campusAdmins['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -211,10 +237,10 @@ foreach ($boardMembers as $member) {
     $ILSPrincipalsObj = new ILSPrincipals();
     $ILSPrincipal = $ILSPrincipalsObj->fetchAll(); // Fetch all officials
 
-    foreach ($ILSPrincipal as $ILSPrincipals) {
+        foreach ($ILSPrincipal as $ILSPrincipals) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($ILSPrincipals['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($ILSPrincipals['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -234,10 +260,10 @@ foreach ($boardMembers as $member) {
     $assistantDirectorObj = new AssistantDirectors();
     $assistantDirector = $assistantDirectorObj->fetchAll(); // Fetch all officials
 
-    foreach ($assistantDirector as $assistantDirectors) {
+        foreach ($assistantDirector as $assistantDirectors) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($assistantDirectors['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($assistantDirectors['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -256,10 +282,10 @@ foreach ($boardMembers as $member) {
     $techAssistObj = new TechnicalAssistants();
     $techAssist = $techAssistObj->fetchAll(); // Fetch all officials
 
-    foreach ($techAssist as $techAssists) {
+        foreach ($techAssist as $techAssists) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($techAssists['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($techAssists['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -278,10 +304,10 @@ foreach ($boardMembers as $member) {
     $chairpersonObj = new Chairpersons();
     $chairperson = $chairpersonObj->fetchAll(); // Fetch all officials
 
-    foreach ($chairperson as $chairpersons) {
+        foreach ($chairperson as $chairpersons) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($chairpersons['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($chairpersons['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -303,7 +329,7 @@ foreach ($boardMembers as $member) {
     foreach ($manager as $managers) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($managers['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($managers['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -325,7 +351,7 @@ foreach ($boardMembers as $member) {
     foreach ($graduateSchoolHead as $graduateSchoolHeads) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($graduateSchoolHeads['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($graduateSchoolHeads['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -347,7 +373,7 @@ foreach ($boardMembers as $member) {
     foreach ($coordinator as $coordinators) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($coordinators['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($coordinators['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -369,7 +395,7 @@ foreach ($boardMembers as $member) {
     foreach ($sectionChief as $sectionChiefs) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($sectionChiefs['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($sectionChiefs['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -391,7 +417,7 @@ foreach ($boardMembers as $member) {
     foreach ($otherService as $otherServices) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($otherServices['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($otherServices['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -415,7 +441,7 @@ foreach ($boardMembers as $member) {
     foreach ($academicDean as $academicDeans) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($academicDeans['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($academicDeans['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -438,7 +464,7 @@ foreach ($boardMembers as $member) {
     foreach ($associateDean as $associateDeans) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($associateDeans['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($associateDeans['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
@@ -460,7 +486,7 @@ foreach ($boardMembers as $member) {
     foreach ($externalStudiesUnit as $externalStudiesUnits) {
         echo '<div class="official-row">';
         echo '<div class="official-name">';
-        echo '<h3>' . htmlspecialchars($externalStudiesUnits['name']) . '</h3>';
+        echo '<p>' . htmlspecialchars($externalStudiesUnits['name']) . '</p>';
         echo '</div>';
         
         echo '<div class="official-position">';
