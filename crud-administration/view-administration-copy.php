@@ -10,7 +10,8 @@
                 <tr>
                     <th width="20%">IMAGE</th>
                     <th width="30%">NAME</th>
-                    <th width="30%">TITLE</th>
+                    <th width="20%">TITLE</th>
+                    <th width="10%">Rank</th>
                     <th width="20%">ACTIONS</th>
                 </tr>
             </thead>
@@ -32,10 +33,11 @@
                         <?php endif; ?>
                     </td>
                     <td class="name-cell"><?= htmlspecialchars($regent['name']) ?></td>
-                    <td><?= htmlspecialchars($regent['title']) ?></td>
+                    <td><?= htmlspecialchars($regent['title_bor']) ?></td>
+                    <td><?= htmlspecialchars($regent['rank']) ?></td>
                     <td class="action-cell">
-                        <a href="#" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>">Edit</a>
-                        <a href="#" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>">Delete</a>
+                        <a href="#" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Edit</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Delete</a>
                     </td>
                 </tr>
                 <?php 
@@ -57,7 +59,7 @@
             <a href="../crud-administration/add-administrativeOfficials.php" class="insert-btn">Insert</a>
         </div>
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
-                        <table id="table-products" class="table table-centered table-nowrap mb-0">
+                        <table id="" class="table table-centered table-nowrap mb-0">
                             <thead">
                     <tr>
                         <th width="20%">NAME</th>
@@ -68,7 +70,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                <?php 
                     $officialClasses = [
                         'President' => 'Pres',
                         'Vice President' => 'Vicepres',
@@ -103,7 +105,8 @@
                     <?php 
                             endforeach;
                         endif;
-                    } ?>
+                    }
+                    ?>
                 </tbody>
                         </table>
                     </div>

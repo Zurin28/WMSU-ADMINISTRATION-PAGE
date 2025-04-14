@@ -42,18 +42,39 @@ $(document).ready(function () {
           dataType: "html", // Expect HTML response
           success: function (response) {
             $(".content-page").html(response); // Load the response into the content area
-        
+
     
-          // Event listener for editing a product and deleting product
+                    // Edit member
           $(".edit-member").on("click", function (e) {
-            e.preventDefault(); // Prevent default behavior
-            editMember(this.dataset.id); // Call function to edit product
+            e.preventDefault();
+            const id = this.getAttribute('data-id');
+            const type = this.getAttribute('data-type');
+
+            if (type === "president") {
+              editPresofficial(id);
+          } else if (type === "board") {
+            editMember(id);
+          }else {
+              console.error("Invalid type");
+          }
           });
 
+          // Delete member
           $(".delete-member").on("click", function (e) {
-            e.preventDefault(); // Prevent default behavior
-            deletingMember(this.dataset.id); // Call function to edit product
+            e.preventDefault();
+            const id = this.dataset.id;
+            const type = this.dataset.type;
+
+            if (type === "president") {
+                deletePresofficial(id);
+            } else if (type === "board") {
+              deleteMember(id);
+            }else {
+                console.error("Invalid type");
+            }
           });
+
+
 
           $(".edit-pres").on("click", function (e) {
             e.preventDefault(); // Prevent default behavior
@@ -268,7 +289,7 @@ $(document).ready(function () {
       dataType: "json", // Expect JSON response
       success: function (member) {
         $("#name").val(member.name);
-        $("#title").val(member.title);
+        $("#title_bor").val(member.title_bor);
       },
     });
   }
@@ -341,17 +362,17 @@ $(document).ready(function () {
        function editPresofficial(id) {
         $.ajax({
           type: "GET", // Use GET request
-          url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
+          url: "../crud-administration/edit-officials/edit-pres.html", // URL to get product data
           dataType: "html", // Expect JSON response
           success: function (view) {
             fetchRecordPresofficial(id);
             // Assuming 'view' contains the new content you want to display
             $(".modal-container").empty().html(view); // Load the modal view
-            $("#staticBackdropeditpage_link").modal("show"); // Show the modal
-            $("#staticBackdropeditpage_link").attr("data-id", id);
+            $("#staticBackdropeditpres").modal("show"); // Show the modal
+            $("#staticBackdropeditpres").attr("data-id", id);
     
             // Event listener for the add product form submission
-            $("#form-edit-page_link").on("submit", function (e) {
+            $("#form-edit-pres").on("submit", function (e) {
               e.preventDefault(); // Prevent default form submission
               updatePresofficial(id); // Call function to save product
             });
@@ -367,6 +388,7 @@ $(document).ready(function () {
           success: function (Presofficial) {
             $("#name").val(Presofficial.name);
             $("#title").val(Presofficial.title);
+            $("#title_bor").val(Presofficial.title_bor);
             $("#page_link").val(Presofficial.page_link);
           },
         });
@@ -2020,16 +2042,35 @@ function deleteexternalStudiesUnits(id) {
           $(".content-page").html(response); // Load the response into the content area
       
   
-        // Event listener for editing a product and deleting product
-        $(".edit-member").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          editMember(this.dataset.id); // Call function to edit product
-        });
+          // Edit member
+          $(".edit-member").on("click", function (e) {
+            e.preventDefault();
+            const id = this.getAttribute('data-id');
+            const type = this.getAttribute('data-type');
 
-        $(".delete-member").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          deletingMember(this.dataset.id); // Call function to edit product
-        });
+            if (type === "president") {
+              editPresofficial(id);
+          } else if (type === "board") {
+            editMember(id);
+          }else {
+              console.error("Invalid type");
+          }
+          });
+
+          // Delete member
+          $(".delete-member").on("click", function (e) {
+            e.preventDefault();
+            const id = this.dataset.id;
+            const type = this.dataset.type;
+
+            if (type === "president") {
+                deletingPresofficial(id);
+            } else if (type === "board") {
+              deletingMember(id);
+            }else {
+                console.error("Invalid type");
+            }
+          });
 
         $(".edit-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
@@ -2244,7 +2285,8 @@ function fetchRecordMember(id) {
     dataType: "json", // Expect JSON response
     success: function (member) {
       $("#name").val(member.name);
-      $("#title").val(member.title);
+      $("#title_bor").val(member.title_bor);
+      $("#rank").val(member.rank);
     },
   });
 }
@@ -2317,17 +2359,17 @@ function deleteMember(id) {
      function editPresofficial(id) {
       $.ajax({
         type: "GET", // Use GET request
-        url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
+        url: "../crud-administration/edit-officials/edit-pres.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
           fetchRecordPresofficial(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
-          $("#staticBackdropeditpage_link").modal("show"); // Show the modal
-          $("#staticBackdropeditpage_link").attr("data-id", id);
+          $("#staticBackdropeditpres").modal("show"); // Show the modal
+          $("#staticBackdropeditpres").attr("data-id", id);
   
           // Event listener for the add product form submission
-          $("#form-edit-page_link").on("submit", function (e) {
+          $("#form-edit-pres").on("submit", function (e) {
             e.preventDefault(); // Prevent default form submission
             updatePresofficial(id); // Call function to save product
           });
@@ -2343,27 +2385,34 @@ function deleteMember(id) {
         success: function (Presofficial) {
           $("#name").val(Presofficial.name);
           $("#title").val(Presofficial.title);
+          $("#title_bor").val(Presofficial.title_bor);
           $("#page_link").val(Presofficial.page_link);
+          $("#rank").val(Presofficial.rank);
         },
       });
     }
   
       // Function to update a new official
-      function updatePresofficial(id) {
-        $.ajax({
-            type: "POST",
-            url: `../crud-administration/update-officials/update-Pres.php?id=${id}`, // Correct URL
-            data: $("form").serialize(),
-            dataType: "json",
-            success: function (response) {
-                if (response.status === "success") {
-                    $("#staticBackdropeditpage_link").modal("hide");
-                    $("form")[0].reset();
-                    viewHome(); // Reload accounts after update
-                }
-            },
-        });
-    }
+  function updatePresofficial(id) {
+    var form = $('#form-edit-pres')[0];
+    var formData = new FormData(form);
+    
+    $.ajax({
+        type: "POST",
+        url: `../crud-administration/update-officials/update-Pres.php?id=${id}`,
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function (response) {
+            if (response.status === "success") {
+                $("#staticBackdropeditpres").modal("hide");
+                $("#form-edit-pres")[0].reset();
+                viewHome();
+            }
+        },
+    });
+  }     
 
 function deletingPresofficial(id) {
   $.ajax({

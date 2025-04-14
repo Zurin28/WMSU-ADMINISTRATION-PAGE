@@ -7,7 +7,8 @@ $boardobj = new Board();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
-    $title = $_POST['title'];
+    $title_bor = $_POST['title_bor'];
+    $rank = $_POST['rank'];
 
     $file_name = null; // Default to null if no image is provided
 
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Perform the update (with or without image)
-    if ($boardobj->edit($id, $name, $title, $file_name)) {
+    if ($boardobj->edit($id, $name, $title_bor, $file_name, $rank)) {
         echo json_encode(['status' => 'success']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Something went wrong when updating the record.']);

@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="staticBackdropeditmember"
+  id="staticBackdropeditpres"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"
@@ -20,17 +20,29 @@
           aria-label="Close"
         ></button>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" id="form-edit-member">
+      <form action="" method="post" enctype="multipart/form-data" id="form-edit-pres">
         <div class="modal-body">
           <div class="mb-2">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Names</label>
             <input type="text" class="form-control" id="name" name="name" required />
             <div class="invalid-feedback"></div>
           </div>
 
           <div class="mb-2">
-            <label for="title_bor" class="form-label">Title</label>
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="mb-2">
+            <label for="title_bor" class="form-label">Title in Board of Regeant</label>
             <input type="text" class="form-control" id="title_bor" name="title_bor" required />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="mb-2">
+            <label for="page_link" class="form-label">Page Link</label>
+            <input type="text" class="form-control" id="page_link" name="page_link" required />
             <div class="invalid-feedback"></div>
           </div>
 
@@ -46,7 +58,6 @@
             />
             <div class="invalid-feedback"></div>
           </div>
-          
 
           <div class="mb-2">
             <label for="image" class="form-label">Upload Image</label>
