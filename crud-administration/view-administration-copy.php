@@ -82,7 +82,6 @@
                         'Assistant & Associate Directors | Assistant Chairpersons | Special Assistants' => 'AssistantDirectors',
                         'Technical Assistants' => 'TechnicalAssistants',
                         'Chairpersons' => 'Chairpersons',
-                        'managers' => 'Manager',
                     ];
 
                     foreach ($officialClasses as $positionLabel => $className) {
