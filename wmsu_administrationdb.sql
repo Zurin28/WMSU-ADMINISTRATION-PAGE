@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 05:20 AM
--- Server version: 11.4.5-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Apr 08, 2025 at 06:59 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -137,8 +137,9 @@ INSERT INTO `associate_deans` (`id`, `name`, `title`, `created_at`, `updated_at`
 CREATE TABLE `board_of_regents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
+  `title_bor` varchar(100) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `rank` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -147,21 +148,21 @@ CREATE TABLE `board_of_regents` (
 -- Dumping data for table `board_of_regents`
 --
 
-INSERT INTO `board_of_regents` (`id`, `name`, `title`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'HON. RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', '2025-03-17 03:42:36', '2025-03-17 03:42:36'),
-(3, 'HON. MA. CARLA A. OCHOTORENA', 'PRESIDENT, WMSU VICE-CHAIRPERSON, WMSU-BOR', 'carla-ochotorena.jpg', '2025-03-25 02:24:19', '2025-03-25 02:24:19'),
-(4, 'HON. ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', '2025-03-25 02:24:46', '2025-03-25 02:24:46'),
-(5, 'Represented by:', 'HON. ROLANDO L. MACASAET', 'macasaet-1.jpg', '2025-03-25 02:26:40', '2025-03-25 02:26:40'),
-(6, 'HON. MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', '2025-03-25 02:27:16', '2025-03-25 02:27:16'),
-(7, 'Represented by:', 'HON. EMMYLOU B. YANGA', 'yanga.jpg', '2025-03-25 02:27:49', '2025-03-25 02:27:49'),
-(8, 'HON. MARIA FELICIDAD R. GUERRERO', 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS', 'guerrero.jpg', '2025-03-25 02:29:20', '2025-03-25 02:29:20'),
-(9, 'HON. MARTIN A. WEE', 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR', 'martin-wee.jpg', '2025-03-25 02:29:49', '2025-03-25 02:29:49'),
-(10, 'HON. INOCENTE P. LOCSON', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'LOCSON.jpg', '2025-03-25 02:30:07', '2025-03-25 02:30:07'),
-(11, 'HON. JOSE L. LOBREGAT', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'lobregat.jpg', '2025-03-25 02:30:36', '2025-03-25 02:30:36'),
-(12, 'HON. FLORENCIO M. LIONG, JR', 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR', 'mundoc_blank.jpg', '2025-03-25 02:31:18', '2025-03-25 02:31:18'),
-(13, 'HON. ADRIAN P. SEMORLAN', 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR', 'semorlan.jpg', '2025-03-25 02:32:00', '2025-03-25 02:32:00'),
-(14, 'HON. AHMAD G. MUNDOC', 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR', 'florencioblank.jpg', '2025-03-25 02:32:23', '2025-03-25 02:32:23'),
-(15, 'PROF. AL-GHANI D. MOHAMMAD', 'UNIVERSITY AND BOARD SECRETARY', 'MOHAMMAD.jpg', '2025-03-25 02:32:46', '2025-03-25 02:32:46');
+INSERT INTO `board_of_regents` (`id`, `name`, `title_bor`, `image`, `rank`, `created_at`, `updated_at`) VALUES
+(3, 'HON. MA. CARLA A. OCHOTORENA', 'PRESIDENT, WMSU VICE-CHAIRPERSON, WMSU-BOR', 'carla-ochotorena.jpg', 1, '2025-03-24 18:24:19', '2025-04-05 12:48:13'),
+(1, 'HON. RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', 2, '2025-03-16 19:42:36', '2025-04-05 12:48:13'),
+(4, 'HON. ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, '2025-03-24 18:24:46', '2025-03-24 18:24:46'),
+(5, 'Represented by:', 'HON. ROLANDO L. MACASAET', 'macasaet-1.jpg', 4, '2025-03-24 18:26:40', '2025-03-24 18:26:40'),
+(6, 'HON. MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', 5, '2025-03-24 18:27:16', '2025-03-24 18:27:16'),
+(7, 'Represented by:', 'HON. EMMYLOU B. YANGA', 'yanga.jpg', 6, '2025-03-24 18:27:49', '2025-03-24 18:27:49'),
+(8, 'HON. MARIA FELICIDAD R. GUERRERO', 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS', 'guerrero.jpg', 7, '2025-03-24 18:29:20', '2025-03-24 18:29:20'),
+(9, 'HON. MARTIN A. WEE', 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR', 'martin-wee.jpg', 8, '2025-03-24 18:29:49', '2025-03-24 18:29:49'),
+(10, 'HON. INOCENTE P. LOCSON', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'LOCSON.jpg', 9, '2025-03-24 18:30:07', '2025-03-24 18:30:07'),
+(11, 'HON. JOSE L. LOBREGAT', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'lobregat.jpg', 10, '2025-03-24 18:30:36', '2025-03-24 18:30:36'),
+(12, 'HON. FLORENCIO M. LIONG, JR', 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR', 'mundoc_blank.jpg', 11, '2025-03-24 18:31:18', '2025-03-24 18:31:18'),
+(13, 'HON. ADRIAN P. SEMORLAN', 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR', 'semorlan.jpg', 12, '2025-03-24 18:32:00', '2025-03-24 18:32:00'),
+(14, 'HON. AHMAD G. MUNDOC', 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR', 'florencioblank.jpg', 13, '2025-03-24 18:32:23', '2025-03-24 18:32:23'),
+(15, 'PROF. AL-GHANI D. MOHAMMAD', 'UNIVERSITY AND BOARD SECRETARY', 'MOHAMMAD.jpg', 14, '2025-03-24 18:32:46', '2025-03-24 18:32:46');
 
 -- --------------------------------------------------------
 
@@ -469,7 +470,10 @@ CREATE TABLE `president` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
+  `title_bor` varchar(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `rank` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -478,8 +482,8 @@ CREATE TABLE `president` (
 -- Dumping data for table `president`
 --
 
-INSERT INTO `president` (`id`, `name`, `title`, `page_link`, `created_at`, `updated_at`) VALUES
-(4, 'Dr. Ma. Carla A. Ochotorena', 'University President', 'office-of-president', '2025-03-25 03:05:15', '2025-03-25 03:05:15');
+INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `created_at`, `updated_at`) VALUES
+(5, 'HON. MA. CARLA A. OCHOTORENA', 'University President', 'PRESIDENT, WMSU VICE-CHAIRPERSON, WMSU-BOR', 'uwa', 'Screenshot 2025-02-08 012300.png', 0, '2025-04-08 04:37:11', '2025-04-08 04:37:11');
 
 -- --------------------------------------------------------
 
@@ -628,7 +632,7 @@ ALTER TABLE `associate_deans`
 -- Indexes for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
-  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `rank` (`rank`);
 
 --
 -- Indexes for table `campus_administrators`
@@ -694,7 +698,8 @@ ALTER TABLE `other_services`
 -- Indexes for table `president`
 --
 ALTER TABLE `president`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rank` (`rank`);
 
 --
 -- Indexes for table `section_chiefs`
@@ -741,12 +746,6 @@ ALTER TABLE `assistant_directors`
 --
 ALTER TABLE `associate_deans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `board_of_regents`
---
-ALTER TABLE `board_of_regents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `campus_administrators`
@@ -812,7 +811,7 @@ ALTER TABLE `other_services`
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `section_chiefs`

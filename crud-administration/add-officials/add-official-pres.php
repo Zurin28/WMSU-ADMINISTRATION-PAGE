@@ -1,19 +1,30 @@
+
 <?php
 require_once '../../classes/pres.class.php';
 
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $title_bor = $_POST['title_bor'];
     $page_link = $_POST['page_link'];
+    
+    // Correctly retrieve file information
+    $file_name = $_FILES['image']['name'];
+    $tempname = $_FILES['image']['tmp_name'];
+    $folder = '../../images/' . $file_name;
 
-    $presobj = new Pres();
-
-    // Assuming `add_official()` accepts name and title as parameters
-    if ($presobj->add_official($name, $title, $page_link)) {
-        echo "Official added successfully!";
-        header('Location: ../../sample-admin/administration');
+    // Move uploaded file to the 'images' folder
+    if(move_uploaded_file($tempname, $folder)) {
+        $presobj = new Pres();
+        
+        if ($presobj->upload($name, $title, $title_bor, $page_link, $file_name)) {
+            echo "Uploaded successfully!";
+            header('Location: ../../sample-admin/administration');
+        } else {
+            echo "Failed to insert into the database.";
+        }
     } else {
-        echo "Failed to insert into the database.";
+        echo "Failed to upload file.";
     }
 }
 ?>
@@ -23,18 +34,18 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Officials</title>
+    <title>Add new Board of Regeant Official</title>
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
-    <div class="header">
+<div class="header">
         <img src="../../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
         <div class="title">WMSU ADMIN</div>
     </div>
 
     <div class="container">
-        <div class="section-title">ADD OFFICIAL</div>
-        <form action="" method="post">
+        <h2 style="text-align:center; margin-bottom: 20px;">Add Board of Regent Official</h2>
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required>
@@ -46,13 +57,44 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
+                <label for="title_bor">Title for Board of Regeant</label>
+                <input type="text" name="title_bor" id="title_bor" required>
+            </div>
+
+            <div class="form-group">
                 <label for="page_link">Page Link</label>
                 <input type="text" name="page_link" id="page_link" required>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Image</label>
+                <div class="image-upload">
+                    <button type="button" class="image-upload-btn" onclick="document.getElementById('image').click()">Select Image</button>
+                    <span id="file-selected">No file selected</span>
+                </div>
+                <input type="file" name="image" id="image" accept="image/*" required>
+                <div class="image-preview" id="image-preview"></div>
             </div>
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>
         </form>
         <a href="../../sample-admin/administration" class="back-link">Back to Administration</a>
     </div>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('file-selected').textContent = fileName;
+
+            var preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
+
+            var img = document.createElement('img');
+            img.src = URL.createObjectURL(e.target.files[0]);
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
+            preview.appendChild(img);
+        });
+    </script>
 </body>
 </html>
