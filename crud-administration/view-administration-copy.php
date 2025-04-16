@@ -32,7 +32,7 @@
                             <span>No image</span>
                         <?php endif; ?>
                     </td>
-                    <td class="name-cell"><?= htmlspecialchars($regent['name']) ?></td>
+                    <td class="name-cell"><?= htmlspecialchars($regent['honorific_short'] . ' ' . $regent['name']) ?></td>
                     <td><?= htmlspecialchars($regent['title_bor']) ?></td>
                     <td><?= htmlspecialchars($regent['rank']) ?></td>
                     <td class="action-cell">
@@ -82,6 +82,8 @@
                         'Assistant & Associate Directors | Assistant Chairpersons | Special Assistants' => 'AssistantDirectors',
                         'Technical Assistants' => 'TechnicalAssistants',
                         'Chairpersons' => 'Chairpersons',
+                        'managers' => 'Manager',
+                        'graduateSchoolHead' => 'HEAD/CHAIR OF THE GRADUATE SCHOOL',
                     ];
 
                     foreach ($officialClasses as $positionLabel => $className) {
@@ -93,7 +95,7 @@
                             foreach ($officials as $official):
                     ?>
                     <tr>
-                        <td class="name-cell"><?= htmlspecialchars($official['name']) ?></td>
+                        <td class="name-cell"><?= htmlspecialchars($official['honorific_short'] . ' ' . $official['name']) ?></td>
                         <td><?= htmlspecialchars($official['title'] ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($official['page_link'] ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($positionLabel) ?></td>

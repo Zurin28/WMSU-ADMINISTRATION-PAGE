@@ -12,9 +12,17 @@ class AssistantDirectors {
     // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM assistant_directors";
+        $sql = "
+            SELECT 
+                ad.*, 
+                h.short AS honorific_short
+            FROM assistant_directors AS ad
+            LEFT JOIN honorifics AS h ON ad.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,6 +32,7 @@ class AssistantDirectors {
         // Return the data
         return $data;
     }
+    
     function add_official($name, $title)
     {
         try {

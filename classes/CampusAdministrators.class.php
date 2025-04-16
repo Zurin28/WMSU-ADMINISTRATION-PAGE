@@ -12,9 +12,17 @@ class CampusAdministrators {
     // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM campus_administrators";
+        $sql = "
+            SELECT 
+                ca.*, 
+                h.short AS honorific_short
+            FROM campus_administrators AS ca
+            LEFT JOIN honorifics AS h ON ca.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,6 +32,7 @@ class CampusAdministrators {
         // Return the data
         return $data;
     }
+    
     // Upload
     function add_official($name, $title)
     {

@@ -9,12 +9,19 @@ class VicePres {
         $this->db = new Database();
     }
 
-    // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM vice_presidents";
+        $sql = "
+            SELECT 
+                vp.*, 
+                h.short AS honorific_short
+            FROM vice_presidents AS vp
+            LEFT JOIN honorifics AS h ON vp.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,6 +31,7 @@ class VicePres {
         // Return the data
         return $data;
     }
+    
 
     // Upload
     function add_official($name, $title, $file_name)

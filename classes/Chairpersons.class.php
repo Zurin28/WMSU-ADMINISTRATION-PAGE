@@ -11,19 +11,28 @@ class Chairpersons {
 
         // Fetch all products
         function fetchAll()
-        {
-            $sql = "SELECT * FROM chairpersons";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
-        }
+{
+    $sql = "
+        SELECT 
+            c.*, 
+            h.short AS honorific_short
+        FROM chairpersons AS c
+        LEFT JOIN honorifics AS h ON c.honorifics_id = h.id
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Return the data
+    return $data;
+}
+
         function add_official($name, $title)
         {
             try {

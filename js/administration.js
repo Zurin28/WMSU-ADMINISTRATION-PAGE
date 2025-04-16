@@ -2256,6 +2256,31 @@ function deleteexternalStudiesUnits(id) {
       });
     }
 
+
+    // Function to fetch honorifics
+    function fetchHonorifics() {
+      $.ajax({
+        url: "../crud-administration/fetching/fetch-honorifics.php", // URL for fetching honorifics
+        type: "GET", // Use GET request
+        dataType: "json", // Expect JSON response
+        success: function (data) {
+          // Clear existing options and add a default "Select" option
+          $("#honorifics").empty().append('<option value="">--Select--</option>');
+  
+          // Append each category to the select dropdown
+          $.each(data, function (index, honorifics) {
+            $("#honorifics").append(
+              $("<option>", {
+                value: honorifics.id, // Value attribute
+                text: honorifics.short // Displayed text
+
+              })
+            );
+          });
+        },
+      });
+    }
+
     // Function to show the edit modal
 function editMember(id) {
   $.ajax({
@@ -2732,6 +2757,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Load categories for the select input
           fetchRecorddirectors(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2755,6 +2781,7 @@ $.ajax({
         success: function (directors) {
           $("#name").val(directors.name);
           $("#title").val(directors.title);
+          $("#honorifics").val(directors.honorifics_id).trigger("change"); // Set the selected category
         },
       });
     }

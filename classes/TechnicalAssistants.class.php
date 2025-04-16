@@ -9,21 +9,29 @@ class TechnicalAssistants {
         $this->db = new Database();
     }
 
-        // Fetch all products
-        function fetchAll()
-        {
-            $sql = "SELECT * FROM technical_assistants";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
+    function fetchAll()
+    {
+        $sql = "
+            SELECT 
+                ta.*, 
+                h.short AS honorific_short
+            FROM technical_assistants AS ta
+            LEFT JOIN honorifics AS h ON ta.honorifics_id = h.id
+        ";
+    
+        // Prepare the query
+        $query = $this->db->connect()->prepare($sql);
+    
+        // Execute the query and fetch data
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
+    
+        // Return the data
+        return $data;
+    }
+    
         function add_official($name, $title)
         {
             try {

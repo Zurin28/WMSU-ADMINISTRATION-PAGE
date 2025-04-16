@@ -10,21 +10,30 @@ class Pres {
         $this->db = new Database();
     }
 
-        // Fetch all products
-        function fetchAll()
-        {
-            $sql = "SELECT * FROM president";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
+    function fetchAll()
+    {
+        $sql = "
+            SELECT 
+                p.*, 
+                h.short AS honorific_short
+            FROM president AS p
+            LEFT JOIN honorifics AS h ON p.honorifics_id = h.id
+            ORDER BY p.rank
+        ";
+    
+        // Prepare the query
+        $query = $this->db->connect()->prepare($sql);
+    
+        // Execute the query and fetch data
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
+    
+        // Return the data
+        return $data;
+    }
+    
 
            // Upload
            function add_official($name, $title, $file_name) {

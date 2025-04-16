@@ -12,9 +12,17 @@ class OpStaff {
         // Fetch all products
         function fetchAll()
         {
-            $sql = "SELECT * FROM opstaff";
+            $sql = "
+                SELECT 
+                    o.*, 
+                    h.short AS honorific_short
+                FROM opstaff AS o
+                LEFT JOIN honorifics AS h ON o.honorifics_id = h.id
+            ";
+        
             // Prepare the query
             $query = $this->db->connect()->prepare($sql);
+        
             // Execute the query and fetch data
             $data = null;
             if ($query->execute()) {
@@ -24,6 +32,7 @@ class OpStaff {
             // Return the data
             return $data;
         }
+        
 
     function add_official($name, $title, $file_name)
     {

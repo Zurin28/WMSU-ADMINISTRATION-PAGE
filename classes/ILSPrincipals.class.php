@@ -12,9 +12,17 @@ class ILSPrincipals {
         // Fetch all products
         function fetchAll()
         {
-            $sql = "SELECT * FROM ils_principals";
+            $sql = "
+                SELECT 
+                    ip.*, 
+                    h.short AS honorific_short
+                FROM ils_principals AS ip
+                LEFT JOIN honorifics AS h ON ip.honorifics_id = h.id
+            ";
+        
             // Prepare the query
             $query = $this->db->connect()->prepare($sql);
+        
             // Execute the query and fetch data
             $data = null;
             if ($query->execute()) {
@@ -24,6 +32,7 @@ class ILSPrincipals {
             // Return the data
             return $data;
         }
+        
         function add_official($name, $title)
         {
             try {

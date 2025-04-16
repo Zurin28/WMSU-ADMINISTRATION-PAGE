@@ -12,9 +12,17 @@ class UniversityBoardSecretary {
     // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM university_board_secretary";
+        $sql = "
+            SELECT 
+                ubs.*, 
+                h.short AS honorific_short
+            FROM university_board_secretary AS ubs
+            LEFT JOIN honorifics AS h ON ubs.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,6 +32,7 @@ class UniversityBoardSecretary {
         // Return the data
         return $data;
     }
+    
 
     // Upload
     function add_official($name, $title)
