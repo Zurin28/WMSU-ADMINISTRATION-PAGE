@@ -83,7 +83,6 @@
                         'Technical Assistants' => 'TechnicalAssistants',
                         'Chairpersons' => 'Chairpersons',
                         'managers' => 'Manager',
-                        'graduateSchoolHead' => 'HEAD/CHAIR OF THE GRADUATE SCHOOL',
                     ];
 
                     foreach ($officialClasses as $positionLabel => $className) {
