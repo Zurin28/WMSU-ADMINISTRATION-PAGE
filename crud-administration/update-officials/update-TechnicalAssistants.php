@@ -10,11 +10,13 @@ $techAssistObj = new TechnicalAssistants();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $techAssistObj->id = $id;
     $techAssistObj->name = $name;
     $techAssistObj->title = $title;
+    $techAssistObj->honorifics = $honorifics;
 
     if ($techAssistObj->edit()) {
         echo json_encode(['status' => 'success']);

@@ -2182,14 +2182,14 @@ function deleteexternalStudiesUnits(id) {
           deletingmanagers(this.dataset.id); // Call function to edit product
         });
 
-        $(".edit-graduateschoolheads").on("click", function (e) {
+        $(".edit-graduateschoolhead").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editgraduateSchoolHeads(this.dataset.id); // Call function to edit product
+          editgraduateSchoolHead(this.dataset.id); // Call function to edit product
         });
 
-        $(".delete-graduateschoolheads").on("click", function (e) {
+        $(".delete-graduateschoolhead").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletinggraduateSchoolHeads(this.dataset.id); // Call function to edit product
+          deletinggraduateSchoolHead(this.dataset.id); // Call function to edit product
         });
 
         $(".edit-coordinators").on("click", function (e) {
@@ -2387,6 +2387,7 @@ function deleteMember(id) {
         url: "../crud-administration/edit-officials/edit-pres.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordPresofficial(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2409,6 +2410,7 @@ function deleteMember(id) {
         dataType: "json", // Expect JSON response
         success: function (Presofficial) {
           $("#name").val(Presofficial.name);
+          $("#honorifics").val(Presofficial.honorifics_id).trigger("change"); // Set the selected honorifics
           $("#title").val(Presofficial.title);
           $("#title_bor").val(Presofficial.title_bor);
           $("#page_link").val(Presofficial.page_link);
@@ -2485,6 +2487,7 @@ function deletePresofficial(id) {
         url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordVicePresofficial(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2507,6 +2510,7 @@ function deletePresofficial(id) {
         dataType: "json", // Expect JSON response
         success: function (VicePresofficial) {
           $("#name").val(VicePresofficial.name);
+          $("#honorifics").val(VicePresofficial.honorifics_id).trigger("change"); // Set the selected honorifics
           $("#title").val(VicePresofficial.title);
           $("#page_link").val(VicePresofficial.page_link);
         },
@@ -2576,6 +2580,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordopstaffs(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2598,6 +2603,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (opstaffs) {
           $("#name").val(opstaffs.name);
+          $("#honorifics").val(opstaffs.honorifics_id).trigger("change"); // Set the selected honorifics
           $("#title").val(opstaffs.title);
           $("#page_link").val(opstaffs.page_link);
         },
@@ -2667,6 +2673,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecorduniBoardSecretarys(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2689,6 +2696,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (uniBoardSecretarys) {
           $("#name").val(uniBoardSecretarys.name);
+          $("#honorifics").val(uniBoardSecretarys.honorifics_id).trigger("change"); // Set the selected honorifics
           $("#title").val(uniBoardSecretarys.title);
         },
       });
@@ -2849,6 +2857,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordcampusAdmins(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2871,6 +2880,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (campusAdmins) {
           $("#name").val(campusAdmins.name);
+          $("#honorifics").val(campusAdmins.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(campusAdmins.title);
         },
       });
@@ -2939,6 +2949,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordILSPrincipals(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -2961,6 +2972,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (ILSPrincipals) {
           $("#name").val(ILSPrincipals.name);
+          $("#honorifics").val(ILSPrincipals.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(ILSPrincipals.title);
         },
       });
@@ -3029,6 +3041,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordassistantDirectors(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3051,6 +3064,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (assistantDirectors) {
           $("#name").val(assistantDirectors.name);
+          $("#honorifics").val(assistantDirectors.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(assistantDirectors.title);
         },
       });
@@ -3119,6 +3133,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordtechAssists(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3141,6 +3156,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (techAssists) {
           $("#name").val(techAssists.name);
+          $("#honorifics").val(techAssists.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(techAssists.title);
         },
       });
@@ -3209,6 +3225,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordchairpersons(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3231,6 +3248,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (chairpersons) {
           $("#name").val(chairpersons.name);
+          $("#honorifics").val(chairpersons.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(chairpersons.title);
         },
       });
@@ -3299,6 +3317,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordmanagers(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3321,6 +3340,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (managers) {
           $("#name").val(managers.name);
+          $("#honorifics").val(managers.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(managers.title);
         },
       });
@@ -3383,13 +3403,14 @@ $.ajax({
 }
 
      // Function to show the edit modal
-     function editgraduateSchoolHeads(id) {
+     function editgraduateSchoolHead(id) {
       $.ajax({
         type: "GET", // Use GET request
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
-          fetchRecordgraduateSchoolHeads(id);
+          fetchHonorifics(); // Fetch honorifics
+          fetchRecordgraduateSchoolHead(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
           $("#staticBackdropeditpage").modal("show"); // Show the modal
@@ -3398,26 +3419,27 @@ $.ajax({
           // Event listener for the add product form submission
           $("#form-edit-page").on("submit", function (e) {
             e.preventDefault(); // Prevent default form submission
-            updategraduateSchoolHeads(id); // Call function to save product
+            updategraduateSchoolHead(id); // Call function to save product
           });
         },
       });
     }
   
-    function fetchRecordgraduateSchoolHeads(id) {
+    function fetchRecordgraduateSchoolHead(id) {
       $.ajax({
         url: `../crud-administration/fetching/fetch-GraduateSchoolHead.php?id=${id}`, // URL for fetching categories
         type: "POST", // Use GET request
         dataType: "json", // Expect JSON response
         success: function (graduateSchoolHeads) {
           $("#name").val(graduateSchoolHeads.name);
+          $("#honorifics").val(graduateSchoolHeads.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(graduateSchoolHeads.title);
         },
       });
     }
   
       // Function to update a new official
-      function updategraduateSchoolHeads(id) {
+      function updategraduateSchoolHead(id) {
         $.ajax({
             type: "POST",
             url: `../crud-administration/update-officials/update-GraduateSchoolHead.php?id=${id}`, // Correct URL
@@ -3433,7 +3455,7 @@ $.ajax({
         });
     }
 
-function deletinggraduateSchoolHeads(id) {
+function deletinggraduateSchoolHead(id) {
 $.ajax({
     type: "GET", // Use GET request
     url: "../crud-administration/delete-official.html", // URL to get product data
@@ -3446,14 +3468,14 @@ $.ajax({
       // Event listener for the edit product form submission
       $("#form-delete-official").on("submit", function (e) {
         e.preventDefault(); // Prevent default form submission
-        deletegraduateSchoolHeads(id); // Call function to update product
+        deletegraduateSchoolHead(id); // Call function to update product
       });
     },
   });
 }
 
 // Function to delete account
-function deletegraduateSchoolHeads(id) {
+function deletegraduateSchoolHead(id) {
 $.ajax({
     type: "POST",
     url: "../crud-administration/delete-officials/delete-GraduateSchoolHeads.php", // Point to the delete script
@@ -3479,6 +3501,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordcoordinators(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3501,6 +3524,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (coordinators) {
           $("#name").val(coordinators.name);
+          $("#honorifics").val(coordinators.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(coordinators.title);
         },
       });
@@ -3569,6 +3593,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordsectionChiefs(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3591,6 +3616,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (sectionChiefs) {
           $("#name").val(sectionChiefs.name);
+          $("#honorifics").val(sectionChiefs.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(sectionChiefs.title);
         },
       });
@@ -3659,6 +3685,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordotherServices(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3681,6 +3708,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (otherServices) {
           $("#name").val(otherServices.name);
+          $("#honorifics").val(otherServices.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(otherServices.title);
         },
       });
@@ -3749,6 +3777,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordacademicDeans(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3771,6 +3800,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (academicDeans) {
           $("#name").val(academicDeans.name);
+          $("#honorifics").val(academicDeans.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(academicDeans.title);
         },
       });
@@ -3839,6 +3869,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordassociateDeans(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3861,6 +3892,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (associateDeans) {
           $("#name").val(associateDeans.name);
+          $("#honorifics").val(associateDeans.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(associateDeans.title);
         },
       });
@@ -3929,6 +3961,7 @@ $.ajax({
         url: "../crud-administration/edit-officials/edit-wo-page_link.html", // URL to get product data
         dataType: "html", // Expect JSON response
         success: function (view) {
+          fetchHonorifics(); // Fetch honorifics
           fetchRecordexternalStudiesUnits(id);
           // Assuming 'view' contains the new content you want to display
           $(".modal-container").empty().html(view); // Load the modal view
@@ -3951,6 +3984,7 @@ $.ajax({
         dataType: "json", // Expect JSON response
         success: function (externalStudiesUnits) {
           $("#name").val(externalStudiesUnits.name);
+          $("#honorifics").val(externalStudiesUnits.honorifics_id).trigger("change"); // Set the selected category
           $("#title").val(externalStudiesUnits.title);
         },
       });

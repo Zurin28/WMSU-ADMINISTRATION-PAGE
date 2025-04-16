@@ -78,11 +78,12 @@ function fetchRecord($recordID)
 
 function edit()
 {
-    $sql = "UPDATE vice_presidents SET name = :name, title = :title, page_link = :page_link WHERE id = :id;";
+    $sql = "UPDATE vice_presidents SET name = :name, title = :title, page_link = :page_link, honorifics_id = :honorifics_id WHERE id = :id;";
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':name', $this->name);
     $query->bindParam(':title', $this->title);
     $query->bindParam(':page_link', $this->page_link);
+    $query->bindParam(':honorifics_id', $this->honorifics);
     $query->bindParam(':id', $this->id);
     return $query->execute();
 }

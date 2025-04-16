@@ -77,10 +77,11 @@ class AssistantDirectors {
         
         function edit()
         {
-            $sql = "UPDATE assistant_directors SET name = :name, title = :title WHERE id = :id;";
+            $sql = "UPDATE assistant_directors SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':name', $this->name);
             $query->bindParam(':title', $this->title);
+            $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }

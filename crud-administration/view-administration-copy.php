@@ -82,6 +82,11 @@
                         'Assistant & Associate Directors | Assistant Chairpersons | Special Assistants' => 'AssistantDirectors',
                         'Technical Assistants' => 'TechnicalAssistants',
                         'Chairpersons' => 'Chairpersons',
+                        'Managers' => 'Managers',
+                        'HEAD/CHAIR OF THE GRADUATE SCHOOL' => 'GraduateSchoolHead',
+                        'Coordinators' => 'Coordinators',
+                        'Section Chiefs' => 'SectionChiefs',
+                        'Other Services' => 'OtherServices'
                     ];
 
                     foreach ($officialClasses as $positionLabel => $className) {
@@ -138,7 +143,7 @@
                                     
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($academicDeans['name']) ?></td>
+                                        <td><?= htmlspecialchars($academicDeans['honorific_short'] . ' ' . $academicDeans['name']) ?></td>
                                         <td><?= htmlspecialchars($academicDeans['title'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-academicDeans" data-id="<?= $academicDeans['id'] ?>">Edit</a>
@@ -180,7 +185,7 @@
                                     
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($associateDeans['name']) ?></td>
+                                        <td><?= htmlspecialchars($associateDeans['honorific_short'] . ' ' . $associateDeans['name']) ?></td>
                                         <td><?= htmlspecialchars($associateDeans['title'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-associateDeans" data-id="<?= $associateDeans['id'] ?>">Edit</a>
@@ -223,7 +228,7 @@
                                     
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($externalStudiesUnits['name']) ?></td>
+                                        <td><?= htmlspecialchars($externalStudiesUnits['honorific_short'] . ' ' . $externalStudiesUnits['name']) ?></td>
                                         <td><?= htmlspecialchars($externalStudiesUnits['title'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-externalStudiesUnits" data-id="<?= $externalStudiesUnits['id'] ?>">Edit</a>

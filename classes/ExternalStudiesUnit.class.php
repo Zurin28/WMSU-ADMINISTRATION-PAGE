@@ -11,19 +11,28 @@ class ExternalStudiesUnit {
 
     // Fetch all products
     function fetchAll()
-    {
-        $sql = "SELECT * FROM external_studies_unit";
-        // Prepare the query
-        $query = $this->db->connect()->prepare($sql);
-        // Execute the query and fetch data
-        $data = null;
-        if ($query->execute()) {
-            $data = $query->fetchAll(PDO::FETCH_ASSOC);
-        }
-    
-        // Return the data
-        return $data;
+{
+    $sql = "
+        SELECT 
+            esu.*, 
+            h.short AS honorific_short
+        FROM external_studies_unit AS esu
+        LEFT JOIN honorifics AS h ON esu.honorifics_id = h.id
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Return the data
+    return $data;
+}
+
     function add_official($name, $title)
     {
         try {
@@ -67,10 +76,11 @@ class ExternalStudiesUnit {
     
     function edit()
     {
-        $sql = "UPDATE external_studies_unit SET name = :name, title = :title WHERE id = :id;";
+        $sql = "UPDATE external_studies_unit SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':name', $this->name);
         $query->bindParam(':title', $this->title);
+        $query->bindParam(':honorifics_id', $this->honorifics);
         $query->bindParam(':id', $this->id);
         return $query->execute();
     }

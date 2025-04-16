@@ -10,11 +10,13 @@ $associateDeanObj = new AssociateDean();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $associateDeanObj->id = $id;
     $associateDeanObj->name = $name;
     $associateDeanObj->title = $title;
+    $associateDeanObj->honorifics = $honorifics;
 
     if ($associateDeanObj->edit()) {
         echo json_encode(['status' => 'success']);

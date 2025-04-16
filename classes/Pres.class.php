@@ -69,10 +69,10 @@ class Pres {
         }
     
     // Upload
-    function upload($name, $title, $title_bor, $page_link, $file_name)
+    function upload($name, $title, $title_bor, $page_link, $file_name, $honorifics)
     {
         try {
-            $sql = "INSERT INTO president (name, title, title_bor, page_link, image) VALUES (:name, :title, :title_bor, :page_link, :image)";
+            $sql = "INSERT INTO president (name, title, title_bor, page_link, image, honorifics_id) VALUES (:name, :title, :title_bor, :page_link, :image, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
                        
             $query->bindParam(':name', $name);
@@ -80,6 +80,7 @@ class Pres {
             $query->bindParam(':title_bor', $title_bor);
             $query->bindParam(':page_link', $page_link);
             $query->bindParam(':image', $file_name);
+            $query->bindParam(':honorifics_id', $honorifics);
                        
             if ($query->execute()) {
                 return true;
@@ -260,7 +261,7 @@ function getTableById($id)
 */
 
     
-    function edit($id, $name, $title, $title_bor, $page_link, $file_name, $rank)
+    function edit($id, $name, $title, $title_bor, $page_link, $file_name, $rank, $honorifics)
     {
         try {
             // Get the current rank of the record
@@ -282,11 +283,11 @@ function getTableById($id)
             // Update the current record with or without an image
             if ($file_name) {
                 $sql = "UPDATE president 
-                        SET name = :name, title = :title, title_bor = :title_bor, page_link = :page_link, image = :image, rank = :rank 
+                        SET name = :name, title = :title, title_bor = :title_bor, page_link = :page_link, image = :image, rank = :rank, honorifics_id = :honorifics_id
                         WHERE id = :id";
             } else {
                 $sql = "UPDATE president 
-                        SET name = :name, title = :title, title_bor = :title_bor, page_link = :page_link, rank = :rank 
+                        SET name = :name, title = :title, title_bor = :title_bor, page_link = :page_link, rank = :rank, honorifics_id = :honorifics_id
                         WHERE id = :id";
             }
     
@@ -296,6 +297,7 @@ function getTableById($id)
             $query->bindParam(':title_bor', $title_bor, PDO::PARAM_STR);
             $query->bindParam(':page_link', $page_link, PDO::PARAM_STR);
             $query->bindParam(':rank', $rank, PDO::PARAM_INT);
+            $query->bindParam(':honorifics_id', $honorifics, PDO::PARAM_INT);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
     
             if ($file_name) {

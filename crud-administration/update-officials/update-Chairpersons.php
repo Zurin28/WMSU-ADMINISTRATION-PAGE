@@ -10,11 +10,13 @@ $chairpersonObj = new Chairpersons();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $chairpersonObj->id = $id;
     $chairpersonObj->name = $name;
     $chairpersonObj->title = $title;
+    $chairpersonObj->honorifics = $honorifics;
 
     if ($chairpersonObj->edit()) {
         echo json_encode(['status' => 'success']);

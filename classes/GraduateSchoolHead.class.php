@@ -12,9 +12,17 @@ class GraduateSchoolHead {
         // Fetch all products
         function fetchAll()
         {
-            $sql = "SELECT * FROM graduate_school_head";
+            $sql = "
+                SELECT 
+                    gsh.*, 
+                    h.short AS honorific_short
+                FROM graduate_school_head AS gsh
+                LEFT JOIN honorifics AS h ON gsh.honorifics_id = h.id
+            ";
+        
             // Prepare the query
             $query = $this->db->connect()->prepare($sql);
+        
             // Execute the query and fetch data
             $data = null;
             if ($query->execute()) {
@@ -24,6 +32,7 @@ class GraduateSchoolHead {
             // Return the data
             return $data;
         }
+        
         function add_official($name, $title)
         {
             try {
@@ -67,10 +76,11 @@ class GraduateSchoolHead {
         
         function edit()
         {
-            $sql = "UPDATE graduate_school_head SET name = :name, title = :title WHERE id = :id;";
+            $sql = "UPDATE graduate_school_head SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':name', $this->name);
             $query->bindParam(':title', $this->title);
+            $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }
