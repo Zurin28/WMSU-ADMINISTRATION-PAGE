@@ -15,39 +15,37 @@
               </tr>
             </thead>
             <tbody>
-              <?php 
-
+            <?php 
                 require_once '../classes/bor.class.php';
 
                 $bor = new Board();
                 $boardMembers = $bor->fetchAll(); // Fetch all board members
                 if (count($boardMembers) > 0):
-                
-                foreach ($boardMembers as $regent):
-              ?>
-              <tr>
-                <td class="image-cell">
-                  <?php if (!empty($regent['image'])): ?>
-                    <?php echo '<img src="../images/' . htmlspecialchars($regent['image']) . '" alt="' . htmlspecialchars($regent['name']) . '" width="100px">'; ?>
-                  <?php else: ?>
-                    <span>No image</span>
-                  <?php endif; ?>
-                </td>
-                <td class="name-cell"><?php echo $regent['name']; ?></td>
-                <td><?php echo $regent['title']; ?></td>
-                <td class="action-cell">
-                <a href="" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>">Edit</a>
-                <a href="" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>">Delete</a>
-                </td>
-              </tr>
-              <?php 
-                endforeach;
-              else:
-              ?>
-              <tr>
-                <td colspan="4" class="empty-message">No data available</td>
-              </tr>
-              <?php endif; ?>
+                    foreach ($boardMembers as $regent):
+                ?>
+                <tr>
+                    <td class="image-cell">
+                        <?php if (!empty($regent['image'])): ?>
+                            <img src="../images/<?= htmlspecialchars($regent['image']) ?>" alt="<?= htmlspecialchars($regent['name']) ?>" width="100px">
+                        <?php else: ?>
+                            <span>No image</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="name-cell"><?= htmlspecialchars($regent['name']) ?></td>
+                    <td><?= htmlspecialchars($regent['title_bor']) ?></td>
+                    <td class="action-cell">
+                        <a href="#" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Edit</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Delete</a>
+                    </td>
+                </tr>
+                <?php 
+                    endforeach;
+                else:
+                ?>
+                <tr>
+                    <td colspan="4" class="empty-message">No data available</td>
+                </tr>
+                <?php endif; ?>
             </tbody>
           </table>
         </div>
