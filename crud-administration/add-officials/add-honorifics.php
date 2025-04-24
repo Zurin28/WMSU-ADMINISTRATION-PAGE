@@ -32,8 +32,9 @@ if (isset($_POST['submit'])) {
         <div class="title">WMSU ADMIN</div>
     </div>
 
+    <h1>DESIGNATION</h1>
+
     <div class="container">
-        <div class="section-title">ADD OFFICIAL</div>
         <form action="" method="post">
             <div class="form-group">
                 <label for="name">Name</label>

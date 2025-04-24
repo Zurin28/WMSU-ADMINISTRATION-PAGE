@@ -35,14 +35,15 @@ class Directors {
 
 
     // Upload
-    function add_official($name, $title)
+    function add_official($name, $title, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO directors (name, title) VALUES (:name, :title)";
+            $sql = "INSERT INTO directors (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':name', $name);
             $query->bindParam(':title', $title);
+            $query->bindParam(':honorifics_id', $honorifics_id);
             
             if ($query->execute()) {
                 return true;

@@ -69,10 +69,10 @@ class Pres {
         }
     
     // Upload
-    function upload($name, $title, $title_bor, $page_link, $file_name, $honorifics)
+    function upload($name, $title, $title_bor, $page_link, $file_name, $rank, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO president (name, title, title_bor, page_link, image, honorifics_id) VALUES (:name, :title, :title_bor, :page_link, :image, :honorifics_id)";
+            $sql = "INSERT INTO president (name, title, title_bor, page_link, image, rank, honorifics_id) VALUES (:name, :title, :title_bor, :page_link, :image, :rank, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
                        
             $query->bindParam(':name', $name);
@@ -80,7 +80,8 @@ class Pres {
             $query->bindParam(':title_bor', $title_bor);
             $query->bindParam(':page_link', $page_link);
             $query->bindParam(':image', $file_name);
-            $query->bindParam(':honorifics_id', $honorifics);
+            $query->bindParam(':rank', $rank);
+            $query->bindParam(':honorifics_id', $honorifics_id);
                        
             if ($query->execute()) {
                 return true;

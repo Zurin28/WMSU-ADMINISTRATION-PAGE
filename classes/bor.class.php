@@ -3,66 +3,71 @@ require_once 'database.class.php';
 
 class Board {   
     protected $db;
+    
 
     function __construct()
     {
         $this->db = new Database();
     }
 
-        // Fetch all board of regents and president, merged and ranked
-        function fetchAll()
-        {
-            $sql = "
-                SELECT 
-                    id, 
-                    name, 
-                    title_bor, 
-                    image, 
-                    rank, 
-                    'president' AS type,
-                    NULL AS honorific_short
-                FROM president
-        
-                UNION
-        
-                SELECT 
-                    bor.id, 
-                    bor.name, 
-                    bor.title_bor, 
-                    bor.image, 
-                    bor.rank, 
-                    'board' AS type,
-                    h.short AS honorific_short
-                FROM board_of_regents AS bor
-                LEFT JOIN honorifics AS h ON bor.honorifics_id = h.id
-        
-                ORDER BY rank
-            ";
-        
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-        
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            return $data;
-        }
+function fetchAll()
+{
+    $sql = "
+        SELECT 
+            p.id, 
+            p.name, 
+            p.title_bor, 
+            p.image, 
+            p.rank, 
+            'president' AS type,
+            h.short AS honorific_short
+        FROM president AS p
+        LEFT JOIN honorifics AS h ON p.honorifics_id = h.id
+
+        UNION
+
+        SELECT 
+            bor.id, 
+            bor.name, 
+            bor.title_bor, 
+            bor.image, 
+            bor.rank, 
+            'board' AS type,
+            h.short AS honorific_short
+        FROM board_of_regents AS bor
+        LEFT JOIN honorifics AS h ON bor.honorifics_id = h.id
+
+        ORDER BY rank
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $data;
+}
+
         
 
 
         // Upload
-        function upload($name, $title, $file_name)
+        function upload($name, $title, $file_name, $rank, $honorifics_id)
         {
             try {
-                $sql = "INSERT INTO board_of_regents (name, title, image) VALUES (:name, :title, :image)";
+                $sql = "INSERT INTO board_of_regents (name, title_bor, image, rank, honorifics_id) VALUES (:name, :title_bor, :image, :rank, :honorifics_id)";
                 $query = $this->db->connect()->prepare($sql);
                            
                 $query->bindParam(':name', $name);
-                $query->bindParam(':title', $title);
+                $query->bindParam(':title_bor', $title);
                 $query->bindParam(':image', $file_name);
+                $query->bindParam(':rank', $rank);
+                $query->bindParam(':honorifics_id', $honorifics_id);
+                
                            
                 if ($query->execute()) {
                     return true;
@@ -203,7 +208,7 @@ function getTableById($id)
     
     
 
-    function edit($id, $name, $title_bor, $file_name, $rank)
+    function edit($id, $name, $title_bor, $file_name, $rank, $honorifics)
     {
         try {
             // Get the current rank of the record
@@ -225,11 +230,11 @@ function getTableById($id)
             // Update the current record with or without an image
             if ($file_name) {
                 $sql = "UPDATE board_of_regents 
-                        SET name = :name, title_bor = :title_bor, image = :image, rank = :rank 
+                        SET name = :name, title_bor = :title_bor, image = :image, rank = :rank, honorifics_id = :honorifics_id 
                         WHERE id = :id";
             } else {
                 $sql = "UPDATE board_of_regents 
-                        SET name = :name, title_bor = :title_bor, rank = :rank 
+                        SET name = :name, title_bor = :title_bor, rank = :rank, honorifics_id = :honorifics_id
                         WHERE id = :id";
             }
     
@@ -237,7 +242,10 @@ function getTableById($id)
             $query->bindParam(':name', $name, PDO::PARAM_STR);
             $query->bindParam(':title_bor', $title_bor, PDO::PARAM_STR);
             $query->bindParam(':rank', $rank, PDO::PARAM_INT);
+            $query->bindParam(':honorifics_id', $honorifics, PDO::PARAM_INT);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
+            
+
     
             if ($file_name) {
                 $query->bindParam(':image', $file_name, PDO::PARAM_STR);

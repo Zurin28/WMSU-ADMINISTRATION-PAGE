@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2025 at 06:02 PM
+-- Generation Time: Apr 24, 2025 at 06:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,6 @@ CREATE TABLE `academic_deans` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `position_type` enum('Academic Dean','Associate Dean','External Studies Unit') NOT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -41,26 +40,26 @@ CREATE TABLE `academic_deans` (
 -- Dumping data for table `academic_deans`
 --
 
-INSERT INTO `academic_deans` (`id`, `name`, `title`, `position_type`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(1, 'Abdel-Azeem A. Moammad Siddique', 'Dean, College of Asian & Islamic Studies', 'Academic Dean', 4, '2025-03-24 19:55:10', '2025-04-16 15:55:59'),
-(2, 'Mohammad Khasim I. Abdulmajid', 'Dean, College of Medicine', 'Academic Dean', 1, '2025-03-24 19:55:38', '2025-03-24 19:55:38'),
-(3, 'Hashim N. Alawi', 'OIC – Dean, College of Nursing', 'Academic Dean', 2, '2025-03-24 19:56:01', '2025-04-16 15:40:18'),
-(4, 'Ulmen Riff L. Circulado', 'Dean, College of Engineering', 'Academic Dean', 3, '2025-03-24 19:56:20', '2025-04-16 15:40:36'),
-(5, 'Mark L. Flores', 'Dean, College of Computing Studies', 'Academic Dean', 3, '2025-03-24 19:56:54', '2025-04-16 15:40:52'),
-(6, 'Byron B. Go Silk', 'Dean, External Studies Unit', 'Academic Dean', 1, '2025-03-24 19:57:53', '2025-03-24 19:57:53'),
-(7, 'Mario Ritchie O. Hibionada', 'Dean, College of Criminology', 'Academic Dean', 1, '2025-03-24 19:58:20', '2025-03-24 19:58:20'),
-(8, 'Almudi G. Lukman', 'Dean, College of Forestry & Environmental Studies', 'Academic Dean', 1, '2025-03-24 19:58:36', '2025-04-16 15:56:07'),
-(9, 'Irma Mari Madelle-Rivero', 'Dean, College of Law', 'Academic Dean', 11, '2025-03-24 19:59:01', '2025-04-16 15:45:01'),
-(10, 'Mohammad Nur S. Paspasan', 'Acting Dean, College of Science and Mathematics', 'Academic Dean', 1, '2025-03-24 19:59:24', '2025-03-24 19:59:24'),
-(11, 'Roel F. Marcial', 'Dean, College of Liberal Arts', 'Academic Dean', 2, '2025-03-24 19:59:42', '2025-04-16 15:44:36'),
-(12, 'Ricardo A. Somblingo', 'Dean, College of Teacher Education', 'Academic Dean', 1, '2025-03-24 20:00:12', '2025-03-24 20:00:12'),
-(13, 'Elderico P. Tabal', 'Dean, College of Agriculture', 'Academic Dean', 1, '2025-03-24 20:00:31', '2025-03-24 20:00:31'),
-(14, 'Jocelyn T. Gaas', 'Dean, College of Social Work & Community Development', 'Academic Dean', 1, '2025-03-24 20:00:54', '2025-04-16 15:49:41'),
-(15, 'Ma. Blancaflor R. Jimeno', 'Dean, CSSPE', 'Academic Dean', 1, '2025-03-24 20:01:44', '2025-03-24 20:01:44'),
-(16, 'Maria Socorro Yvonne H. Ramos', 'Coordinating Dean, Graduate School', 'Academic Dean', 1, '2025-03-24 20:02:11', '2025-04-16 15:41:51'),
-(17, 'Ruby Alita A. Sahi', 'OIC – Dean, College of Architecture', 'Academic Dean', 5, '2025-03-24 20:02:40', '2025-04-16 15:41:40'),
-(18, 'Lucia M. Santos', 'Dean, College of Home Economics', 'Academic Dean', 1, '2025-03-24 20:03:09', '2025-03-24 20:03:09'),
-(19, 'Sarah S. Taupan', 'OIC- Dean, CPADS on concurrent Director, Quality Assurance Center Office / Chair of the ISA', 'Academic Dean', 1, '2025-03-24 20:03:32', '2025-03-24 20:03:32');
+INSERT INTO `academic_deans` (`id`, `name`, `title`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(1, 'Abdel-Azeem A. Moammad Siddique', 'Dean, College of Asian & Islamic Studies', 4, '2025-03-24 11:55:10', '2025-04-16 07:55:59'),
+(2, 'Mohammad Khasim I. Abdulmajid', 'Dean, College of Medicine', 1, '2025-03-24 11:55:38', '2025-03-24 11:55:38'),
+(3, 'Hashim N. Alawi', 'OIC – Dean, College of Nursing', 2, '2025-03-24 11:56:01', '2025-04-16 07:40:18'),
+(4, 'Ulmen Riff L. Circulado', 'Dean, College of Engineering', 3, '2025-03-24 11:56:20', '2025-04-16 07:40:36'),
+(5, 'Mark L. Flores', 'Dean, College of Computing Studies', 3, '2025-03-24 11:56:54', '2025-04-16 07:40:52'),
+(6, 'Byron B. Go Silk', 'Dean, External Studies Unit', 1, '2025-03-24 11:57:53', '2025-03-24 11:57:53'),
+(7, 'Mario Ritchie O. Hibionada', 'Dean, College of Criminology', 1, '2025-03-24 11:58:20', '2025-03-24 11:58:20'),
+(8, 'Almudi G. Lukman', 'Dean, College of Forestry & Environmental Studies', 1, '2025-03-24 11:58:36', '2025-04-16 07:56:07'),
+(9, 'Irma Mari Madelle-Rivero', 'Dean, College of Law', 11, '2025-03-24 11:59:01', '2025-04-16 07:45:01'),
+(10, 'Mohammad Nur S. Paspasan', 'Acting Dean, College of Science and Mathematics', 1, '2025-03-24 11:59:24', '2025-03-24 11:59:24'),
+(11, 'Roel F. Marcial', 'Dean, College of Liberal Arts', 2, '2025-03-24 11:59:42', '2025-04-16 07:44:36'),
+(12, 'Ricardo A. Somblingo', 'Dean, College of Teacher Education', 1, '2025-03-24 12:00:12', '2025-03-24 12:00:12'),
+(13, 'Elderico P. Tabal', 'Dean, College of Agriculture', 1, '2025-03-24 12:00:31', '2025-03-24 12:00:31'),
+(14, 'Jocelyn T. Gaas', 'Dean, College of Social Work & Community Development', 1, '2025-03-24 12:00:54', '2025-04-16 07:49:41'),
+(15, 'Ma. Blancaflor R. Jimeno', 'Dean, CSSPE', 1, '2025-03-24 12:01:44', '2025-03-24 12:01:44'),
+(16, 'Maria Socorro Yvonne H. Ramos', 'Coordinating Dean, Graduate School', 1, '2025-03-24 12:02:11', '2025-04-16 07:41:51'),
+(17, 'Ruby Alita A. Sahi', 'OIC – Dean, College of Architecture', 5, '2025-03-24 12:02:40', '2025-04-16 07:41:40'),
+(18, 'Lucia M. Santos', 'Dean, College of Home Economics', 1, '2025-03-24 12:03:09', '2025-03-24 12:03:09'),
+(19, 'Sarah S. Taupan', 'OIC- Dean, CPADS on concurrent Director, Quality Assurance Center Office / Chair of the ISA', 1, '2025-03-24 12:03:32', '2025-03-24 12:03:32');
 
 -- --------------------------------------------------------
 
@@ -153,19 +152,19 @@ CREATE TABLE `board_of_regents` (
 --
 
 INSERT INTO `board_of_regents` (`id`, `name`, `title_bor`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(1, 'HON. RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', 2, 1, '2025-03-16 11:42:36', '2025-04-05 04:48:13'),
-(4, 'HON. ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, 1, '2025-03-24 10:24:46', '2025-03-24 10:24:46'),
-(5, 'Represented by:', 'HON. ROLANDO L. MACASAET', 'macasaet-1.jpg', 4, 1, '2025-03-24 10:26:40', '2025-03-24 10:26:40'),
-(6, 'HON. MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', 5, 1, '2025-03-24 10:27:16', '2025-03-24 10:27:16'),
-(7, 'Represented by:', 'HON. EMMYLOU B. YANGA', 'yanga.jpg', 6, 1, '2025-03-24 10:27:49', '2025-03-24 10:27:49'),
-(8, 'HON. MARIA FELICIDAD R. GUERRERO', 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS', 'guerrero.jpg', 7, 1, '2025-03-24 10:29:20', '2025-03-24 10:29:20'),
-(9, 'HON. MARTIN A. WEE', 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR', 'martin-wee.jpg', 8, 1, '2025-03-24 10:29:49', '2025-03-24 10:29:49'),
-(10, 'HON. INOCENTE P. LOCSON', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'LOCSON.jpg', 9, 1, '2025-03-24 10:30:07', '2025-03-24 10:30:07'),
-(11, 'HON. JOSE L. LOBREGAT', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'lobregat.jpg', 10, 1, '2025-03-24 10:30:36', '2025-03-24 10:30:36'),
-(12, 'HON. FLORENCIO M. LIONG, JR', 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR', 'mundoc_blank.jpg', 11, 1, '2025-03-24 10:31:18', '2025-03-24 10:31:18'),
-(13, 'HON. ADRIAN P. SEMORLAN', 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR', 'semorlan.jpg', 12, 1, '2025-03-24 10:32:00', '2025-03-24 10:32:00'),
-(14, 'HON. AHMAD G. MUNDOC', 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR', 'florencioblank.jpg', 13, 1, '2025-03-24 10:32:23', '2025-03-24 10:32:23'),
-(15, 'PROF. AL-GHANI D. MOHAMMAD', 'UNIVERSITY AND BOARD SECRETARY', 'MOHAMMAD.jpg', 14, 1, '2025-03-24 10:32:46', '2025-03-24 10:32:46');
+(1, 'RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', 2, 8, '2025-03-16 03:42:36', '2025-04-24 16:41:40'),
+(4, 'ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, 8, '2025-03-24 02:24:46', '2025-04-24 16:39:57'),
+(5, 'Represented by:', 'ROLANDO L. MACASAET', 'macasaet-1.jpg', 4, 8, '2025-03-24 02:26:40', '2025-03-24 02:26:40'),
+(6, 'MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', 5, 8, '2025-03-24 02:27:16', '2025-03-24 02:27:16'),
+(7, 'Represented by:', 'EMMYLOU B. YANGA', 'yanga.jpg', 6, 8, '2025-03-24 02:27:49', '2025-03-24 02:27:49'),
+(8, 'MARIA FELICIDAD R. GUERRERO', 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS', 'guerrero.jpg', 7, 8, '2025-03-24 02:29:20', '2025-03-24 02:29:20'),
+(9, 'MARTIN A. WEE', 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR', 'martin-wee.jpg', 8, 8, '2025-03-24 02:29:49', '2025-03-24 02:29:49'),
+(10, 'INOCENTE P. LOCSON', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'LOCSON.jpg', 9, 8, '2025-03-24 02:30:07', '2025-03-24 02:30:07'),
+(11, 'JOSE L. LOBREGAT', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'lobregat.jpg', 10, 8, '2025-03-24 02:30:36', '2025-03-24 02:30:36'),
+(12, 'FLORENCIO M. LIONG, JR', 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR', 'mundoc_blank.jpg', 11, 8, '2025-03-24 02:31:18', '2025-03-24 02:31:18'),
+(13, 'ADRIAN P. SEMORLAN', 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR', 'semorlan.jpg', 12, 8, '2025-03-24 02:32:00', '2025-03-24 02:32:00'),
+(14, 'AHMAD G. MUNDOC', 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR', 'florencioblank.jpg', 13, 8, '2025-03-24 02:32:23', '2025-03-24 02:32:23'),
+(15, 'AL-GHANI D. MOHAMMAD', 'UNIVERSITY AND BOARD SECRETARY', 'MOHAMMAD.jpg', 14, 13, '2025-03-24 02:32:46', '2025-03-24 02:32:46');
 
 -- --------------------------------------------------------
 
@@ -526,7 +525,27 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'Screenshot 2025-02-08 012300.png', 1, 8, '2025-04-07 20:37:11', '2025-04-16 15:43:53');
+(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-04-24 16:41:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `president_suboffices`
+--
+
+CREATE TABLE `president_suboffices` (
+  `id` int(11) NOT NULL,
+  `office` varchar(100) NOT NULL,
+  `office_head` varchar(100) NOT NULL,
+  `honorifics_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `president_suboffices`
+--
+
+INSERT INTO `president_suboffices` (`id`, `office`, `office_head`, `honorifics_id`) VALUES
+(2, 'awda', 'ada', 13);
 
 -- --------------------------------------------------------
 
@@ -653,6 +672,27 @@ INSERT INTO `vice_presidents` (`id`, `name`, `title`, `page_link`, `honorifics_i
 (6, 'Teresita A. Narvaez', 'Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair', 'ovp-for-resource-generation', 1, '2025-03-24 18:39:58', '2025-04-16 08:40:03'),
 (7, 'Fredelino M. San Juan', 'Vice President for Student Affairs and Services in concurrent capacity as Director of Special Progra', 'ovp-for-student-affairs-and-services', 1, '2025-03-24 18:40:52', '2025-04-16 08:40:12');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vice_president_suboffices`
+--
+
+CREATE TABLE `vice_president_suboffices` (
+  `id` int(11) NOT NULL,
+  `office` varchar(100) NOT NULL,
+  `office_head` varchar(100) NOT NULL,
+  `office_of_vp_in` varchar(100) NOT NULL,
+  `honorifics_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vice_president_suboffices`
+--
+
+INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`) VALUES
+(2, 'awda', 'adad', 'adwawd', 7);
+
 --
 -- Indexes for dumped tables
 --
@@ -682,6 +722,7 @@ ALTER TABLE `associate_deans`
 -- Indexes for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rank` (`rank`),
   ADD KEY `fk_honorifics` (`honorifics_id`);
 
@@ -769,6 +810,13 @@ ALTER TABLE `president`
   ADD KEY `fkkk_honorifics` (`honorifics_id`);
 
 --
+-- Indexes for table `president_suboffices`
+--
+ALTER TABLE `president_suboffices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_honorifics_pres_suboffices` (`honorifics_id`);
+
+--
 -- Indexes for table `section_chiefs`
 --
 ALTER TABLE `section_chiefs`
@@ -797,6 +845,13 @@ ALTER TABLE `vice_presidents`
   ADD KEY `fkkkk_honorifics` (`honorifics_id`);
 
 --
+-- Indexes for table `vice_president_suboffices`
+--
+ALTER TABLE `vice_president_suboffices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_honorifics_vice_pres_suboffices` (`honorifics_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -804,55 +859,61 @@ ALTER TABLE `vice_presidents`
 -- AUTO_INCREMENT for table `academic_deans`
 --
 ALTER TABLE `academic_deans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `assistant_directors`
 --
 ALTER TABLE `assistant_directors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `associate_deans`
 --
 ALTER TABLE `associate_deans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `board_of_regents`
+--
+ALTER TABLE `board_of_regents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `campus_administrators`
 --
 ALTER TABLE `campus_administrators`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `chairpersons`
 --
 ALTER TABLE `chairpersons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `coordinators`
 --
 ALTER TABLE `coordinators`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `external_studies_unit`
 --
 ALTER TABLE `external_studies_unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `graduate_school_head`
 --
 ALTER TABLE `graduate_school_head`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `honorifics`
@@ -864,55 +925,67 @@ ALTER TABLE `honorifics`
 -- AUTO_INCREMENT for table `ils_principals`
 --
 ALTER TABLE `ils_principals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `opstaff`
 --
 ALTER TABLE `opstaff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `other_services`
 --
 ALTER TABLE `other_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `president_suboffices`
+--
+ALTER TABLE `president_suboffices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `section_chiefs`
 --
 ALTER TABLE `section_chiefs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `technical_assistants`
 --
 ALTER TABLE `technical_assistants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `university_board_secretary`
 --
 ALTER TABLE `university_board_secretary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vice_presidents`
 --
 ALTER TABLE `vice_presidents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `vice_president_suboffices`
+--
+ALTER TABLE `vice_president_suboffices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -1003,6 +1076,12 @@ ALTER TABLE `president`
   ADD CONSTRAINT `fkkk_honorifics` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
 
 --
+-- Constraints for table `president_suboffices`
+--
+ALTER TABLE `president_suboffices`
+  ADD CONSTRAINT `fk_honorifics_pres_suboffices` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
+
+--
 -- Constraints for table `section_chiefs`
 --
 ALTER TABLE `section_chiefs`
@@ -1025,6 +1104,12 @@ ALTER TABLE `university_board_secretary`
 --
 ALTER TABLE `vice_presidents`
   ADD CONSTRAINT `fkkkk_honorifics` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
+
+--
+-- Constraints for table `vice_president_suboffices`
+--
+ALTER TABLE `vice_president_suboffices`
+  ADD CONSTRAINT `fk_honorifics_vice_pres_suboffices` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

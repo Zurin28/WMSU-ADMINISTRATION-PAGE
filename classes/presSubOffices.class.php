@@ -1,7 +1,8 @@
 <?php
 require_once 'database.class.php';
 
-class TechnicalAssistants {
+class PresSubOffices {
+
     protected $db;
 
     function __construct()
@@ -9,14 +10,15 @@ class TechnicalAssistants {
         $this->db = new Database();
     }
 
+    // Fetch all products
     function fetchAll()
     {
         $sql = "
             SELECT 
-                ta.*, 
+                ps.*, 
                 h.short AS honorific_short
-            FROM technical_assistants AS ta
-            LEFT JOIN honorifics AS h ON ta.honorifics_id = h.id
+            FROM president_suboffices AS ps
+            LEFT JOIN honorifics AS h ON ps.honorifics_id = h.id
         ";
     
         // Prepare the query
@@ -31,15 +33,15 @@ class TechnicalAssistants {
         // Return the data
         return $data;
     }
-    
-        function add_official($name, $title, $honorifics_id)
+
+    function add_official($office, $office_head, $honorifics_id)
         {
             try {
-                $sql = "INSERT INTO technical_assistants (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
+                $sql = "INSERT INTO president_suboffices (office, office_head, honorifics_id) VALUES (:office, :office_head, :honorifics_id)";
                 $query = $this->db->connect()->prepare($sql);
                 
-                $query->bindParam(':name', $name);
-                $query->bindParam(':title', $title);
+                $query->bindParam(':office', $office);
+                $query->bindParam(':office_head', $office_head);
                 $query->bindParam(':honorifics_id', $honorifics_id);
                 
                 if ($query->execute()) {
@@ -55,16 +57,9 @@ class TechnicalAssistants {
             }
         }
 
-        function deleteOfficial($id) {
-            $sql = "DELETE FROM technical_assistants WHERE id = :id";
-            $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(':id', $id);
-            return $query->execute();
-        }
-
-        function fetchRecord($recordID)
+    function fetchRecord($recordID)
         {
-            $sql = "SELECT * FROM technical_assistants WHERE id = :recordID;";
+            $sql = "SELECT * FROM president_suboffices WHERE id = :recordID;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':recordID', $recordID);
             $data = null;
@@ -73,16 +68,27 @@ class TechnicalAssistants {
             }
             return $data;
         }
-        
-        function edit()
+
+    function edit()
         {
-            $sql = "UPDATE technical_assistants SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
+            $sql = "UPDATE president_suboffices SET office = :office, office_head = :office_head, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
-            $query->bindParam(':name', $this->name);
-            $query->bindParam(':title', $this->title);
+            $query->bindParam(':office', $this->office);
+            $query->bindParam(':office_head', $this->office_head);
             $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }
+
+
+        function deleteOfficial($id) {
+            $sql = "DELETE FROM president_suboffices WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        }
+
+    
+
+
 }
-?>

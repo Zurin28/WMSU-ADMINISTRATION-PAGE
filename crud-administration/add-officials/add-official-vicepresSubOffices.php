@@ -1,19 +1,19 @@
 <?php
-require_once '../../classes/opstaff.class.php';
+require_once '../../classes/vicepresSubOffices.class.php';
 require_once '../../classes/honorifics.class.php';
 
 $honorificsObj = new Honorifics();
 
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $title = $_POST['title'];
-    $page_link = $_POST['page_link'];
+    $office = $_POST['office'];
+    $office_head = $_POST['office_head'];
+    $office_of_vp_in = $_POST['office_of_vp_in'];
     $honorifics_id = $_POST['honorifics']; // Get the selected honorifics ID
 
-    $opstaffobj = new OpStaff();
+    $vicepresSubOfficesObj = new VicePresSubOffices();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($opstaffobj->add_official($name, $title, $page_link, $honorifics_id)) {
+    if ($vicepresSubOfficesObj->add_official($office, $office_head, $office_of_vp_in, $honorifics_id)) {
         echo "Official added successfully!";
         header('Location: ../../sample-admin/administration');
     } else {
@@ -35,13 +35,13 @@ if (isset($_POST['submit'])) {
         <img src="../../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
         <div class="title">WMSU ADMIN</div>
     </div>
-    <h1>OFFICE OF THE PRESIDENT STAFF</h1>
+    <h1>VICE PRESIDENT’S SUBOFFICES</h1>
 
     <div class="container">
         <form action="" method="post">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
+                <label for="office">Office</label>
+                <input type="text" name="office" id="office" required>
             </div>
 
             <div class="form-group">
@@ -60,18 +60,19 @@ if (isset($_POST['submit'])) {
 </div>
 
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" required>
+                <label for="office_head">Office Head</label>
+                <input type="text" name="office_head" id="office_head" required>
             </div>
 
             <div class="form-group">
-                <label for="page_link">Page Link</label>
-                <input type="text" name="page_link" id="page_link" required>
+                <label for="office_of_vp_in">Office of Vice President in</label>
+                <input type="text" name="office_of_vp_in" id="office_of_vp_in" required>
             </div>
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>
         </form>
         <a href="../../sample-admin/administration" class="back-link">Back to Administration</a>
     </div>
+    
 </body>
 </html>

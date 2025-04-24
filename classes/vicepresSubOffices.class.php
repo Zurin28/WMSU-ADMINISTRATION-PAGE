@@ -1,7 +1,8 @@
 <?php
 require_once 'database.class.php';
 
-class CampusAdministrators {
+class VicepresSubOffices {
+
     protected $db;
 
     function __construct()
@@ -14,10 +15,10 @@ class CampusAdministrators {
     {
         $sql = "
             SELECT 
-                ca.*, 
+                vps.*, 
                 h.short AS honorific_short
-            FROM campus_administrators AS ca
-            LEFT JOIN honorifics AS h ON ca.honorifics_id = h.id
+            FROM vice_president_suboffices AS vps
+            LEFT JOIN honorifics AS h ON vps.honorifics_id = h.id
         ";
     
         // Prepare the query
@@ -32,16 +33,16 @@ class CampusAdministrators {
         // Return the data
         return $data;
     }
-    
-    // Upload
-    function add_official($name, $title, $honorifics_id)
+
+    function add_official($office, $office_head, $office_of_vp_in, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO campus_administrators (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
+            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in, honorifics_id) VALUES (:office, :office_head, :office_of_vp_in, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
-            $query->bindParam(':name', $name);
-            $query->bindParam(':title', $title);
+            $query->bindParam(':office', $office);
+            $query->bindParam(':office_head', $office_head);
+            $query->bindParam(':office_of_vp_in', $office_of_vp_in);
             $query->bindParam(':honorifics_id', $honorifics_id);
             
             if ($query->execute()) {
@@ -57,16 +58,9 @@ class CampusAdministrators {
         }
     }
 
-    function deleteOfficial($id) {
-        $sql = "DELETE FROM campus_administrators WHERE id = :id";
-        $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':id', $id);
-        return $query->execute();
-    }
-
     function fetchRecord($recordID)
     {
-        $sql = "SELECT * FROM campus_administrators WHERE id = :recordID;";
+        $sql = "SELECT * FROM vice_president_suboffices WHERE id = :recordID;";
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':recordID', $recordID);
         $data = null;
@@ -75,16 +69,26 @@ class CampusAdministrators {
         }
         return $data;
     }
-    
-    function edit()
+
+function edit()
     {
-        $sql = "UPDATE campus_administrators SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
+        $sql = "UPDATE vice_president_suboffices SET office = :office, office_head = :office_head, office_of_vp_in = :office_of_vp_in, honorifics_id = :honorifics_id WHERE id = :id;";
         $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':name', $this->name);
-        $query->bindParam(':title', $this->title);
+        $query->bindParam(':office', $this->office);
+        $query->bindParam(':office_head', $this->office_head);
+        $query->bindParam(':office_of_vp_in', $this->office_of_vp_in);
         $query->bindParam(':honorifics_id', $this->honorifics);
         $query->bindParam(':id', $this->id);
         return $query->execute();
     }
+
+
+    function deleteOfficial($id) {
+        $sql = "DELETE FROM vice_president_suboffices WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        return $query->execute();
+    }
+
+
 }
-?>

@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="staticBackdropeditmember"
+  id="staticBackdropeditpressuboffice"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"
@@ -20,11 +20,11 @@
           aria-label="Close"
         ></button>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" id="form-edit-member">
+      <form action="" method="post" enctype="multipart/form-data" id="form-edit-pressuboffice">
         <div class="modal-body">
           <div class="mb-2">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required />
+            <label for="office" class="form-label">Office</label>
+            <input type="text" class="form-control" id="office" name="office" required />
             <div class="invalid-feedback"></div>
           </div>
 
@@ -37,30 +37,10 @@
           </div>
 
           <div class="mb-2">
-            <label for="title_bor" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title_bor" name="title_bor" required />
-            <div class="invalid-feedback"></div>
+            <label for="office_head" class="form-label">Office Head</label>
+            <input type="text" class="form-control" id="office_head" name="office_head" required />
           </div>
 
-          <div class="mb-2">
-            <label for="rank" class="form-label">Rank</label>
-            <input
-              type="number"
-              class="form-control"
-              id="rank"
-              name="rank"
-              min="1"
-              required
-            />
-            <div class="invalid-feedback"></div>
-          </div>
-          
-
-          <div class="mb-2">
-            <label for="image" class="form-label">Upload Image</label>
-            <input type="file" class="form-control" id="image" name="image" />
-            <div class="invalid-feedback"></div>
-          </div>
         </div>
         <div class="modal-footer">
           <button

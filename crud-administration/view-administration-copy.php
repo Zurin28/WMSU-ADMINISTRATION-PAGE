@@ -60,7 +60,7 @@
         </div>
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
                         <table id="" class="table table-centered table-nowrap mb-0">
-                            <thead">
+                            <thead>
                     <tr>
                         <th width="20%">NAME</th>
                         <th width="25%">TITLE</th>
@@ -116,11 +116,100 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="section">
+        <div class="section-header">
+            PRESIDENT'S SUBOFFICES
+        </div>
+
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <table id="table-products" class="table table-centered table-nowrap mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Office</th>
+                                    <th>Office Head</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require_once '../classes/presSubOffices.class.php';
+
+                                $presSubOfficesObj = new PresSubOffices();
+                                $presSubOffice = $presSubOfficesObj->fetchAll(); // Fetch all officials
+                            
+                                foreach ($presSubOffice as $presSubOffices) {
+                                    
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($presSubOffices['honorific_short'] . ' ' . $presSubOffices['office']) ?></td>
+                                        <td><?= htmlspecialchars($presSubOffices['office_head'] ?? 'N/A') ?></td>
+                                        <td class="text-nowrap">
+                                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Edit</a>
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Delete</a>
+                                            
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            VICE PRESIDENT'S SUBOFFICES
+        </div>
+
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <table id="table-products" class="table table-centered table-nowrap mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Office</th>
+                                    <th>Office Head</th>
+                                    <th>Office OF VP in</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require_once '../classes/VicepresSubOffices.class.php';
+
+                                $VicepresSubOfficesObj = new VicepresSubOffices();
+                                $VicepresSubOffice = $VicepresSubOfficesObj->fetchAll(); // Fetch all officials
+                            
+                                foreach ($VicepresSubOffice as $VicepresSubOffices) {
+                                    
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office']) ?></td>
+                                        <td><?= htmlspecialchars($VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
+                                        <td><?= htmlspecialchars($VicepresSubOffices['office_of_vp_in'] ?? 'N/A') ?></td>
+                                        <td class="text-nowrap">
+                                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Edit</a>
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Delete</a>
+                                            
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             
 <div class="section">
         <div class="section-header">
             ACADEMIC DEANS
-            <a href="../crud-administration/add-officials/add-official-AcademicDean.php" class="insert-btn">Insert</a>
         </div>
 
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
@@ -158,11 +247,12 @@
                         </table>
                     </div>
                 </div>
+
+
         
                 <div class="section">
         <div class="section-header">
             ASSOCIATE DEANS
-            <a href="../crud-administration/add-officials/add-official-AcademicDean.php" class="insert-btn">Insert</a>
         </div>
 
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
@@ -206,7 +296,6 @@
     <div class="section">
         <div class="section-header">
             EXTERNAL STUDIES UNIT
-            <a href="../crud-administration/add-officials/add-official-ExternalStudiesUnit.php" class="insert-btn">Insert</a>
         </div>
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
                         <table id="table-products" class="table table-centered table-nowrap mb-0">

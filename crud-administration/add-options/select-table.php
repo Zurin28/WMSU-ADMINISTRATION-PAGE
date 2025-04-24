@@ -68,35 +68,27 @@
 </head>
 <body>
   <div class="header">
-    <img src="../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
+    <img src="../../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
     <div class="title">WMSU ADMIN</div>
   </div>
   <div class="container">
     <div class="back">
     <span>
-  <a href="../sample-admin/administration" class="back-link">
-    <img src="../images/Ellipse7.svg" alt="Back">
+  <a href="../../sample-admin/administration" class="back-link">
+    <img src="../../images/Ellipse7.svg" alt="Back">
   </a>
 </span>
       <span>SELECT FROM BELOW:</span>
     </div>
     <div class="link-list">
-      <a href="add-officials/add-official-pres.php">PRESIDENT</a>
-      <a href="add-officials/add-official-VicePres.php">VICE PRESIDENT</a>
-      <a href="add-officials/add-official-opstaff.php">OFFICE OF THE PRESIDENT STAFF</a>
-      <a href="add-officials/add-official-universityboardsecretary.php">UNIV. BOARD AND SECRETARY</a>
-      <a href="add-officials/add-official-directors.php">DIRECTORS</a>
-      <a href="add-officials/add-official-campusadministrators.php">CAMPUS ADMINISTRATOR</a>
-      <a href="add-officials/add-official-ILSPrincipals.php">Integrated Laboratory School Principals & Asst. Principals</a>
-      <a href="add-officials/add-official-AssistantDirectors.php">Assistant & Associate Directors Assistant Chairpersons Special Assistants</a>
-      <a href="add-officials/add-official-TechnicalAssistants.php">Technical Assistant | Technical Associates</a>
-      <a href="add-officials/add-official-Chairpersons.php">Chairpersons</a>
-      <a href="add-officials/add-official-Managers.php">Manager</a>
-      <a href="add-officials/add-official-GraduateSchoolHead.php">HEAD/CHAIR OF THE GRADUATE SCHOOL</a>
-      <a href="add-officials/add-official-Coordinators.php">Coordinators</a>
-      <a href="add-officials/add-official-SectionChiefs.php">Section Chief</a>
-      <a href="add-officials/add-official-OtherServices.php">Other Services</a>
-
+      <a href="../add-officials/add-official-bor.php">BOARD OF REGENTS</a>
+      <a href="../add-administrativeOfficials.php">ADMINISTRATIVE OFFICIALS</a>
+      <a href="../add-officials/add-official-presSubOffices.php">PRESIDENT’S SUBOFFICES</a>
+      <a href="../add-officials/add-official-vicepresSubOffices.php">VICE PRESIDENT’S SUBOFFICES</a>
+      <a href="../add-officials/add-official-AcademicDean.php">ACADEMIC DEANS</a>
+      <a href="../add-officials/add-official-AssociateDean.php">ASSOCIATE DEANS</a>
+      <a href="../add-officials/add-official-ExternalStudiesUnit.php">EXTERNAL STUDIES UNIT</a>
+      <a href="../add-officials/add-honorifics.php">DESIGNATIONS</a>
     </div>
   </div>
 </body>
