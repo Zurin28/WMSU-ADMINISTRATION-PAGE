@@ -256,12 +256,10 @@ body {
 
 .member-card h3 {
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-size: 1rem;
+    font-weight: 800;
     margin: 0.5rem 0;
     text-transform: uppercase;
-    color: #ffcc66;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
 .member-card p {
@@ -272,21 +270,66 @@ body {
 .member-card button {
     display: block;
     background-color: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 6px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    padding: 10px 25px;
+    border: 2px solid white;
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
     cursor: pointer;
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     text-align: center;
-    font-size: 0.85rem;
 }
 
 .member-card button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: white;
     color: #7C0902;
+}
+
+/* Official Sections */
+.position-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    color: #7C0902;
+    margin: 30px 0 15px;
+    font-weight: 600;
+}
+
+.official-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.official-name {
+    flex: 1;
+    min-width: 200px;
+}
+
+.official-position {
+    flex: 2;
+}
+
+.Offices {
+    display: inline-block;
+    margin-top: 10px;
+    color: #7C0902;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.Offices:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }

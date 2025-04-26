@@ -2,7 +2,7 @@
 <div class="section">
           <div class="section-header">
             BOARD OF REGENTS
-            <a href="../crud-administration/add-officials/add-official-bor.php" class="insert-btn">Insert</a>
+<!-- Removed individual insert button -->
           </div>
           <div class="modal-container"></div>
           <table>
@@ -56,7 +56,7 @@
         <div class="section">
           <div class="section-header">
           Administrative Officials
-            <a href="../crud-administration/add-administrativeOfficials.php" class="insert-btn">Insert</a>
+<!-- Removed individual insert button -->
           </div>
           <div class="modal-container"></div>
           <div class="table-responsive">
@@ -127,7 +127,7 @@
         <div class="section">
           <div class="section-header">
             ACADEMIC DEAN
-            <a href="../crud-administration/add-officials/add-official-AcademicDean.php" class="insert-btn">Insert</a>
+<!-- Removed individual insert button -->
           </div>
           <div class="modal-container"></div>
           <table>
@@ -173,7 +173,7 @@
         <div class="section">
           <div class="section-header">
             ASSOCIATE DEAN
-            <a href="../crud-administration/add-officials/add-official-AssociateDean.php" class="insert-btn">Insert</a>
+<!-- Removed individual insert button -->
           </div>
           <div class="modal-container"></div>
           <table>
@@ -218,7 +218,7 @@
         <div class="section">
           <div class="section-header">
           External Studies Units
-            <a href="../crud-administration/add-officials/add-official-ExternalStudiesUnit.php" class="insert-btn">Insert</a>
+<!-- Removed individual insert button -->
           </div>
           <div class="modal-container"></div>
           <table>

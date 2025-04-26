@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WMSU ADMINISTRATION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/admin_officials.css" />
+    
 </head>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
     <?php require_once '../__includes/head.php'; ?>
-    
+
+<?php
+// Helper function to render staff rows
+function renderStaffRows($staffList) {
+    foreach ($staffList as $staff) {
+        echo '<div class="staff-row">';
+        echo '    <div class="staff-name">' . htmlspecialchars($staff['name']) . '</div>';
+        echo '    <div class="staff-title">' . htmlspecialchars($staff['title']) . '</div>';
+        echo '</div>';
+    }
+}
+?>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -35,468 +49,462 @@
             <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
             <div class="board-description">
                 <p>The <span class="highlight">Board of Regents</span> is the highest policy-making body of <span class="highlight">Western Mindanao State University</span>. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution's alignment with its academic mission and public mandate.</p>
-                <br>
+                <br />
                 <p>Through collaborative governance and informed decision-making, the <span class="highlight">Board of Regents plays a vital role in upholding WMSU's standards of excellence</span> and fostering its continued growth as a premier institution in the region.</p>
             </div>
 
             <!-- Board Members Grid -->
             <div class="members-grid">
             <?php
-require_once '../classes/bor.class.php';
+            require_once '../classes/bor.class.php';
 
-$bor = new Board();
-$boardMembers = $bor->fetchAll(); // Fetch all board members
-$count = 0;
+            $bor = new Board();
+            $boardMembers = $bor->fetchAll(); // Fetch all board members
 
-foreach ($boardMembers as $member) {
-    // Skip "represented by" members
-    if (strpos($member['title'], 'represented by') !== false) {
-        continue;
-    }
-    
-    // Limit to 12 members
-    if ($count >= 12) {
-        break;
-    }
-    $count++;
+            // Add representation info to specific members
+            foreach ($boardMembers as &$member) {
+                if ($member['name'] === 'HON. ALAN PETER S. CAYETANO') {
+                    $member['representation'] = [
+                        [
+                            'name' => 'HON. ROLANDO L. MACASAET',
+                            'image' => 'macasaet-1.jpg'
+                        ]
+                    ];
+                } elseif ($member['name'] === 'HON. MARK O. GO') {
+                    $member['representation'] = [
+                        [
+                            'name' => 'HON. EMMYLOU B. YANGA',
+                            'image' => 'yanga.jpg'
+                        ]
+                    ];
+                }
+            }
+            unset($member);
 
-    echo '<div class="member-card">';
-    echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
-    echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
-    echo '    <p>' . htmlspecialchars($member['title']) . '</p>';
-    
-    // Add "See More" button matching hero section style
-    echo '    <a href="#" class="btn">See More</a>';
-    
-    echo '</div>';
-}
-?>
+            $count = 0;
+
+            foreach ($boardMembers as $index => $member) {
+                // Skip representatives as separate members
+                if ($member['name'] === 'HON. ROLANDO L. MACASAET' || $member['name'] === 'HON. EMMYLOU B. YANGA' || $member['name'] === 'Represented by:') {
+                    continue;
+                }
+                
+                // Limit to 12 members
+                if ($count >= 12) {
+                    break;
+                }
+                $count++;
+
+                // Member card with data-index attribute for modal targeting
+                echo '<div class="member-card">';
+                echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
+                echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
+                echo '    <p>' . htmlspecialchars($member['title_bor']) . '</p>';
+                
+                // See More button with data-index to identify member
+                echo '    <button class="btn see-more-btn" data-index="' . $index . '">See More</button>';
+                
+                echo '</div>';
+            }
+            ?>
             </div>
-            <div class="board-title">Administrative Officials</div>
 
-
-            <div class="title-row">
-            <div class="position-title">President</div>
+            <!-- Modal container -->
+            <div id="member-modal" class="modal-container">
+                <div class="modal-header">
+                    <button class="close-button" id="modal-close-btn">✕</button>
+                </div>
+                <div class="modal-content">
+                    <div class="profile-image" id="modal-profile-image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="profile-info">
+                        <h1 id="modal-name"></h1>
+                        <h2 id="modal-title"></h2>
+                        <p id="modal-description">No description available.</p>
+                        <div class="representation" id="modal-representation" style="display:none;">
+                            <h3>REPRESENTED BY:</h3>
+                            <img class="representative-image" src="" alt="" id="modal-rep-image">
+                            <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="official-row">
+            <style>
+                /* Enhanced Modal CSS with smooth transitions and improved layout */
+                .modal-container {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    width: 90%;
+                    max-width: 900px;
+                    max-height: 90vh;
+                    border-radius: 15px;
+                    overflow-y: auto;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                    background-color: #890909;
+                    color: white;
+                    z-index: 1000;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+                .modal-container.show {
+                    opacity: 1;
+                    pointer-events: auto;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+
+                .modal-header {
+                    background-color: #e0e0e0;
+                    padding: 20px;
+                    text-align: right;
+                }
+
+                .close-button {
+                    background-color: #900;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .modal-content {
+                    display: flex;
+                    padding: 30px;
+                    flex-wrap: nowrap;
+                }
+                .profile-info {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    gap: 20px;
+                    text-align: left;
+                }
+                .profile-info h1, .profile-info h2, .profile-info p {
+                    margin: 0;
+                }
+                .profile-info h1 {
+                    font-size: 28px;
+                    border-bottom: none;
+                }
+                .profile-info h2 {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+                .profile-info p {
+                    font-size: 16px;
+                    max-width: 100%;
+                }
+
+                .profile-image {
+                    flex: 0 0 auto;
+                    margin-right: 30px;
+                    max-height: 80vh;
+                    max-width: 350px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                    overflow: hidden;
+                    background: transparent;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .profile-image img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    height: auto;
+                    border-radius: 10px;
+                    display: block;
+                    margin: 0; /* Remove any auto margin that centers the image */
+                    box-shadow: none;
+                }
+
+                .profile-info {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: left;
+                }
+
+                .profile-info h1 {
+                    font-size: 36px;
+                    margin-bottom: 10px;
+                    border-bottom: 2px solid white;
+                    padding-bottom: 10px;
+                    text-align: left;
+                }
+
+                .profile-info h2 {
+                    font-size: 18px;
+                    font-weight: normal;
+                    margin-bottom: 20px;
+                    text-align: left;
+                }
+
+                .profile-info p {
+                    line-height: 1.6;
+                    margin-bottom: 20px;
+                    text-align: left;
+                }
+
+                .representation {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 20px;
+                }
+
+                .representation h3 {
+                    margin-right: 20px;
+                    font-size: 22px;
+                }
+
+                .representative-image {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-left: auto;
+                }
+            </style>
+
+            <script>
+                // JavaScript to handle modal open/close and populate data with smooth transitions
+                const boardMembers = <?php echo json_encode($boardMembers); ?>;
+                const modal = document.getElementById('member-modal');
+                const modalCloseBtn = document.getElementById('modal-close-btn');
+                const modalProfileImage = document.querySelector('#modal-profile-image img');
+                const modalName = document.getElementById('modal-name');
+                const modalTitle = document.getElementById('modal-title');
+                const modalDescription = document.getElementById('modal-description');
+                const modalRepresentation = document.getElementById('modal-representation');
+                const modalRepImage = document.getElementById('modal-rep-image');
+                const modalRepName = document.getElementById('modal-rep-name');
+
+                function openModal(index) {
+                    const member = boardMembers[index];
+
+                    modalProfileImage.src = '../images/' + member.image;
+                    modalProfileImage.alt = member.name;
+                    modalName.textContent = member.name;
+                    modalTitle.textContent = member.title_bor;
+
+                    // Placeholder description, can be replaced with real data if available
+                    modalDescription.textContent = 'No description available.';
+
+                    // Show or hide representation section based on data
+                    if (member.representation && member.representation.length > 0) {
+                        modalRepresentation.style.display = 'flex';
+                        // For simplicity, show first representative only
+                        const rep = member.representation[0];
+                        modalRepImage.src = '../images/' + rep.image;
+                        modalRepImage.alt = rep.name;
+                        modalRepName.textContent = rep.name;
+                    } else {
+                        modalRepresentation.style.display = 'none';
+                    }
+
+                    // Show modal with animation
+                    modal.classList.add('show');
+                }
+
+                function closeModal() {
+                    // Hide modal with animation
+                    modal.classList.remove('show');
+                }
+
+                document.querySelectorAll('.see-more-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = button.getAttribute('data-index');
+                        openModal(index);
+                    });
+                });
+
+                modalCloseBtn.addEventListener('click', () => {
+                    closeModal();
+                });
+
+                // Close modal when clicking outside modal content
+                window.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            </script>
+
+<div class="container">
+    <div class="header">
+        <div class="header-line left-line"></div>
+        <h1>Administrative Officials</h1>
+        <div class="header-line right-line"></div>
+    </div>
+    
+    <div class="description">
+        <p>The <span class="highlight">Administrative Officials</span> of Western Mindanao State University (WMSU) constitute the <span class="highlight">comprehensive leadership team</span> responsible for the university's <span class="highlight">strategic direction</span>, <span class="highlight">academic excellence</span>, and <span class="highlight">operational efficiency</span>. This organizational body includes the <span class="highlight">University President</span>, <span class="highlight">Vice Presidents overseeing various sectors</span> such as Academic Affairs, Administration and Finance, Research, Extension Services, and Resource Generation. Supporting the executive leadership are the Office of the President staff, the University and Board Secretary, and a cadre of Directors managing key departments like Finance, Admissions, Student Affairs, and Information Technology.</p>
+        <p>The <span class="highlight">administrative framework extends</span> to Campus Administrators <span class="highlight">across WMSU's satellite campuses</span>, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units.</p>
+        <p>Together, these officials uphold <span class="highlight">WMSU's commitment</span> to <span class="highlight">providing quality education</span> and <span class="highlight">fostering community development</span>.</p>
+    </div>
+    
     <?php
     require_once '../classes/pres.class.php';
-
     $pres = new Pres();
-    $PresOfficials = $pres->fetchAll(); // Fetch all officials
-
-    foreach ($PresOfficials as $Presofficial) {
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($Presofficial['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($Presofficial['title']) . '</p>';
-        
-        if (!empty($Presofficial['page_link'])) {
-            echo '<a href="../Offices/' . htmlspecialchars($Presofficial['page_link']) . '" class="Offices">Office of the President</a>';
-        }
-        
-        echo '</div>';
-    }
-    ?>
-</div>
-
-
-        <!-- Vice Presidents -->
-        <div class="position-title">Vice Presidents</div>
-        <?php
-    require_once '../classes/Vicepres.class.php';
-
-    $vicePres = new VicePres();
-    $VicePresOfficials = $vicePres->fetchAll(); // Fetch all officials
-
-        foreach ($VicePresOfficials as $VicePresofficial) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($VicePresofficial['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($VicePresofficial['title']) . '</p>';
-        
-        if (!empty($VicePresofficial['page_link'])) {
-            echo '<a href="../Offices/' . htmlspecialchars($VicePresofficial['page_link']) . '" class="Offices">Office of the Vice President</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-
-
-        <!-- Office of the President Staff -->
-        <div class="position-title">Office of the President Staff</div>
-        <?php
-    require_once '../classes/opstaff.class.php';
-
-    $opstaffobj = new OpStaff();
-    $opstaff = $opstaffobj->fetchAll(); // Fetch all officials
-
-        foreach ($opstaff as $opstaffs) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($opstaffs['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($opstaffs['title']) . '</p>';
-        
-        if (!empty($opstaffs['page_link'])) {
-            echo '<a href="../Offices/' . htmlspecialchars($opstaffs['page_link']) . '" class="Offices">Office of the President Staff</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-
-        <!-- University and Board Secretary -->
-        <div class="position-title">University and Board Secretary</div>
-        <?php
-    require_once '../classes/UniversityBoardSecretary.class.php';
-
-    $uniBoardSecretaryObj = new UniversityBoardSecretary();
-    $uniBoardSecretary = $uniBoardSecretaryObj->fetchAll(); // Fetch all officials
-
-        foreach ($uniBoardSecretary as $uniBoardSecretarys) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($uniBoardSecretarys['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($uniBoardSecretarys['title']) . '</p>';
-        
-        if (!empty($uniBoardSecretarys['page_link'])) {
-            echo '<a href="../Offices/' . htmlspecialchars($uniBoardSecretarys['page_link']) . '" class="Offices">Office of the President Staff</a>';
-        }
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Directors -->
-        <div class="position-title">Directors</div>
-        <?php
-    require_once '../classes/Directors.class.php';
-
-    $directorsObj = new Directors();
-    $director = $directorsObj->fetchAll(); // Fetch all officials
-
-        foreach ($director as $directors) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($directors['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($directors['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Campus Administrators -->
-        <div class="position-title">Campus Administrators</div>
-        <?php
-    require_once '../classes/CampusAdministrators.class.php';
-
-    $campusAdminObj = new CampusAdministrators();
-    $campusAdmin = $campusAdminObj->fetchAll(); // Fetch all officials
-
-        foreach ($campusAdmin as $campusAdmins) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($campusAdmins['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($campusAdmins['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Integrated Laboratory School Principals & Asst. Principals -->
-        <div class="position-title">Integrated Laboratory School Principals & Asst. Principals</div>
-        <?php
-    require_once '../classes/ILSPrincipals.class.php';
-
-    $ILSPrincipalsObj = new ILSPrincipals();
-    $ILSPrincipal = $ILSPrincipalsObj->fetchAll(); // Fetch all officials
-
-        foreach ($ILSPrincipal as $ILSPrincipals) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($ILSPrincipals['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($ILSPrincipals['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-
-        <!-- Assistant & Associate Directors | Assistant Chairpersons | Special Assistants -->
-        <div class="position-title">Assistant & Associate Directors | Assistant Chairpersons | Special Assistants</div>
-        <?php
-    require_once '../classes/AssistantDirectors.class.php';
-
-    $assistantDirectorObj = new AssistantDirectors();
-    $assistantDirector = $assistantDirectorObj->fetchAll(); // Fetch all officials
-
-        foreach ($assistantDirector as $assistantDirectors) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($assistantDirectors['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($assistantDirectors['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Technical Assistant | Technical Associates -->
-        <div class="position-title">Technical Assistant | Technical Associates</div>
-        <?php
-    require_once '../classes/TechnicalAssistants.class.php';
-
-    $techAssistObj = new TechnicalAssistants();
-    $techAssist = $techAssistObj->fetchAll(); // Fetch all officials
-
-        foreach ($techAssist as $techAssists) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($techAssists['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($techAssists['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Chairpersons -->
-        <div class="position-title">Chairpersons</div>
-        <?php
-    require_once '../classes/Chairpersons.class.php';
-
-    $chairpersonObj = new Chairpersons();
-    $chairperson = $chairpersonObj->fetchAll(); // Fetch all officials
-
-        foreach ($chairperson as $chairpersons) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($chairpersons['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($chairpersons['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Manager -->
-        <div class="position-title">Manager</div>
-        <?php
-    require_once '../classes/Managers.class.php';
-
-    $managerObj = new Managers();
-    $manager = $managerObj->fetchAll(); // Fetch all officials
-
-    foreach ($manager as $managers) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($managers['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($managers['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- HEAD/CHAIR OF THE GRADUATE SCHOOL -->
-        <div class="position-title">HEAD/CHAIR OF THE GRADUATE SCHOOL</div>
-        <?php
-    require_once '../classes/GraduateSchoolHead.class.php';
-
-    $graduateSchoolHeadObj = new GraduateSchoolHead();
-    $graduateSchoolHead = $graduateSchoolHeadObj->fetchAll(); // Fetch all officials
-
-    foreach ($graduateSchoolHead as $graduateSchoolHeads) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($graduateSchoolHeads['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($graduateSchoolHeads['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Coordinators -->
-        <div class="position-title">Coordinators</div>
-        <?php
-    require_once '../classes/Coordinators.class.php';
-
-    $coordinatorObj = new Coordinators();
-    $coordinator = $coordinatorObj->fetchAll(); // Fetch all officials
-
-    foreach ($coordinator as $coordinators) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($coordinators['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($coordinators['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Section Chief -->
-        <div class="position-title">Section Chief</div>
-        <?php
-    require_once '../classes/SectionChiefs.class.php';
-
-    $sectionChiefObj = new SectionChiefs();
-    $sectionChief = $sectionChiefObj->fetchAll(); // Fetch all officials
-
-    foreach ($sectionChief as $sectionChiefs) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($sectionChiefs['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($sectionChiefs['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- Other Services -->
-        <div class="position-title">Other Services</div>
-        <?php
-    require_once '../classes/OtherServices.class.php';
-
-    $otherServiceObj = new OtherServices();
-    $otherService = $otherServiceObj->fetchAll(); // Fetch all officials
-
-    foreach ($otherService as $otherServices) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($otherServices['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($otherServices['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
-
-        <!-- ACADEMIC DEANS -->
-        <div class="board-title">
-            Academic Deans
+    $PresOfficials = $pres->fetchAll();
+    if (!empty($PresOfficials)) {
+        $president = $PresOfficials[0];
+        ?>
+        <div class="president-section">
+            <div class="profile-bubble-container">
+                <div class="small-bubble"></div>
+                <div class="profile-bubble">
+                    <img src="../ADMIN UI/uploads/<?php echo htmlspecialchars($president['image']); ?>" alt="<?php echo htmlspecialchars($president['name']); ?>" class="profile-image">
+                </div>
+            </div>
+            
+            <div class="president-info">
+                <h2><?php echo htmlspecialchars($president['name']); ?></h2>
+                <h3><?php echo htmlspecialchars($president['title']); ?></h3>
+                <button class="sub-offices-btn">See Sub-Offices</button>
+                <?php if (!empty($president['page_link'])): ?>
+                    <a href="../Offices/<?php echo htmlspecialchars($president['page_link']); ?>" class="office-link">Proceed to President's Office Page</a>
+                <?php endif; ?>
+            </div>
         </div>
         <?php
-    require_once '../classes/AcademicDean.class.php';
-
-    $academicDeanObj = new AcademicDean();
-    $academicDean = $academicDeanObj->fetchAll(); // Fetch all officials
-        echo "<br>";
-    foreach ($academicDean as $academicDeans) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($academicDeans['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($academicDeans['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
     }
     ?>
+    
+    <?php
+    require_once '../classes/Vicepres.class.php';
+    $vicePres = new VicePres();
+    $VicePresOfficials = $vicePres->fetchAll();
+    if (!empty($VicePresOfficials)) {
+        ?>
+        <h2 class="section-header">Vice Presidents</h2>
         
-
-            <!-- Associate Dean -->
-            <div class="position-title">Associate Dean</div>
-            <?php
-    require_once '../classes/AssociateDean.class.php';
-
-    $associateDeanObj = new AssociateDean();
-    $associateDean = $associateDeanObj->fetchAll(); // Fetch all officials
-
-    foreach ($associateDean as $associateDeans) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($associateDeans['name']) . '</p>';
-        echo '</div>';
-        
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($associateDeans['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
+        <div class="staff-card">
+            <?php renderStaffRows($VicePresOfficials); ?>
+        </div>
+        <div class="footer-btn-container">
+            <button class="sub-offices-btn">See Sub-Offices</button>
+        </div>
+        <?php
     }
     ?>
-
-            <!-- External Studies Units -->
-            <div class="position-title">External Studies Units</div>
-            <?php
-    require_once '../classes/ExternalStudiesUnit.class.php';
-
-    $externalStudiesUnitObj = new ExternalStudiesUnit();
-    $externalStudiesUnit = $externalStudiesUnitObj->fetchAll(); // Fetch all officials
-
-    foreach ($externalStudiesUnit as $externalStudiesUnits) {
-        echo '<div class="official-row">';
-        echo '<div class="official-name">';
-        echo '<p>' . htmlspecialchars($externalStudiesUnits['name']) . '</p>';
-        echo '</div>';
+    
+    <?php
+    require_once '../classes/opstaff.class.php';
+    $opstaffobj = new OpStaff();
+    $opstaff = $opstaffobj->fetchAll();
+    if (!empty($opstaff)) {
+        ?>
+        <h2 class="section-header">Office of the President Staff</h2>
         
-        echo '<div class="official-position">';
-        echo '<p>' . htmlspecialchars($externalStudiesUnits['title']) . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
+        <div class="staff-card">
+            <?php renderStaffRows($opstaff); ?>
+        </div>
+        <?php
     }
     ?>
-    </div>
-</div>
-</body>
-</html>
+    
+    <?php
+    require_once '../classes/UniversityBoardSecretary.class.php';
+    $uniBoardSecretaryObj = new UniversityBoardSecretary();
+    $uniBoardSecretary = $uniBoardSecretaryObj->fetchAll();
+    if (!empty($uniBoardSecretary)) {
+        ?>
+        <h2 class="section-header">University and Board Secretary</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($uniBoardSecretary); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
+    <?php
+    require_once '../classes/Directors.class.php';
+    $directorsObj = new Directors();
+    $director = $directorsObj->fetchAll();
+    if (!empty($director)) {
+        ?>
+        <h2 class="section-header">Directors</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($director); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
+    <?php
+    require_once '../classes/CampusAdministrators.class.php';
+    $campusAdminObj = new CampusAdministrators();
+    $campusAdmin = $campusAdminObj->fetchAll();
+    if (!empty($campusAdmin)) {
+        ?>
+        <h2 class="section-header">Campus Administrators</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($campusAdmin); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
+    <?php
+    require_once '../classes/ILSPrincipals.class.php';
+    $ILSPrincipalsObj = new ILSPrincipals();
+    $ILSPrincipal = $ILSPrincipalsObj->fetchAll();
+    if (!empty($ILSPrincipal)) {
+        ?>
+        <h2 class="section-header">Integrated Laboratory School Principals &amp; Asst. Principals</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($ILSPrincipal); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
+    <?php
+    require_once '../classes/AssistantDirectors.class.php';
+    $assistantDirectorObj = new AssistantDirectors();
+    $assistantDirector = $assistantDirectorObj->fetchAll();
+    if (!empty($assistantDirector)) {
+        ?>
+        <h2 class="section-header">Assistant &amp; Associate Directors | Assistant Chairpersons | Special Assistants</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($assistantDirector); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
+    <?php
+    require_once '../classes/TechnicalAssistants.class.php';
+    $techAssistObj = new TechnicalAssistants();
+    $techAssist = $techAssistObj->fetchAll();
+    if (!empty($techAssist)) {
+        ?>
+        <h2 class="section-header">Technical Assistant | Technical Associates</h2>
+        
+        <div class="staff-card">
+            <?php renderStaffRows($techAssist); ?>
+        </div>
+        <?php
+    }
+    ?>
+    
