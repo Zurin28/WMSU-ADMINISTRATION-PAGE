@@ -2074,202 +2074,222 @@ function deleteexternalStudiesUnits(id) {
 
         $(".edit-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editPresofficial(this.dataset.id); // Call function to edit product
+          editPresofficial(this.dataset.id); // Call function to edit president
         });
 
         $(".delete-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingPresofficial(this.dataset.id); // Call function to edit product
+          deletingPresofficial(this.dataset.id); // Call function to delete president
         });
 
         $(".edit-vicepres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editVicePresofficial(this.dataset.id); // Call function to edit product
+          editVicePresofficial(this.dataset.id); // Call function to edit vice president
         });
 
         $(".delete-vicepres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingVicePresofficial(this.dataset.id); // Call function to edit product
+          deletingVicePresofficial(this.dataset.id); // Call function to delete vice president
         });
 
         $(".edit-opstaff").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editopstaffs(this.dataset.id); // Call function to edit product
+          editopstaffs(this.dataset.id); // Call function to edit op staff
         });
 
         $(".delete-opstaff").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingopstaffs(this.dataset.id); // Call function to edit product
+          deletingopstaffs(this.dataset.id); // Call function to delete op staff
         });
 
         $(".edit-universityboardsecretary").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          edituniBoardSecretarys(this.dataset.id); // Call function to edit product
+          edituniBoardSecretarys(this.dataset.id); // Call function to edit university board secretary
         });
 
         $(".delete-universityboardsecretary").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletinguniBoardSecretarys(this.dataset.id); // Call function to edit product
+          deletinguniBoardSecretarys(this.dataset.id); // Call function to delete university board secretary
         });
 
         $(".edit-directors").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editdirectors(this.dataset.id); // Call function to edit product
+          editdirectors(this.dataset.id); // Call function to edit director
         });
 
         $(".delete-directors").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingdirectors(this.dataset.id); // Call function to edit product
+          deletingdirectors(this.dataset.id); // Call function to delete director
         });
 
         $(".edit-campusadministrators").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editcampusAdmins(this.dataset.id); // Call function to edit product
+          editcampusAdmins(this.dataset.id); // Call function to edit campus administrator
         });
 
         $(".delete-campusadministrators").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingcampusAdmins(this.dataset.id); // Call function to edit product
+          deletingcampusAdmins(this.dataset.id); // Call function to delete campus administrator
         });
 
         $(".edit-ilsprincipals").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editILSPrincipals(this.dataset.id); // Call function to edit product
+          editILSPrincipals(this.dataset.id); // Call function to edit ILS principal
         });
 
         $(".delete-ilsprincipals").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingILSPrincipals(this.dataset.id); // Call function to edit product
+          deletingILSPrincipals(this.dataset.id); // Call function to delete ILS principal
         });
 
         $(".edit-assistantdirectors").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editassistantDirectors(this.dataset.id); // Call function to edit product
+          editassistantDirectors(this.dataset.id); // Call function to edit assistant director
         });
 
         $(".delete-assistantdirectors").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingassistantDirectors(this.dataset.id); // Call function to edit product
+          deletingassistantDirectors(this.dataset.id); // Call function to delete assistant director
         });
 
         $(".edit-technicalassistants").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          edittechAssists(this.dataset.id); // Call function to edit product
+          edittechAssists(this.dataset.id); // Call function to edit technical assistant
         });
 
         $(".delete-technicalassistants").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingtechAssists(this.dataset.id); // Call function to edit product
+          deletingtechAssists(this.dataset.id); // Call function to delete technical assistant
         });
 
         $(".edit-chairpersons").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editchairpersons(this.dataset.id); // Call function to edit product
+          editchairpersons(this.dataset.id); // Call function to edit chairperson
         });
 
         $(".delete-chairpersons").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingchairpersons(this.dataset.id); // Call function to edit product
+          deletingchairpersons(this.dataset.id); // Call function to delete chairperson
         });
 
         $(".edit-managers").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editmanagers(this.dataset.id); // Call function to edit product
+          editmanagers(this.dataset.id); // Call function to edit manager
         });
 
         $(".delete-managers").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingmanagers(this.dataset.id); // Call function to edit product
+          deletingmanagers(this.dataset.id); // Call function to delete manager
         });
 
         $(".edit-graduateschoolhead").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editgraduateSchoolHead(this.dataset.id); // Call function to edit product
+          editgraduateSchoolHead(this.dataset.id); // Call function to edit graduate school head
         });
 
         $(".delete-graduateschoolhead").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletinggraduateSchoolHead(this.dataset.id); // Call function to edit product
+          deletinggraduateSchoolHead(this.dataset.id); // Call function to delete graduate school head
         });
 
         $(".edit-coordinators").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editcoordinators(this.dataset.id); // Call function to edit product
+          editcoordinators(this.dataset.id); // Call function to edit coordinator
         });
 
         $(".delete-coordinators").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingcoordinators(this.dataset.id); // Call function to edit product
+          deletingcoordinators(this.dataset.id); // Call function to delete coordinator
         });
 
         $(".edit-sectionchiefs").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editsectionChiefs(this.dataset.id); // Call function to edit product
+          editsectionChiefs(this.dataset.id); // Call function to edit section chief
         });
 
         $(".delete-sectionchiefs").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingsectionChiefs(this.dataset.id); // Call function to edit product
+          deletingsectionChiefs(this.dataset.id); // Call function to delete section chief
         });
 
         $(".edit-otherservices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editotherServices(this.dataset.id); // Call function to edit product
+          editotherServices(this.dataset.id); // Call function to edit other services
         });
 
         $(".delete-otherservices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingotherServices(this.dataset.id); // Call function to edit product
+          deletingotherServices(this.dataset.id); // Call function to delete other services
         });
 
         $(".edit-presSubOffices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editpresSubOffices(this.dataset.id); // Call function to edit product
+          editpresSubOffices(this.dataset.id); // Call function to edit president sub office
         });
 
         $(".delete-presSubOffices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingpresSubOffices(this.dataset.id); // Call function to edit product
+          deletingpresSubOffices(this.dataset.id); // Call function to delete president sub office
         });
 
         $(".edit-VicepresSubOffices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editVicepresSubOffices(this.dataset.id); // Call function to edit product
+          editVicepresSubOffices(this.dataset.id); // Call function to edit vice president sub office
         });
 
         $(".delete-VicepresSubOffices").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingVicepresSubOffices(this.dataset.id); // Call function to edit product
+          deletingVicepresSubOffices(this.dataset.id); // Call function to delete vice president sub office
         });
 
         $(".edit-academicDeans").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editacademicDeans(this.dataset.id); // Call function to edit product
+          editacademicDeans(this.dataset.id); // Call function to edit academic dean
         });
 
         $(".delete-academicDeans").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingacademicDeans(this.dataset.id); // Call function to edit product
+          deletingacademicDeans(this.dataset.id); // Call function to delete academic dean
         });
 
         $(".edit-associateDeans").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editassociateDeans(this.dataset.id); // Call function to edit product
+          editassociateDeans(this.dataset.id); // Call function to edit associate dean
         });
 
         $(".delete-associateDeans").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingassociateDeans(this.dataset.id); // Call function to edit product
+          deletingassociateDeans(this.dataset.id); // Call function to delete associate dean
         });
 
         $(".edit-externalStudiesUnits").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          editexternalStudiesUnits(this.dataset.id); // Call function to edit product
+          editexternalStudiesUnits(this.dataset.id); // Call function to edit external studies unit
         });
 
         $(".delete-externalStudiesUnits").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletingexternalStudiesUnits(this.dataset.id); // Call function to edit product
+          deletingexternalStudiesUnits(this.dataset.id); // Call function to delete external studies unit
+        });
+
+        $(".edit-organizationalChart").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editorganizationalChart(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-organizationalChart").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingorganizationalChart(this.dataset.id); // Call function to delete organizational chart
+        });
+
+        $(".edit-pageDescription").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editpageDescription(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-pageDescription").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingpageDescription(this.dataset.id); // Call function to delete organizational chart
         });
   
         },
@@ -4252,6 +4272,189 @@ $.ajax({
     }
 });
 }
+
+    // Function to show the edit modal
+    function editorganizationalChart(id) {
+      $.ajax({
+        type: "GET", // Use GET request
+        url: "../crud-administration/edit-officials/edit-organizationalChart.html", // URL to get product data
+        dataType: "html", // Expect JSON response
+        success: function (view) {
+          fetchRecordorganizationalChart(id);
+          // Assuming 'view' contains the new content you want to display
+          $(".modal-container").empty().html(view); // Load the modal view
+          $("#staticBackdropeditorganizationalChart").modal("show"); // Show the modal
+          $("#staticBackdropeditorganizationalChart").attr("data-id", id);
+    
+          // Event listener for the add product form submission
+          $("#form-edit-organizationalChart").on("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+            updateorganizationalChart(id); // Call function to save product
+          });
+        },
+      });
+    }
+    
+    function fetchRecordorganizationalChart(id) {
+      $.ajax({
+        url: `../crud-administration/fetching/fetch-organizationalChart.php?id=${id}`, // URL for fetching categories
+        type: "POST", // Use GET request
+        dataType: "json", // Expect JSON response
+        success: function (organizationalChart) {
+          $("#description").val(organizationalChart.description);
+        },
+      });
+    }
+    
+      // Function to update a new official
+      function updateorganizationalChart(id) {
+        var form = $('#form-edit-organizationalChart')[0];
+        var formData = new FormData(form);
+        
+        $.ajax({
+            type: "POST",
+            url: `../crud-administration/update-officials/update-organizationalChart.php?id=${id}`,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    $("#staticBackdropeditorganizationalChart").modal("hide");
+                    $("#form-edit-organizationalChart")[0].reset();
+                    viewHome();
+                }
+            },
+        });
+      }
+      
+      function deletingorganizationalChart(id) {
+        $.ajax({
+            type: "GET", // Use GET request
+            url: "../crud-administration/delete-official.html", // URL to get product data
+            dataType: "html", // Expect HTML response
+            success: function (view) {
+              $(".modal-container").empty().html(view); // Load the modal view
+              $("#staticBackdropDelete").modal("show"); // Show the modal
+              $("#staticBackdropDelete").attr("data-id", id);
+      
+              // Event listener for the edit product form submission
+              $("#form-delete-official").on("submit", function (e) {
+                e.preventDefault(); // Prevent default form submission
+                deleteorganizationalChart(id); // Call function to update product
+              });
+            },
+          });
+      }
+    
+    // Function to delete account
+    function deleteorganizationalChart(id) {
+        $.ajax({
+            type: "POST",
+            url: "../crud-administration/delete-officials/delete-organizationalChart.php", // Point to the delete script
+            data: { id: id },
+            dataType: "json",
+            success: function (response) {
+              if (response.status === "success") {
+                  $("#staticBackdropDelete").modal("hide");
+                  $("form")[0].reset();
+                  viewHome(); // Reload accounts after update
+              }
+          },
+            error: function () {
+                alert("An error occurred while deleting the Official.");
+            }
+        });
+    }
+    
+         // Function to show the edit modal
+         function editpageDescription(id) {
+          $.ajax({
+            type: "GET", // Use GET request
+            url: "../crud-administration/edit-officials/edit-pageDescription.html", // URL to get product data
+            dataType: "html", // Expect JSON response
+            success: function (view) {
+              fetchRecordpageDescription(id);
+              // Assuming 'view' contains the new content you want to display
+              $(".modal-container").empty().html(view); // Load the modal view
+              $("#staticBackdropeditpageDescription").modal("show"); // Show the modal
+              $("#staticBackdropeditpageDescription").attr("data-id", id);
+      
+              // Event listener for the add product form submission
+              $("#form-edit-pageDescription").on("submit", function (e) {
+                e.preventDefault(); // Prevent default form submission
+                updatepageDescription(id); // Call function to save product
+              });
+            },
+          });
+        }
+      
+        function fetchRecordpageDescription(id) {
+          $.ajax({
+            url: `../crud-administration/fetching/fetch-pageDescription.php?id=${id}`, // URL for fetching categories
+            type: "POST", // Use GET request
+            dataType: "json", // Expect JSON response
+            success: function (pageDescription) {
+              $("#description").val(pageDescription.description);
+            },
+          });
+        }
+      
+          // Function to update a new official
+          function updatepageDescription(id) {
+            $.ajax({
+                type: "POST",
+                url: `../crud-administration/update-officials/update-pageDescription.php?id=${id}`, // Correct URL
+                data: $("form").serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === "success") {
+                        $("#staticBackdropeditpageDescription").modal("hide");
+                        $("form")[0].reset();
+                        viewHome(); // Reload accounts after update
+                    }
+                },
+            });
+        }
+    
+    function deletingpageDescription(id) {
+    $.ajax({
+        type: "GET", // Use GET request
+        url: "../crud-administration/delete-official.html", // URL to get product data
+        dataType: "html", // Expect HTML response
+        success: function (view) {
+          $(".modal-container").empty().html(view); // Load the modal view
+          $("#staticBackdropDelete").modal("show"); // Show the modal
+          $("#staticBackdropDelete").attr("data-id", id);
+    
+          // Event listener for the edit product form submission
+          $("#form-delete-official").on("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+            deletepageDescription(id); // Call function to delete product
+          });
+        },
+      });
+    }
+    
+    // Function to delete account
+    function deletepageDescription(id) {
+    $.ajax({
+        type: "POST",
+        url: "../crud-administration/delete-officials/delete-pageDescription.php", // Point to the delete script
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          if (response.status === "success") {
+              $("#staticBackdropDelete").modal("hide");
+              $("form")[0].reset();
+              viewHome(); // Reload accounts after update
+          }
+      },
+        error: function () {
+            alert("An error occurred while deleting the Official.");
+        }
+    });
+    }
     
   });
   

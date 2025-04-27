@@ -1,10 +1,59 @@
 <div class="container-fluid">
+<a href="../crud-administration/add-options/select-table.php" class="insert-btn">Insert</a>
 <div class="section">
         <div class="section-header">
-            BOARD OF REGENTS
-            <a href="../crud-administration/add-officials/add-official-bor.php" class="insert-btn">Insert</a>
+            ORGANIZATIONAL CHART
         </div>
         <div class="modal-container"></div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th width="50%">IMAGE</th>
+                    <th width="30%">DESCRIPTION</th>
+                    <th width="40%">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                require_once '../classes/organizationalChart.class.php';
+
+                $organizationalChartObj = new OrganizationalChart();
+                $organizationalChart = $organizationalChartObj->fetchAll(); // Fetch all officials
+                if (count($organizationalChart) > 0):
+                    foreach ($organizationalChart as $organizationalCharts):
+                ?>
+                <tr>
+                    <td class="image-cell">
+                        <?php if (!empty($organizationalCharts['image'])): ?>
+                            <img src="../images/<?= htmlspecialchars($organizationalCharts['image']) ?>" alt="" width="500px">
+                        <?php else: ?>
+                            <span>No image</span>
+                        <?php endif; ?>
+                    </td>
+                    <td><?= htmlspecialchars($organizationalCharts['description']) ?></td>
+                    <td class="action-cell">
+                    <a href="" class="btn btn-sm btn-outline-success me-1 edit-organizationalChart" data-id="<?= $organizationalCharts['id'] ?>">Edit</a>
+                    <a href="" class="btn btn-sm btn-outline-danger me-1 delete-organizationalChart" data-id="<?= $organizationalCharts['id'] ?>">Delete</a>
+                    </td>
+                </tr>
+                <?php 
+                    endforeach;
+                else:
+                ?>
+                <tr>
+                    <td colspan="4" class="empty-message">No data available</td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            BOARD OF REGENTS
+        </div>
         <table>
             <thead>
                 <tr>
@@ -35,9 +84,9 @@
                     <td class="name-cell"><?= htmlspecialchars($regent['honorific_short'] . ' ' . $regent['name']) ?></td>
                     <td><?= htmlspecialchars($regent['title_bor']) ?></td>
                     <td><?= htmlspecialchars($regent['rank']) ?></td>
-                    <td class="action-cell">
-                        <a href="#" class="btn btn-sm btn-outline-primary me-1 action-btn edit-btn edit-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Edit</a>
-                        <a href="#" class="btn btn-sm btn-outline-danger me-1 action-btn delete-btn delete-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Delete</a>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-outline-success me-1 edit-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Edit</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger me-1 delete-member" data-id="<?= $regent['id'] ?>" data-type="<?= $regent['type'] ?>">Delete</a>
                     </td>
                 </tr>
                 <?php 
@@ -56,7 +105,6 @@
 <div class="section">
         <div class="section-header">
             ADMINISTRATIVE OFFICIALS
-            <a href="../crud-administration/add-administrativeOfficials.php" class="insert-btn">Insert</a>
         </div>
                     <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
                         <table id="" class="table table-centered table-nowrap mb-0">
@@ -103,7 +151,7 @@
                         <td><?= htmlspecialchars($official['page_link'] ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($positionLabel) ?></td>
                         <td class="action-cell">
-                            <a href="#" class="btn btn-sm btn-outline-primary me-1 edit-<?= strtolower($className); ?>" data-id="<?= $official['id']; ?>">Edit</a>
+                            <a href="#" class="btn btn-sm btn-outline-success me-1 edit-<?= strtolower($className); ?>" data-id="<?= $official['id']; ?>">Edit</a>
                             <a href="#" class="btn btn-sm btn-outline-danger me-1 delete-<?= strtolower($className); ?>" data-id="<?= $official['id']; ?>">Delete</a>
                         </td>
                     </tr>
@@ -293,6 +341,7 @@
             </div>
         </div>
     </div>
+
     <div class="section">
         <div class="section-header">
             EXTERNAL STUDIES UNIT
@@ -322,6 +371,49 @@
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-externalStudiesUnits" data-id="<?= $externalStudiesUnits['id'] ?>">Edit</a>
                                             <a href="" class="btn btn-sm btn-outline-danger me-1 delete-externalStudiesUnits" data-id="<?= $externalStudiesUnits['id'] ?>">Delete</a>
+                                            
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            PAGE DESCRIPTION
+        </div>
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <table id="table-products" class="table table-centered table-nowrap mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Page</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require_once '../classes/pageDescription.class.php';
+
+                                $pageDescriptionObj = new PageDescription();
+                                $pageDescription = $pageDescriptionObj->fetchAll(); // Fetch all officials
+                            
+                                foreach ($pageDescription as $pageDescriptions) {
+                                    
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($pageDescriptions['page']) ?></td>
+                                        <td><?= htmlspecialchars($pageDescriptions['description'] ?? 'N/A') ?></td>
+                                        <td class="text-nowrap">
+                                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-pageDescription" data-id="<?= $pageDescriptions['id'] ?>">Edit</a>
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-pageDescription" data-id="<?= $pageDescriptions['id'] ?>">Delete</a>
                                             
                                         </td>
                                     </tr>

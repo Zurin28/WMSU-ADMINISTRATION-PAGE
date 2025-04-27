@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2025 at 06:42 PM
+-- Generation Time: Apr 27, 2025 at 09:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -152,7 +152,6 @@ CREATE TABLE `board_of_regents` (
 --
 
 INSERT INTO `board_of_regents` (`id`, `name`, `title_bor`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(1, 'RONALD L. ADAMAT', 'COMMISSIONER, CHED CHAIR-DESIGNATE, WMSU-BOR', 'ronald-adamat.jpg', 2, 8, '2025-03-16 03:42:36', '2025-04-24 16:41:40'),
 (4, 'ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, 8, '2025-03-24 02:24:46', '2025-04-24 16:39:57'),
 (5, 'Represented by:', 'ROLANDO L. MACASAET', 'macasaet-1.jpg', 4, 8, '2025-03-24 02:26:40', '2025-03-24 02:26:40'),
 (6, 'MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', 5, 8, '2025-03-24 02:27:16', '2025-03-24 02:27:16'),
@@ -477,6 +476,25 @@ INSERT INTO `opstaff` (`id`, `name`, `title`, `page_link`, `honorifics_id`, `cre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `organizational_chart`
+--
+
+CREATE TABLE `organizational_chart` (
+  `id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `organizational_chart`
+--
+
+INSERT INTO `organizational_chart` (`id`, `image`, `description`) VALUES
+(2, 'Screenshot 2025-02-08 012300.png', 'qwerty');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `other_services`
 --
 
@@ -504,6 +522,25 @@ INSERT INTO `other_services` (`id`, `name`, `title`, `honorifics_id`, `created_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `page_description`
+--
+
+CREATE TABLE `page_description` (
+  `id` int(11) NOT NULL,
+  `page` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `page_description`
+--
+
+INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
+(2, 'ADMINISTRATIVE OFFICIALS', 'wada');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `president`
 --
 
@@ -525,7 +562,7 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-04-24 16:41:40');
+(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-04-27 06:51:27');
 
 -- --------------------------------------------------------
 
@@ -795,11 +832,23 @@ ALTER TABLE `opstaff`
   ADD KEY `fk_honorifics_opstaff` (`honorifics_id`);
 
 --
+-- Indexes for table `organizational_chart`
+--
+ALTER TABLE `organizational_chart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `other_services`
 --
 ALTER TABLE `other_services`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_honorifics_otherservices` (`honorifics_id`);
+
+--
+-- Indexes for table `page_description`
+--
+ALTER TABLE `page_description`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `president`
@@ -940,10 +989,22 @@ ALTER TABLE `opstaff`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `organizational_chart`
+--
+ALTER TABLE `organizational_chart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `other_services`
 --
 ALTER TABLE `other_services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `page_description`
+--
+ALTER TABLE `page_description`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `president`
