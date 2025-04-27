@@ -290,3 +290,160 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
     color: #7C0902;
 }
+
+/* Modal Container */
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden; /* Changed from overflow-y: auto */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background-color: #890909; /* Darker maroon background to match image */
+    color: white;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-container.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Modal Header - Updated to match the gray top bar */
+.modal-header {
+    background-color: #d8d8d8; /* Lighter gray to match image */
+    padding: 15px;
+    text-align: right;
+}
+
+/* Close Button */
+.close-button {
+    background-color: #900;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    display: flex;
+    padding: 30px;
+    flex-wrap: nowrap;
+    background-color: #890909; /* Match background color */
+}
+
+/* Profile Image */
+.profile-image {
+    flex: 0 0 auto;
+    margin-right: 30px;
+    max-height: 450px; /* More specific height to match image */
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* Profile Info */
+.profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from center to match image */
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+}
+
+.profile-info h1, .profile-info h2, .profile-info p {
+    margin: 0;
+    width: 100%;
+}
+
+.profile-info h1 {
+    font-size: 36px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase; /* Added to match the image */
+    font-weight: bold;
+}
+
+.profile-info h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-align: left;
+    text-transform: uppercase; /* Added to match the image */
+}
+
+.profile-info p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 15px;
+}
+
+/* Representation Section */
+.representation {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.representation h3 {
+    margin-right: 20px;
+    font-size: 22px;
+    text-transform: uppercase; /* Added to match the image */
+}
+
+.representative-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: auto;
+}
+
+/* Additional styles to match the exact layout shown in the image */
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+    }
+    
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+}

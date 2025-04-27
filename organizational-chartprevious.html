@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WMSU Organizational Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .org-chart {
+            display: flex;
+            justify-content: center;
+        }
+        ul.tree, ul.tree ul {
+            padding-top: 20px; 
+            position: relative;
+            list-style-type: none;
+            text-align: center;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 40px;
+            justify-content: center;
+        }
+        ul.tree ul {
+            margin-left: 0;
+        }
+        ul.tree li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            border-radius: 8px;
+            position: relative;
+            min-width: 140px;
+            justify-self: center;
+        }
+        ul.tree li::before, ul.tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+        ul.tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+        ul.tree li:only-child::before, ul.tree li:only-child::after {
+            display: none;
+        }
+        ul.tree li:only-child {
+            padding-top: 0;
+        }
+        ul.tree li:first-child::before, ul.tree li:last-child::after {
+            border: 0 none;
+        }
+        ul.tree li:last-child::before {
+            border-right: 2px solid #ccc;
+            border-radius: 0 8px 0 0;
+        }
+        ul.tree li:first-child::after {
+            border-radius: 8px 0 0 0;
+        }
+        ul.tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #ccc;
+            width: 0;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WMSU Organizational Chart (Mock)</h1>
+    <div class="org-chart">
+        <ul class="tree">
+            <li>Board of Regents
+                <ul>
+                    <li>Chairperson</li>
+                    <li>Members</li>
+                </ul>
+            </li>
+            <li>President
+                <ul>
+                    <li>Chief of Staff</li>
+                    <li>Executive Assistant</li>
+                    <li>Special Assistant to President</li>
+                    <li>University Board Secretary</li>
+                    <li>Vice Presidents
+                        <ul>
+                            <li>VP for Academic Affairs
+                                <ul>
+                                    <li>Academic Deans</li>
+                                    <li>Associate Deans</li>
+                                    <li>Graduate School Head</li>
+                                    <li>University Curriculum Chair</li>
+                                </ul>
+                            </li>
+                            <li>VP for Administrative and Finance
+                                <ul>
+                                    <li>Directors</li>
+                                    <li>Managers</li>
+                                    <li>Section Chiefs</li>
+                                </ul>
+                            </li>
+                            <li>VP for Research and Extension</li>
+                            <li>VP for Resource Generation</li>
+                            <li>VP for Student Affairs and Services</li>
+                        </ul>
+                    </li>
+                    <li>Campus Administrators</li>
+                    <li>Other Services</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
