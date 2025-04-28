@@ -176,28 +176,23 @@ if ($Presidents) {
 
                 </div>
             </div>
+
+            
             <?php
-            if ($Presidents) {
-                foreach ($Presidents as $president) {
-                    echo '<div class="president-info">';
-                
-                    
-                    // Honorific + Name
-                    echo '<h2>' . htmlspecialchars($president['honorific_short']) . ' ' . htmlspecialchars($president['name']) . '</h2>';
-                    
-                    // Title
-                    echo '<h3>' . htmlspecialchars($president['title']) . '</h3>';
-                    
-                    // Static Button and Link (blank/dummy for now)
-                    echo '<button class="sub-offices-btn">See Sub-Offices</button>';
-                    echo '<a href="#" class="office-link">Proceed to President\'s Office Page</a>';
-                    
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>No presidents found.</p>';
-            }
-            ?>
+if ($Presidents) {
+    foreach ($Presidents as $president) {
+        echo '<div class="president-info">';
+        echo '<h2>' . htmlspecialchars($president['honorific_short']) . ' ' . htmlspecialchars($president['name']) . '</h2>';
+        echo '<h3>' . htmlspecialchars($president['title']) . '</h3>';
+        echo '<button class="sub-offices-btn">See Sub-Offices</button>';
+        // The link is now white for better contrast
+        echo '<a href="../Offices/' . urlencode($president['page_link']) . '" class="office-link" style="color: #fff; text-decoration: underline; font-weight: bold;">Proceed to President\'s Office Page</a>';
+        echo '</div>';
+    }
+} else {
+    echo '<p>No presidents found.</p>';
+}
+?>
         </div>
         
         <h2 class="section-header">Vice Presidents</h2>
@@ -208,12 +203,20 @@ $vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
 ?>
     <div class="staff-card">
     
-<?php foreach ($vicePresidents as $vicePres): ?>
+    <?php foreach ($vicePresidents as $vicePres): ?>
     <div class="staff-row">
-            <div class="staff-name"><?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?></div>
-            <div class="staff-title"><?php echo htmlspecialchars($vicePres['title']); ?></div>
-            <?php echo '<button class="sub-offices-btn">See Sub-Offices</button>'; ?>
-            </div>
+      
+        <div class="staff-name">
+    <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
+</div>
+<div class="staff-title">
+    <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: bold;">
+        <?php echo htmlspecialchars($vicePres['title']); ?>
+    </a>
+</div>
+<?php echo '<button class="sub-offices-btn">See Sub-Offices</button>'; ?>
+</div>
+
 <?php endforeach; ?>
 </div>
 
@@ -236,10 +239,9 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
             ?>
         </div>
         <div class="staff-title">
-            <?php 
-            // Display title dynamically for OP staff
-            echo htmlspecialchars($staff['title']);
-            ?>
+            <a href="../Offices/<?php echo urlencode($staff['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: normal;">
+                <?php echo htmlspecialchars($staff['title']); ?>
+            </a>
         </div>
     </div>
 <?php endforeach; ?>

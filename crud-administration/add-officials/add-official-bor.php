@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
         
         if ($boardobj->upload($name, $title, $file_name, $rank, $honorifics_id)) {
             echo "Uploaded successfully!";
-            header('Location: ../../sample-admin/administration');
+            header('Location: ../../sample-admin/Home');
         } else {
             echo "Failed to insert into the database.";
         }
@@ -85,7 +85,7 @@ if(isset($_POST['submit'])) {
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>
         </form>
-        <a href="../../sample-admin/administration" class="back-link">Back to Administration</a>
+        <a href="../../sample-admin/Home" class="back-link">Back to Administration</a>
     </div>
 
     <script>

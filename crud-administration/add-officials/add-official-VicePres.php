@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     // Assuming `add_official()` accepts name and title as parameters
     if ($vicepresobj->add_official($name, $title, $page_link, $honorifics_id)) {
         echo "Official added successfully!";
-        header('Location: ../../sample-admin/administration');
+        header('Location: ../../sample-admin/Home');
     } else {
         echo "Failed to insert into the database.";
     }
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>
         </form>
-        <a href="../../sample-admin/administration" class="back-link">Back to Administration</a>
+        <a href="../../sample-admin/Home" class="back-link">Back to Administration</a>
     </div>
     
 </body>
