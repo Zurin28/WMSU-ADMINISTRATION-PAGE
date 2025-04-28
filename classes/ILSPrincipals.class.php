@@ -12,9 +12,17 @@ class ILSPrincipals {
         // Fetch all products
         function fetchAll()
         {
-            $sql = "SELECT * FROM ils_principals";
+            $sql = "
+                SELECT 
+                    ip.*, 
+                    h.short AS honorific_short
+                FROM ils_principals AS ip
+                LEFT JOIN honorifics AS h ON ip.honorifics_id = h.id
+            ";
+        
             // Prepare the query
             $query = $this->db->connect()->prepare($sql);
+        
             // Execute the query and fetch data
             $data = null;
             if ($query->execute()) {
@@ -24,14 +32,16 @@ class ILSPrincipals {
             // Return the data
             return $data;
         }
-        function add_official($name, $title)
+        
+        function add_official($name, $title, $honorifics_id)
         {
             try {
-                $sql = "INSERT INTO ils_principals (name, title) VALUES (:name, :title)";
+                $sql = "INSERT INTO ils_principals (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
                 $query = $this->db->connect()->prepare($sql);
                 
                 $query->bindParam(':name', $name);
                 $query->bindParam(':title', $title);
+                $query->bindParam(':honorifics_id', $honorifics_id);
                 
                 if ($query->execute()) {
                     return true;
@@ -67,10 +77,11 @@ class ILSPrincipals {
         
         function edit()
         {
-            $sql = "UPDATE ils_principals SET name = :name, title = :title WHERE id = :id;";
+            $sql = "UPDATE ils_principals SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':name', $this->name);
             $query->bindParam(':title', $this->title);
+            $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }

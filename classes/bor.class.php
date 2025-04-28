@@ -3,58 +3,85 @@ require_once 'database.class.php';
 
 class Board {   
     protected $db;
+    
 
     function __construct()
     {
         $this->db = new Database();
     }
 
-    // Fetch all board of regents and president, merged and ranked
-    function fetchAll()
-    {
-        $sql = "
-            SELECT id, name, title_bor, image, rank, 'president' AS type 
-            FROM president
-            UNION
-            SELECT id, name, title_bor, image, rank, 'board' AS type 
-            FROM board_of_regents
-            ORDER BY rank
-        ";
 
-        // Prepare the query
-        $query = $this->db->connect()->prepare($sql);
+function fetchAll()
+{
+    $sql = "
+        SELECT 
+            p.id, 
+            p.name, 
+            p.title_bor, 
+            p.image, 
+            p.rank, 
+            'president' AS type,
+            h.short AS honorific_short
+        FROM president AS p
+        LEFT JOIN honorifics AS h ON p.honorifics_id = h.id
 
-        // Execute the query and fetch data
-        $data = null;
-        if ($query->execute()) {
-            $data = $query->fetchAll(PDO::FETCH_ASSOC);
-        }
+        UNION
 
-        // Return the data
-        return $data;
+        SELECT 
+            bor.id, 
+            bor.name, 
+            bor.title_bor, 
+            bor.image, 
+            bor.rank, 
+            'board' AS type,
+            h.short AS honorific_short
+        FROM board_of_regents AS bor
+        LEFT JOIN honorifics AS h ON bor.honorifics_id = h.id
+
+        ORDER BY rank
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Upload
-    function upload($name, $title, $file_name)
-    {
-        try {
-            $sql = "INSERT INTO board_of_regents (name, title, image) VALUES (:name, :title, :image)";
-            $query = $this->db->connect()->prepare($sql);
-                       
-            $query->bindParam(':name', $name);
-            $query->bindParam(':title', $title);
-            $query->bindParam(':image', $file_name);
-                       
-            if ($query->execute()) {
-                return true;
-            } else {
-                // Print error if insertion fails
-                print_r($query->errorInfo());
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo "Database error: " . $e->getMessage();
-            return false;
+    return $data;
+}
+
+        
+
+
+        // Upload
+        function upload($name, $title, $file_name, $rank, $honorifics_id)
+        {
+            try {
+                $sql = "INSERT INTO board_of_regents (name, title_bor, image, rank, honorifics_id) VALUES (:name, :title_bor, :image, :rank, :honorifics_id)";
+                $query = $this->db->connect()->prepare($sql);
+                           
+                $query->bindParam(':name', $name);
+                $query->bindParam(':title_bor', $title);
+                $query->bindParam(':image', $file_name);
+                $query->bindParam(':rank', $rank);
+                $query->bindParam(':honorifics_id', $honorifics_id);
+                
+                           
+                if ($query->execute()) {
+                    return true;
+                } else {
+                    // Print error if insertion fails
+                        print_r($query->errorInfo());
+                        return false;
+                    }
+                } catch (PDOException $e) {
+                    echo "Database error: " . $e->getMessage();
+                        return false;
+                }
+
         }
     }
 
@@ -181,7 +208,7 @@ class Board {
         }
     }
 
-    function edit($id, $name, $title_bor, $file_name, $rank)
+    function edit($id, $name, $title_bor, $file_name, $rank, $honorifics)
     {
         try {
             // Get the current rank of the record
@@ -203,11 +230,11 @@ class Board {
             // Update the current record with or without an image
             if ($file_name) {
                 $sql = "UPDATE board_of_regents 
-                        SET name = :name, title_bor = :title_bor, image = :image, rank = :rank 
+                        SET name = :name, title_bor = :title_bor, image = :image, rank = :rank, honorifics_id = :honorifics_id 
                         WHERE id = :id";
             } else {
                 $sql = "UPDATE board_of_regents 
-                        SET name = :name, title_bor = :title_bor, rank = :rank 
+                        SET name = :name, title_bor = :title_bor, rank = :rank, honorifics_id = :honorifics_id
                         WHERE id = :id";
             }
 
@@ -215,7 +242,12 @@ class Board {
             $query->bindParam(':name', $name, PDO::PARAM_STR);
             $query->bindParam(':title_bor', $title_bor, PDO::PARAM_STR);
             $query->bindParam(':rank', $rank, PDO::PARAM_INT);
+            $query->bindParam(':honorifics_id', $honorifics, PDO::PARAM_INT);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
+
+            
+
+    
 
             if ($file_name) {
                 $query->bindParam(':image', $file_name, PDO::PARAM_STR);

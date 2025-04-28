@@ -10,11 +10,13 @@ $managerObj = new Managers();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $managerObj->id = $id;
     $managerObj->name = $name;
     $managerObj->title = $title;
+    $managerObj->honorifics = $honorifics;
 
     if ($managerObj->edit()) {
         echo json_encode(['status' => 'success']);

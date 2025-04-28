@@ -9,29 +9,38 @@ class TechnicalAssistants {
         $this->db = new Database();
     }
 
-        // Fetch all products
-        function fetchAll()
-        {
-            $sql = "SELECT * FROM technical_assistants";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
+    function fetchAll()
+    {
+        $sql = "
+            SELECT 
+                ta.*, 
+                h.short AS honorific_short
+            FROM technical_assistants AS ta
+            LEFT JOIN honorifics AS h ON ta.honorifics_id = h.id
+        ";
+    
+        // Prepare the query
+        $query = $this->db->connect()->prepare($sql);
+    
+        // Execute the query and fetch data
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
-        function add_official($name, $title)
+    
+        // Return the data
+        return $data;
+    }
+    
+        function add_official($name, $title, $honorifics_id)
         {
             try {
-                $sql = "INSERT INTO technical_assistants (name, title) VALUES (:name, :title)";
+                $sql = "INSERT INTO technical_assistants (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
                 $query = $this->db->connect()->prepare($sql);
                 
                 $query->bindParam(':name', $name);
                 $query->bindParam(':title', $title);
+                $query->bindParam(':honorifics_id', $honorifics_id);
                 
                 if ($query->execute()) {
                     return true;
@@ -67,10 +76,11 @@ class TechnicalAssistants {
         
         function edit()
         {
-            $sql = "UPDATE technical_assistants SET name = :name, title = :title WHERE id = :id;";
+            $sql = "UPDATE technical_assistants SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':name', $this->name);
             $query->bindParam(':title', $this->title);
+            $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }

@@ -10,11 +10,13 @@ $coordinatorObj = new Coordinators();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $coordinatorObj->id = $id;
     $coordinatorObj->name = $name;
     $coordinatorObj->title = $title;
+    $coordinatorObj->honorifics = $honorifics;
 
     if ($coordinatorObj->edit()) {
         echo json_encode(['status' => 'success']);

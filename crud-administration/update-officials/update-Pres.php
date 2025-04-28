@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title_bor = clean_input($_POST['title']);
     $page_link = clean_input($_POST['page_link']);
     $rank = clean_input($_POST['rank']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     $file_name = null; // Default to null if no image is provided
 
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Perform the update (with or without image)
-    if ($pres->edit($id, $name, $title, $title_bor, $page_link, $file_name, $rank)) {
+    if ($pres->edit($id, $name, $title, $title_bor, $page_link, $file_name, $rank, $honorifics)) {
         echo json_encode(['status' => 'success']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Something went wrong when updating the record.']);
