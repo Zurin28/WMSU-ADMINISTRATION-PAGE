@@ -5,9 +5,12 @@
     box-sizing: border-box;
 }
 
-
-
-
+body {
+    background-color: white;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+}
 
 /* ======== Hero Section ======== */
 .hero {
@@ -94,7 +97,6 @@
     color: #7C0902;
 }
 
-
 /* ======== Divider Section ======== */
 .divider {
     display: flex;
@@ -172,59 +174,7 @@
     text-align: center;
 }
 
-.divid-ad {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 25px 0;
-    background-color: #7C0902;
-    position: relative;
-    margin: 30px 0;
-    z-index: 1; /* Add z-index to ensure proper layering */
-}
-
-.divid-line-ad {
-    height: 3px;
-    width: 400px;
-    background: #fff !important; /* Add !important for this specific case */
-    box-shadow: 0 2px 8px rgba(124, 9, 2, 0.3);
-    position: relative;
-}
-
-.divid-line-ad::before,
-.divid-line-ad::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 12px;
-    height: 12px;
-    background: #fff !important; /* Add !important for this specific case */
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
-.divid-text-ad {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin: 0 25px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 
-        0 2px 4px rgba(124, 9, 2, 0.2),
-        0 0 10px rgba(124, 9, 2, 0.1);
-    letter-spacing: 1px;
-    padding: 0 15px;
-    position: relative;
-}
-.board-whity {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-/* Board of Regents Section */
-
+/* ======== Board of Regents Section ======== */
 .board-section {
     background-color: #fff;
     padding: 40px 20px;
@@ -265,6 +215,7 @@
     color: #7C0902;
     font-weight: bold;
 }
+
 /* ======== Board Members Grid - RESTORED TO ORIGINAL ======== */
 .members-grid {
     display: grid;
@@ -555,5 +506,31 @@
     .representative-image {
         width: 100px;
         height: 100px;
+    }
+
+    /* Responsive font size for hero title main */
+}
+@media (max-width: 480px) {
+    .hero-title-main {
+        letter-spacing: 0.15em; /* Slightly reduce letter spacing on very small screens */
+        font-size: 1.8rem; /* Ensure minimum size on small screens */
+    }
+    
+    .hero-title-sub {
+        letter-spacing: 0.15em; /* Slightly reduce letter spacing on very small screens */
+        font-size: 1.6rem; /* Ensure minimum size on small screens */
+    }
+}
+
+/* Smallest screens */
+@media (max-width: 360px) {
+    .hero-title-main {
+        font-size: 2rem;
+        letter-spacing: 0.12em;
+    }
+    
+    .hero-title-sub {
+        font-size: 1.4rem;
+        letter-spacing: 0.12em;
     }
 }

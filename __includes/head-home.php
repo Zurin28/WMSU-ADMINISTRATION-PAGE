@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 
-    <style>
-
-        <?php require_once '../css/navbar.css'; ?>
-
-        <?php require_once '../css/home.css'; ?>
-        <?php require_once '../css/new.css'; ?>
-
-    </style>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/new.css">
 
 </head>

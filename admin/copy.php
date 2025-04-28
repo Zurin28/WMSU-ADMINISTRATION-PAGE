@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU Administrative Officials</title>
-
+    <?php require_once '../__includes/head-home.php'; ?>
 </head>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
-    <?php require_once '../__includes/head-home.php'; ?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -19,7 +18,7 @@
             </h1>
             <p>The WMSU Administration page offers a comprehensive look into the <strong>individuals who lead and shape Western Mindanao State University</strong>. Here, you will find the <strong>Board of Regents, university officials</strong>, and key representatives whose leadership, dedication, and vision continue to drive the university toward <strong>academic excellence, innovation, and inclusive growth</strong>.</p>
             <p>This section highlights the people behind WMSU's progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.</p>
-            <a href="#" class="btn">Learn More</a>
+<a href="#org-chart" class="btn">Learn More</a>
     </div>
 </section>
 
@@ -28,19 +27,17 @@
 
 <!-- Organizational Chart Section -->
 <div style="height: 40px;"></div>
-<h2 style="text-align:center; color:#7C0902; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
+<h2 id="org-chart" style="text-align:center; color:#7C0902; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
 <div class="org-chart">
     <img src="../images/orgchart.png" alt="WMSU Organizational Chart" style="width: 100%; height: auto; max-width: 1200px; margin: 0 auto; display: block;">
 </div>
 
-<div class="container">
-        <div class="header">
-            <div class="header-line left-line"></div>
-            <h1 class = "head-title-pages">BOARD OF REGENTS</h1>
-            <div class="header-line right-line"></div>
-        </div>
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-text">Board of Regents</div>
+    <div class="divider-line"></div>
+</div>
 
-    
 <section class="board-section">
         <div class="board-container">
             <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
@@ -146,7 +143,7 @@
         </div>
         
         <div class="description">
-            <p>The <span class="highlight">Administrative Officials</span> of Western Mindanao State University (WMSU) constitute the <span class="highlight">comprehensive leadership team</span> responsible for the university's <span class="highlight">strategic direction</span>, <span class="highlight">academic excellence</span>, and <span class="highlight">operational efficiency</span>. This organizational body includes the <span class="highlight">University President</span>, <span class="highlight">Vice Presidents overseeing various sectors</span> such as Academic Affairs, Administration and Finance, Research, Extension Services, and Resource Generation. Supporting the executive leadership are the Office of the President staff, the University and Board Secretary, and a cadre of Directors managing key departments like Finance, Admissions, Student Affairs, and Information Technology.</p>
+            <p>The <span class="admin-highlight">Administrative Officials</span> of Western Mindanao State University (WMSU) constitute the <span class="admin-highlight">comprehensive leadership team</span> responsible for the university's <span class="admin-highlight">strategic direction</span>, <span class="admin-highlight">academic excellence</span>, and <span class="admin-highlight">operational efficiency</span>. This organizational body includes the <span class="admin-highlight">University President</span>, <span class="admin-highlight">Vice
             <p>The <span class="highlight">administrative framework extends</span> to Campus Administrators <span class="highlight">across WMSU's satellite campuses</span>, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units.</p>
             <p>Together, these officials uphold <span class="highlight">WMSU's commitment</span> to <span class="highlight">providing quality education</span> and <span class="highlight">fostering community development</span>.</p>
         </div>
@@ -208,15 +205,18 @@ $vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
     
     <?php foreach ($vicePresidents as $vicePres): ?>
     <div class="staff-row">
+      
         <div class="staff-name">
-            <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
-        </div>
-        <div class="staff-title">
-            <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: bold;">
-                <?php echo htmlspecialchars($vicePres['title']); ?>
-            </a>
-        </div>
-    </div>
+    <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
+</div>
+<div class="staff-title">
+    <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: bold;">
+        <?php echo htmlspecialchars($vicePres['title']); ?>
+    </a>
+</div>
+<?php echo '<button class="sub-offices-btn">See Sub-Offices</button>'; ?>
+</div>
+
 <?php endforeach; ?>
 </div>
 

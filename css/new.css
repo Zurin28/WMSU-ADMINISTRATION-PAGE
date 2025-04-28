@@ -11,6 +11,7 @@
 body {
     background-color: #8b0000;
     color: white;
+    scroll-behavior: smooth;
 }
 
 .background-white {
@@ -20,66 +21,71 @@ body {
 
 /* Hero Section */
 .hero {
-background: 
-linear-gradient(rgba(124, 9, 2, 0.85), rgba(124, 9, 2, 0.85)),
-url('../images/admin-building.jpg') center/cover no-repeat;
-color: white;
-padding: 80px 20px;
-text-align: center;
-position: relative;
-min-height: 500px;
-display: flex;
-align-items: center;
-justify-content: center;
+    background: 
+        linear-gradient(rgba(124, 9, 2, 0.85), rgba(124, 9, 2, 0.85)),
+        url('../images/admin-building.jpg') center/cover no-repeat;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content {
-position: relative;
-z-index: 2;
-max-width: 800px;
-margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
 }
 
 .hero h1, .hero-title {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
 }
 
 .hero-title-main {
-font-family: 'Montserrat', sans-serif;
-font-size: 4.5rem;
-text-transform: uppercase;
-letter-spacing: 0.29em;
-font-weight: 800;
-color: white;
-margin-bottom: 0.5rem;
-text-shadow: 
-2px 2px 4px rgba(0, 0, 0, 0.3),
-0 0 20px rgba(255, 255, 255, 0.5);
-position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.5);
+    position: relative;
+    width: 100%;
 }
 
 .hero-title-sub {
-font-family: 'Montserrat', sans-serif;
-font-size: 3rem;
-text-transform: uppercase;
-letter-spacing: 0.29em;
-font-weight: 600;
-color: white;
-text-shadow: 
-2px 2px 4px rgba(0, 0, 0, 0.3),
-0 0 15px rgba(255, 255, 255, 0.4);
-position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: white;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.4);
+    position: relative;
+    width: 100%;
 }
 
 .hero p {
-font-family: 'Montserrat', sans-serif;
-font-size: 1.1rem;
-margin-bottom: 30px;
-line-height: 1.8;
-font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-weight: 500;
 }
 
 .btn {
@@ -99,6 +105,52 @@ background-color: white;
 color: #7C0902;
 }
 
+.board-section {
+    background-color: #fff;
+    padding: 40px 20px;
+}
+
+.board-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.board-title {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #7C0902;
+    margin-bottom: 30px;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+}
+
+.board-description {
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    text-align: justify;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.1),
+        0 0 5px rgba(124, 9, 2, 0.2);
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
+.board-highlight {
+    color: #7C0902;
+    font-weight: bold;
+}
+
+.admin-highlight {
+    color: #ffcc66;
+    font-weight: 700;
+    display: inline;
+}
 
 .container {
     max-width: 900px;
@@ -107,55 +159,82 @@ color: #7C0902;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 0;
+    background-color: #8b0000;
     position: relative;
+    margin: 30px 0;
 }
 
 .header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 800;
+    margin: 0 15px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 
+        0 2px 4px rgba(124, 9, 2, 0.2),
+        0 0 10px rgba(124, 9, 2, 0.1);
+    letter-spacing: 1px;
+    padding: 0 15px;
     position: relative;
-    display: inline-block;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    text-align: center;
 }
 
 .header h1::before,
 .header h1::after {
-    content: "•";
+    content: '';
     position: absolute;
     top: 50%;
-    font-size: 18px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
     transform: translateY(-50%);
 }
 
 .header h1::before {
-    left: -60px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7C0902, transparent);
 }
 
 .header h1::after {
-    right: -60px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7C0902, transparent);
 }
 .head-title-pages{
     color: #8b0000;
 }
 
 .header-line {
-    position: absolute;
-    height: 2px;
-    background-color: white;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
+    height: 3px;
+    width: 30%;
+    max-width: 400px;
+    min-width: 80px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(124, 9, 2, 0.3);
+    position: relative;
 }
 
 .left-line {
-    left: 45px;
+    left: -6px;
 }
 
 .right-line {
-    right: 45px;
+    right: -6px;
 }
 
 .description {
@@ -166,7 +245,11 @@ color: #7C0902;
     font-family: 'Montserrat', sans-serif;
 }
 
-
+.highlight {
+    font-weight: 700;
+    color: #ffcc66;
+    display: inline;
+}
 
 .president-section {
     display: flex;
@@ -305,5 +388,106 @@ color: #7C0902;
     .profile-bubble-container {
         margin-right: 0;
         margin-bottom: 20px;
+    }
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 0;
+    background-color: #fff;
+    position: relative;
+    margin: 30px 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7C0902, transparent);
+}
+
+.divider::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7C0902, transparent);
+}
+
+.divider-line {
+    height: 3px;
+    width: 30%;
+    max-width: 400px;
+    min-width: 80px;
+    background: #7C0902;
+    box-shadow: 0 2px 8px rgba(124, 9, 2, 0.3);
+    position: relative;
+}
+
+.divider-line::before,
+.divider-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #7C0902;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.divider-line::before {
+    left: -6px;
+}
+
+.divider-line::after {
+    right: -6px;
+}
+
+.divider-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 800;
+    margin: 0 15px;
+    text-transform: uppercase;
+    color: #7C0902;
+    text-shadow: 
+        0 2px 4px rgba(124, 9, 2, 0.2),
+        0 0 10px rgba(124, 9, 2, 0.1);
+    letter-spacing: 1px;
+    padding: 0 15px;
+    position: relative;
+    text-align: center;
+}
+/* Responsive font size for hero title main */
+@media (max-width: 480px) {
+    .hero-title-main {
+        letter-spacing: 0.15em; /* Slightly reduce letter spacing on very small screens */
+        font-size: 1.8rem; /* Ensure minimum size on small screens */
+    }
+    
+    .hero-title-sub {
+        letter-spacing: 0.15em; /* Slightly reduce letter spacing on very small screens */
+        font-size: 1.6rem; /* Ensure minimum size on small screens */
+    }
+}
+
+/* Smallest screens */
+@media (max-width: 360px) {
+    .hero-title-main {
+        font-size: 2rem;
+        letter-spacing: 0.12em;
+    }
+    
+    .hero-title-sub {
+        font-size: 1.4rem;
+        letter-spacing: 0.12em;
     }
 }
