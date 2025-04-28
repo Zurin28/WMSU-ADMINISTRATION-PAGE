@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WMSU Admin - Administrative Officials</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #ffcdd2;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #d50000;
+      color: white;
+      padding: 15px;
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+    
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .navigation {
+      padding: 20px;
+    }
+    
+    .back-button {
+      width: 50px;
+      height: 50px;
+      background-color: #8b1014;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .back-arrow {
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    
+    .instruction {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-left: 60px;
+    }
+    
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .menu-item {
+      background: linear-gradient(to bottom, #8b1014, #500a0c);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .menu-item:hover {
+      background: linear-gradient(to bottom, #a01216, #8b1014);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .menu-item:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .two-line-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="/api/placeholder/80/80" alt="WMSU Logo" class="logo">
+    <div class="title">WMSU ADMIN - Administrative Officials</div>
+  </div>
+  
+  <div class="navigation">
+    <div class="back-button">
+      <span class="back-arrow">←</span>
+    </div>
+    <div class="instruction">SELECT FROM BELOW:</div>
+    
+    <div class="menu">
+      <div class="menu-item">PRESIDENT</div>
+      <div class="menu-item">VICE PRESIDENTS</div>
+      <div class="menu-item">OFFICE OF THE PRESIDENT STAFF</div>
+      <div class="menu-item">UNIV. BOARD AND SECRETARY</div>
+      <div class="menu-item">DIRECTORS</div>
+      <div class="menu-item">CAMPUS ADMINISTRATORS</div>
+      <div class="menu-item two-line-item">
+        <div>INTEGRATED LABORATORY</div>
+        <div>SCHOOL PRINCIPALS & ASST. PRINCIPALS</div>
+      </div>
+      <div class="menu-item two-line-item">
+        <div>ASSISTANT & ASSO. DIRECTORS, ASSISTANT</div>
+        <div>CHAIRPERSONS, & SPECIAL ASSISTANTS</div>
+      </div>
+      <div class="menu-item two-line-item">
+        <div>TECHNICAL ASSISTANT</div>
+        <div>TECHNICAL ASSOCIATES</div>
+      </div>
+      <div class="menu-item">CHAIRPERSONS</div>
+      <div class="menu-item">MANAGER</div>
+      <div class="menu-item two-line-item">
+        <div>HEAD/CHAIR OF THE GRADUATE</div>
+        <div>SCHOOL</div>
+      </div>
+      <div class="menu-item">COORDINATORS</div>
+      <div class="menu-item">SECTION CHIEFS</div>
+      <div class="menu-item">OTHER SERVICES</div>
+    </div>
+  </div>
+</body>
+</html>
