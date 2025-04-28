@@ -190,8 +190,8 @@
                                     
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($presSubOffices['honorific_short'] . ' ' . $presSubOffices['office']) ?></td>
-                                        <td><?= htmlspecialchars($presSubOffices['office_head'] ?? 'N/A') ?></td>
+                                        <td><?= htmlspecialchars( $presSubOffices['office']) ?></td>
+                                        <td><?= htmlspecialchars($presSubOffices['honorific_short'] . ' ' .$presSubOffices['office_head'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Edit</a>
                                             <a href="" class="btn btn-sm btn-outline-danger me-1 delete-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Delete</a>
@@ -235,8 +235,8 @@
                                     
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office']) ?></td>
-                                        <td><?= htmlspecialchars($VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
+                                        <td><?= htmlspecialchars( $VicepresSubOffices['office']) ?></td>
+                                        <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
                                         <td><?= htmlspecialchars($VicepresSubOffices['office_of_vp_in'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Edit</a>

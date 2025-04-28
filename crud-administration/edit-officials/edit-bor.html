@@ -37,25 +37,19 @@
           </div>
 
           <div class="mb-2">
-            <label for="title_bor" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title_bor" name="title_bor" required />
+            <label for="designation" class="form-label">Designation</label>
+            <select class="form-select" id="designation" name="title_bor">
+              <option value="">--Select--</option>
+            </select>
             <div class="invalid-feedback"></div>
           </div>
 
           <div class="mb-2">
             <label for="rank" class="form-label">Rank</label>
-            <input
-              type="number"
-              class="form-control"
-              id="rank"
-              name="rank"
-              min="1"
-              required
-            />
+            <input type="number" class="form-control" id="rank" name="rank" required />
             <div class="invalid-feedback"></div>
           </div>
           
-
           <div class="mb-2">
             <label for="image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" id="image" name="image" />
