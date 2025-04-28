@@ -5,12 +5,9 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: white;
-    color: #333;
-    line-height: 1.6;
-    font-family: 'Montserrat', sans-serif;
-}
+
+
+
 
 /* ======== Hero Section ======== */
 .hero {
@@ -96,6 +93,7 @@ body {
     background-color: white;
     color: #7C0902;
 }
+
 
 /* ======== Divider Section ======== */
 .divider {
@@ -219,7 +217,12 @@ body {
     padding: 0 15px;
     position: relative;
 }
-
+.board-whity {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 /* Board of Regents Section */
 
 .board-section {
@@ -236,7 +239,7 @@ body {
 .board-title {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    color: #fff;
+    color: #7C0902;
     margin-bottom: 30px;
     font-size: clamp(1.3rem, 2.5vw, 1.5rem);
     font-weight: 700;
