@@ -267,5 +267,5 @@ function fetchAll()
             return false;
         }
     }
-}
+
 ?>
