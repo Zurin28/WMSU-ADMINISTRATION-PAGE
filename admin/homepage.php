@@ -1,12 +1,181 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU ADMINISTRATION</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
 
+/* Main Content */
+.administration-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 50px;
+    margin: 30px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.board-title {
+    background-color: #7C0A02;
+    color: white;
+    padding: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Board Members Grid */
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.board-member {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.member-image {
+    width: 180px;
+    height: 200px;
+    background-color: #f0f0f0;
+    margin-right: 10px;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info {
+    flex: 1;
+}
+
+.member-name {
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.member-title {
+    font-size: 14px;
+}
+
+.represented-by {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Additional CSS from academicdeansofficials.html */
+body {
+    line-height: 1.6;
+}
+
+.section-header {
+    background-color: #7C0A02;
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.position-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.official-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.official-name {
+    flex: 0 0 40%;
+    padding-left: 30px;
+}
+
+.official-name h3 {
+    color: #BD0F03;
+    margin: 0;
+    font-size: 18px;
+}
+
+.official-position {
+    flex: 0 0 60%;
+}
+
+.official-position p {
+    margin: 0;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .official-row {
+        flex-direction: column;
+    }
+    
+    .official-name, .official-position {
+        flex: 0 0 100%;
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.hero-section {
+    position: relative; /* Enables absolute positioning for overlay */
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Overlay Effect */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #BD0F03; /* Adjust color & transparency */
+    opacity: .3;
+    pointer-events: none; /* Prevents interaction issues */
+}
+
+.title-row{
+    display: flex;
+}
+
+.Offices{
+    justify-content: center;
+    align-items: center;
+    color:#BD0F03;
+}
+</style>
 
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
