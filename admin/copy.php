@@ -212,7 +212,7 @@ $vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
             <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
         </div>
         <div class="staff-title">
-            <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>" style="color: #7C0902; text-decoration: underline; font-weight: bold;">
+            <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: bold;">
                 <?php echo htmlspecialchars($vicePres['title']); ?>
             </a>
         </div>
@@ -239,7 +239,7 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
             ?>
         </div>
         <div class="staff-title">
-            <a href="../Offices/<?php echo urlencode($staff['page_link']); ?>" style="color: #7C0902; text-decoration: underline; font-weight: bold;">
+            <a href="../Offices/<?php echo urlencode($staff['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: normal;">
                 <?php echo htmlspecialchars($staff['title']); ?>
             </a>
         </div>
