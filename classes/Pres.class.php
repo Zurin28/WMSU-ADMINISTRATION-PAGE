@@ -33,6 +33,16 @@ class Pres {
         // Return the data
         return $data;
     }
+
+    function fetchpresident(){
+        $sql = "SELECT * FROM president";
+        $query = $this->db->connect()->prepare($sql);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
     
 
            // Upload
