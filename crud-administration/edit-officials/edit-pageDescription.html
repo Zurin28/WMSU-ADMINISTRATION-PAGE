@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdropeditpageDescription"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+  data-id=""
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Information</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data" id="form-edit-pageDescription">
+        <div class="modal-body">
+
+          <div class="mb-2">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" required rows="4" style="width: 100%;"></textarea>
+            <div class="invalid-feedback"></div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary brand-bg-color">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

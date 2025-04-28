@@ -10,11 +10,13 @@ $campusAdminObj = new CampusAdministrators();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $campusAdminObj->id = $id;
     $campusAdminObj->name = $name;
     $campusAdminObj->title = $title;
+    $campusAdminObj->honorifics = $honorifics;
 
     if ($campusAdminObj->edit()) {
         echo json_encode(['status' => 'success']);

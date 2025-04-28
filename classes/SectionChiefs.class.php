@@ -11,27 +11,37 @@ class SectionChiefs {
 
         // Fetch all products
         function fetchAll()
-        {
-            $sql = "SELECT * FROM section_chiefs";
-            // Prepare the query
-            $query = $this->db->connect()->prepare($sql);
-            // Execute the query and fetch data
-            $data = null;
-            if ($query->execute()) {
-                $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            }
-        
-            // Return the data
-            return $data;
-        }
-        function add_official($name, $title)
+{
+    $sql = "
+        SELECT 
+            sc.*, 
+            h.short AS honorific_short
+        FROM section_chiefs AS sc
+        LEFT JOIN honorifics AS h ON sc.honorifics_id = h.id
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Return the data
+    return $data;
+}
+
+        function add_official($name, $title, $honorifics_id)
         {
             try {
-                $sql = "INSERT INTO section_chiefs (name, title) VALUES (:name, :title)";
+                $sql = "INSERT INTO section_chiefs (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
                 $query = $this->db->connect()->prepare($sql);
                 
                 $query->bindParam(':name', $name);
                 $query->bindParam(':title', $title);
+                $query->bindParam(':honorifics_id', $honorifics_id);
                 
                 if ($query->execute()) {
                     return true;
@@ -67,10 +77,11 @@ class SectionChiefs {
         
         function edit()
         {
-            $sql = "UPDATE section_chiefs SET name = :name, title = :title WHERE id = :id;";
+            $sql = "UPDATE section_chiefs SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
             $query = $this->db->connect()->prepare($sql);
             $query->bindParam(':name', $this->name);
             $query->bindParam(':title', $this->title);
+            $query->bindParam(':honorifics_id', $this->honorifics);
             $query->bindParam(':id', $this->id);
             return $query->execute();
         }

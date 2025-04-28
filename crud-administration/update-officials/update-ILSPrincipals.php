@@ -10,11 +10,13 @@ $ILSPrincipalsObj = new ILSPrincipals();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $ILSPrincipalsObj->id = $id;
     $ILSPrincipalsObj->name = $name;
     $ILSPrincipalsObj->title = $title;
+    $ILSPrincipalsObj->honorifics = $honorifics;
 
     if ($ILSPrincipalsObj->edit()) {
         echo json_encode(['status' => 'success']);
