@@ -10,11 +10,13 @@ $graduateSchoolHeadObj = new GraduateSchoolHead();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = clean_input($_POST['name']);
     $title = clean_input($_POST['title']);
+    $honorifics = clean_input($_POST['honorifics']);
 
     // Set the properties of the Pres object
     $graduateSchoolHeadObj->id = $id;
     $graduateSchoolHeadObj->name = $name;
     $graduateSchoolHeadObj->title = $title;
+    $graduateSchoolHeadObj->honorifics = $honorifics;
 
     if ($graduateSchoolHeadObj->edit()) {
         echo json_encode(['status' => 'success']);

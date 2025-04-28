@@ -11,15 +11,16 @@
 .table {
     border-spacing: 0;
     border-collapse: separate;
-    border-radius: 12px;
     overflow: hidden;
 }
 
 /* Table header styling */
 .table thead th {
-    background-color: #f8f9fa;
+    background-color: #BD0F04;
     font-weight: bold;
     padding: 16px;
+    color: #fff;
+    text-align: center;
 }
 
 /* Table row styling */
@@ -52,6 +53,6 @@
     width: 8px;
 }
 .table-responsive::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.2);
+    background-color: w;
     border-radius: 10px;
 }

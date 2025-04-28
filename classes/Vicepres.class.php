@@ -9,12 +9,19 @@ class VicePres {
         $this->db = new Database();
     }
 
-    // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM vice_presidents";
+        $sql = "
+            SELECT 
+                vp.*, 
+                h.short AS honorific_short
+            FROM vice_presidents AS vp
+            LEFT JOIN honorifics AS h ON vp.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,17 +31,19 @@ class VicePres {
         // Return the data
         return $data;
     }
+    
 
     // Upload
-    function add_official($name, $title, $file_name)
+    function add_official($name, $title, $page_link, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO vice_presidents (name, title, page_link) VALUES (:name, :title, :page_link)";
+            $sql = "INSERT INTO vice_presidents (name, title, page_link, honorifics_id) VALUES (:name, :title, :page_link, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':name', $name);
             $query->bindParam(':title', $title);
-            $query->bindParam(':page_link', $file_name);
+            $query->bindParam(':page_link', $page_link);
+            $query->bindParam(':honorifics_id', $honorifics_id);
             
             if ($query->execute()) {
                 return true;
@@ -70,11 +79,12 @@ function fetchRecord($recordID)
 
 function edit()
 {
-    $sql = "UPDATE vice_presidents SET name = :name, title = :title, page_link = :page_link WHERE id = :id;";
+    $sql = "UPDATE vice_presidents SET name = :name, title = :title, page_link = :page_link, honorifics_id = :honorifics_id WHERE id = :id;";
     $query = $this->db->connect()->prepare($sql);
     $query->bindParam(':name', $this->name);
     $query->bindParam(':title', $this->title);
     $query->bindParam(':page_link', $this->page_link);
+    $query->bindParam(':honorifics_id', $this->honorifics);
     $query->bindParam(':id', $this->id);
     return $query->execute();
 }

@@ -12,9 +12,17 @@ class CampusAdministrators {
     // Fetch all products
     function fetchAll()
     {
-        $sql = "SELECT * FROM campus_administrators";
+        $sql = "
+            SELECT 
+                ca.*, 
+                h.short AS honorific_short
+            FROM campus_administrators AS ca
+            LEFT JOIN honorifics AS h ON ca.honorifics_id = h.id
+        ";
+    
         // Prepare the query
         $query = $this->db->connect()->prepare($sql);
+    
         // Execute the query and fetch data
         $data = null;
         if ($query->execute()) {
@@ -24,15 +32,17 @@ class CampusAdministrators {
         // Return the data
         return $data;
     }
+    
     // Upload
-    function add_official($name, $title)
+    function add_official($name, $title, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO campus_administrators (name, title) VALUES (:name, :title)";
+            $sql = "INSERT INTO campus_administrators (name, title, honorifics_id) VALUES (:name, :title, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':name', $name);
             $query->bindParam(':title', $title);
+            $query->bindParam(':honorifics_id', $honorifics_id);
             
             if ($query->execute()) {
                 return true;
@@ -68,10 +78,11 @@ class CampusAdministrators {
     
     function edit()
     {
-        $sql = "UPDATE campus_administrators SET name = :name, title = :title WHERE id = :id;";
+        $sql = "UPDATE campus_administrators SET name = :name, title = :title, honorifics_id = :honorifics_id WHERE id = :id;";
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':name', $this->name);
         $query->bindParam(':title', $this->title);
+        $query->bindParam(':honorifics_id', $this->honorifics);
         $query->bindParam(':id', $this->id);
         return $query->execute();
     }

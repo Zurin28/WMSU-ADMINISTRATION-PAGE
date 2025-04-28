@@ -1,9 +1,14 @@
 <?php
 require_once '../../classes/bor.class.php';
+require_once '../../classes/honorifics.class.php';
+
+$honorificsObj = new Honorifics();
 
 if(isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $honorifics_id = $_POST['honorifics'];
+    $rank = 0; // Default rank
     
     // Correctly retrieve file information
     $file_name = $_FILES['image']['name'];
@@ -14,7 +19,7 @@ if(isset($_POST['submit'])) {
     if(move_uploaded_file($tempname, $folder)) {
         $boardobj = new Board();
         
-        if ($boardobj->upload($name, $title, $file_name)) {
+        if ($boardobj->upload($name, $title, $file_name, $rank, $honorifics_id)) {
             echo "Uploaded successfully!";
             header('Location: ../../sample-admin/administration');
         } else {
@@ -31,7 +36,7 @@ if(isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new Board of Regeant Official</title>
+    <title>Add Official</title>
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
@@ -39,9 +44,9 @@ if(isset($_POST['submit'])) {
         <img src="../../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
         <div class="title">WMSU ADMIN</div>
     </div>
+    <h1>BOARD OF REGENTS</h1>
 
     <div class="container">
-        <h2 style="text-align:center; margin-bottom: 20px;">Add Board of Regent Official</h2>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name</label>
@@ -49,17 +54,32 @@ if(isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
+    <label for="honorifics">Designation</label>
+    <select name="honorifics" id="honorifics" required>
+        <option value="">Select a designation</option>
+        <?php
+            $honorific = $honorificsObj->fetchHonorifics();
+            foreach ($honorific as $honorifics){
+        ?>
+            <option value="<?= $honorifics['id'] ?>"><?= htmlspecialchars($honorifics['name']) ?></option>
+        <?php
+            }
+        ?>
+    </select>
+</div>
+
+            <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" required>
             </div>
 
-            <div class="form-group">
+            <div>
                 <label>Upload Image</label>
                 <div class="image-upload">
                     <button type="button" class="image-upload-btn" onclick="document.getElementById('image').click()">Select Image</button>
                     <span id="file-selected">No file selected</span>
                 </div>
-                <input type="file" name="image" id="image" accept="image/*" required>
+                <input type="file" name="image" id="image" accept="image/*"hidden required>
                 <div class="image-preview" id="image-preview"></div>
             </div>
 

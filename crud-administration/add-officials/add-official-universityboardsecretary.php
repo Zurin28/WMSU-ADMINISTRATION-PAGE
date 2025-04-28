@@ -1,14 +1,18 @@
 <?php
 require_once '../../classes/universityBoardSecretary.class.php';
+require_once '../../classes/honorifics.class.php';
+
+$honorificsObj = new Honorifics();
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $title = $_POST['title'];
+    $honorifics_id = $_POST['honorifics']; // Get the selected honorifics ID
 
     $uniBoardSecretary = new UniversityBoardSecretary();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($uniBoardSecretary->add_official($name, $title)) {
+    if ($uniBoardSecretary->add_official($name, $title, $honorifics_id)) {
         echo "Official added successfully!";
         header('Location: ../../sample-admin/administration');
     } else {
@@ -30,14 +34,29 @@ if (isset($_POST['submit'])) {
     <img src="../../images/WMSU-Logo.png" alt="WMSU Logo" class="logo">
         <div class="title">WMSU ADMIN</div>
     </div>
+    <h1>UNIVERSITY BOARD and SECRETARY</h1>
 
     <div class="container">
-        <div class="section-title">ADD OFFICIAL</div>
         <form action="" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required>
             </div>
+
+            <div class="form-group">
+    <label for="honorifics">Designation</label>
+    <select name="honorifics" id="honorifics" required>
+        <option value="">Select a designation</option>
+        <?php
+            $honorific = $honorificsObj->fetchHonorifics();
+            foreach ($honorific as $honorifics){
+        ?>
+            <option value="<?= $honorifics['id'] ?>"><?= htmlspecialchars($honorifics['name']) ?></option>
+        <?php
+            }
+        ?>
+    </select>
+</div>
 
             <div class="form-group">
                 <label for="title">Title</label>
