@@ -10,10 +10,6 @@ $(document).ready(function () {
     });
   
     // Event listener for the dashboard link
-    $("#Administration-link").on("click", function (e) {
-      e.preventDefault(); // Prevent default behavior
-      viewAdministration(); // Call the function to load analytics
-    });
 
         // Event listener for the dashboard link
         $("#Home-link").on("click", function (e) {
@@ -25,12 +21,10 @@ $(document).ready(function () {
   
   // Determine which page to load based on the current URL
   let url = window.location.href;
-  if (url.endsWith("Administration")) {
-    $("#Administration-link").trigger("click");
-  } else if (url.endsWith("Home")) {
+  if (url.endsWith("Home")) {
     $("#Home-link").trigger("click");
   } else {
-    $("#Administration-link").trigger("click");
+    $("#Home-link").trigger("click");
   }
 
   
