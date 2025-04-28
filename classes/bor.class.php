@@ -245,10 +245,6 @@ function fetchAll()
             $query->bindParam(':honorifics_id', $honorifics, PDO::PARAM_INT);
             $query->bindParam(':id', $id, PDO::PARAM_INT);
 
-            
-
-    
-
             if ($file_name) {
                 $query->bindParam(':image', $file_name, PDO::PARAM_STR);
             }

@@ -1,222 +1,309 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@700;800&family=Poppins:wght@700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #8b0000;
-            color: white;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-        }
-        
-        .header h1::before,
-        .header h1::after {
-            content: "•";
-            position: absolute;
-            top: 50%;
-            font-size: 18px;
-            transform: translateY(-50%);
-        }
-        
-        .header h1::before {
-            left: -60px;
-        }
-        
-        .header h1::after {
-            right: -60px;
-        }
-        
-        .header-line {
-            position: absolute;
-            height: 2px;
-            background-color: white;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-        }
-        
-        .left-line {
-            left: 45px;
-        }
-        
-        .right-line {
-            right: 45px;
-        }
-        
-        .description {
-            text-align: justify;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            font-size: 15px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .highlight {
-            font-weight: 700;
-            color: #ffcc66;
-            display: inline;
-        }
-        
-        .president-section {
-            display: flex;
-            align-items: center;
-            margin: 40px 0;
-        }
-        
-        .profile-bubble-container {
-            position: relative;
-            margin-right: 20px;
-        }
-        
-        .small-bubble {
-            width: 30px;
-            height: 30px;
-            background-color: #ff9999;
-            border-radius: 50%;
-            position: absolute;
-            top: -15px;
-            left: -15px;
-        }
-        
-        .profile-bubble {
-            width: 180px;
-            height: 180px;
-            background-color: #ff9999;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .profile-image {
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-        }
-        
-        .president-info {
-            flex-grow: 1;
-            text-align: center;
-        }
-        
-        .president-info h2 {
-            font-size: 36px;
-            margin-bottom: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 800;
-        }
-        
-        .president-info h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
-        .sub-offices-btn {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            border-radius: 20px;
-            padding: 5px 15px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-        
-        .office-link {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        
-        .section-header {
-            font-size: 24px;
-            margin: 30px 0 20px 0;
-        }
-        
-        .staff-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        
-        .staff-row {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-        }
-        
-        .staff-row:last-child {
-            margin-bottom: 0;
-        }
-        
-        .staff-name {
-            flex: 1;
-            color: #8b0000;
-            font-weight: bold;
-            padding-right: 10px;
-        }
-        
-        .staff-title {
-            flex: 1.5;
-            font-size: 14px;
-        }
-        
-        .footer-btn-container {
-            text-align: center;
-        }
-        
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            .staff-row {
-                flex-direction: column;
-            }
-            
-            .staff-name, .staff-title {
-                flex: none;
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            
-            .president-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-bubble-container {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #8b0000;
+    color: white;
+}
+
+.background-white {
+    background-color: white;
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+background: 
+linear-gradient(rgba(124, 9, 2, 0.85), rgba(124, 9, 2, 0.85)),
+url('../images/admin-building.jpg') center/cover no-repeat;
+color: white;
+padding: 80px 20px;
+text-align: center;
+position: relative;
+min-height: 500px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 800px;
+margin: 0 auto;
+}
+
+.hero h1, .hero-title {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.hero-title-main {
+font-family: 'Montserrat', sans-serif;
+font-size: 4.5rem;
+text-transform: uppercase;
+letter-spacing: 0.29em;
+font-weight: 800;
+color: white;
+margin-bottom: 0.5rem;
+text-shadow: 
+2px 2px 4px rgba(0, 0, 0, 0.3),
+0 0 20px rgba(255, 255, 255, 0.5);
+position: relative;
+}
+
+.hero-title-sub {
+font-family: 'Montserrat', sans-serif;
+font-size: 3rem;
+text-transform: uppercase;
+letter-spacing: 0.29em;
+font-weight: 600;
+color: white;
+text-shadow: 
+2px 2px 4px rgba(0, 0, 0, 0.3),
+0 0 15px rgba(255, 255, 255, 0.4);
+position: relative;
+}
+
+.hero p {
+font-family: 'Montserrat', sans-serif;
+font-size: 1.1rem;
+margin-bottom: 30px;
+line-height: 1.8;
+font-weight: 500;
+}
+
+.btn {
+display: inline-block;
+background-color: transparent;
+color: white;
+padding: 10px 25px;
+border: 2px solid white;
+border-radius: 30px;
+text-decoration: none;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+.btn:hover {
+background-color: white;
+color: #7C0902;
+}
+
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.header h1::before,
+.header h1::after {
+    content: "•";
+    position: absolute;
+    top: 50%;
+    font-size: 18px;
+    transform: translateY(-50%);
+}
+
+.header h1::before {
+    left: -60px;
+}
+
+.header h1::after {
+    right: -60px;
+}
+.head-title-pages{
+    color: #8b0000;
+}
+
+.header-line {
+    position: absolute;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+}
+
+.left-line {
+    left: 45px;
+}
+
+.right-line {
+    right: 45px;
+}
+
+.description {
+    text-align: justify;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.president-section {
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.profile-bubble-container {
+    position: relative;
+    margin-right: 20px;
+}
+
+.small-bubble {
+    width: 30px;
+    height: 30px;
+    background-color: #ff9999;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+}
+
+.profile-bubble {
+    width: 180px;
+    height: 180px;
+    background-color: #ff9999;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profile-image {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.president-info {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.president-info h2 {
+    font-size: 36px;
+    margin-bottom: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+
+.president-info h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.sub-offices-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.office-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.section-header {
+    font-size: 24px;
+    margin: 30px 0 20px 0;
+}
+
+.staff-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.staff-row {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.staff-row:last-child {
+    margin-bottom: 0;
+}
+
+.staff-name {
+    flex: 1;
+    color: #8b0000;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.staff-title {
+    flex: 1.5;
+    font-size: 14px;
+}
+
+.footer-btn-container {
+    text-align: center;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .staff-row {
+        flex-direction: column;
+    }
+    
+    .staff-name, .staff-title {
+        flex: none;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .president-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-bubble-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}

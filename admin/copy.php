@@ -4,315 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU Administrative Officials</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@700;800&family=Poppins:wght@700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #8b0000;
-            color: white;
-        }
-
-        /* Hero Section */
-.hero {
-    background: 
-        linear-gradient(rgba(124, 9, 2, 0.85), rgba(124, 9, 2, 0.85)),
-        url('../images/admin-building.jpg') center/cover no-repeat;
-    color: white;
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero h1, .hero-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.hero-title-main {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 4.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.29em;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 0.5rem;
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(255, 255, 255, 0.5);
-    position: relative;
-}
-
-.hero-title-sub {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 0.29em;
-    font-weight: 600;
-    color: white;
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(255, 255, 255, 0.4);
-    position: relative;
-}
-
-.hero p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-    line-height: 1.8;
-    font-weight: 500;
-}
-
-.btn {
-    display: inline-block;
-    background-color: transparent;
-    color: white;
-    padding: 10px 25px;
-    border: 2px solid white;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background-color: white;
-    color: #7C0902;
-}
-
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-        }
-        
-        .header h1::before,
-        .header h1::after {
-            content: "•";
-            position: absolute;
-            top: 50%;
-            font-size: 18px;
-            transform: translateY(-50%);
-        }
-        
-        .header h1::before {
-            left: -60px;
-        }
-        
-        .header h1::after {
-            right: -60px;
-        }
-        
-        .header-line {
-            position: absolute;
-            height: 2px;
-            background-color: white;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-        }
-        
-        .left-line {
-            left: 45px;
-        }
-        
-        .right-line {
-            right: 45px;
-        }
-        
-        .description {
-            text-align: justify;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            font-size: 15px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .highlight {
-            font-weight: 700;
-            color: #ffcc66;
-            display: inline;
-        }
-        
-        .president-section {
-            display: flex;
-            align-items: center;
-            margin: 40px 0;
-        }
-        
-        .profile-bubble-container {
-            position: relative;
-            margin-right: 20px;
-        }
-        
-        .small-bubble {
-            width: 30px;
-            height: 30px;
-            background-color: #ff9999;
-            border-radius: 50%;
-            position: absolute;
-            top: -15px;
-            left: -15px;
-        }
-        
-        .profile-bubble {
-            width: 180px;
-            height: 180px;
-            background-color: #ff9999;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .profile-image {
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-        }
-        
-        .president-info {
-            flex-grow: 1;
-            text-align: center;
-        }
-        
-        .president-info h2 {
-            font-size: 36px;
-            margin-bottom: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 800;
-        }
-        
-        .president-info h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
-        .sub-offices-btn {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            border-radius: 20px;
-            padding: 5px 15px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-        
-        .office-link {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        
-        .section-header {
-            font-size: 24px;
-            margin: 30px 0 20px 0;
-        }
-        
-        .staff-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        
-        .staff-row {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-        }
-        
-        .staff-row:last-child {
-            margin-bottom: 0;
-        }
-        
-        .staff-name {
-            flex: 1;
-            color: #8b0000;
-            font-weight: bold;
-            padding-right: 10px;
-        }
-        
-        .staff-title {
-            flex: 1.5;
-            font-size: 14px;
-        }
-        
-        .footer-btn-container {
-            text-align: center;
-        }
-        
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            .staff-row {
-                flex-direction: column;
-            }
-            
-            .staff-name, .staff-title {
-                flex: none;
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            
-            .president-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-bubble-container {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
-
+    <?php require_once '../__includes/navbar.php'; ?>
+    <?php require_once '../__includes/head-home.php'; ?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -326,6 +22,121 @@
             <a href="#" class="btn">Learn More</a>
     </div>
 </section>
+
+<section class="board-whity">
+
+
+<!-- Organizational Chart Section -->
+<div style="height: 40px;"></div>
+<h2 style="text-align:center; color:#7C0902; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
+<div class="org-chart">
+    <img src="../images/orgchart.png" alt="WMSU Organizational Chart" style="width: 100%; height: auto; max-width: 1200px; margin: 0 auto; display: block;">
+</div>
+
+<div class="container">
+        <div class="header">
+            <div class="header-line left-line"></div>
+            <h1 class = "head-title-pages">BOARD OF REGENTS</h1>
+            <div class="header-line right-line"></div>
+        </div>
+
+    
+<section class="board-section">
+        <div class="board-container">
+            <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
+            <div class="board-description">
+                <p>The <span class="highlight">Board of Regents</span> is the highest policy-making body of <span class="highlight">Western Mindanao State University</span>. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution's alignment with its academic mission and public mandate.</p>
+                <br />
+                <p>Through collaborative governance and informed decision-making, the <span class="highlight">Board of Regents plays a vital role in upholding WMSU's standards of excellence</span> and fostering its continued growth as a premier institution in the region.</p>
+            </div>
+
+            <!-- Board Members Grid -->
+            <div class="members-grid">
+            <?php
+            require_once '../classes/bor.class.php';
+
+            $bor = new Board();
+            $boardMembers = $bor->fetchAll(); // Fetch all board members
+
+            // Add representation info to specific members
+            foreach ($boardMembers as &$member) {
+                if ($member['name'] === 'HON. ALAN PETER S. CAYETANO') {
+                    $member['representation'] = [
+                        [
+                            'name' => 'HON. ROLANDO L. MACASAET',
+                            'image' => 'macasaet-1.jpg'
+                        ]
+                    ];
+                } elseif ($member['name'] === 'HON. MARK O. GO') {
+                    $member['representation'] = [
+                        [
+                            'name' => 'HON. EMMYLOU B. YANGA',
+                            'image' => 'yanga.jpg'
+                        ]
+                    ];
+                }
+            }
+            unset($member);
+
+            $count = 0;
+
+            foreach ($boardMembers as $index => $member) {
+                // Skip representatives as separate members
+                if ($member['name'] === 'HON. ROLANDO L. MACASAET' || $member['name'] === 'HON. EMMYLOU B. YANGA' || $member['name'] === 'Represented by:') {
+                    continue;
+                }
+                
+                // Limit to 12 members
+                if ($count >= 12) {
+                    break;
+                }
+                $count++;
+
+                // Member card with data-index attribute for modal targeting
+                echo '<div class="member-card">';
+                echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
+                echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
+                echo '    <p>' . htmlspecialchars($member['title_bor']) . '</p>';
+                
+                // See More button with data-index to identify member
+                echo '    <button class="btn see-more-btn" data-index="' . $index . '">See More</button>';
+                
+                echo '</div>';
+            }
+            ?>
+            </div>
+        </section>
+        </section>
+
+            <!-- Modal container -->
+            <div id="member-modal" class="modal-container">
+                <div class="modal-header">
+                    <button class="close-button" id="modal-close-btn">✕</button>
+                </div>
+                <div class="modal-content">
+                    <div class="profile-image" id="modal-profile-image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="profile-info">
+                        <h1 id="modal-name"></h1>
+                        <h2 id="modal-title"></h2>
+                        <p id="modal-description">No description available.</p>
+                        <div class="representation" id="modal-representation" style="display:none;">
+                            <h3>REPRESENTED BY:</h3>
+                            <img class="representative-image" src="" alt="" id="modal-rep-image">
+                            <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                window.boardMembers = <?php echo json_encode($boardMembers); ?>;
+            </script>
+            <script src="../js/organizational-chart.js"></script>
+
+
+
 
     <div class="container">
         <div class="header">
@@ -393,705 +204,358 @@ if ($Presidents) {
         </div>
         
         <h2 class="section-header">Vice Presidents</h2>
-        
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Nursia M. Barjose</div>
-                <div class="staff-title">Vice President for Academic Affairs</div>
+        <?php
+require_once '../classes/Vicepres.class.php';
+$vicepres = new Vicepres();
+$vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
+?>
+    <div class="staff-card">
+    
+<?php foreach ($vicePresidents as $vicePres): ?>
+    <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($vicePres['title']); ?></div>
             </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Joel G. Fernando</div>
-                <div class="staff-title">Vice President for Research Extension Services & External Linkages</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Joselito D. Madroñal</div>
-                <div class="staff-title">Vice President for Administration and Finance</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Teresita A. Narvaez</div>
-                <div class="staff-title">Vice President for Resource Generation Capacity as Agribusiness Department Chair</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Fredelino M. San Juan</div>
-                <div class="staff-title">Vice President for Student Affairs and Services in concurrent capacity as Director of Special Program and Projects Office</div>
-            </div>
+<?php endforeach; ?>
+</div>
+
+
+<h2 class="section-header">Office of the President Staff</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/OpStaff.class.php';
+$opStaff = new OpStaff();
+$staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff members
+?>
+<div class="staff-card">
+<?php foreach ($staffMembers as $staff): ?>
+    <div class="staff-row">
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for OP staff
+            echo htmlspecialchars($staff['honorific_short']) . ' ' . htmlspecialchars($staff['name']);
+            ?>
         </div>
-        <div class="footer-btn-container">
-            <button class="sub-offices-btn">See Sub-Offices</button>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for OP staff
+            echo htmlspecialchars($staff['title']);
+            ?>
         </div>
-        
-        <h2 class="section-header">Office of the President Staff</h2>
-        
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Berhana I. Flores</div>
-                <div class="staff-title">Chief of Staff, Office of the President</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Darlyn P. Flores</div>
-                <div class="staff-title">Special Assistant to the President</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Aldrin S. Valerio</div>
-                <div class="staff-title">Executive Assistant to the Office of the President</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Shamir R. Kassim</div>
-                <div class="staff-title">University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns</div>
-            </div>
-        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">University and Board Secretary</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Al-Ghani D. Mohammad</div>
-                <div class="staff-title">Univ. and Board Secretary</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/UniversityBoardSecretary.class.php';
+$univBoardSecretary = new UniversityBoardSecretary();
+$secretaries = $univBoardSecretary->fetchAll(); // Fetch all board secretaries
+?>
+<div class="staff-card">
+<?php foreach ($secretaries as $secretary): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($secretary['honorific_short']) . ' ' . htmlspecialchars($secretary['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($secretary['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Directors</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Leonilo B. Abella</div>
-                <div class="staff-title">Director, WESMAARRDEC Consortium</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Reynante E. Autida</div>
-                <div class="staff-title">Director, Research Development & Eval. Center</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Joselito R. Custodio</div>
-                <div class="staff-title">OIC – Director, Office of the Center for Continuing Education</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Mark L. Flores</div>
-                <div class="staff-title">Director, Data Protection and IT Security Officer</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Ferdinand S. Guardo</div>
-                <div class="staff-title">Director, Management Information Systems & Technology Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Al-Rashid T. Jama</div>
-                <div class="staff-title">Director, University Disaster Risk Reduction Management Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Norman Lloyd B. Manginsay</div>
-                <div class="staff-title">OIC – Director of University Sports Development Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Evelyn N. Angeles</div>
-                <div class="staff-title">Director, Office of the Student Affairs</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Mario R. Obra, Jr.</div>
-                <div class="staff-title">Director, Quality Management Office, International Relations Office & External Linkages</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Hernan N. Rosaldo II</div>
-                <div class="staff-title">OIC-Director, Department of Extension Services and Community Development</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Arch. Joseph Andrew L. Sahial</div>
-                <div class="staff-title">Director, Physical Plant concurrent capacity as the University Architect</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Roberto M. Sala</div>
-                <div class="staff-title">Director of WMSU – Affiliated Renewable Energy Center (AREC)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Bernard Q. Suriaga</div>
-                <div class="staff-title">Director, University Center for Local Governance</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Ms. Rosalie T. Arcillas</div>
-                <div class="staff-title">Director, Finance</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Fuvie R. Bayot</div>
-                <div class="staff-title">Director, Distance Education</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Fini Joy P. Buenafe</div>
-                <div class="staff-title">Director, Guidance & Counseling Center</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Mary Grace M. Buñol</div>
-                <div class="staff-title">OIC – Director for Testing and Evaluation Center (TEC)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Nerlyne C. Concepcion</div>
-                <div class="staff-title">Director, WMSU Career and Job Placement Center</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Ludivina B. Dekit</div>
-                <div class="staff-title">Director, Peace & Human Security Institute</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Marilou C. Elago</div>
-                <div class="staff-title">Director, Office of the Univ. Biosafety and Biosecurity Committee</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Vicenta T. Escobar</div>
-                <div class="staff-title">Director for Admissions Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Mariam Z. Julkarnain</div>
-                <div class="staff-title">Director, Gender Research & Resource Center</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Ma. Nora D. Lai</div>
-                <div class="staff-title">Director, Alumni Relations Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Melanie F. Lear</div>
-                <div class="staff-title">Director, Centro de Estudio Mindanao, concurrent capacity as Community Outreach and Development Advocacy Program (CODAP)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Glory Jean G. Leonin</div>
-                <div class="staff-title">Director, Scholarship Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Maria Dolores J. Macrohon</div>
-                <div class="staff-title">Director, Office of Auxiliary Services</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Almira E. Nochefranca</div>
-                <div class="staff-title">Director, Office of the Culture and the Arts</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Aubrey F. Reyes</div>
-                <div class="staff-title">Director, Sentro ng Wika at Kultura</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Mrs. Ma. Teresita J. Rodriguez</div>
-                <div class="staff-title">Director for Administration</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Ms. Girlie C. Tangalin</div>
-                <div class="staff-title">Director National Service Training Program Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Lea E. Usman</div>
-                <div class="staff-title">Director, Public Affairs Office in concurrent capacity as Director of the Language Development Resource Center</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/Directors.class.php';
+$DirectorsObj = new Directors();
+$directors = $DirectorsObj->fetchAll(); // Fetch all directors
+?>
+<div class="staff-card">
+<?php foreach ($directors as $director): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Campus Administrators</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Mary Jocelyn V. Battung</div>
-                <div class="staff-title">Campus Administrator, Pagadian</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Ms. Maria Celeste B. Dela Cruz</div>
-                <div class="staff-title">Campus Administrator, Malangas</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Felwin Lovely R. Natividad</div>
-                <div class="staff-title">Campus Administrator, Ipil</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/CampusAdministrators.class.php';
+$campusAdmin = new CampusAdministrators();
+$administrators = $campusAdmin->fetchAll(); // Fetch all campus administrators
+?>
+<div class="staff-card">
+<?php foreach ($administrators as $admin): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($admin['honorific_short']) . ' ' . htmlspecialchars($admin['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($admin['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Integrated Laboratory School Principals & Asst. Principals</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Riah Barcelona</div>
-                <div class="staff-title">Principal. ILS -High School</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Anna Louisa R. Perez</div>
-                <div class="staff-title">Principal, ILS- Elementary</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/ILSPrincipals.class.php';
+$ILSPrincipals = new ILSPrincipals();
+$principals = $ILSPrincipals->fetchAll(); // Fetch all principals
+?>
+<div class="staff-card">
+<?php foreach ($principals as $principal): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($principal['honorific_short']) . ' ' . htmlspecialchars($principal['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($principal['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Assistant & Associate Directors | Assistant Chairpersons | Special Assistants</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Richard C. Dagalea</div>
-                <div class="staff-title">Asst. Director, Public Affairs Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Swidin S. Husin</div>
-                <div class="staff-title">Associate Director of the Research Development and Evaluation Center</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Elmer M. Labad</div>
-                <div class="staff-title">Asst. Director, Gender Research and Resource Center (GRRC)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Joel C. Macasinag</div>
-                <div class="staff-title">Asst. Manager, University PRESS(UPRESS)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Reynaldo R. Macaso</div>
-                <div class="staff-title">Asst. Director of the scholarship Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Mr. Keynard L. Ponce</div>
-                <div class="staff-title">Asst. to the Director of Center for Continuing Education (CCE)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Vinchall A. Siason</div>
-                <div class="staff-title">Asst. Director of the Quality Assurance Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Mr. Salimar B. Tahil</div>
-                <div class="staff-title">Asst. Director of the Management Information System and Technology Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Rochard T. Tarroza</div>
-                <div class="staff-title">Asst. Director, Student Affairs Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Sophia L. Bensali</div>
-                <div class="staff-title">Asst. to the Director of Center for Science Teaching and Training</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Ms. Melodina V. Francisco</div>
-                <div class="staff-title">Asst. Director, Alumi Relations Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Mely Jane D. Jacinto</div>
-                <div class="staff-title">Asst. Director, Quality Management Systems Office</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Dulce Amor P. Matondo</div>
-                <div class="staff-title">Assistant to the VPRESEL</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Atty. Aenn Bernielee C. Limbaga</div>
-                <div class="staff-title">Asst. Director, Special Program and Projects Office (SPPO)</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/AssistantDirectors.class.php';
+$assistantDirector = new AssistantDirectors();
+$assistantDirectors = $assistantDirector->fetchAll(); // Fetch all assistant directors
+?>
+<div class="staff-card">
+<?php foreach ($assistantDirectors as $director): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Technical Assistant | Technical Associates</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Mr. Edwin I. Arip</div>
-                <div class="staff-title">Tech. Associate (BS Com Sci)</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Ahmedzam S. Nasaluddin</div>
-                <div class="staff-title">Tech. Associate Under the Office of the President, for the infrastructure Project concurrent capacity as Technical Working group of the BIDS and Awards Committee</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Mr. Victor Ryan H. Tangalin</div>
-                <div class="staff-title">Technical Associate, Center for Hands of Goodwill</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Ryan B. Cabangcala</div>
-                <div class="staff-title">Technical Associate to the Vice President for Research Extension Services and External Linkages</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Shamir R. Kassim</div>
-                <div class="staff-title">Executive Assistant for Special Academic concerns at the Office of the President</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Marlon C. Grande</div>
-                <div class="staff-title">Technical Associate for the Community Outreach and Development Advocacy Program (CODAP) in concurrent capacity as the Extension Coordinator of the College of Engineering</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Johana J. Abdula</div>
-                <div class="staff-title">Tech. Asso. for the External Studies Unit – BS Crim. Program</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Abigail F. Antonio</div>
-                <div class="staff-title">Technical Associate to the Vice President for Academic Affairs</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asst. Prof. Mercendes A. Bejerano</div>
-                <div class="staff-title">Tech. Asst. to the Vice-President for Academic Affairs</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Ms. Bernadeth A. Encarnacion</div>
-                <div class="staff-title">Tech. Asso. for the External Studies Unit – BS Crim. Program</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Melanie A. Turco</div>
-                <div class="staff-title">Technical Associate to the Vice President for Administration and Finance</div>
-            </div>
-        </div>
+        <?php
+require_once '../classes/TechnicalAssistants.class.php';
+$technicalAssistant = new TechnicalAssistants();
+$technicalAssistants = $technicalAssistant->fetchAll(); // Fetch all technical assistants
+?>
+<div class="staff-card">
+<?php foreach ($technicalAssistants as $assistant): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($assistant['honorific_short']) . ' ' . htmlspecialchars($assistant['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($assistant['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
         
         <h2 class="section-header">Chairpersons</h2>
         
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Engr. Ferdinand S. Guardo</div>
-                <div class="staff-title">Chief Information Officer (CIO) of the University RE DICT</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Fredelino M. San Juan</div>
-                <div class="staff-title">Chair Bids and Award Committee</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Ricardo B. Gonzales</div>
-                <div class="staff-title">Chair of the Tech. Inspection Committee</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Ruperto D. Mendoza, Jr.</div>
-                <div class="staff-title">Chair, University Review and Evaluation Committee</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Dr. Analyn D. Saavedra</div>
-                <div class="staff-title">Chair, Research Ethics Oversight Committee (REOC)</div>
-            </div>
+        <?php
+require_once '../classes/Chairpersons.class.php';
+$chairperson = new Chairpersons();
+$chairpersons = $chairperson->fetchAll(); // Fetch all chairpersons
+?>
+<div class="staff-card">
+<?php foreach ($chairpersons as $chair): ?>
+    <div class="staff-row">
+        <div class="staff-name"><?php echo htmlspecialchars($chair['honorific_short']) . ' ' . htmlspecialchars($chair['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($chair['title']); ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+
+<h2 class="section-header">Managers</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/Managers.class.php';
+$managers = new Managers();
+$managerList = $managers->fetchAll(); // Fetch all managers
+?>
+<div class="staff-card">
+<?php foreach ($managerList as $manager): ?>
+    <div class="staff-row">
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for Managers
+            echo htmlspecialchars($manager['honorific_short']) . ' ' . htmlspecialchars($manager['name']);
+            ?>
         </div>
-        
-        <h2 class="section-header">Manager</h2>
-        
-        <div class="staff-card">
-            <div class="staff-row">
-                <div class="staff-name">Dr. Russel J. Ingkoh</div>
-                <div class="staff-title">Marketing Service Manager</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Engr. Antonio Angelo J. Limbaga</div>
-                <div class="staff-title">MITHI</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Asso. Prof. Joel C. Macasinag</div>
-                <div class="staff-title">Manager University PRESS</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Mr. Angelito B. Noynay</div>
-                <div class="staff-title">Manager of the Garment Shop</div>
-            </div>
-            
-            <div class="staff-row">
-                <div class="staff-name">Atty. Maria Luisa Pilar C. Elago</div>
-                <div class="staff-title">Manager of the Innovation and Technology Support Office (ITSO)</div>
-            </div>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for Managers
+            echo htmlspecialchars($manager['title']);
+            ?>
         </div>
-        
+    </div>
+<?php endforeach; ?>
+</div>
+
         <!-- Existing code remains the same until the HEAD/CHAIR OF THE GRADUATE SCHOOL section -->
 
 <h2 class="section-header">HEAD/CHAIR OF THE GRADUATE SCHOOL</h2>
         
+<?php
+require_once '../classes/GraduateSchoolHead.class.php';
+$graduateSchoolHead = new GraduateSchoolHead();
+$graduateSchoolHeads = $graduateSchoolHead->fetchAll(); // Fetch all graduate school heads
+?>
 <div class="staff-card">
+<?php foreach ($graduateSchoolHeads as $head): ?>
     <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Leo A. Hermosilla</div>
-        <div class="staff-title">CSSPE</div>
+        <div class="staff-name"><?php echo htmlspecialchars($head['honorific_short']) . ' ' . htmlspecialchars($head['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($head['title']); ?></div>
     </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Arnel R. Madrazo</div>
-        <div class="staff-title">Chair, Graduate School, College of Teacher Education on concurrent Coordinator of the Research for Utilization, Publication and Information</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Rochelleo E. Mariano</div>
-        <div class="staff-title">College of Science & Mathematics</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Engr. Nurwin Adam O. Muhammad</div>
-        <div class="staff-title">College of Engineering</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Johana J. Abdula</div>
-        <div class="staff-title">College of Criminal Justice Education</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Rubelle Marshah H. Alavar</div>
-        <div class="staff-title">College of Nursing</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asso. Prof. Marites A. Barrios</div>
-        <div class="staff-title">College of Home Economics</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asso. Prof. Wylen L. Lipanglipang</div>
-        <div class="staff-title">CSWCD</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Fadzralyn A. Karanain</div>
-        <div class="staff-title">Chair of the Graduate School, College of Liberal Arts</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Emerissa Jane L. Tendero</div>
-        <div class="staff-title">Chair of Graduate, College of Public Administration and Development Studies</div>
-    </div>
+<?php endforeach; ?>
 </div>
+
 
 <h2 class="section-header">Coordinators</h2>
 
+<?php
+require_once '../classes/Coordinators.class.php';
+$coordinator = new Coordinators();
+$coordinators = $coordinator->fetchAll(); // Fetch all coordinators
+?>
 <div class="staff-card">
+<?php foreach ($coordinators as $coordinatorItem): ?>
     <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Julito B. Bande</div>
-        <div class="staff-title">Campus Coordinator, Alicia</div>
+        <div class="staff-name"><?php echo htmlspecialchars($coordinatorItem['honorific_short']) . ' ' . htmlspecialchars($coordinatorItem['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($coordinatorItem['title']); ?></div>
     </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Noel A. Comeros</div>
-        <div class="staff-title">Campus Coordinator, Curuan</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Engr. Hernan N. Rosaldo II</div>
-        <div class="staff-title">Coordinator, Library and Archive</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Ariel M. Macailing</div>
-        <div class="staff-title">Campus Coordinator, Imelda</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Pacamalan, Leo Myco</div>
-        <div class="staff-title">Campus Coordinator, Siay</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Eryle Edvin E. Protacio</div>
-        <div class="staff-title">Coordinator, Local Studies</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Noel V. Pugosa</div>
-        <div class="staff-title">Campus Coordinator, Molave</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Engr. Hernan N. Rosaldo II</div>
-        <div class="staff-title">Coordinator, BIDANI</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Jiellzon Jaime T. Villarama</div>
-        <div class="staff-title">Coordinator, University Museum</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Carmela J. Go Silk</div>
-        <div class="staff-title">OIC – Campus Coordinator Diplahan</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Lolita R. Lacao-Lacao</div>
-        <div class="staff-title">OIC – Campus Coordinator Olutanga</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asso. Prof. Divine Grace M. Marumas</div>
-        <div class="staff-title">Coordinator Instructional Support & Materials Production (ISMP)</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Michelle S. Paderan</div>
-        <div class="staff-title">OIC – Campus Coordinator of Mabuhay</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Arlyn O. Rebuza</div>
-        <div class="staff-title">Campus Coordinator College of Agriculture</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Asst. Prof. Nosca Bonna Ar D. Taasin</div>
-        <div class="staff-title">OIC – Campus Coordinator of Tungawan</div>
-    </div>
+<?php endforeach; ?>
 </div>
+
 
 <h2 class="section-header">Section Chief</h2>
 
+<?php
+require_once '../classes/SectionChiefs.class.php';
+$sectionChief = new SectionChiefs();
+$sectionChiefs = $sectionChief->fetchAll(); // Fetch all section chiefs
+?>
 <div class="staff-card">
+<?php foreach ($sectionChiefs as $chief): ?>
     <div class="staff-row">
-        <div class="staff-name">Mr. Eric H. Alfaro</div>
-        <div class="staff-title">University Registrar</div>
+        <div class="staff-name"><?php echo htmlspecialchars($chief['honorific_short']) . ' ' . htmlspecialchars($chief['name']); ?></div>
+        <div class="staff-title"><?php echo htmlspecialchars($chief['title']); ?></div>
     </div>
-    
+<?php endforeach; ?>
+</div>
+
+<h2 class="section-header">Other Services</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/OtherServices.class.php';
+$otherServices = new OtherServices();
+$servicesList = $otherServices->fetchAll(); // Fetch all staff for other services
+?>
+<div class="staff-card">
+<?php foreach ($servicesList as $service): ?>
     <div class="staff-row">
-        <div class="staff-name">Mr. John Paul S. Alvarez</div>
-        <div class="staff-title">Supervising Administrative Officer (Finance)</div>
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for Other Services
+            echo htmlspecialchars($service['honorific_short']) . ' ' . htmlspecialchars($service['name']);
+            ?>
+        </div>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for Other Services
+            echo htmlspecialchars($service['title']);
+            ?>
+        </div>
     </div>
-    
+<?php endforeach; ?>
+</div>
+
+
+
+<h2 class="section-header">Academic Deans</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/AcademicDean.class.php';
+$academicDeans = new AcademicDean();
+$deansList = $academicDeans->fetchAll(); // Fetch all academic deans
+?>
+<div class="staff-card">
+<?php foreach ($deansList as $dean): ?>
     <div class="staff-row">
-        <div class="staff-name">Dr. Benhur A. Asid</div>
-        <div class="staff-title">University Librarian</div>
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for Academic Deans
+            echo htmlspecialchars($dean['honorific_short']) . ' ' . htmlspecialchars($dean['name']);
+            ?>
+        </div>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for Academic Deans
+            echo htmlspecialchars($dean['title']);
+            ?>
+        </div>
     </div>
-    
+<?php endforeach; ?>
+</div>
+
+
+<h2 class="section-header">Associate Deans</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/AssociateDean.class.php';
+$associateDeans = new AssociateDean();
+$deansList = $associateDeans->fetchAll(); // Fetch all associate deans
+?>
+<div class="staff-card">
+<?php foreach ($deansList as $dean): ?>
     <div class="staff-row">
-        <div class="staff-name">Mr. Erlando G. Coros</div>
-        <div class="staff-title">Chief Security Services</div>
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for Associate Deans
+            echo htmlspecialchars($dean['honorific_short']) . ' ' . htmlspecialchars($dean['name']);
+            ?>
+        </div>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for Associate Deans
+            echo htmlspecialchars($dean['title']);
+            ?>
+        </div>
     </div>
-    
+<?php endforeach; ?>
+</div>
+
+
+<h2 class="section-header">External Studies Unit</h2>
+
+<?php
+// Include the necessary class and fetch data
+require_once '../classes/ExternalStudiesUnit.class.php';
+$externalStudiesUnit = new ExternalStudiesUnit();
+$unitMembers = $externalStudiesUnit->fetchAll(); // Fetch all external studies unit members
+?>
+<div class="staff-card">
+<?php foreach ($unitMembers as $member): ?>
     <div class="staff-row">
-        <div class="staff-name">Engr. Edgar A. Demayo</div>
-        <div class="staff-title">Engineer III</div>
+        <div class="staff-name">
+            <?php 
+            // Display honorifics and name dynamically for External Studies Unit
+            echo htmlspecialchars($member['honorific_short']) . ' ' . htmlspecialchars($member['name']);
+            ?>
+        </div>
+        <div class="staff-title">
+            <?php 
+            // Display title dynamically for External Studies Unit
+            echo htmlspecialchars($member['title']);
+            ?>
+        </div>
     </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Engr. Ricardo B. Gonzales</div>
-        <div class="staff-title">University Electrical Engineer on concurrent Chairman of the Inspection Committee</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Alen M. Marcelino</div>
-        <div class="staff-title">Head, Motorpool</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Alfredo D. Montero</div>
-        <div class="staff-title">Supply Officer III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Ariel R. Perez</div>
-        <div class="staff-title">Labor General Foreman</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mr. Joerland- Jansen R. Reyes</div>
-        <div class="staff-title">Property Management Office</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Atty. Roberto Rivero III</div>
-        <div class="staff-title">Attorney IV</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Oscar S. Sicat</div>
-        <div class="staff-title">Supervising Administrative Officer</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Suzette G. Ducanes</div>
-        <div class="staff-title">Budget Officer</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Dr. Felicitas Asuncion C. Elago</div>
-        <div class="staff-title">Medical Officer III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Ma. Teresita J. Rodriguez</div>
-        <div class="staff-title">OIC-Human Resource Management Officer III on concurrent capacity Director for Administration</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mrs. Erlinda C. Macaso</div>
-        <div class="staff-title">Records Officer III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Venus Lyn C. Martin</div>
-        <div class="staff-title">Internal Auditor III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Lallaine Anne. L. Mariano</div>
-        <div class="staff-title">Cashier III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Abigail Irene B. Marquez</div>
-        <div class="staff-title">Information Officer III</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Cristianne Dawn R. Sicat</div>
-        <div class="staff-title">OIC – Accountant II</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Darea Jonnah B. Soliterio</div>
-        <div class="staff-title">APA, President</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Mrs. Carolina E. Tejero</div>
-        <div class="staff-title">General Services</div>
-    </div>
-    
-    <div class="staff-row">
-        <div class="staff-name">Ms. Debra Ann M. Ponce</div>
-        <div class="staff-title">University Planning Officer III</div>
-    </div>
+<?php endforeach; ?>
 </div>
 
 <!-- The rest of the HTML remains unchanged -->
