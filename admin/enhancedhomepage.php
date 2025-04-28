@@ -84,10 +84,10 @@ function renderStaffRows($staffList) {
     </ul>
 </div>
 
-<div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-text">Board of Regents</div>
-    <div class="divider-line"></div>
+<div class="divid-ad">
+    <div class="divid-line-ad"></div>
+    <div class="divid-text-ad">Board of Regents</div>
+    <div class="divid-line-ad"></div>
 </div>
 
 <section class="board-section">
