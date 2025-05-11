@@ -81,9 +81,11 @@
       <span>SELECT FROM BELOW:</span>
     </div>
     <div class="link-list">
+    <a href="../add-officials/add-page.php?page=ADMINISTRATION PAGE">ADMINISTRATION PAGE</a>
     <a href="../add-officials/add-page.php?page=BOARD OF REGENTS">BOARD OF REGENTS</a>
   <a href="../add-officials/add-page.php?page=ADMINISTRATIVE OFFICIALS">ADMINISTRATIVE OFFICIALS</a>
   <a href="../add-officials/add-page.php?page=ACADEMIC DEANS">ACADEMIC DEANS</a>
+  
     </div>
   </div>
 </body>

@@ -9,6 +9,17 @@ class Honorifics {
         $this->db = new Database();
     }
 
+    function fetchall()
+    {
+        $sql = "SELECT * FROM honorifics ORDER BY name ASC;";
+        $query = $this->db->connect()->prepare($sql);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
+
     function add_honorifics($name, $short)
     {
         try {
@@ -40,6 +51,36 @@ class Honorifics {
             $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
         return $data;
+    }
+
+    function fetchRecord($recordID)
+    {
+        $sql = "SELECT * FROM honorifics WHERE id = :recordID;";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':recordID', $recordID);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetch();
+        }
+        return $data;
+    }
+
+    function edit($id, $name, $short)
+    {
+        $sql = "UPDATE honorifics SET name = :name, short = :short WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        $query->bindParam(':name', $name);
+        $query->bindParam(':short', $short);
+        return $query->execute();
+    }
+
+    function delete_honorifics($id)
+    {
+        $sql = "DELETE FROM honorifics WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        return $query->execute();
     }
 
 

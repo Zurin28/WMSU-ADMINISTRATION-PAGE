@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<a href="../crud-administration/add-options/select-table.php" class="insert-btn">Insert</a>
+<a href="../crud-administration/add-options/select-table.php" class="insert-btn">ADD</a>
 <div class="section">
         <div class="section-header">
             ORGANIZATIONAL CHART
@@ -428,4 +428,302 @@
         </div>
     </div>
 
+    <div class="section">
+    <div class="section-header">
+        HONORIFICS
+    </div>
+    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table id="table-honorifics" class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Short Form</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../classes/honorifics.class.php';
+
+                $honorificsObj = new Honorifics();
+                $honorifics = $honorificsObj->fetchAll(); // Fetch all honorifics
+                
+                foreach ($honorifics as $honorific) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($honorific['name']) ?></td>
+                        <td><?= htmlspecialchars($honorific['short'] ?? 'N/A') ?></td>
+                        <td class="text-nowrap">
+                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-honorific" data-id="<?= $honorific['id'] ?>">Edit</a>
+                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-honorific" data-id="<?= $honorific['id'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<!-- Board of Regents Designations -->
+<div class="section">
+    <div class="section-header">
+        BOARD OF REGENTS DESIGNATIONS
+    </div>
+    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table id="table-bor-designations" class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../classes/designation_bor.class.php';
+
+                $designationBorObj = new DesignationBor();
+                $designations = $designationBorObj->fetchdesignation_bor();
+                
+                foreach ($designations as $designation) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($designation['designation']) ?></td>
+                        <td class="text-nowrap">
+                            <a href="" class="bt
+                            n btn-sm btn-outline-success me-1 edit-bor-designation" data-id="<?= $designation['id'] ?>">Edit</a>
+                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-bor-designation" data-id="<?= $designation['id'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Office of the President Staff Designations -->
+<div class="section">
+    <div class="section-header">
+        OFFICE OF THE PRESIDENT STAFF DESIGNATIONS
+    </div>
+    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table id="table-opstaff-designations" class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../classes/designation_opstaff.class.php';
+
+                $designationOpstaffObj = new DesignationOpstaff();
+                $designations = $designationOpstaffObj->fetchdesignation_vp();
+                
+                foreach ($designations as $designation) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($designation['designation']) ?></td>
+                        <td class="text-nowrap">
+                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-opstaff-designation" data-id="<?= $designation['id'] ?>">Edit</a>
+                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-opstaff-designation" data-id="<?= $designation['id'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Vice President Designations -->
+<div class="section">
+    <div class="section-header">
+        VICE PRESIDENT DESIGNATIONS
+    </div>
+    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+        <table id="table-vp-designations" class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../classes/designation_vp.class.php';
+
+                $designationVpObj = new DesignationVp();
+                $designations = $designationVpObj->fetchdesignation_vp();
+                
+                foreach ($designations as $designation) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($designation['designation']) ?></td>
+                        <td class="text-nowrap">
+                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-vp-designation" data-id="<?= $designation['id'] ?>">Edit</a>
+                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-vp-designation" data-id="<?= $designation['id'] ?>">Delete</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+<script>
+// Delete handlers for designations
+$(document).ready(function() {
+    // Board of Regents Designations
+    $('.delete-bor-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        if (confirm('Are you sure you want to delete this designation?')) {
+            $.ajax({
+                url: 'delete-officials/delete-bor-designation.php',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error deleting designation');
+                    }
+                }
+            });
+        }
+    });
+
+    // Office of the President Staff Designations
+    $('.delete-opstaff-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        if (confirm('Are you sure you want to delete this designation?')) {
+            $.ajax({
+                url: 'delete-officials/delete-opstaff-designation.php',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error deleting designation');
+                    }
+                }
+            });
+        }
+    });
+
+    // Vice President Designations
+    $('.delete-vp-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        if (confirm('Are you sure you want to delete this designation?')) {
+            $.ajax({
+                url: 'delete-officials/delete-vp-designation.php',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error deleting designation');
+                    }
+                }
+            });
+        }
+    });
+
+    // Edit handlers for designations
+    $('.edit-bor-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'edit-officials/edit-bor-designation.html',
+            type: 'GET',
+            success: function(view) {
+                $('.modal-container').empty().html(view);
+                $('#staticBackdropeditborDesignation').modal('show');
+                $('#staticBackdropeditborDesignation').attr('data-id', id);
+                fetchBorDesignation(id);
+            }
+        });
+    });
+
+    $('.edit-opstaff-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'edit-officials/edit-opstaff-designation.html',
+            type: 'GET',
+            success: function(view) {
+                $('.modal-container').empty().html(view);
+                $('#staticBackdropeditopstaffDesignation').modal('show');
+                $('#staticBackdropeditopstaffDesignation').attr('data-id', id);
+                fetchOpstaffDesignation(id);
+            }
+        });
+    });
+
+    $('.edit-vp-designation').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'edit-officials/edit-vp-designation.html',
+            type: 'GET',
+            success: function(view) {
+                $('.modal-container').empty().html(view);
+                $('#staticBackdropeditvpDesignation').modal('show');
+                $('#staticBackdropeditvpDesignation').attr('data-id', id);
+                fetchVpDesignation(id);
+            }
+        });
+    });
+});
+
+// Fetch functions for designations
+function fetchBorDesignation(id) {
+    $.ajax({
+        url: `fetching/fetch-bor-designation.php?id=${id}`,
+        type: 'POST',
+        dataType: 'json',
+        success: function(designation) {
+            $('#designation').val(designation.designation);
+        }
+    });
+}
+
+function fetchOpstaffDesignation(id) {
+    $.ajax({
+        url: `fetching/fetch-opstaff-designation.php?id=${id}`,
+        type: 'POST',
+        dataType: 'json',
+        success: function(designation) {
+            $('#designation').val(designation.designation);
+        }
+    });
+}
+
+function fetchVpDesignation(id) {
+    $.ajax({
+        url: `fetching/fetch-vp-designation.php?id=${id}`,
+        type: 'POST',
+        dataType: 'json',
+        success: function(designation) {
+            $('#designation').val(designation.designation);
+        }
+    });
+}
+</script>

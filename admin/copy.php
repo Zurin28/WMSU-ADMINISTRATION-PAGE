@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WMSU Administrative Officials</title>
     <?php require_once '../__includes/head-home.php'; ?>
+    <link rel="stylesheet" href="../css/vp-suboffices.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <style>
         .staff-card {
             padding: 20px;
@@ -371,10 +373,203 @@
         .suboffice-item:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
+
+        /* VP Suboffices Modal Styles */
+        .vp-suboffices-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+
+        .vp-suboffices-modal .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .vp-suboffices-modal .modal-header-grey {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .vp-suboffices-modal .modal-header-grey h2 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .vp-group {
+            margin-bottom: 30px;
+        }
+
+        .vp-group-title {
+            color: #000000;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .vp-suboffice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .vp-suboffice-item {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .vp-suboffice-item:hover {
+            background-color: #f8f8f8;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .vp-suboffice-link {
+            text-decoration: none;
+            color: #000000;
+            display: block;
+        }
+
+        .vp-office-title {
+            display: block;
+            color: #555555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #000000;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #555555;
+        }
+
+        /* Button Styles */
+        .view-suboffices-btn {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .view-suboffices-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .suboffices-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .scroll-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 9, 2, 0.3);
+        }
+
+        .scroll-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Ripple effect */
+        .scroll-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: inherit;
+        }
+
+        .scroll-btn:hover::after {
+            transform: scale(1);
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #ffffff;
+            display: inline;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .admin-highlight {
+            color: #ffffff;
+            font-weight: 700;
+            display: inline;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
     </style>
+    <script src="../js/smooth-scroll.js" defer></script>
 </head>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
+
+    <!-- Add this before the hero section -->
+    <?php
+    require_once '../classes/pageDescription.class.php';
+
+    $pageDescriptionObj = new PageDescription();
+    $pageDescriptions = $pageDescriptionObj->fetchAll();
+
+    // Find the description for Administrative Officials
+    $adminDescription = '';
+    foreach ($pageDescriptions as $desc) {
+        if ($desc['page'] === 'ADMINISTRATION PAGE') {
+            $adminDescription = $desc['description'];
+            break;
+        }
+    }
+
+    // Split description into paragraphs
+    $paragraphs = explode("\n\n", $adminDescription);
+    ?>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -383,121 +578,187 @@
                 <span class="hero-title-main">ADMINISTRATION</span>
                 <span class="hero-title-sub">PAGE</span>
             </h1>
-            <p>The WMSU Administration page offers a comprehensive look into the <strong>individuals who lead and shape Western Mindanao State University</strong>. Here, you will find the <strong>Board of Regents, university officials</strong>, and key representatives whose leadership, dedication, and vision continue to drive the university toward <strong>academic excellence, innovation, and inclusive growth</strong>.</p>
-            <p>This section highlights the people behind WMSU's progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.</p>
-<a href="#org-chart" class="btn">Learn More</a>
+            <div class="description">
+                <?php foreach ($paragraphs as $index => $paragraph): ?>
+                    <p><?php 
+                    $text = htmlspecialchars($paragraph);
+                    
+                    // First paragraph uses admin-highlight
+                    if ($index === 0) {
+                        $text = preg_replace(
+                            '/\*\*(.*?)\*\*/', 
+                            '<span class="admin-highlight">$1</span>', 
+                            str_replace(['<', '>'], ['&lt;', '&gt;'], $paragraph)
+                        );
+                    } else {
+                        // Other paragraphs use highlight
+                        $text = preg_replace(
+                            '/\*\*(.*?)\*\*/', 
+                            '<span class="highlight">$1</span>', 
+                            str_replace(['<', '>'], ['&lt;', '&gt;'], $paragraph)
+                        );
+                    }
+                    echo $text;
+                    ?></p>
+                <?php endforeach; ?>
+            </div>
+            <a href="#org-chart" class="btn scroll-btn" id="learn-more-btn" aria-label="Learn more about WMSU organization">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Add this before the organizational chart section -->
+    <?php
+    require_once '../classes/organizationalChart.class.php';
+
+    $orgChartObj = new OrganizationalChart();
+    $orgCharts = $orgChartObj->fetchAll();
+
+    // Get the most recent organizational chart (assuming the latest one should be displayed)
+    $latestOrgChart = !empty($orgCharts) ? $orgCharts[count($orgCharts) - 1] : null;
+    ?>
+
+    <!-- Organizational Chart Section -->
+    <div style="height: 40px; background-color: white;"></div>
+    <h2 id="org-chart" style="text-align:center; background-color: white; color:#7C0902; padding-bottom: 30px; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
+    <div class="org-chart" style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 1260px; margin: 0 auto;">
+        <?php if ($latestOrgChart): ?>
+            <img src="../images/<?php echo htmlspecialchars($latestOrgChart['image']); ?>" 
+                 alt="WMSU Organizational Chart" 
+                 style="width: 100%; height: auto; background-color: white; max-width: 1200px; margin: 0 auto; display: block;">
+            <?php if (!empty($latestOrgChart['description'])): ?>
+                <p class="org-chart-description" style="text-align: center; background-color: white; margin-top: 20px; color: #333;">
+                    <?php echo htmlspecialchars($latestOrgChart['description']); ?>
+                </p>
+            <?php endif; ?>
+        <?php else: ?>
+            <p style="text-align: center; color: #666;">No organizational chart available.</p>
+        <?php endif; ?>
     </div>
-</section>
 
-<section class="board-whity">
+    <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">Board of Regents</div>
+        <div class="divider-line"></div>
+    </div>
 
+    <!-- Add this before the board section -->
+    <?php
+    require_once '../classes/pageDescription.class.php';
 
-<!-- Organizational Chart Section -->
-<div style="height: 40px;"></div>
-<h2 id="org-chart" style="text-align:center; color:#7C0902; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
-<div class="org-chart">
-    <img src="../images/orgchart.png" alt="WMSU Organizational Chart" style="width: 100%; height: auto; max-width: 1200px; margin: 0 auto; display: block;">
-</div>
+    $pageDescriptionObj = new PageDescription();
+    $pageDescriptions = $pageDescriptionObj->fetchAll();
 
-<div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-text">Board of Regents</div>
-    <div class="divider-line"></div>
-</div>
+    // Find the description for Board of Regents
+    $boardDescription = '';
+    foreach ($pageDescriptions as $desc) {
+        if ($desc['page'] === 'BOARD OF REGENTS') {
+            $boardDescription = $desc['description'];
+            break;
+        }
+    }
 
-<section class="board-section">
-        <div class="board-container">
-            <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
-            <div class="board-description">
-                <p>The <span class="highlight">Board of Regents</span> is the highest policy-making body of <span class="highlight">Western Mindanao State University</span>. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution's alignment with its academic mission and public mandate.</p>
-                <br />
-                <p>Through collaborative governance and informed decision-making, the <span class="highlight">Board of Regents plays a vital role in upholding WMSU's standards of excellence</span> and fostering its continued growth as a premier institution in the region.</p>
-            </div>
+    // Split description into paragraphs
+    $paragraphs = explode("\n\n", $boardDescription);
+    ?>
 
-            <!-- Board Members Grid -->
-            <div class="members-grid">
-            <?php
-            require_once '../classes/bor.class.php';
-
-            $bor = new Board();
-            $boardMembers = $bor->fetchAll(); // Fetch all board members
-
-            // Add representation info to specific members
-            foreach ($boardMembers as &$member) {
-                if ($member['name'] === 'HON. ALAN PETER S. CAYETANO') {
-                    $member['representation'] = [
-                        [
-                            'name' => 'HON. ROLANDO L. MACASAET',
-                            'image' => 'macasaet-1.jpg'
-                        ]
-                    ];
-                } elseif ($member['name'] === 'HON. MARK O. GO') {
-                    $member['representation'] = [
-                        [
-                            'name' => 'HON. EMMYLOU B. YANGA',
-                            'image' => 'yanga.jpg'
-                        ]
-                    ];
-                }
-            }
-            unset($member);
-
-            $count = 0;
-
-            foreach ($boardMembers as $index => $member) {
-                // Skip representatives as separate members
-                if ($member['name'] === 'HON. ROLANDO L. MACASAET' || $member['name'] === 'HON. EMMYLOU B. YANGA' || $member['name'] === 'Represented by:') {
-                    continue;
-                }
-                
-                // Limit to 12 members
-                if ($count >= 12) {
-                    break;
-                }
-                $count++;
-
-                // Member card with data-index attribute for modal targeting
-                echo '<div class="member-card">';
-                echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
-                echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
-                echo '    <p>' . htmlspecialchars($member['title_bor']) . '</p>';
-                
-                // See More button with data-index to identify member
-                echo '    <button class="btn see-more-btn" data-index="' . $index . '">See More</button>';
-                
-                echo '</div>';
-            }
-            ?>
-            </div>
-        </section>
-        </section>
-
-            <!-- Modal container -->
-            <div id="member-modal" class="modal-container">
-                <div class="modal-header">
-                    <button class="close-button" id="modal-close-btn">✕</button>
+    <section class="board-section">
+            <div class="board-container">
+                <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
+                <div class="board-description">
+                    <?php 
+                    $totalParagraphs = count($paragraphs);
+                    foreach ($paragraphs as $index => $paragraph): ?>
+                        <p><?php echo htmlspecialchars($paragraph); ?></p>
+                        <?php if ($index < $totalParagraphs - 1): ?>
+                            <br />
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-                <div class="modal-content">
-                    <div class="profile-image" id="modal-profile-image">
-                        <img src="" alt="">
+
+                <!-- Board Members Grid -->
+                <div class="members-grid">
+                <?php
+                require_once '../classes/bor.class.php';
+
+                $bor = new Board();
+                $boardMembers = $bor->fetchAll(); // Fetch all board members
+
+                // Add representation info to specific members
+                foreach ($boardMembers as &$member) {
+                    if ($member['name'] === 'HON. ALAN PETER S. CAYETANO') {
+                        $member['representation'] = [
+                            [
+                                'name' => 'HON. ROLANDO L. MACASAET',
+                                'image' => 'macasaet-1.jpg'
+                            ]
+                        ];
+                    } elseif ($member['name'] === 'HON. MARK O. GO') {
+                        $member['representation'] = [
+                            [
+                                'name' => 'HON. EMMYLOU B. YANGA',
+                                'image' => 'yanga.jpg'
+                            ]
+                        ];
+                    }
+                }
+                unset($member);
+
+                $count = 0;
+
+                foreach ($boardMembers as $index => $member) {
+                    // Skip representatives as separate members
+                    if ($member['name'] === 'HON. ROLANDO L. MACASAET' || $member['name'] === 'HON. EMMYLOU B. YANGA' || $member['name'] === 'Represented by:') {
+                        continue;
+                    }
+                    
+                    // Limit to 12 members
+                    if ($count >= 12) {
+                        break;
+                    }
+                    $count++;
+
+                    // Member card with data-index attribute for modal targeting
+                    echo '<div class="member-card">';
+                    echo '    <img class="profile-img" src="../images/' . htmlspecialchars($member['image']) . '" alt="' . htmlspecialchars($member['name']) . '">';
+                    echo '    <h3>' . htmlspecialchars($member['name']) . '</h3>';
+                    echo '    <p>' . htmlspecialchars($member['title_bor']) . '</p>';
+                    
+                    // See More button with data-index to identify member
+                    echo '    <button class="btn see-more-btn" data-index="' . $index . '">See More</button>';
+                    
+                    echo '</div>';
+                }
+                ?>
+                </div>
+            </section>
+            </section>
+
+                <!-- Modal container -->
+                <div id="member-modal" class="modal-container">
+                    <div class="modal-header">
+                        <button class="close-button" id="modal-close-btn">✕</button>
                     </div>
-                    <div class="profile-info">
-                        <h1 id="modal-name"></h1>
-                        <h2 id="modal-title"></h2>
-                        <p id="modal-description">No description available.</p>
-                        <div class="representation" id="modal-representation" style="display:none;">
-                            <h3>REPRESENTED BY:</h3>
-                            <img class="representative-image" src="" alt="" id="modal-rep-image">
-                            <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                    <div class="modal-content">
+                        <div class="profile-image" id="modal-profile-image">
+                            <img src="" alt="">
+                        </div>
+                        <div class="profile-info">
+                            <h1 id="modal-name"></h1>
+                            <h2 id="modal-title"></h2>
+                            <p id="modal-description">The Board of Regents is the highest governing body of Western Mindanao State University (WMSU), tasked with setting the strategic direction and overarching policies of the institution. It ensures that the university upholds its mandate of delivering quality education, advancing research, and promoting community engagement.</p>
+                            <div class="representation" id="modal-representation" style="display:none;">
+                                <h3>REPRESENTED BY:</h3>
+                                <img class="representative-image" src="" alt="" id="modal-rep-image">
+                                <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <script>
-                window.boardMembers = <?php echo json_encode($boardMembers); ?>;
-            </script>
-            <script src="../js/organizational-chart.js"></script>
+                <script>
+                    window.boardMembers = <?php echo json_encode($boardMembers); ?>;
+                </script>
+                <script src="../js/organizational-chart.js"></script>
 
 
 
@@ -510,9 +771,46 @@
         </div>
         
         <div class="description">
-            <p>The <span class="admin-highlight">Administrative Officials</span> of Western Mindanao State University (WMSU) constitute the <span class="admin-highlight">comprehensive leadership team</span> responsible for the university's <span class="admin-highlight">strategic direction</span>, <span class="admin-highlight">academic excellence</span>, and <span class="admin-highlight">operational efficiency</span>. This organizational body includes the <span class="admin-highlight">University President</span>, <span class="admin-highlight">Vice
-            <p>The <span class="highlight">administrative framework extends</span> to Campus Administrators <span class="highlight">across WMSU's satellite campuses</span>, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units.</p>
-            <p>Together, these officials uphold <span class="highlight">WMSU's commitment</span> to <span class="highlight">providing quality education</span> and <span class="highlight">fostering community development</span>.</p>
+            <?php 
+        
+            $pageDescriptionObj = new PageDescription();
+            $pageDescriptions = $pageDescriptionObj->fetchAll();
+        
+            // Find the description for Board of Regents
+            $boardDescription = '';
+            foreach ($pageDescriptions as $desc) {
+                if ($desc['page'] === 'ADMINISTRATIVE OFFICIALS') {
+                    $boardDescription = $desc['description'];
+                    break;
+                }
+            }
+        
+            // Split description into paragraphs
+            $paragraphs = explode("\n\n", $boardDescription);
+            ?>
+            <?php
+            foreach ($paragraphs as $index => $paragraph): ?>
+                <p><?php 
+                $text = htmlspecialchars($paragraph);
+                
+                // First paragraph uses admin-highlight
+                if ($index === 0) {
+                    $text = preg_replace(
+                        '/\*\*(.*?)\*\*/', 
+                        '<span class="admin-highlight">$1</span>', 
+                        str_replace(['<', '>'], ['&lt;', '&gt;'], $paragraph)
+                    );
+                } else {
+                    // Other paragraphs use highlight
+                    $text = preg_replace(
+                        '/\*\*(.*?)\*\*/', 
+                        '<span class="highlight">$1</span>', 
+                        str_replace(['<', '>'], ['&lt;', '&gt;'], $paragraph)
+                    );
+                }
+                echo $text;
+                ?></p>
+            <?php endforeach; ?>
         </div>
         
         <div class="president-section">
@@ -520,56 +818,56 @@
                 <div class="small-bubble"></div>
                 <div class="profile-bubble">
                 <?php
-require_once '../classes/pres.class.php';
+    require_once '../classes/pres.class.php';
 
-$pres = new Pres();
-$Presidents = $pres->fetchAll(); // Fetch all presidents
+    $pres = new Pres();
+    $Presidents = $pres->fetchAll(); // Fetch all presidents
 
-if ($Presidents) {
-    foreach ($Presidents as $president) {
-        echo '<div class="president-card">';
-        
-        // Image
-        echo '<img src="../images/' . htmlspecialchars($president['image']) . '" alt="" class="profile-image">';
-        
-        // Title and Honorifics
-      
-        echo '</div>';
+    if ($Presidents) {
+        foreach ($Presidents as $president) {
+            echo '<div class="president-card">';
+            
+            // Image
+            echo '<img src="../images/' . htmlspecialchars($president['image']) . '" alt="" class="profile-image">';
+            
+            // Title and Honorifics
+          
+            echo '</div>';
+        }
+    } else {
+        echo '<p>No presidents found.</p>';
     }
-} else {
-    echo '<p>No presidents found.</p>';
-}
-?>
+    ?>
 
                 </div>
             </div>
 
             
             <?php
-if ($Presidents) {
-    foreach ($Presidents as $president) {
-        echo '<div class="president-info">';
-        echo '<h2>' . htmlspecialchars($president['honorific_short']) . ' ' . htmlspecialchars($president['name']) . '</h2>';
-        echo '<h3>' . htmlspecialchars($president['title']) . '</h3>';
-        echo '<button class="sub-offices-btn" onclick="viewPresidentSuboffices()">
-    See Sub-Offices
-</button>';
-        // The link is now white for better contrast
-        echo '<a href="../Offices/' . urlencode($president['page_link']) . '" class="office-link" style="color: #fff; text-decoration: underline; font-weight: bold;">Proceed to President\'s Office Page</a>';
-        echo '</div>';
+    if ($Presidents) {
+        foreach ($Presidents as $president) {
+            echo '<div class="president-info">';
+            echo '<h2>' . htmlspecialchars($president['honorific_short']) . ' ' . htmlspecialchars($president['name']) . '</h2>';
+            echo '<h3>' . htmlspecialchars($president['title']) . '</h3>';
+            echo '<button class="sub-offices-btn" onclick="viewPresidentSuboffices()">
+        See Sub-Offices
+    </button>';
+            // The link is now white for better contrast
+            echo '<a href="../Offices/' . urlencode($president['page_link']) . '" class="office-link" style="color: #fff; text-decoration: underline; font-weight: bold;">Proceed to President\'s Office Page</a>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>No presidents found.</p>';
     }
-} else {
-    echo '<p>No presidents found.</p>';
-}
-?>
+    ?>
         </div>
         
         <h2 class="section-header">Vice Presidents</h2>
         <?php
-require_once '../classes/Vicepres.class.php';
-$vicepres = new Vicepres();
-$vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
-?>
+    require_once '../classes/Vicepres.class.php';
+    $vicepres = new Vicepres();
+    $vicePresidents = $vicepres->fetchAll(); // Fetch all vice presidents
+    ?>
     <div class="staff-card">
     
     <?php foreach ($vicePresidents as $vicePres): ?>
@@ -626,120 +924,120 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
         <h2 class="section-header">University and Board Secretary</h2>
         
         <?php
-require_once '../classes/UniversityBoardSecretary.class.php';
-$univBoardSecretary = new UniversityBoardSecretary();
-$secretaries = $univBoardSecretary->fetchAll(); // Fetch all board secretaries
-?>
-<div class="staff-card">
-<?php foreach ($secretaries as $secretary): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($secretary['honorific_short']) . ' ' . htmlspecialchars($secretary['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($secretary['title']); ?></div>
+    require_once '../classes/UniversityBoardSecretary.class.php';
+    $univBoardSecretary = new UniversityBoardSecretary();
+    $secretaries = $univBoardSecretary->fetchAll(); // Fetch all board secretaries
+    ?>
+    <div class="staff-card">
+    <?php foreach ($secretaries as $secretary): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($secretary['honorific_short']) . ' ' . htmlspecialchars($secretary['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($secretary['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Directors</h2>
         
         <?php
-require_once '../classes/Directors.class.php';
-$DirectorsObj = new Directors();
-$directors = $DirectorsObj->fetchAll(); // Fetch all directors
-?>
-<div class="staff-card">
-<?php foreach ($directors as $director): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+    require_once '../classes/Directors.class.php';
+    $DirectorsObj = new Directors();
+    $directors = $DirectorsObj->fetchAll(); // Fetch all directors
+    ?>
+    <div class="staff-card">
+    <?php foreach ($directors as $director): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Campus Administrators</h2>
         
         <?php
-require_once '../classes/CampusAdministrators.class.php';
-$campusAdmin = new CampusAdministrators();
-$administrators = $campusAdmin->fetchAll(); // Fetch all campus administrators
-?>
-<div class="staff-card">
-<?php foreach ($administrators as $admin): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($admin['honorific_short']) . ' ' . htmlspecialchars($admin['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($admin['title']); ?></div>
+    require_once '../classes/CampusAdministrators.class.php';
+    $campusAdmin = new CampusAdministrators();
+    $administrators = $campusAdmin->fetchAll(); // Fetch all campus administrators
+    ?>
+    <div class="staff-card">
+    <?php foreach ($administrators as $admin): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($admin['honorific_short']) . ' ' . htmlspecialchars($admin['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($admin['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Integrated Laboratory School Principals & Asst. Principals</h2>
         
         <?php
-require_once '../classes/ILSPrincipals.class.php';
-$ILSPrincipals = new ILSPrincipals();
-$principals = $ILSPrincipals->fetchAll(); // Fetch all principals
-?>
-<div class="staff-card">
-<?php foreach ($principals as $principal): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($principal['honorific_short']) . ' ' . htmlspecialchars($principal['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($principal['title']); ?></div>
+    require_once '../classes/ILSPrincipals.class.php';
+    $ILSPrincipals = new ILSPrincipals();
+    $principals = $ILSPrincipals->fetchAll(); // Fetch all principals
+    ?>
+    <div class="staff-card">
+    <?php foreach ($principals as $principal): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($principal['honorific_short']) . ' ' . htmlspecialchars($principal['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($principal['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Assistant & Associate Directors | Assistant Chairpersons | Special Assistants</h2>
         
         <?php
-require_once '../classes/AssistantDirectors.class.php';
-$assistantDirector = new AssistantDirectors();
-$assistantDirectors = $assistantDirector->fetchAll(); // Fetch all assistant directors
-?>
-<div class="staff-card">
-<?php foreach ($assistantDirectors as $director): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+    require_once '../classes/AssistantDirectors.class.php';
+    $assistantDirector = new AssistantDirectors();
+    $assistantDirectors = $assistantDirector->fetchAll(); // Fetch all assistant directors
+    ?>
+    <div class="staff-card">
+    <?php foreach ($assistantDirectors as $director): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($director['honorific_short']) . ' ' . htmlspecialchars($director['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($director['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Technical Assistant | Technical Associates</h2>
         
         <?php
-require_once '../classes/TechnicalAssistants.class.php';
-$technicalAssistant = new TechnicalAssistants();
-$technicalAssistants = $technicalAssistant->fetchAll(); // Fetch all technical assistants
-?>
-<div class="staff-card">
-<?php foreach ($technicalAssistants as $assistant): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($assistant['honorific_short']) . ' ' . htmlspecialchars($assistant['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($assistant['title']); ?></div>
+    require_once '../classes/TechnicalAssistants.class.php';
+    $technicalAssistant = new TechnicalAssistants();
+    $technicalAssistants = $technicalAssistant->fetchAll(); // Fetch all technical assistants
+    ?>
+    <div class="staff-card">
+    <?php foreach ($technicalAssistants as $assistant): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($assistant['honorific_short']) . ' ' . htmlspecialchars($assistant['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($assistant['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
         
         <h2 class="section-header">Chairpersons</h2>
         
         <?php
-require_once '../classes/Chairpersons.class.php';
-$chairperson = new Chairpersons();
-$chairpersons = $chairperson->fetchAll(); // Fetch all chairpersons
-?>
-<div class="staff-card">
-<?php foreach ($chairpersons as $chair): ?>
-    <div class="staff-row">
-        <div class="staff-name"><?php echo htmlspecialchars($chair['honorific_short']) . ' ' . htmlspecialchars($chair['name']); ?></div>
-        <div class="staff-title"><?php echo htmlspecialchars($chair['title']); ?></div>
+    require_once '../classes/Chairpersons.class.php';
+    $chairperson = new Chairpersons();
+    $chairpersons = $chairperson->fetchAll(); // Fetch all chairpersons
+    ?>
+    <div class="staff-card">
+    <?php foreach ($chairpersons as $chair): ?>
+        <div class="staff-row">
+            <div class="staff-name"><?php echo htmlspecialchars($chair['honorific_short']) . ' ' . htmlspecialchars($chair['name']); ?></div>
+            <div class="staff-title"><?php echo htmlspecialchars($chair['title']); ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
 
 
 <h2 class="section-header">Managers</h2>
@@ -937,75 +1235,33 @@ $unitMembers = $externalStudiesUnit->fetchAll(); // Fetch all external studies u
 
 <script>
 function viewAllSubOffices() {
-    // Create and show the modal
-    var modal = new bootstrap.Modal(document.getElementById('vicePresSubOfficesModal'));
-    modal.show();
-
-    // Fetch the sub-offices data
-    $.ajax({
-        url: '../crud-administration/fetching/fetch-Vicepres_suboffices.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            const subOfficesList = document.getElementById('subOfficesList');
-            subOfficesList.innerHTML = ''; // Clear existing content
-
-            if (response && response.length > 0) {
-                // Group sub-offices by VP
-                const groupedOffices = {};
-                response.forEach(office => {
-                    if (!groupedOffices[office.office_of_vp_in]) {
-                        groupedOffices[office.office_of_vp_in] = [];
-                    }
-                    groupedOffices[office.office_of_vp_in].push(office);
-                });
-
-                // Create HTML for each group
-                for (const [vp, offices] of Object.entries(groupedOffices)) {
-                    const groupDiv = document.createElement('div');
-                    groupDiv.className = 'suboffice-group';
-                    
-                    groupDiv.innerHTML = `
-                        <div class="suboffice-group-title">${vp}</div>
-                        ${offices.map(office => `
-                            <div class="suboffice-item">
-                                <div style="font-weight: bold;">${office.office}</div>
-                                <div>${office.honorific_short || ''} ${office.office_head}</div>
-                            </div>
-                        `).join('')}
-                    `;
-                    
-                    subOfficesList.appendChild(groupDiv);
-                }
-            } else {
-                subOfficesList.innerHTML = '<p class="text-center">No sub-offices found.</p>';
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching sub-offices:', error);
-            document.getElementById('subOfficesList').innerHTML = 
-                '<p class="text-center text-danger">Error loading sub-offices. Please try again later.</p>';
-        }
-    });
+    var modal = document.getElementById('vicePresidentSubofficesModal');
+    modal.style.display = "block";
 }
 
-// Close modal when clicking outside or pressing ESC
-$(document).ready(function() {
-    $('#vicePresSubOfficesModal').on('click', function(e) {
-        if ($(e.target).hasClass('modal')) {
-            $(this).modal('hide');
-        }
-    });
+function closeVPModal() {
+    var modal = document.getElementById('vicePresidentSubofficesModal');
+    modal.style.display = "none";
+}
 
-    $(document).keydown(function(e) {
-        if (e.key === "Escape") {
-            $('#vicePresSubOfficesModal').modal('hide');
-        }
-    });
+// Close modal when clicking outside
+window.onclick = function(event) {
+    var vpModal = document.getElementById('vicePresidentSubofficesModal');
+    if (event.target == vpModal) {
+        vpModal.style.display = "none";
+    }
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        var vpModal = document.getElementById('vicePresidentSubofficesModal');
+        vpModal.style.display = "none";
+    }
 });
 </script>
 
-<!-- Add this modal HTML structure after your staff-card div -->
+<!-- Modal HTML structure -->
 <div class="suboffices-modal" id="presidentSubofficesModal">
     <div class="modal-content">
         <div class="modal-header-grey">
@@ -1015,7 +1271,6 @@ $(document).ready(function() {
             <div class="suboffice-list">
                 <?php
                 require_once '../classes/presSubOffices.class.php';
-                
                 $presSubOffices = new PresSubOffices();
                 $subOffices = $presSubOffices->fetchAll();
                 
@@ -1041,19 +1296,212 @@ $(document).ready(function() {
     </div>
 </div>
 
-<!-- Vice Presidents Sub-Offices Modal -->
-<div class="modal fade" id="vicePresSubOfficesModal" tabindex="-1" aria-labelledby="vicePresSubOfficesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="vicePresSubOfficesModalLabel">SUB-OFFICES OF THE VICE PRESIDENTS</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="subOfficesList"></div>
+<style>
+.suboffices-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-header-grey {
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.modal-header-grey h2 {
+    color: #8B0000;
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.modal-body {
+    background-color: #8B0000;
+    padding: 20px;
+}
+
+.suboffice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.suboffice-item {
+    text-align: center;
+    padding: 8px 0;
+}
+
+.suboffice-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    line-height: 1.4;
+    display: block;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.suboffice-link:hover {
+    color: #ffeb3b; /* Yellow highlight on hover */
+    transform: translateY(-2px);
+}
+
+.office-title {
+    display: block;
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #8B0000;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    background-color: #f0f0f0;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-show {
+    display: flex !important;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header-grey h2 {
+        font-size: 1em;
+    }
+    
+    .suboffice-link {
+        font-size: 1em;
+    }
+}
+</style>
+
+<script>
+function viewPresidentSuboffices() {
+    const modal = document.getElementById('presidentSubofficesModal');
+    modal.classList.add('modal-show');
+}
+
+function closePresidentModal() {
+    const modal = document.getElementById('presidentSubofficesModal');
+    modal.classList.remove('modal-show');
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('presidentSubofficesModal');
+    if (event.target == modal) {
+        closePresidentModal();
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closePresidentModal();
+    }
+});
+</script>
+
+
+
+<!-- Add this at the bottom of your copy.php file, before the closing body tag -->
+<div class="vp-suboffices-modal" id="vicePresidentSubofficesModal">
+    <div class="modal-content">
+        <div class="modal-header-grey">
+            <h2>SUBOFFICES OF THE VICE PRESIDENTS:</h2>
+        </div>
+        <div class="modal-body">
+            <div class="vp-suboffice-list">
+                <?php
+                require_once '../classes/vicepresSubOffices.class.php';
+                
+                $vpSubOffices = new VicepresSubOffices();
+                $subOffices = $vpSubOffices->fetchAll();
+                
+                if ($subOffices) {
+                    // Group suboffices by VP
+                    $groupedOffices = array();
+                    foreach ($subOffices as $office) {
+                        $vpOffice = $office['office_of_vp_in'];
+                        if (!isset($groupedOffices[$vpOffice])) {
+                            $groupedOffices[$vpOffice] = array();
+                        }
+                        $groupedOffices[$vpOffice][] = $office;
+                    }
+                    
+                    // Display grouped suboffices
+                    foreach ($groupedOffices as $vpOffice => $offices) {
+                        echo '<div class="vp-group">';
+                        echo '<h3 class="vp-group-title">' . htmlspecialchars($vpOffice) . '</h3>';
+                        foreach ($offices as $office) {
+                            echo '<div class="vp-suboffice-item">';
+                            echo '<a href="../Offices/' . urlencode($office['office']) . '" class="vp-suboffice-link">';
+                            if (!empty($office['honorific_short'])) {
+                                echo htmlspecialchars($office['honorific_short']) . ' ';
+                            }
+                            echo htmlspecialchars($office['office_head']) . '<br>';
+                            echo '<span class="vp-office-title">' . htmlspecialchars($office['office']) . '</span>';
+                            echo '</a>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<div class="vp-suboffice-item">No sub-offices found</div>';
+                }
+                ?>
             </div>
         </div>
+        <span class="close-btn" onclick="closeVPModal()">&times;</span>
     </div>
 </div>
+
+
 </body>
+
 </html>

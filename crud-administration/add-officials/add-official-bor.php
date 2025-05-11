@@ -1,12 +1,14 @@
 <?php
 require_once '../../classes/bor.class.php';
 require_once '../../classes/honorifics.class.php';
+require_once '../../classes/designation_bor.class.php';
 
 $honorificsObj = new Honorifics();
+$designationBorObj = new DesignationBor();
 
 if(isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $title = $_POST['title'];
+    $title_id = $_POST['title_id']; // Changed from title to title_id
     $honorifics_id = $_POST['honorifics'];
     $rank = 0; // Default rank
     
@@ -19,7 +21,7 @@ if(isset($_POST['submit'])) {
     if(move_uploaded_file($tempname, $folder)) {
         $boardobj = new Board();
         
-        if ($boardobj->upload($name, $title, $file_name, $rank, $honorifics_id)) {
+        if ($boardobj->upload($name, $title_id, $file_name, $rank, $honorifics_id)) {
             echo "Uploaded successfully!";
             header('Location: ../../sample-admin/Home');
         } else {
@@ -54,23 +56,33 @@ if(isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
-    <label for="honorifics">Designation</label>
-    <select name="honorifics" id="honorifics" required>
-        <option value="">Select a designation</option>
-        <?php
-            $honorific = $honorificsObj->fetchHonorifics();
-            foreach ($honorific as $honorifics){
-        ?>
-            <option value="<?= $honorifics['id'] ?>"><?= htmlspecialchars($honorifics['name']) ?></option>
-        <?php
-            }
-        ?>
-    </select>
-</div>
+                <label for="honorifics">Honorifics</label>
+                <select name="honorifics" id="honorifics" required>
+                    <option value="">Select honorific</option>
+                    <?php
+                        $honorific = $honorificsObj->fetchHonorifics();
+                        foreach ($honorific as $honorifics){
+                    ?>
+                        <option value="<?= $honorifics['id'] ?>"><?= htmlspecialchars($honorifics['name']) ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
+            </div>
 
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" required>
+                <label for="title_id">Designation</label>
+                <select name="title_id" id="title_id" required>
+                    <option value="">Select designation</option>
+                    <?php
+                        $designations = $designationBorObj->fetchdesignation_bor();
+                        foreach ($designations as $designation){
+                    ?>
+                        <option value="<?= $designation['id'] ?>"><?= htmlspecialchars($designation['designation']) ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
             </div>
 
             <div>

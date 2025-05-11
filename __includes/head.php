@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><?php echo $page_title; ?></title>
 
-    <style>
-        <?php require_once '../vendor/bootstrap-5.3.3-dist/css/bootstrap.min.css'; ?>
-        <?php require_once '../vendor/datatable-2.1.8/datatables.min.css'; ?>
-        <?php require_once '../css/navbar.css'; ?>
-        <?php require_once '../css/fonts.css'; ?>
-        <?php require_once '../css/linkages.css'; ?>
-        <?php require_once '../css/administration.css'?>
-        <?php require_once '../css/style.css'?>
+    <!-- jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Your existing stylesheets -->
+    <link rel="stylesheet" href="../css/administration.css">
+    <link rel="stylesheet" href="../css/tables.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/style.css">
 
-    </style>
+    <!-- Your custom scripts -->
+    <script src="../js/administration.js"></script>
 
     <?php # Lateef Fonts ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">

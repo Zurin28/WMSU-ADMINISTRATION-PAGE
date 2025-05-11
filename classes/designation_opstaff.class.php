@@ -41,5 +41,27 @@ class DesignationOpstaff {
         return $data;
     }
 
+    function delete_designationOpstaff($id)
+    {
+        try {
+            $sql = "DELETE FROM designation_opstaff WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            return $query->execute();
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
+    }
 
+    function fetchRecord($id) {
+        $sql = "SELECT * FROM designation_opstaff WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':id', $id);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
 }
