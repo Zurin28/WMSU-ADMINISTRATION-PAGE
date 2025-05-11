@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="staticBackdropeditmember"
+  id="staticBackdropeditpage_linkvp"
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1"
@@ -20,7 +20,7 @@
           aria-label="Close"
         ></button>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" id="form-edit-member">
+      <form action="" method="post" enctype="multipart/form-data" id="form-edit-page_linkvp">
         <div class="modal-body">
           <div class="mb-2">
             <label for="name" class="form-label">Name</label>
@@ -37,24 +37,20 @@
           </div>
 
           <div class="mb-2">
-            <label for="designation" class="form-label">Designation</label>
-            <select class="form-select" id="designation" name="title_bor">
+            <label for="designation_vp" class="form-label">Designation</label>
+            <select class="form-select" id="designation_vp" name="designation_vp">
               <option value="">--Select--</option>
             </select>
             <div class="invalid-feedback"></div>
           </div>
 
           <div class="mb-2">
-            <label for="rank" class="form-label">Rank</label>
-            <input type="number" class="form-control" id="rank" name="rank" required />
+            <label for="page_link" class="form-label">Page Link</label>
+            <input type="text" class="form-control" id="page_link" name="page_link" required />
             <div class="invalid-feedback"></div>
           </div>
-          
-          <div class="mb-2">
-            <label for="image" class="form-label">Upload Image</label>
-            <input type="file" class="form-control" id="image" name="image" />
-            <div class="invalid-feedback"></div>
-          </div>
+
+          <input type="hidden" name="id" id="member-id">
         </div>
         <div class="modal-footer">
           <button
@@ -72,3 +68,5 @@
     </div>
   </div>
 </div>
+
+

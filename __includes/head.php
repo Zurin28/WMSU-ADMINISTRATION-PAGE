@@ -14,8 +14,7 @@
     
     <!-- Your existing stylesheets -->
     <link rel="stylesheet" href="../css/administration.css">
-    <link rel="stylesheet" href="../css/tables.css">
-    <link rel="stylesheet" href="../css/modal.css">
+
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- Your custom scripts -->

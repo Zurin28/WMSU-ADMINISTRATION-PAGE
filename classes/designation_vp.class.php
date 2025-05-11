@@ -64,4 +64,18 @@ class DesignationVp {
         }
         return $data;
     }
+
+    function edit($id, $designation)
+    {
+        try {
+            $sql = "UPDATE designation_vp SET designation = :designation WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            $query->bindParam(':designation', $designation);
+            return $query->execute();
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
+    }
 }

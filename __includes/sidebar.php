@@ -1,12 +1,57 @@
 <div class="sidebar flex-column flex-shrink-0">
 <img src="../ADMIN UI/imgs/WMSU-Logo.png" alt="WMSU Logo" class="sidebar-logo">
     <ul class="nav nav-pills flex-column mb-auto">
+
+
+    <!-- Home -->
         <li class="nav-item">
             <a href="Home" id="Home-link" class="nav-link">
                 <i class="bi bi-house"></i>
                 <span class="fs-6 ms-2">Homepage</span>
             </a>
         </li>
+    
+
+    <!-- Board of Regents -->
+        <li class="nav-item">
+            <a href="BoardOfRegents" id="Board-link" class="nav-link">
+                <i class="bi bi-people"></i>
+                <span class="fs-6 ms-2">Board of Regents</span>
+            </a>
+        </li>
+
+        <!-- Administrative Official -->
+        <li class="nav-item">
+            <a href="AdministrativeOfficial" id="Admin-link" class="nav-link">
+                <i class="bi bi-person-badge"></i>
+                <span class="fs-6 ms-2">Administrative Official</span>
+            </a>
+        </li>
+
+        <!-- Academic Deans -->
+        <li class="nav-item">
+            <a href="AcademicDeans" id="Deans-link" class="nav-link">
+                <i class="bi bi-mortarboard"></i>
+                <span class="fs-6 ms-2">Academic Deans</span>
+            </a>
+        </li>
+
+        <!-- Sub-offices -->
+        <li class="nav-item">
+            <a href="SubOffices" id="SubOffices-link" class="nav-link">
+                <i class="bi bi-diagram-3"></i>
+                <span class="fs-6 ms-2">Sub-offices</span>
+            </a>
+        </li>
+
+        <!-- Others -->
+        <li class="nav-item">
+            <a href="Others" id="Others-link" class="nav-link">
+                <i class="bi bi-three-dots"></i>
+                <span class="fs-6 ms-2">Others</span>
+            </a>
+        </li>
+
     </ul>
 </div>
 

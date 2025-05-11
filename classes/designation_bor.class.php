@@ -30,9 +30,10 @@ class DesignationBor {
         }
     }
 
+
     function fetchdesignation_bor()
     {
-        $sql = "SELECT * FROM designation_bor";
+        $sql = "SELECT * FROM designation_bor ORDER BY designation ASC;";
         $query = $this->db->connect()->prepare($sql);
         $data = null;
         if ($query->execute()) {
@@ -63,5 +64,18 @@ class DesignationBor {
             $data = $query->fetch(PDO::FETCH_ASSOC);
         }
         return $data;
+    }
+
+    function edit($id, $designation) {
+        try {
+            $sql = "UPDATE designation_bor SET designation = :designation WHERE id = :id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            $query->bindParam(':designation', $designation);
+            return $query->execute();
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
     }
 }

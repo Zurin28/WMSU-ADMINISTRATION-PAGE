@@ -1,12 +1,12 @@
 <?php
-$page_title = "WMSU - Home";
+$page_title = "WMSU - Academic Deans";
 
 require_once '../__includes/head.php';
 ?>
 
 <!-- Add these CSS links inside head.php or before closing head tag -->
 
-<body id="Home">
+<body id="AcademicDeans">
     <div class="wrapper">
         <?php
         require_once '../__includes/sidebar.php';
@@ -14,7 +14,7 @@ require_once '../__includes/head.php';
         <div class="content-page px-3">
             <?php
             // Add this to load the administration view
-            require_once '../crud-administration/view/view-home.php';
+            require_once '../crud-administration/view/view-AcademicDeans.php';
             ?>
         </div>
     </div>

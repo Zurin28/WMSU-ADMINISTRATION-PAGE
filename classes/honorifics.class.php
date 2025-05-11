@@ -9,7 +9,7 @@ class Honorifics {
         $this->db = new Database();
     }
 
-    function fetchall()
+    function fetchAll()
     {
         $sql = "SELECT * FROM honorifics ORDER BY name ASC;";
         $query = $this->db->connect()->prepare($sql);
