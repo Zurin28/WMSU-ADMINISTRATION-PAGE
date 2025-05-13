@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2025 at 09:45 AM
+-- Generation Time: May 13, 2025 at 05:52 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -139,7 +139,7 @@ INSERT INTO `associate_deans` (`id`, `name`, `title`, `honorifics_id`, `created_
 CREATE TABLE `board_of_regents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `title_bor` varchar(100) NOT NULL,
+  `title_id` int(100) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `rank` int(11) NOT NULL,
   `honorifics_id` int(100) NOT NULL,
@@ -151,19 +151,19 @@ CREATE TABLE `board_of_regents` (
 -- Dumping data for table `board_of_regents`
 --
 
-INSERT INTO `board_of_regents` (`id`, `name`, `title_bor`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(4, 'ALAN PETER S. CAYETANO', 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR', 'cayetano.jpg', 3, 8, '2025-03-24 02:24:46', '2025-04-24 16:39:57'),
-(5, 'Represented by:', 'ROLANDO L. MACASAET', 'macasaet-1.jpg', 4, 8, '2025-03-24 02:26:40', '2025-03-24 02:26:40'),
-(6, 'MARK O. GO', 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR', 'mark-ogo.jpg', 5, 8, '2025-03-24 02:27:16', '2025-03-24 02:27:16'),
-(7, 'Represented by:', 'EMMYLOU B. YANGA', 'yanga.jpg', 6, 8, '2025-03-24 02:27:49', '2025-03-24 02:27:49'),
-(8, 'MARIA FELICIDAD R. GUERRERO', 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS', 'guerrero.jpg', 7, 8, '2025-03-24 02:29:20', '2025-03-24 02:29:20'),
-(9, 'MARTIN A. WEE', 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR', 'martin-wee.jpg', 8, 8, '2025-03-24 02:29:49', '2025-03-24 02:29:49'),
-(10, 'INOCENTE P. LOCSON', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'LOCSON.jpg', 9, 8, '2025-03-24 02:30:07', '2025-03-24 02:30:07'),
-(11, 'JOSE L. LOBREGAT', 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR', 'lobregat.jpg', 10, 8, '2025-03-24 02:30:36', '2025-03-24 02:30:36'),
-(12, 'FLORENCIO M. LIONG, JR', 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR', 'mundoc_blank.jpg', 11, 8, '2025-03-24 02:31:18', '2025-03-24 02:31:18'),
-(13, 'ADRIAN P. SEMORLAN', 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR', 'semorlan.jpg', 12, 8, '2025-03-24 02:32:00', '2025-03-24 02:32:00'),
-(14, 'AHMAD G. MUNDOC', 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR', 'florencioblank.jpg', 13, 8, '2025-03-24 02:32:23', '2025-03-24 02:32:23'),
-(15, 'AL-GHANI D. MOHAMMAD', 'UNIVERSITY AND BOARD SECRETARY', 'MOHAMMAD.jpg', 14, 13, '2025-03-24 02:32:46', '2025-03-24 02:32:46');
+INSERT INTO `board_of_regents` (`id`, `name`, `title_id`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(4, 'ALAN PETER S. CAYETANO', 1, 'cayetano.jpg', 3, 8, '2025-03-23 18:24:46', '2025-05-11 09:55:36'),
+(5, 'Represented by:', 2, 'macasaet-1.jpg', 4, 8, '2025-03-23 18:26:40', '2025-03-23 18:26:40'),
+(6, 'MARK O. GO', 3, 'mark-ogo.jpg', 5, 8, '2025-03-23 18:27:16', '2025-03-23 18:27:16'),
+(7, 'Represented by:', 4, 'yanga.jpg', 6, 8, '2025-03-23 18:27:49', '2025-03-23 18:27:49'),
+(8, 'MARIA FELICIDAD R. GUERRERO', 5, 'guerrero.jpg', 7, 8, '2025-03-23 18:29:20', '2025-03-23 18:29:20'),
+(9, 'MARTIN A. WEE', 6, 'martin-wee.jpg', 8, 8, '2025-03-23 18:29:49', '2025-03-23 18:29:49'),
+(10, 'INOCENTE P. LOCSON', 7, 'LOCSON.jpg', 9, 8, '2025-03-23 18:30:07', '2025-03-23 18:30:07'),
+(11, 'JOSE L. LOBREGAT', 8, 'lobregat.jpg', 10, 8, '2025-03-23 18:30:36', '2025-03-23 18:30:36'),
+(12, 'FLORENCIO M. LIONG, JR', 9, 'mundoc_blank.jpg', 11, 8, '2025-03-23 18:31:18', '2025-03-23 18:31:18'),
+(13, 'ADRIAN P. SEMORLAN', 10, 'semorlan.jpg', 12, 8, '2025-03-23 18:32:00', '2025-03-23 18:32:00'),
+(14, 'AHMAD G. MUNDOC', 11, 'florencioblank.jpg', 13, 8, '2025-03-23 18:32:23', '2025-03-23 18:32:23'),
+(15, 'AL-GHANI D. MOHAMMAD', 12, 'MOHAMMAD.jpg', 14, 13, '2025-03-23 18:32:46', '2025-03-23 18:32:46');
 
 -- --------------------------------------------------------
 
@@ -254,6 +254,78 @@ INSERT INTO `coordinators` (`id`, `name`, `title`, `honorifics_id`, `created_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `designation_bor`
+--
+
+CREATE TABLE `designation_bor` (
+  `id` int(11) NOT NULL,
+  `designation` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `designation_bor`
+--
+
+INSERT INTO `designation_bor` (`id`, `designation`) VALUES
+(1, 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR'),
+(2, 'ROLANDO L. MACASAET'),
+(3, 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR'),
+(4, 'EMMYLOU B. YANGA'),
+(5, 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS'),
+(6, 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR'),
+(7, 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR'),
+(8, 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR'),
+(9, 'PRESIDENT, WMSU UNITED GENERAL ALUMNI ASSOCIATION, INC. MEMBER, WMSU-BOR'),
+(10, 'PRESIDENT, WMSU FACULTY UNION ASSOCIATION, INC MEMBER, WMSU-BOR'),
+(11, 'PRESIDENT, UNIVERSITY STUDENT COUNCIL MEMBER, WMSU-BOR'),
+(12, 'UNIVERSITY AND BOARD SECRETARY');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designation_opstaff`
+--
+
+CREATE TABLE `designation_opstaff` (
+  `id` int(11) NOT NULL,
+  `designation` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `designation_opstaff`
+--
+
+INSERT INTO `designation_opstaff` (`id`, `designation`) VALUES
+(4, 'Chief of Staff, Office of the President'),
+(5, 'Special Assistant to the President'),
+(6, 'Executive Assistant to the Office of the President'),
+(7, 'Executive Assistant for Special Academic Concerns at the Office of the President on concurrent as Un');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designation_vp`
+--
+
+CREATE TABLE `designation_vp` (
+  `id` int(11) NOT NULL,
+  `designation` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `designation_vp`
+--
+
+INSERT INTO `designation_vp` (`id`, `designation`) VALUES
+(1, 'Vice President for Academic Affairs'),
+(2, 'Vice President for Research Extension Services & External Linkages'),
+(3, 'Vice President for Administration and Finance'),
+(4, 'Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair'),
+(5, 'Vice President for Student Affairs and Services in concurrent capacity as Director of Special Progra');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `directors`
 --
 
@@ -273,7 +345,7 @@ CREATE TABLE `directors` (
 INSERT INTO `directors` (`id`, `name`, `title`, `honorifics_id`, `created_at`, `updated_at`) VALUES
 (2, 'Leonilo B. Abella', 'Director, WESMAARRDEC Consortium', 1, '2025-03-24 18:44:54', '2025-04-16 08:25:53'),
 (3, 'Reynante E. Autida', 'Director, Research Development &amp;amp; Eval. Center', 1, '2025-03-24 18:45:20', '2025-04-16 08:26:08'),
-(4, 'Joselito R. Custodio', 'OIC – Director, Office of the Center for Continuing Education', 2, '2025-03-24 18:45:43', '2025-03-24 18:45:43'),
+(4, 'Joselito R. Custodio', 'OIC – Director, Office of the Center for Continuing Education', 2, '2025-03-24 18:45:43', '2025-04-28 18:56:25'),
 (5, 'Mark L. Flores', 'Director, Data Protection and IT Security Officer', 3, '2025-03-24 18:46:09', '2025-03-24 18:46:09'),
 (6, 'Ferdinand S. Guardo', 'Director, Management Information Systems & Technology Office', 3, '2025-03-24 18:46:38', '2025-03-24 18:46:38'),
 (7, 'Al-Rashid T. Jama', 'Director, University Disaster Risk Reduction Management Office', 4, '2025-03-24 18:47:02', '2025-03-24 18:47:02'),
@@ -456,7 +528,7 @@ INSERT INTO `managers` (`id`, `name`, `title`, `honorifics_id`, `created_at`, `u
 CREATE TABLE `opstaff` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
+  `title_id` int(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -467,11 +539,11 @@ CREATE TABLE `opstaff` (
 -- Dumping data for table `opstaff`
 --
 
-INSERT INTO `opstaff` (`id`, `name`, `title`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Berhana I. Flores', 'Chief of Staff, Office of the President', 'chief-of-staff', 1, '2025-03-24 18:41:54', '2025-04-16 14:12:54'),
-(4, 'Darlyn P. Flores', 'Special Assistant to the President', 'special-assistant-to-president', 2, '2025-03-24 18:42:32', '2025-03-24 18:42:32'),
-(5, 'Aldrin S. Valerio', 'Executive Assistant to the Office of the President', 'executive-assistant-to-president', 4, '2025-03-24 18:43:12', '2025-03-24 18:43:12'),
-(6, 'Shamir R. Kassim', 'University Curriculum Chair/Executive Assistant for Special Academic Affairs Concerns', 'university-curriculum-chair', 1, '2025-03-24 18:44:00', '2025-03-24 18:44:00');
+INSERT INTO `opstaff` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(3, 'Berhana I. Flores', 4, 'chief-of-staff', 1, '2025-03-24 10:41:54', '2025-05-11 08:42:46'),
+(4, 'Darlyn P. Flores', 5, 'special-assistant-to-president', 2, '2025-03-24 10:42:32', '2025-03-24 10:42:32'),
+(5, 'Aldrin S. Valerio', 6, 'executive-assistant-to-president', 4, '2025-03-24 10:43:12', '2025-03-24 10:43:12'),
+(6, 'Shamir R. Kassim', 7, 'university-curriculum-chair', 1, '2025-03-24 10:44:00', '2025-03-24 10:44:00');
 
 -- --------------------------------------------------------
 
@@ -536,7 +608,7 @@ CREATE TABLE `page_description` (
 --
 
 INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
-(2, 'ADMINISTRATIVE OFFICIALS', 'wada');
+(2, 'ADMINISTRATIVE OFFICIALS', 'wadsa');
 
 -- --------------------------------------------------------
 
@@ -691,7 +763,7 @@ INSERT INTO `university_board_secretary` (`id`, `name`, `title`, `honorifics_id`
 CREATE TABLE `vice_presidents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
+  `title_id` int(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -702,12 +774,12 @@ CREATE TABLE `vice_presidents` (
 -- Dumping data for table `vice_presidents`
 --
 
-INSERT INTO `vice_presidents` (`id`, `name`, `title`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Nursia M. Barjose', 'Vice President for Academic Affairs', 'ovp-for-academic-affair', 1, '2025-03-24 18:37:03', '2025-04-16 14:07:08'),
-(4, 'Joel G. Fernando', 'Vice President for Research Extension Services &amp; External Linkages', 'ovp-for-research-and-extension', 1, '2025-03-24 18:38:20', '2025-04-16 08:39:50'),
-(5, 'Joselito D. Madroñal', 'Vice President for Administration and Finance', 'ovp-for-administrative-and-finance', 1, '2025-03-24 18:39:07', '2025-04-16 08:39:57'),
-(6, 'Teresita A. Narvaez', 'Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair', 'ovp-for-resource-generation', 1, '2025-03-24 18:39:58', '2025-04-16 08:40:03'),
-(7, 'Fredelino M. San Juan', 'Vice President for Student Affairs and Services in concurrent capacity as Director of Special Progra', 'ovp-for-student-affairs-and-services', 1, '2025-03-24 18:40:52', '2025-04-16 08:40:12');
+INSERT INTO `vice_presidents` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(3, 'Nursia M. Barjose', 1, 'ovp-for-academic-affair', 1, '2025-03-24 10:37:03', '2025-05-11 08:11:39'),
+(4, 'Joel G. Fernando', 2, 'ovp-for-research-and-extension', 1, '2025-03-24 10:38:20', '2025-04-16 00:39:50'),
+(5, 'Joselito D. Madroñal', 3, 'ovp-for-administrative-and-finance', 1, '2025-03-24 10:39:07', '2025-04-16 00:39:57'),
+(6, 'Teresita A. Narvaez', 4, 'ovp-for-resource-generation', 1, '2025-03-24 10:39:58', '2025-04-16 00:40:03'),
+(7, 'Fredelino M. San Juan', 5, 'ovp-for-student-affairs-and-services', 1, '2025-03-24 10:40:52', '2025-04-16 00:40:12');
 
 -- --------------------------------------------------------
 
@@ -761,7 +833,8 @@ ALTER TABLE `associate_deans`
 ALTER TABLE `board_of_regents`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rank` (`rank`),
-  ADD KEY `fk_honorifics` (`honorifics_id`);
+  ADD KEY `fk_honorifics` (`honorifics_id`),
+  ADD KEY `fk_designation_bor` (`title_id`);
 
 --
 -- Indexes for table `campus_administrators`
@@ -783,6 +856,24 @@ ALTER TABLE `chairpersons`
 ALTER TABLE `coordinators`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_honorifics_coordinators` (`honorifics_id`);
+
+--
+-- Indexes for table `designation_bor`
+--
+ALTER TABLE `designation_bor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `designation_opstaff`
+--
+ALTER TABLE `designation_opstaff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `designation_vp`
+--
+ALTER TABLE `designation_vp`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `directors`
@@ -829,7 +920,8 @@ ALTER TABLE `managers`
 --
 ALTER TABLE `opstaff`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_honorifics_opstaff` (`honorifics_id`);
+  ADD KEY `fk_honorifics_opstaff` (`honorifics_id`),
+  ADD KEY `fk_title_id_opstaff` (`title_id`);
 
 --
 -- Indexes for table `organizational_chart`
@@ -891,7 +983,8 @@ ALTER TABLE `university_board_secretary`
 --
 ALTER TABLE `vice_presidents`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fkkkk_honorifics` (`honorifics_id`);
+  ADD KEY `fkkkk_honorifics` (`honorifics_id`),
+  ADD KEY `fk_designation_vp` (`title_id`);
 
 --
 -- Indexes for table `vice_president_suboffices`
@@ -947,6 +1040,24 @@ ALTER TABLE `coordinators`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `designation_bor`
+--
+ALTER TABLE `designation_bor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `designation_opstaff`
+--
+ALTER TABLE `designation_opstaff`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `designation_vp`
+--
+ALTER TABLE `designation_vp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
@@ -968,7 +1079,7 @@ ALTER TABLE `graduate_school_head`
 -- AUTO_INCREMENT for table `honorifics`
 --
 ALTER TABLE `honorifics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `ils_principals`
@@ -1074,6 +1185,7 @@ ALTER TABLE `associate_deans`
 -- Constraints for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
+  ADD CONSTRAINT `fk_designation_bor` FOREIGN KEY (`title_id`) REFERENCES `designation_bor` (`id`),
   ADD CONSTRAINT `fk_honorifics` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
 
 --
@@ -1122,7 +1234,8 @@ ALTER TABLE `managers`
 -- Constraints for table `opstaff`
 --
 ALTER TABLE `opstaff`
-  ADD CONSTRAINT `fk_honorifics_opstaff` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
+  ADD CONSTRAINT `fk_honorifics_opstaff` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`),
+  ADD CONSTRAINT `fk_title_id_opstaff` FOREIGN KEY (`title_id`) REFERENCES `designation_opstaff` (`id`);
 
 --
 -- Constraints for table `other_services`
@@ -1164,6 +1277,7 @@ ALTER TABLE `university_board_secretary`
 -- Constraints for table `vice_presidents`
 --
 ALTER TABLE `vice_presidents`
+  ADD CONSTRAINT `fk_designation_vp` FOREIGN KEY (`title_id`) REFERENCES `designation_vp` (`id`),
   ADD CONSTRAINT `fkkkk_honorifics` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
 
 --
