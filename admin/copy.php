@@ -895,7 +895,6 @@
 
 
 <h2 class="section-header">Office of the President Staff</h2>
-
 <?php
 // Include the necessary class and fetch data
 require_once '../classes/OpStaff.class.php';
@@ -918,6 +917,7 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
         </div>
     </div>
 <?php endforeach; ?>
+
 </div>
 
         
