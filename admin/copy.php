@@ -647,7 +647,7 @@
     // Get the most recent organizational chart (assuming the latest one should be displayed)
     $latestOrgChart = !empty($orgCharts) ? $orgCharts[count($orgCharts) - 1] : null;
     ?>
-
+    
     <!-- Organizational Chart Section -->
     <div class="containerwhitefiller">
     <h2 id="org-chart" style="text-align:center; background-color: white; color:#7C0902; padding-bottom: 30px; padding-top: 30px; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
@@ -1534,6 +1534,7 @@ document.addEventListener('keydown', function(event) {
 </div>
 
 
-</body>
 
+</body>
+<footer><?php include_once '../__includes/footer_fragment.php'; ?></footer>
 </html>
