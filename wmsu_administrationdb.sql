@@ -153,9 +153,7 @@ CREATE TABLE `board_of_regents` (
 
 INSERT INTO `board_of_regents` (`id`, `name`, `title_id`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
 (4, 'ALAN PETER S. CAYETANO', 1, 'cayetano.jpg', 3, 8, '2025-03-23 18:24:46', '2025-05-11 09:55:36'),
-(5, 'Represented by:', 2, 'macasaet-1.jpg', 4, 8, '2025-03-23 18:26:40', '2025-03-23 18:26:40'),
 (6, 'MARK O. GO', 3, 'mark-ogo.jpg', 5, 8, '2025-03-23 18:27:16', '2025-03-23 18:27:16'),
-(7, 'Represented by:', 4, 'yanga.jpg', 6, 8, '2025-03-23 18:27:49', '2025-03-23 18:27:49'),
 (8, 'MARIA FELICIDAD R. GUERRERO', 5, 'guerrero.jpg', 7, 8, '2025-03-23 18:29:20', '2025-03-23 18:29:20'),
 (9, 'MARTIN A. WEE', 6, 'martin-wee.jpg', 8, 8, '2025-03-23 18:29:49', '2025-03-23 18:29:49'),
 (10, 'INOCENTE P. LOCSON', 7, 'LOCSON.jpg', 9, 8, '2025-03-23 18:30:07', '2025-03-23 18:30:07'),
@@ -268,9 +266,7 @@ CREATE TABLE `designation_bor` (
 
 INSERT INTO `designation_bor` (`id`, `designation`) VALUES
 (1, 'CHAIRMAN, SENATE COMMITTEE ON HIGHER TECHNICAL AND VOCATIONAL EDUCATIONS, MEMBER – WMSU-BOR'),
-(2, 'ROLANDO L. MACASAET'),
 (3, 'CHAIRMAN, HOUSE COMMITTEE ON HIGHER AND TECHNICAL EDUCATION, MEMBER – WMSU-BOR'),
-(4, 'EMMYLOU B. YANGA'),
 (5, 'OFFICER-IN-CHARGE REGIONAL DIRECTOR NEDA IX WMSU BOARD OF REGENTS'),
 (6, 'REGIONAL DIRECTOR, DOST IX MEMBER, WMSU-BOR'),
 (7, 'PRIVATE SECTOR REPRESENTATIVE MEMBER, WMSU-BOR'),

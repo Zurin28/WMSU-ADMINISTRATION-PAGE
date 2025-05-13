@@ -70,6 +70,20 @@ if (url.endsWith("Home")) {
       success: function (response) {
         $(".content-page").html(response); // Load the response into the content area
 
+        document.getElementById("category-filter").addEventListener("change", function() {
+    const selectedCategory = this.value.toLowerCase(); // e.g., "pres"
+    const allRows = document.querySelectorAll(".official-row");
+
+    allRows.forEach(row => {
+        if (!selectedCategory || row.classList.contains("category-" + selectedCategory)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
+
+
         $(".edit-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
           editPresofficial(this.dataset.id); // Call function to edit president
@@ -452,10 +466,21 @@ if (url.endsWith("Home")) {
       success: function (data) {
         // Clear existing options and add a default "Select" option
         $("#honorifics").empty().append('<option value="">--Select--</option>');
+        $("#representedby_honorifics").empty().append('<option value="">--Select--</option>');
 
         // Append each category to the select dropdown
         $.each(data, function (index, honorifics) {
           $("#honorifics").append(
+            $("<option>", {
+              value: honorifics.id, // Value attribute
+              text: honorifics.short // Displayed text
+
+            })
+          );
+        });
+
+        $.each(data, function (index, honorifics) {
+          $("#representedby_honorifics").append(
             $("<option>", {
               value: honorifics.id, // Value attribute
               text: honorifics.short // Displayed text
@@ -579,6 +604,8 @@ if (url.endsWith("Home")) {
         $("#name").val(member.name);
         $("#honorifics").val(member.honorifics_id).trigger("change");
         $("#designation_bor").val(member.title_id).trigger("change");
+        $("#representedby_name").val(member.representedby_name);
+        $("#representedby_honorifics").val(member.representedby_honorifics).trigger("change");
         $("#rank").val(member.rank);
       },
       error: function (xhr, status, error) {
