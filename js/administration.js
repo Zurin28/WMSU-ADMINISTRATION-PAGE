@@ -10,12 +10,11 @@ $(document).ready(function () {
   });
 
   // Add this event handler for organizational chart edit button
-  $(document).on('click', '.edit-organizationalChart', function(e) {
-    e.preventDefault();
-    const id = $(this).data('id');
-    editorganizationalChart(id);
-  });
 
+$("#Home-link").on("click", function (e) {
+    e.preventDefault();
+    viewHome();
+  });
 $("#Board-link").on("click", function (e) {
     e.preventDefault();
     viewBoardOfRegents();
@@ -327,7 +326,7 @@ if (url.endsWith("Home")) {
   function viewHome() {
     $.ajax({
       type: "GET", // Use GET request
-      url: "../crud-administration/view/view-home.php", // URL for products view
+      url: "../crud-administration/view-home.php", // URL for products view
       dataType: "html", // Expect HTML response
       success: function (response) {
         $(".content-page").html(response); // Load the response into the content area

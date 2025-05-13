@@ -14,7 +14,7 @@ require_once '../__includes/head.php';
         <div class="content-page px-3">
             <?php
             // Add this to load the administration view
-            require_once '../crud-administration/view/view-home.php';
+            require_once '../crud-administration/view-home.php';
             ?>
         </div>
     </div>
