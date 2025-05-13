@@ -579,6 +579,7 @@
     </style>
     <script src="../js/smooth-scroll.js" defer></script>
 </head>
+<header> </header>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
 
