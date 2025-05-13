@@ -74,7 +74,7 @@
   <div class="container">
     <div class="back">
     <span>
-  <a href="../../sample-admin/administration" class="back-link">
+  <a href="../../sample-admin/Home" class="back-link">
     <img src="../../images/Ellipse7.svg" alt="Back">
   </a>
 </span>
