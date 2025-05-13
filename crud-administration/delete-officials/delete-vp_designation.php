@@ -2,7 +2,6 @@
 require_once '../../classes/designation_vp.class.php';
 
 $designationVp = new DesignationVp();
-
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id = $_POST['id'];
 
@@ -16,4 +15,4 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Designation ID is required']);
-} 
+}

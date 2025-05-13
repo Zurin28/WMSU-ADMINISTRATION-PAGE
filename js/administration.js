@@ -16,58 +16,60 @@ $(document).ready(function () {
     editorganizationalChart(id);
   });
 
-  // Event listener for the dashboard link
-  $("#Home-link").on("click", function (e) {
-    e.preventDefault(); // Prevent default behavior
-    viewHome(); // Call the function to load analytics
-  });
+$("#Board-link").on("click", function (e) {
+    e.preventDefault();
+    viewBoardOfRegents();
+});
 
-  // Determine which page to load based on the current URL
-  let url = window.location.href;
-  if (url.endsWith("Home")) {
-    $("#Home-link").trigger("click");
-  } else {
-    $("#Home-link").trigger("click");
-  }
+$("#Admin-link").on("click", function (e) {
+    e.preventDefault();
+    viewAdministrativeOfficial();
+});
 
-  // Function to load products view
-  function viewHome() {
+$("#Deans-link").on("click", function (e) {
+    e.preventDefault();
+    viewAcademicDeans();
+});
+
+$("#SubOffices-link").on("click", function (e) {
+    e.preventDefault();
+    viewSubOffices();
+});
+
+$("#Others-link").on("click", function (e) {
+    e.preventDefault();
+    viewOthers();
+});
+
+// Determine which view to show based on the URL
+let url = window.location.href;
+
+if (url.endsWith("Home")) {
+    $("#Home-link").trigger("click");
+} else if (url.endsWith("BoardOfRegents")) {
+    $("#Board-link").trigger("click");
+} else if (url.endsWith("AdministrativeOfficial")) {
+    $("#Admin-link").trigger("click");
+} else if (url.endsWith("AcademicDeans")) {
+    $("#Deans-link").trigger("click");
+} else if (url.endsWith("SubOffices")) {
+    $("#SubOffices-link").trigger("click");
+} else if (url.endsWith("Others")) {
+    $("#Others-link").trigger("click");
+} else {
+    // Default fallback if URL doesn't match any — loads Home
+    $("#Home-link").trigger("click");
+}
+
+
+
+      function viewAdministrativeOfficial() {
     $.ajax({
       type: "GET", // Use GET request
-      url: "../crud-administration/view-administration-copy.php", // URL for products view
+      url: "../crud-administration/view/view-AdministrativeOfficial.php", // URL for products view
       dataType: "html", // Expect HTML response
       success: function (response) {
         $(".content-page").html(response); // Load the response into the content area
-
-        // Edit member
-        $(".edit-member").on("click", function (e) {
-          e.preventDefault();
-          const id = this.getAttribute('data-id');
-          const type = this.getAttribute('data-type');
-
-          if (type === "president") {
-            editPresofficial(id);
-          } else if (type === "board") {
-            editMember(id);
-          } else {
-            console.error("Invalid type");
-          }
-        });
-
-        // Delete member
-        $(".delete-member").on("click", function (e) {
-          e.preventDefault();
-          const id = this.dataset.id;
-          const type = this.dataset.type;
-
-          if (type === "president") {
-            deletingPresofficial(id);
-          } else if (type === "board") {
-            deletingMember(id);
-          } else {
-            console.error("Invalid type");
-          }
-        });
 
         $(".edit-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
@@ -206,7 +208,7 @@ $(document).ready(function () {
 
         $(".delete-sectionchiefs").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
-          deletesectionChiefs(this.dataset.id); // Call function to delete section chief
+          deletingsectionChiefs(this.dataset.id); // Call function to delete section chief
         });
 
         $(".edit-otherservices").on("click", function (e) {
@@ -219,25 +221,18 @@ $(document).ready(function () {
           deletingotherServices(this.dataset.id); // Call function to delete other services
         });
 
-        $(".edit-presSubOffices").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          editpresSubOffices(this.dataset.id); // Call function to edit president sub office
-        });
 
-        $(".delete-presSubOffices").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          deletingpresSubOffices(this.dataset.id); // Call function to delete president sub office
-        });
+      },
+    });
+  }
 
-        $(".edit-VicepresSubOffices").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          editVicepresSubOffices(this.dataset.id); // Call function to edit vice president sub office
-        });
-
-        $(".delete-VicepresSubOffices").on("click", function (e) {
-          e.preventDefault(); // Prevent default behavior
-          deletingVicepresSubOffices(this.dataset.id); // Call function to delete vice president sub office
-        });
+        function viewAcademicDeans() {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/view/view-AcademicDeans.php", // URL for products view
+      dataType: "html", // Expect HTML response
+      success: function (response) {
+        $(".content-page").html(response); // Load the response into the content area
 
         $(".edit-academicDeans").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
@@ -268,6 +263,75 @@ $(document).ready(function () {
           e.preventDefault(); // Prevent default behavior
           deletingexternalStudiesUnits(this.dataset.id); // Call function to delete external studies unit
         });
+        
+      },
+    });
+  }
+
+      function viewBoardOfRegents() {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/view/view-BoardOfRegents.php", // URL for products view
+      dataType: "html", // Expect HTML response
+      success: function (response) {
+        $(".content-page").html(response); // Load the response into the content area
+         // Edit member
+        $(".edit-member").on("click", function (e) {
+          e.preventDefault();
+          const id = this.getAttribute('data-id');
+          const type = this.getAttribute('data-type');
+
+          if (type === "president") {
+            editPresofficial(id);
+          } else if (type === "board") {
+            editMember(id);
+          } else {
+            console.error("Invalid type");
+          }
+        });
+
+        // Delete member
+        $(".delete-member").on("click", function (e) {
+          e.preventDefault();
+          const id = this.dataset.id;
+          const type = this.dataset.type;
+
+          if (type === "president") {
+            deletingPresofficial(id);
+          } else if (type === "board") {
+            deletingMember(id);
+          } else {
+            console.error("Invalid type");
+          }
+        });
+
+        $(".edit-pres").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editPresofficial(this.dataset.id); // Call function to edit president
+        });
+
+        $(".delete-pres").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingPresofficial(this.dataset.id); // Call function to delete president
+        });
+
+
+        
+      },
+    });
+  }
+
+
+
+  // Function to load products view
+  function viewHome() {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/view/view-home.php", // URL for products view
+      dataType: "html", // Expect HTML response
+      success: function (response) {
+        $(".content-page").html(response); // Load the response into the content area
+
 
         $(".edit-organizationalChart").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
@@ -277,6 +341,59 @@ $(document).ready(function () {
         $(".delete-organizationalChart").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
           deletingorganizationalChart(this.dataset.id); // Call function to delete organizational chart
+        });
+
+      },
+    });
+  }
+
+    // Function to load products view
+  function viewOthers() {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/view/view-Others.php", // URL for products view
+      dataType: "html", // Expect HTML response
+      success: function (response) {
+        $(".content-page").html(response); // Load the response into the content area
+
+        $(".edit-honorifics").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          edithonorifics(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-honorifics").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletinghonorifics(this.dataset.id); // Call function to delete organizational chart
+        });
+
+        $(".edit-bor_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editbor_designation(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-bor_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingbor_designation(this.dataset.id); // Call function to delete organizational chart
+        });
+
+        $(".edit-vp_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editvp_designation(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-vp_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingvp_designation(this.dataset.id); // Call function to delete organizational chart
+        });
+
+        $(".edit-opstaff_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editopstaff_designation(this.dataset.id); // Call function to edit organizational chart
+        });
+
+        $(".delete-opstaff_designation").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingopstaff_designation(this.dataset.id); // Call function to delete organizational chart
         });
 
         $(".edit-pageDescription").on("click", function (e) {
@@ -289,6 +406,40 @@ $(document).ready(function () {
           deletingpageDescription(this.dataset.id); // Call function to delete organizational chart
         });
 
+      },
+    });
+  }
+
+          function viewSubOffices() {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/view/view-SubOffices.php", // URL for products view
+      dataType: "html", // Expect HTML response
+      success: function (response) {
+        $(".content-page").html(response); // Load the response into the content area
+ 
+        $(".edit-presSubOffices").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editpresSubOffices(this.dataset.id); // Call function to edit president sub office
+        });
+
+        $(".delete-presSubOffices").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingpresSubOffices(this.dataset.id); // Call function to delete president sub office
+        });
+
+        $(".edit-VicepresSubOffices").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          editVicepresSubOffices(this.dataset.id); // Call function to edit vice president sub office
+        });
+
+        $(".delete-VicepresSubOffices").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior
+          deletingVicepresSubOffices(this.dataset.id); // Call function to delete vice president sub office
+        });
+
+
+        
       },
     });
   }
@@ -318,6 +469,8 @@ $(document).ready(function () {
     });
   }
 
+  
+
   // Function to fetch honorifics
   function fetchDesignationBor(callback) {
     $.ajax({
@@ -326,14 +479,14 @@ $(document).ready(function () {
       dataType: "json", // Expect JSON response
       success: function (data) {
         // Clear existing options and add a default "Select" option
-        $("#designation").empty().append('<option value="">--Select--</option>');
+        $("#designation_bor").empty().append('<option value="">--Select--</option>');
 
         // Append each category to the select dropdown
-        $.each(data, function (index, designation) {
-          $("#designation").append(
+        $.each(data, function (index, designation_bor) {
+          $("#designation_bor").append(
             $("<option>", {
-              value: designation.id, // Value attribute
-              text: designation.designation // Displayed text
+              value: designation_bor.id, // Value attribute
+              text: designation_bor.designation // Displayed text
 
             })
           );
@@ -343,29 +496,53 @@ $(document).ready(function () {
     });
   }
 
-  // Function to fetch honorifics
-  function fetchDesignationVp() {
-    $.ajax({
-      url: "../crud-administration/fetching/fetch-designation_vp.php", // URL for fetching honorifics
-      type: "GET", // Use GET request
-      dataType: "json", // Expect JSON response
-      success: function (data) {
-        // Clear existing options and add a default "Select" option
-        $("#designation").empty().append('<option value="">--Select--</option>');
+ // Function to fetch honorifics
+     function fetchDesignationVp() {
+      $.ajax({
+        url: "../crud-administration/fetching/fetch-designation_vp.php", // URL for fetching honorifics
+        type: "GET", // Use GET request
+        dataType: "json", // Expect JSON response
+        success: function (data) {
+          // Clear existing options and add a default "Select" option
+          $("#designation_vp").empty().append('<option value="">--Select--</option>');
+  
+          // Append each category to the select dropdown
+          $.each(data, function (index, designation_vp) {
+            $("#designation_vp").append(
+              $("<option>", {
+                value: designation_vp.id, // Value attribute
+                text: designation_vp.designation // Displayed text
+  
+              })
+            );
+          });
+        },
+      });
+    }
 
-        // Append each category to the select dropdown
-        $.each(data, function (index, designation) {
-          $("#designation").append(
-            $("<option>", {
-              value: designation.id, // Value attribute
-              text: designation.designation // Displayed text
-
-            })
-          );
-        });
-      },
-    });
-  }
+    // Function to fetch honorifics
+    function fetchDesignationOpstaff() {
+      $.ajax({
+        url: "../crud-administration/fetching/fetch-designation_opstaff.php", // URL for fetching honorifics
+        type: "GET", // Use GET request
+        dataType: "json", // Expect JSON response
+        success: function (data) {
+          // Clear existing options and add a default "Select" option
+          $("#designation_opstaff").empty().append('<option value="">--Select--</option>');
+  
+          // Append each category to the select dropdown
+          $.each(data, function (index, designation_opstaff) {
+            $("#designation_opstaff").append(
+              $("<option>", {
+                value: designation_opstaff.id, // Value attribute
+                text: designation_opstaff.designation // Displayed text
+  
+              })
+            );
+          });
+        },
+      });
+    }
 
   // Function to show the edit modal
   function editMember(id) {
@@ -376,12 +553,10 @@ $(document).ready(function () {
       success: function (view) {
         $(".modal-container").empty().html(view);
 
-        // Chain the AJAX calls
-        fetchHonorifics(function () {
-          fetchDesignationBor(function () {
-            fetchRecordMember(id);
-          });
-        });
+        fetchHonorifics(); // Fetch honorifics
+        fetchDesignationBor(); // Fetch designation
+        fetchRecordMember(id);
+
 
         $("#staticBackdropeditmember").modal("show");
         $("#staticBackdropeditmember").attr("data-id", id);
@@ -404,7 +579,7 @@ $(document).ready(function () {
         console.log(member); // <-- Add this line
         $("#name").val(member.name);
         $("#honorifics").val(member.honorifics_id).trigger("change");
-        $("#designation").val(member.title_id).trigger("change");
+        $("#designation_bor").val(member.title_id).trigger("change");
         $("#rank").val(member.rank);
       },
       error: function (xhr, status, error) {
@@ -429,7 +604,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditmember").modal("hide");
           $("#form-edit-member")[0].reset();
-          viewHome();
+          viewBoardOfRegents(); // Reload accounts after update
         }
       },
     });
@@ -465,7 +640,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewBoardOfRegents(); // Reload accounts after update
         }
       },
       error: function () {
@@ -529,7 +704,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpres").modal("hide");
           $("#form-edit-pres")[0].reset();
-          viewHome();
+          viewAdministrativeOfficial
         }
       },
     });
@@ -565,7 +740,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -578,7 +753,7 @@ $(document).ready(function () {
   function editVicePresofficial(id) {
     $.ajax({
       type: "GET", // Use GET request
-      url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
+      url: "../crud-administration/edit-officials/edit-w-page_link-vp.html", // URL to get product data
       dataType: "html", // Expect JSON response
       success: function (view) {
         fetchHonorifics(); // Fetch honorifics
@@ -586,11 +761,11 @@ $(document).ready(function () {
         fetchRecordVicePresofficial(id);
         // Assuming 'view' contains the new content you want to display
         $(".modal-container").empty().html(view); // Load the modal view
-        $("#staticBackdropeditpage_link").modal("show"); // Show the modal
-        $("#staticBackdropeditpage_link").attr("data-id", id);
+        $("#staticBackdropeditpage_linkvp").modal("show"); // Show the modal
+        $("#staticBackdropeditpage_linkvp").attr("data-id", id);
 
         // Event listener for the add product form submission
-        $("#form-edit-page_link").on("submit", function (e) {
+        $("#form-edit-page_linkvp").on("submit", function (e) {
           e.preventDefault(); // Prevent default form submission
           updateVicePresofficial(id); // Call function to save product
         });
@@ -606,7 +781,7 @@ $(document).ready(function () {
       success: function (VicePresofficial) {
         $("#name").val(VicePresofficial.name);
         $("#honorifics").val(VicePresofficial.honorifics_id).trigger("change"); // Set the selected honorifics
-        $("#designation").val(VicePresofficial.title_id).trigger("change"); // Set the selected honorifics
+        $("#designation_vp").val(VicePresofficial.title_id).trigger("change"); // Set the selected honorifics
         $("#page_link").val(VicePresofficial.page_link);
       },
     });
@@ -621,9 +796,9 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          $("#staticBackdropeditpage_link").modal("hide");
+          $("#staticBackdropeditpage_linkvp").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -659,7 +834,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -672,18 +847,19 @@ $(document).ready(function () {
   function editopstaffs(id) {
     $.ajax({
       type: "GET", // Use GET request
-      url: "../crud-administration/edit-officials/edit-w-page_link.html", // URL to get product data
+      url: "../crud-administration/edit-officials/edit-w-page_link-opstaff.html", // URL to get product data
       dataType: "html", // Expect JSON response
       success: function (view) {
         fetchHonorifics(); // Fetch honorifics
+        fetchDesignationOpstaff(); // Fetch designation
         fetchRecordopstaffs(id);
         // Assuming 'view' contains the new content you want to display
         $(".modal-container").empty().html(view); // Load the modal view
-        $("#staticBackdropeditpage_link").modal("show"); // Show the modal
-        $("#staticBackdropeditpage_link").attr("data-id", id);
+        $("#staticBackdropeditpage_linkopstaff").modal("show"); // Show the modal
+        $("#staticBackdropeditpage_linkopstaff").attr("data-id", id);
 
         // Event listener for the add product form submission
-        $("#form-edit-page_link").on("submit", function (e) {
+        $("#form-edit-page_linkopstaff").on("submit", function (e) {
           e.preventDefault(); // Prevent default form submission
           updateopstaffs(id); // Call function to save product
         });
@@ -698,6 +874,7 @@ $(document).ready(function () {
       dataType: "json", // Expect JSON response
       success: function (opstaffs) {
         $("#name").val(opstaffs.name);
+        $("#designation_opstaff").val(opstaffs.title_id).trigger("change"); // Set the selected honorifics
         $("#honorifics").val(opstaffs.honorifics_id).trigger("change"); // Set the selected honorifics
         $("#title").val(opstaffs.title);
         $("#page_link").val(opstaffs.page_link);
@@ -714,9 +891,9 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          $("#staticBackdropeditpage_link").modal("hide");
+          $("#staticBackdropeditpage_linkopstaff").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -752,7 +929,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -808,7 +985,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -844,7 +1021,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -900,7 +1077,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -936,7 +1113,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -992,7 +1169,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1028,7 +1205,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1084,7 +1261,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1120,7 +1297,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1176,7 +1353,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1212,7 +1389,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1268,7 +1445,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1304,7 +1481,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1360,7 +1537,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1396,7 +1573,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1452,7 +1629,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1488,7 +1665,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1544,7 +1721,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1580,7 +1757,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1636,7 +1813,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1672,7 +1849,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1728,7 +1905,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1764,7 +1941,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1820,7 +1997,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
     });
@@ -1856,7 +2033,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAdministrativeOfficial(); // Reload accounts after update
         }
       },
       error: function () {
@@ -1912,7 +2089,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpressuboffice").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewSubOffices(); // Reload accounts after update
         }
       },
     });
@@ -1948,7 +2125,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewSubOffices(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2005,7 +2182,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditvicepressuboffice").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewSubOffices(); // Reload accounts after update
         }
       },
     });
@@ -2041,7 +2218,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewSubOffices(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2097,7 +2274,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
     });
@@ -2133,7 +2310,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2189,7 +2366,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
     });
@@ -2225,7 +2402,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2281,7 +2458,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpage").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
     });
@@ -2317,7 +2494,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewAcademicDeans(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2420,6 +2597,365 @@ $(document).ready(function () {
     });
   }
 
+    // Function to show the edit modal
+  function edithonorifics(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/edit-officials/edit-honorifics.html", // URL to get product data
+      dataType: "html", // Expect JSON response
+      success: function (view) {
+        fetchRecordhonorifics(id);
+        // Assuming 'view' contains the new content you want to display
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropedithonorifics").modal("show"); // Show the modal
+        $("#staticBackdropedithonorifics").attr("data-id", id);
+
+        // Event listener for the add product form submission
+        $("#form-edit-honorifics").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          updatehonorifics(id); // Call function to save product
+        });
+      },
+    });
+  }
+
+    function fetchRecordhonorifics(id) {
+    $.ajax({
+      url: `../crud-administration/fetching/fetch-record-honorifics.php?id=${id}`, // URL for fetching categories
+      type: "POST", // Use GET request
+      dataType: "json", // Expect JSON response
+      success: function (honorifics) {
+        $("#name").val(honorifics.name);
+        $("#short").val(honorifics.short);
+      },
+    });
+  }
+
+    // Function to update a new official
+  function updatehonorifics(id) {
+    $.ajax({
+      type: "POST",
+      url: `../crud-administration/update-officials/update-honorifics.php?id=${id}`, // Correct URL
+      data: $("form").serialize(),
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropedithonorifics").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+    });
+  }
+
+    function deletinghonorifics(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/delete-official.html", // URL to get product data
+      dataType: "html", // Expect HTML response
+      success: function (view) {
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropDelete").modal("show"); // Show the modal
+        $("#staticBackdropDelete").attr("data-id", id);
+
+        // Event listener for the edit product form submission
+        $("#form-delete-official").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          deletehonorifics(id); // Call function to delete product
+        });
+      },
+    });
+  }
+
+    // Function to delete account
+  function deletehonorifics(id) {
+    $.ajax({
+      type: "POST",
+      url: "../crud-administration/delete-officials/delete-honorifics.php", // Point to the delete script
+      data: { id: id },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropDelete").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+      error: function () {
+        alert("An error occurred while deleting the Official.");
+      }
+    });
+  }
+
+    // Function to show the edit modal
+  function editbor_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/edit-officials/edit-designation.html", // URL to get product data
+      dataType: "html", // Expect JSON response
+      success: function (view) {
+        fetchRecordbor_designation(id);
+        // Assuming 'view' contains the new content you want to display
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropeditdesignation").modal("show"); // Show the modal
+        $("#staticBackdropeditdesignation").attr("data-id", id);
+
+        // Event listener for the add product form submission
+        $("#form-edit-designation").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          updatebor_designation(id); // Call function to save product
+        });
+      },
+    });
+  }
+
+    function fetchRecordbor_designation(id) {
+    $.ajax({
+      url: `../crud-administration/fetching/fetch-record-designation_bor.php?id=${id}`, // URL for fetching categories
+      type: "POST", // Use GET request
+      dataType: "json", // Expect JSON response
+      success: function (designation) {
+        $("#designation").val(designation.designation);
+      },
+    });
+  }
+
+    // Function to update a new official
+  function updatebor_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: `../crud-administration/update-officials/update-bor_designation.php?id=${id}`, // Correct URL
+      data: $("form").serialize(),
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropeditdesignation").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+    });
+  }
+
+      function deletingbor_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/delete-official.html", // URL to get product data
+      dataType: "html", // Expect HTML response
+      success: function (view) {
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropDelete").modal("show"); // Show the modal
+        $("#staticBackdropDelete").attr("data-id", id);
+
+        // Event listener for the edit product form submission
+        $("#form-delete-official").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          deletebor_designation(id); // Call function to delete product
+        });
+      },
+    });
+  }
+
+    // Function to delete account
+  function deletebor_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: "../crud-administration/delete-officials/delete-bor_designation.php", // Point to the delete script
+      data: { id: id },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropDelete").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+      error: function () {
+        alert("An error occurred while deleting the Official.");
+      }
+    });
+  }
+
+      // Function to show the edit modal
+  function editvp_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/edit-officials/edit-designation.html", // URL to get product data
+      dataType: "html", // Expect JSON response
+      success: function (view) {
+        fetchRecorddesignationvp(id);
+        // Assuming 'view' contains the new content you want to display
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropeditdesignation").modal("show"); // Show the modal
+        $("#staticBackdropeditdesignation").attr("data-id", id);
+
+        // Event listener for the add product form submission
+        $("#form-edit-designation").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          updatevp_designation(id); // Call function to save product
+        });
+      },
+    });
+  }
+
+    function fetchRecorddesignationvp(id) {
+    $.ajax({
+      url: `../crud-administration/fetching/fetch-designation_vp.php?id=${id}`, // URL for fetching categories
+      type: "POST", // Use GET request
+      dataType: "json", // Expect JSON response
+      success: function (designation_vp) {
+        $("#designation").val(designation_vp.designation);
+      },
+    });
+  }
+
+      // Function to update a new official
+  function updatevp_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: `../crud-administration/update-officials/update-vp_designation.php?id=${id}`, // Correct URL
+      data: $("form").serialize(),
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropeditdesignation").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+    });
+  }
+
+        function deletingvp_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/delete-official.html", // URL to get product data
+      dataType: "html", // Expect HTML response
+      success: function (view) {
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropDelete").modal("show"); // Show the modal
+        $("#staticBackdropDelete").attr("data-id", id);
+
+        // Event listener for the edit product form submission
+        $("#form-delete-official").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          deletevp_designation(id); // Call function to delete product
+        });
+      },
+    });
+  }
+
+    // Function to delete account
+  function deletevp_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: "../crud-administration/delete-officials/delete-vp_designation.php", // Point to the delete script
+      data: { id: id },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropDelete").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+      error: function () {
+        alert("An error occurred while deleting the Official.");
+      }
+    });
+  }
+
+        // Function to show the edit modal
+  function editopstaff_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/edit-officials/edit-designation.html", // URL to get product data
+      dataType: "html", // Expect JSON response
+      success: function (view) {
+        fetchRecordopstaff_designation(id);
+        // Assuming 'view' contains the new content you want to display
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropeditdesignation").modal("show"); // Show the modal
+        $("#staticBackdropeditdesignation").attr("data-id", id);
+
+        // Event listener for the add product form submission
+        $("#form-edit-designation").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          updateopstaff_designation(id); // Call function to save product
+        });
+      },
+    });
+  }
+
+    function fetchRecordopstaff_designation(id) {
+    $.ajax({
+      url: `../crud-administration/fetching/fetch-record-designation_opstaff.php?id=${id}`, // URL for fetching categories
+      type: "POST", // Use GET request
+      dataType: "json", // Expect JSON response
+      success: function (designation_opstaff) {
+        $("#designation").val(designation_opstaff.designation);
+      },
+    });
+  }
+
+      // Function to update a new official
+  function updateopstaff_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: `../crud-administration/update-officials/update-opstaff_designation.php?id=${id}`, // Correct URL
+      data: $("form").serialize(),
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropeditdesignation").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+    });
+  }
+
+    function deletingopstaff_designation(id) {
+    $.ajax({
+      type: "GET", // Use GET request
+      url: "../crud-administration/delete-official.html", // URL to get product data
+      dataType: "html", // Expect HTML response
+      success: function (view) {
+        $(".modal-container").empty().html(view); // Load the modal view
+        $("#staticBackdropDelete").modal("show"); // Show the modal
+        $("#staticBackdropDelete").attr("data-id", id);
+
+        // Event listener for the edit product form submission
+        $("#form-delete-official").on("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          deleteopstaff_designation(id); // Call function to delete product
+        });
+      },
+    });
+  }
+
+    // Function to delete account
+  function deleteopstaff_designation(id) {
+    $.ajax({
+      type: "POST",
+      url: "../crud-administration/delete-officials/delete-opstaff_designation.php", // Point to the delete script
+      data: { id: id },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#staticBackdropDelete").modal("hide");
+          $("form")[0].reset();
+          viewOthers(); // Reload accounts after update
+        }
+      },
+      error: function () {
+        alert("An error occurred while deleting the Official.");
+      }
+    });
+  }
+
+  
+
   // Function to show the edit modal
   function editpageDescription(id) {
     $.ajax({
@@ -2464,11 +3000,12 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropeditpageDescription").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewOthers(); // Reload accounts after update
         }
       },
     });
   }
+
 
   function deletingpageDescription(id) {
     $.ajax({
@@ -2500,7 +3037,7 @@ $(document).ready(function () {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewHome(); // Reload accounts after update
+          viewOthers(); // Reload accounts after update
         }
       },
       error: function () {
