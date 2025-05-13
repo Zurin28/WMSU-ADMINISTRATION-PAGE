@@ -5,6 +5,18 @@
             ORGANIZATIONAL CHART
         </div>
         <div class="modal-container"></div>
+        <!-- Add cleanup script right after modal container -->
+        <script>
+            function cleanupModals() {
+                $('.modal-backdrop').remove();
+                $('.modal').remove();
+                $('body').removeClass('modal-open');
+            }
+
+            $(document).on('hidden.bs.modal', '.modal', function() {
+                cleanupModals();
+            });
+        </script>
 
 
         <table>
@@ -17,7 +29,13 @@
             </thead>
             <tbody>
                 <?php 
+               if (file_exists('../classes/organizationalChart.class.php')) {
                 require_once '../classes/organizationalChart.class.php';
+            } elseif (file_exists('../../classes/organizationalChart.class.php')) {
+                require_once '../../classes/organizationalChart.class.php';
+            } else {
+                die('organizationalChart.class.php not found.');
+            }
 
                 $organizationalChartObj = new OrganizationalChart();
                 $organizationalChart = $organizationalChartObj->fetchAll(); // Fetch all officials

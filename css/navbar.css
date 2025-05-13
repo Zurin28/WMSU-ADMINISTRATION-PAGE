@@ -1,3 +1,5 @@
+
+
 nav {
     position: fixed;
     top: 0;
@@ -5,6 +7,7 @@ nav {
     width: 100%;
     z-index: 1000; /* make sure it stays above everything */
 }
+} 
 
 .logo {
     width: 70px;

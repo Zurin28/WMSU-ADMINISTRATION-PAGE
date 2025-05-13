@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1.0">
     <title>WMSU Administrative Officials</title>
     <?php require_once '../__includes/head-home.php'; ?>
     <link rel="stylesheet" href="../css/vp-suboffices.css">
@@ -545,6 +545,37 @@
             display: inline;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
+
+        /* Add to your existing CSS */
+        .containerwhitefiller {
+            background-color: white;
+            width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .org-chart-section {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .org-chart-image {
+            width: 100%;
+            height: auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .org-chart-description {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
     </style>
     <script src="../js/smooth-scroll.js" defer></script>
 </head>
@@ -618,27 +649,28 @@
     ?>
     
     <!-- Organizational Chart Section -->
-    <div style="height: 40px; background-color: white;"></div>
-    <h2 id="org-chart" style="text-align:center; background-color: white; color:#7C0902; padding-bottom: 30px; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
-    <div class="org-chart" style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 1260px; margin: 0 auto;">
-        <?php if ($latestOrgChart): ?>
-            <img src="../images/<?php echo htmlspecialchars($latestOrgChart['image']); ?>" 
-                 alt="WMSU Organizational Chart" 
-                 style="width: 100%; height: auto; background-color: white; max-width: 1200px; margin: 0 auto; display: block;">
-            <?php if (!empty($latestOrgChart['description'])): ?>
-                <p class="org-chart-description" style="text-align: center; background-color: white; margin-top: 20px; color: #333;">
-                    <?php echo htmlspecialchars($latestOrgChart['description']); ?>
-                </p>
+    <div class="containerwhitefiller">
+    <h2 id="org-chart" style="text-align:center; background-color: white; color:#7C0902; padding-bottom: 30px; padding-top: 30px; font-weight:800; margin-bottom: 20px;">WMSU Organizational Chart</h2>
+        <div class="org-chart-section">
+            <?php if ($latestOrgChart): ?>
+                <img src="../images/<?php echo htmlspecialchars($latestOrgChart['image']); ?>" 
+                     alt="WMSU Organizational Chart" 
+                     class="org-chart-image">
+                <?php if (!empty($latestOrgChart['description'])): ?>
+                    <p class="org-chart-description">
+                        <?php echo htmlspecialchars($latestOrgChart['description']); ?>
+                    </p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p style="text-align: center; color: #666;">No organizational chart available.</p>
             <?php endif; ?>
-        <?php else: ?>
-            <p style="text-align: center; color: #666;">No organizational chart available.</p>
-        <?php endif; ?>
-    </div>
+        </div>
 
-    <div class="divider">
-        <div class="divider-line"></div>
-        <div class="divider-text">Board of Regents</div>
-        <div class="divider-line"></div>
+        <div class="divider" style="background-color: white; margin-top: 0;">
+            <div class="divider-line"></div>
+            <div class="divider-text">Board of Regents</div>
+            <div class="divider-line"></div>
+        </div>
     </div>
 
     <!-- Add this before the board section -->
