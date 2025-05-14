@@ -6,32 +6,69 @@ require_once '../../classes/designation_bor.class.php';
 $honorificsObj = new Honorifics();
 $designationBorObj = new DesignationBor();
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $title_id = $_POST['title_id']; // Changed from title to title_id
+    $title_id = $_POST['title_id'];
     $honorifics_id = $_POST['honorifics'];
+    $representedby_honorifics_id = $_POST['representedby_honorifics_id'];
+    $representedby_name = $_POST['representedby_name'];
     $rank = 0; // Default rank
-    
-    // Correctly retrieve file information
-    $file_name = $_FILES['image']['name'];
-    $tempname = $_FILES['image']['tmp_name'];
-    $folder = '../../images/' . $file_name;
 
-    // Move uploaded file to the 'images' folder
-    if(move_uploaded_file($tempname, $folder)) {
-        $boardobj = new Board();
-        
-        if ($boardobj->upload($name, $title_id, $file_name, $rank, $honorifics_id)) {
-            echo "Uploaded successfully!";
-            header('Location: ../../sample-admin/Home');
-        } else {
-            echo "Failed to insert into the database.";
+    // Main image
+    $image_name = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+    $image_path = '../../images/' . $image_name;
+
+    // Represented-by image
+    $representedby_image_name = $_FILES['representedby_image']['name'];
+    $representedby_image_tmp = $_FILES['representedby_image']['tmp_name'];
+    $representedby_image_path = '../../images/' . $representedby_image_name;
+
+// Check if 'representedby' image was uploaded
+$representedby_uploaded = !empty($representedby_image_tmp) && is_uploaded_file($representedby_image_tmp);
+
+// Move main image (required)
+if (move_uploaded_file($image_tmp, $image_path)) {
+
+    // If 'representedby' image exists, try to upload it
+    if ($representedby_uploaded) {
+        if (!move_uploaded_file($representedby_image_tmp, $representedby_image_path)) {
+            echo "Failed to upload 'represented by' image.";
+            exit();
         }
     } else {
-        echo "Failed to upload file.";
+        // If no image was uploaded, set the image name to null
+        $representedby_image_name = null;
     }
+
+    // Nullify empty optional fields
+    $representedby_honorifics_id = empty($representedby_honorifics_id) ? null : $representedby_honorifics_id;
+    $representedby_name = empty($representedby_name) ? null : $representedby_name;
+
+    $boardobj = new Board();
+    if ($boardobj->upload(
+        $name,
+        $title_id,
+        $image_name,
+        $rank,
+        $honorifics_id,
+        $representedby_honorifics_id,
+        $representedby_image_name,
+        $representedby_name
+    )) {
+        echo "Uploaded successfully!";
+        header('Location: ../../sample-admin/Home');
+        exit();
+    } else {
+        echo "Failed to insert into the database.";
+    }
+
+} else {
+    echo "Failed to upload main image.";
+}
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,25 +132,72 @@ if(isset($_POST['submit'])) {
                 <div class="image-preview" id="image-preview"></div>
             </div>
 
+            <!-- Represented By Honorifics -->
+<div class="form-group">
+    <label for="representedby_honorifics_id">Represented By Honorifics</label>
+    <select name="representedby_honorifics_id" id="representedby_honorifics_id">
+        <option value="">Select honorific</option>
+        <?php
+            $honorific = $honorificsObj->fetchHonorifics();
+            foreach ($honorific as $h) {
+        ?>
+            <option value="<?= $h['id'] ?>"><?= htmlspecialchars($h['name']) ?></option>
+        <?php } ?>
+    </select>
+</div>
+
+<!-- Represented By Name -->
+<div class="form-group">
+    <label for="representedby_name">Represented By Name</label>
+    <input type="text" name="representedby_name" id="representedby_name" >
+</div>
+
+<!-- Represented By Image -->
+<div>
+    <label>Upload Represented By Image</label>
+    <div class="image-upload">
+        <button type="button" class="image-upload-btn" onclick="document.getElementById('representedby_image').click()">Select Image</button>
+        <span id="representedby-file-selected">No file selected</span>
+    </div>
+    <input type="file" name="representedby_image" id="representedby_image" accept="image/*" hidden >
+    <div class="image-preview" id="representedby-image-preview"></div>
+</div>
+
+
             <button type="submit" name="submit" class="submit-btn">Submit</button>
         </form>
         <a href="../../sample-admin/Home" class="back-link">Back to Administration</a>
     </div>
 
     <script>
-        document.getElementById('image').addEventListener('change', function(e) {
-            var fileName = e.target.files[0].name;
-            document.getElementById('file-selected').textContent = fileName;
+        // Main image preview (already exists)
+document.getElementById('image').addEventListener('change', function(e) {
+    const fileName = e.target.files[0].name;
+    document.getElementById('file-selected').textContent = fileName;
+    const preview = document.getElementById('image-preview');
+    preview.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(e.target.files[0]);
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '100%';
+    preview.appendChild(img);
+});
 
-            var preview = document.getElementById('image-preview');
-            preview.innerHTML = '';
+// Represented-by image preview
+document.getElementById('representedby_image').addEventListener('change', function(e) {
+    const fileName = e.target.files[0].name;
+    document.getElementById('representedby-file-selected').textContent = fileName;
+    const preview = document.getElementById('representedby-image-preview');
+    preview.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(e.target.files[0]);
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '100%';
+    preview.appendChild(img);
+});
 
-            var img = document.createElement('img');
-            img.src = URL.createObjectURL(e.target.files[0]);
-            img.style.maxWidth = '100%';
-            img.style.maxHeight = '100%';
-            preview.appendChild(img);
-        });
+
+
     </script>
 </body>
 </html>
