@@ -701,11 +701,15 @@
     <section class="board-section">
             <div class="board-container">
                 <h2 class="board-title">WHAT IS THE BOARD OF REGENTS?</h2>
+                <!-- Board Description Section -->
                 <div class="board-description">
                     <?php 
                     $totalParagraphs = count($paragraphs);
-                    foreach ($paragraphs as $index => $paragraph): ?>
-                        <p><?php echo htmlspecialchars($paragraph); ?></p>
+                    foreach ($paragraphs as $index => $paragraph): 
+                        // Process the paragraph to convert **text** to styled strong tags
+                        $processedText = preg_replace('/\*\*(.*?)\*\*/', '<strong style="color: #8B0000;">$1</strong>', $paragraph);
+                    ?>
+                        <p><?php echo $processedText; ?></p>
                         <?php if ($index < $totalParagraphs - 1): ?>
                             <br />
                         <?php endif; ?>
@@ -1315,10 +1319,6 @@ document.addEventListener('keydown', function(event) {
                     foreach ($subOffices as $office) {
                         echo '<div class="suboffice-item">';
                         echo '<a href="../Offices/' . urlencode($office['office']) . '" class="suboffice-link">';
-                        if (!empty($office['honorific_short'])) {
-                            echo htmlspecialchars($office['honorific_short']) . ' ';
-                        }
-                        echo htmlspecialchars($office['office_head']) . '<br>';
                         echo '<span class="office-title">' . htmlspecialchars($office['office']) . '</span>';
                         echo '</a>';
                         echo '</div>';
@@ -1514,14 +1514,10 @@ document.addEventListener('keydown', function(event) {
                     // Display grouped suboffices
                     foreach ($groupedOffices as $vpOffice => $offices) {
                         echo '<div class="vp-group">';
-                        echo '<h3 class="vp-group-title">' . htmlspecialchars($vpOffice) . '</h3>';
+                        echo '<h3 class="vp-group-title" style="color: white;">' . htmlspecialchars($vpOffice) . '</h3>';
                         foreach ($offices as $office) {
                             echo '<div class="vp-suboffice-item">';
                             echo '<a href="../Offices/' . urlencode($office['office']) . '" class="vp-suboffice-link">';
-                            if (!empty($office['honorific_short'])) {
-                                echo htmlspecialchars($office['honorific_short']) . ' ';
-                            }
-                            echo htmlspecialchars($office['office_head']) . '<br>';
                             echo '<span class="vp-office-title">' . htmlspecialchars($office['office']) . '</span>';
                             echo '</a>';
                             echo '</div>';
