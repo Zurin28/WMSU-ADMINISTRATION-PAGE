@@ -90,5 +90,16 @@ function edit()
         return $query->execute();
     }
 
+    function fetchSuboffices()
+    {
+        $sql = "SELECT * FROM vice_president_suboffices ORDER BY office ASC;";
+        $query = $this->db->connect()->prepare($sql);
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
+
 
 }
