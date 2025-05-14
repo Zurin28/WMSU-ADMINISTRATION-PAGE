@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2025 at 08:34 AM
+-- Generation Time: May 14, 2025 at 10:18 AM
 -- Server version: 11.7.2-MariaDB
 -- PHP Version: 8.2.12
 
@@ -143,6 +143,9 @@ CREATE TABLE `board_of_regents` (
   `image` varchar(255) DEFAULT NULL,
   `rank` int(11) NOT NULL,
   `honorifics_id` int(100) NOT NULL,
+  `representedby_honorifics_id` int(11) DEFAULT NULL,
+  `representedby_image` varchar(255) DEFAULT NULL,
+  `representedby_name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -151,17 +154,18 @@ CREATE TABLE `board_of_regents` (
 -- Dumping data for table `board_of_regents`
 --
 
-INSERT INTO `board_of_regents` (`id`, `name`, `title_id`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(4, 'ALAN PETER S. CAYETANO', 1, 'cayetano.jpg', 3, 8, '2025-03-23 18:24:46', '2025-05-11 09:55:36'),
-(6, 'MARK O. GO', 3, 'mark-ogo.jpg', 5, 8, '2025-03-23 18:27:16', '2025-03-23 18:27:16'),
-(8, 'MARIA FELICIDAD R. GUERRERO', 5, 'guerrero.jpg', 7, 8, '2025-03-23 18:29:20', '2025-03-23 18:29:20'),
-(9, 'MARTIN A. WEE', 6, 'martin-wee.jpg', 8, 8, '2025-03-23 18:29:49', '2025-03-23 18:29:49'),
-(10, 'INOCENTE P. LOCSON', 7, 'LOCSON.jpg', 9, 8, '2025-03-23 18:30:07', '2025-03-23 18:30:07'),
-(11, 'JOSE L. LOBREGAT', 8, 'lobregat.jpg', 10, 8, '2025-03-23 18:30:36', '2025-03-23 18:30:36'),
-(12, 'FLORENCIO M. LIONG, JR', 9, 'mundoc_blank.jpg', 11, 8, '2025-03-23 18:31:18', '2025-03-23 18:31:18'),
-(13, 'ADRIAN P. SEMORLAN', 10, 'semorlan.jpg', 12, 8, '2025-03-23 18:32:00', '2025-03-23 18:32:00'),
-(14, 'AHMAD G. MUNDOC', 11, 'florencioblank.jpg', 13, 8, '2025-03-23 18:32:23', '2025-03-23 18:32:23'),
-(15, 'AL-GHANI D. MOHAMMAD', 12, 'MOHAMMAD.jpg', 14, 13, '2025-03-23 18:32:46', '2025-03-23 18:32:46');
+INSERT INTO `board_of_regents` (`id`, `name`, `title_id`, `image`, `rank`, `honorifics_id`, `representedby_honorifics_id`, `representedby_image`, `representedby_name`, `created_at`, `updated_at`) VALUES
+(3, 'ALAN PETER S. CAYETANO', 1, 'cayetano.jpg', 6, 8, 8, NULL, 'ROLANDO L. MACASAET', '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(4, 'MARK O. GO', 3, 'mark-ogo.jpg', 7, 8, 8, NULL, 'EMMYLOU B. YANGA', '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(5, 'MARIA FELICIDAD R. GUERRERO', 5, 'guerrero.jpg', 8, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(6, 'MARTIN A. WEE', 6, 'martin-wee.jpg', 9, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(7, 'INOCENTE P. LOCSON', 7, 'LOCSON.jpg', 10, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(8, 'JOSE L. LOBREGAT', 8, 'lobregat.jpg', 11, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(9, 'FLORENCIO M. LIONG, JR', 9, 'mundoc_blank.jpg', 12, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(10, 'ADRIAN P. SEMORLAN', 10, 'semorlan.jpg', 4, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:38:14'),
+(11, 'AHMAD G. MUNDOC', 11, 'florencioblank.jpg', 5, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
+(12, 'AL-GHANI D. MOHAMMAD', 12, 'MOHAMMAD.jpg', 2, 1, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:19'),
+(20, 'ETHEL AGNES P. VALENZUELA', 14, 'ethel.jpg', 3, 8, NULL, NULL, NULL, '2025-05-13 05:28:34', '2025-05-13 05:35:42');
 
 -- --------------------------------------------------------
 
@@ -833,10 +837,7 @@ ALTER TABLE `associate_deans`
 -- Indexes for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `rank` (`rank`),
-  ADD KEY `fk_honorifics` (`honorifics_id`),
-  ADD KEY `fk_designation_bor` (`title_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `campus_administrators`
@@ -1021,7 +1022,7 @@ ALTER TABLE `associate_deans`
 -- AUTO_INCREMENT for table `board_of_regents`
 --
 ALTER TABLE `board_of_regents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `campus_administrators`
@@ -1182,13 +1183,6 @@ ALTER TABLE `assistant_directors`
 --
 ALTER TABLE `associate_deans`
   ADD CONSTRAINT `fk_honorifics_associatedeans` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
-
---
--- Constraints for table `board_of_regents`
---
-ALTER TABLE `board_of_regents`
-  ADD CONSTRAINT `fk_designation_bor` FOREIGN KEY (`title_id`) REFERENCES `designation_bor` (`id`),
-  ADD CONSTRAINT `fk_honorifics` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
 
 --
 -- Constraints for table `campus_administrators`

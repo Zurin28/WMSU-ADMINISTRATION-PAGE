@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../css/vp-suboffices.css">
     <link rel="stylesheet" href="../css/footer.css">
     <style>
+
+        .hero{
+            padding-top: 140px;
+        }
         .staff-card {
             padding: 20px;
             margin: 10px;
