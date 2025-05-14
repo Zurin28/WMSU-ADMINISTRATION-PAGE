@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2025 at 05:52 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: May 14, 2025 at 08:34 AM
+-- Server version: 11.7.2-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -554,7 +554,7 @@ INSERT INTO `opstaff` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `
 CREATE TABLE `organizational_chart` (
   `id` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL
+  `description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -562,7 +562,7 @@ CREATE TABLE `organizational_chart` (
 --
 
 INSERT INTO `organizational_chart` (`id`, `image`, `description`) VALUES
-(2, 'Screenshot 2025-02-08 012300.png', 'qwerty');
+(3, 'Screenshot 2025-03-01 011859.png', '');
 
 -- --------------------------------------------------------
 
@@ -600,7 +600,7 @@ INSERT INTO `other_services` (`id`, `name`, `title`, `honorifics_id`, `created_a
 CREATE TABLE `page_description` (
   `id` int(11) NOT NULL,
   `page` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -608,7 +608,11 @@ CREATE TABLE `page_description` (
 --
 
 INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
-(2, 'ADMINISTRATIVE OFFICIALS', 'wadsa');
+(2, 'ADMINISTRATIVE OFFICIALS', 'wadsa'),
+(3, 'ADMINISTRATION PAGE', 'The WMSU Administration page offers a comprehensive look into the **individuals who lead and shape Western Mindanao State University**. Here, you will find the  **Board of Regents, university officials, and key representatives** whose leadership, dedication, and vision continue to drive the university toward **academic excellence, innovation, and inclusive growth**. \r\nThis section highlights the people behind WMSU’s progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.'),
+(4, 'BOARD OF REGENTS', 'The  **Board of Regents ** is the **highest policy-making body of Western Mindanao State University**. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution’s alignment with its academic mission and public mandate. \r\nThrough collaborative governance and informed decision-making, **the Board of Regents plays a vital role in upholding WMSU’s standards of excellence** and fostering its continued growth as a premier institution in the region.'),
+(5, 'ADMINISTRATIVE OFFICIALS', '​The **Administrative Officials** of **Western Mindanao State University (WMSU)** constitute the **comprehensive leadership team** responsible for the university\'s **strategic direction, academic excellence**, and **operational efficiency**. This organizational body includes the **University President, Vice Presidents overseeing various sectors** such as Academic Affairs, Administration and Finance, Research, Extension Services, and Resource Generation. Supporting the executive leadership are the Office of the President staff, the University and Board Secretary, and a cadre of Directors managing key departments like Finance, Admissions, Student Affairs, and Information Technology. \r\nThe **administrative framework extends** to Campus Administrators **across WMSU\'s satellite campuses**, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units. \r\nTogether, these officials uphold **WMSU\'s commitment** to **providing quality education** and **fostering community development.**\r\n'),
+(6, 'ACADEMIC DEANS', 'The **Academic Deans** of **Western Mindanao State University (WMSU)** are **esteemed leaders** who **oversee** the university\'s diverse **colleges** and **academic programs**. Each dean is entrusted with the **responsibility of upholding academic excellence**, **fostering innovative teaching** and **research**, and ensuring that **curricula remain responsive** to the evolving **needs of society**. Collaborating closely with faculty, administrative staff, and students, the deans play a crucial role in shaping the intellectual environment of their respective colleges. Their leadership ensures that **WMSU continues** to **produce competent graduates** **equipped to contribute** meaningfully to regional and national development.');
 
 -- --------------------------------------------------------
 
@@ -646,15 +650,16 @@ CREATE TABLE `president_suboffices` (
   `id` int(11) NOT NULL,
   `office` varchar(100) NOT NULL,
   `office_head` varchar(100) NOT NULL,
-  `honorifics_id` int(100) NOT NULL
+  `honorifics_id` int(100) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `president_suboffices`
 --
 
-INSERT INTO `president_suboffices` (`id`, `office`, `office_head`, `honorifics_id`) VALUES
-(2, 'awda', 'ada', 13);
+INSERT INTO `president_suboffices` (`id`, `office`, `office_head`, `honorifics_id`, `description`) VALUES
+(2, 'awda', 'ada', 13, '');
 
 -- --------------------------------------------------------
 
@@ -792,15 +797,16 @@ CREATE TABLE `vice_president_suboffices` (
   `office` varchar(100) NOT NULL,
   `office_head` varchar(100) NOT NULL,
   `office_of_vp_in` varchar(100) NOT NULL,
-  `honorifics_id` int(100) NOT NULL
+  `honorifics_id` int(100) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vice_president_suboffices`
 --
 
-INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`) VALUES
-(2, 'awda', 'adad', 'adwawd', 7);
+INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`, `description`) VALUES
+(2, 'awda', 'adad', 'adwawd', 7, '');
 
 --
 -- Indexes for dumped tables
@@ -1103,7 +1109,7 @@ ALTER TABLE `opstaff`
 -- AUTO_INCREMENT for table `organizational_chart`
 --
 ALTER TABLE `organizational_chart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `other_services`
@@ -1115,7 +1121,7 @@ ALTER TABLE `other_services`
 -- AUTO_INCREMENT for table `page_description`
 --
 ALTER TABLE `page_description`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `president`
