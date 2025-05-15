@@ -71,6 +71,24 @@
         
 
     </ul>
+
+    <!-- Add the logout button -->
+    <div style="margin-top: auto; padding: 1rem; border-top: 1px solid #e0e0e0;">
+        <a href="../crud-administration/admin_login.php" style="
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #7C0902;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            width: 100%;
+        ">
+            <i class="bi bi-box-arrow-right" style="margin-right: 8px;"></i>
+            <span class="fs-6">Logout</span>
+        </a>
+    </div>
 </div>
 
 <style>
@@ -82,4 +100,6 @@
     margin: 0 auto;
     display: block;
 }
+
+
 </style>

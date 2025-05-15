@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1.0">
+    <meta name="viewport" content="width=1.0, maximum-scale=1.0, user-scalable=no">
     <title>WMSU Administrative Officials</title>
     <?php require_once '../__includes/head-home.php'; ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="../css/vp-suboffices.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <style>
+     <style>
 
         .hero{
             padding-top: 140px;
@@ -183,7 +185,7 @@
         }
 
         /* Media query for smaller screens */
-        @media (max-width: 768px) {
+        /*@media (max-width: 768px) {
             .modal-content {
                 max-width: 95%;
                 margin: 10px;
@@ -197,6 +199,7 @@
                 font-size: 1em;
             }
         }
+            */
 
         #vicePresSubOfficesModal .modal-content {
             border-radius: 10px;
@@ -580,9 +583,459 @@
             margin-top: 20px;
             color: #333;
         }
+
+        /* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container sizing */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Responsive Grid */
+.members-grid {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Changed from 4 to 3 columns */
+}
+/* Update the hero title styles inside your existing <style> tag */
+
+.hero-title {
+    text-align: center;
+    width: 100%;
+    padding: 0 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero-title-main {
+    font-size: clamp(1.5em, 5vw, 3em);
+    color: white;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    letter-spacing: 29%;  /* Updated letter spacing */
+    width: auto;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero-title-sub {
+    font-size: clamp(1.2em, 4vw, 2em);
+    color: white;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 29%;  /* Match letter spacing */
+}
+
+/* Large Desktop (1200px and up) */
+@media screen and (min-width: 1200px) {
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr); /* Changed from 4 to 3 columns */
+    }
+
+    .staff-card {
+        padding: 30px;
+    }
+
+    .hero-title-main {
+        font-size: 3em;
+    }
+
+    .hero-title-sub {
+        font-size: 2em;
+    }
+
+    .profile-bubble {
+        width: 250px;  /* Reduced from 350px */
+        height: 250px; /* Reduced from 350px */
+    }
+}
+
+/* Desktop (992px to 1199px) */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr); /* Keep 3 columns */
+    }
+
+    .hero-title-main {
+        font-size: 2.5em;
+    }
+
+    .hero-title-sub {
+        font-size: 1.8em;
+    }
+
+    .profile-bubble {
+        width: 220px;  /* Reduced from 300px */
+        height: 220px; /* Reduced from 300px */
+    }
+}
+
+/* Tablet (768px to 991px) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep existing tablet layout */
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .hero-title-main {
+        font-size: 2.2em;
+    }
+
+    .hero-title-sub {
+        font-size: 1.6em;
+    }
+
+    .profile-bubble {
+        width: 200px;  /* Reduced from 250px */
+        height: 200px; /* Reduced from 250px */
+    }
+
+    .president-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .staff-card {
+        padding: 15px;
+    }
+
+    .staff-row {
+        padding: 12px;
+    }
+
+    .section-header {
+        font-size: 1.8em;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+/* Mobile Large (576px to 767px) */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .hero {
+        padding-top: 80px;
+    }
+
+    .hero-title-main {
+        font-size: 2em;
+    }
+
+    .hero-title-sub {
+        font-size: 1.4em;
+    }
+
+    .profile-bubble {
+        width: 200px;
+        height: 200px;
+    }
+
+    .staff-card {
+        padding: 10px;
+    }
+
+    .staff-row {
+        padding: 10px;
+    }
+
+    .staff-name {
+        font-size: 0.9em;
+    }
+
+    .staff-title {
+        font-size: 0.8em;
+    }
+
+    .section-header {
+        font-size: 1.5em;
+        padding: 15px 0;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hero-title {
+        padding: 0 15px;
+    }
+    .hero-title-main {
+        font-size: 2.5em;
+        white-space: nowrap;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title-main {
+        font-size: 2em;
+        white-space: nowrap;
+    }
+
+    .hero-title-sub {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .hero-title-main {
+        font-size: 1.5em;
+        white-space: nowrap;
+    }
+
+    .hero-title-sub {
+        font-size: 1.1em;
+    }
+}
+/* Mobile Small (up to 575px) */
+@media screen and (max-width: 575px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .hero {
+        padding-top: 60px;
+    }
+
+    .hero-title-main {
+        font-size: 1.5em;
+    }
+
+    .hero-title-sub {
+        font-size: 1.2em;
+    }
+
+    .profile-bubble {
+        width: 180px;
+        height: 180px;
+    }
+
+    .staff-card {
+        padding: 8px;
+        margin: 5px;
+    }
+
+    .staff-row {
+        padding: 8px;
+    }
+
+    .staff-name {
+        font-size: 0.85em;
+    }
+
+    .staff-title {
+        font-size: 0.75em;
+    }
+
+    .section-header {
+        font-size: 1.3em;
+        padding: 10px 0;
+    }
+
+    .modal-content {
+        width: 98%;
+        margin: 5px;
+    }
+
+    .modal-header-grey h2 {
+        font-size: 1em;
+    }
+
+    .suboffice-link {
+        font-size: 0.9em;
+    }
+
+    .btn, 
+    .sub-offices-btn,
+    .view-suboffices-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding-top: 40px;
+        min-height: auto;
+    }
+
+    .profile-bubble {
+        width: 150px;
+        height: 150px;
+    }
+
+    .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .modal-header-grey {
+        background-color: #333;
+    }
+
+    .modal-header-grey h2 {
+        color: #fff;
+    }
+}
+
+/* Modal fixes for small screens */
+@media screen and (max-width: 512px) {
+    .modal-content {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .hero {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        padding: 0 15px;
+    }
+
+    .containerwhitefiller {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+
+    .org-chart-section {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+
+    .staff-card {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .staff-row {
+        margin: 5px 0;
+        padding: 8px;
+    }
+
+    /* Fix any potential horizontal scroll */
+    .members-grid {
+        width: 100%;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    /* Ensure proper container bounds */
+    .container,
+    .containerwhitefiller,
+    .org-chart-section,
+    .board-section,
+    .president-section {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+}
+
+/* Update the profile bubble sizes */
+.profile-bubble {
+    width: 250px;  /* Reduced from 350px */
+    height: 250px; /* Reduced from 350px */
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Update responsive breakpoints */
+@media screen and (min-width: 1200px) {
+    .profile-bubble {
+        width: 250px;  /* Reduced from 350px */
+        height: 250px; /* Reduced from 350px */
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .profile-bubble {
+        width: 220px;  /* Reduced from 300px */
+        height: 220px; /* Reduced from 300px */
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .profile-bubble {
+        width: 200px;  /* Reduced from 250px */
+        height: 200px; /* Reduced from 250px */
+    }
+}
+
+.representative-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.representative-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    display: block;
+}
+
+#modal-rep-name {
+    color: #333;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.representation h3 {
+    color: #7C0902;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
     </style>
     <script src="../js/smooth-scroll.js" defer></script>
 </head>
+<?php
+session_start();
+// Clear session variables
+if(isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header('Location: ../crud-administration/admin_login.php');
+    exit();
+}
+?>
 <header> </header>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>
@@ -789,15 +1242,46 @@
                             <p id="modal-description">The Board of Regents is the highest governing body of Western Mindanao State University (WMSU), tasked with setting the strategic direction and overarching policies of the institution. It ensures that the university upholds its mandate of delivering quality education, advancing research, and promoting community engagement.</p>
                             <div class="representation" id="modal-representation" style="display:none;">
                                 <h3>REPRESENTED BY:</h3>
-                                <img class="representative-image" src="" alt="" id="modal-rep-image">
-                                <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                                <div class="representative-container">
+                                    <img class="representative-image" src="" alt="" id="modal-rep-image">
+                                    <h2 id="modal-rep-name" style="text-align: right; margin-top: 10px;"></h2>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <script>
-                    window.boardMembers = <?php echo json_encode($boardMembers); ?>;
+                    window.boardMembers = <?php echo json_encode($boardMembers); ?>;                    function openModal(index) {
+                        const member = boardMembers[index];
+                        const modal = document.getElementById('member-modal');
+                        const modalRepresentation = document.getElementById('modal-representation');
+                        const modalRepImage = document.getElementById('modal-rep-image');
+                        const modalRepName = document.getElementById('modal-rep-name');
+
+                        // Set main member info
+                        document.getElementById('modal-profile-image').querySelector('img').src = '../images/' + member.image;
+                        document.getElementById('modal-name').textContent = member.name;
+                        document.getElementById('modal-title').textContent = member.title_bor;
+
+                        // Handle representatives based on database data
+                        if (member.representedby_name) {
+                            modalRepresentation.style.display = 'block';
+                            if (member.representedby_image) {
+                                modalRepImage.src = '../images/' + member.representedby_image;
+                            }
+                            modalRepName.textContent = member.representedby_name;
+                        } else {
+                            modalRepresentation.style.display = 'none';
+                        }
+
+                        modal.classList.add('show');
+                    }
+
+                    // Close button functionality
+                    document.getElementById('modal-close-btn').addEventListener('click', function() {
+                        document.getElementById('member-modal').classList.remove('show');
+                    });
                 </script>
                 <script src="../js/organizational-chart.js"></script>
 
@@ -1442,7 +1926,7 @@ document.addEventListener('keydown', function(event) {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .modal-content {
         max-width: 95%;
         margin: 10px;
@@ -1456,6 +1940,7 @@ document.addEventListener('keydown', function(event) {
         font-size: 1em;
     }
 }
+    */
 </style>
 
 <script>
