@@ -101,5 +101,32 @@ function edit()
         return $data;
     }
 
+    // Upload
+    function upload($office, $office_head, $office_of_vp_in, $honorifics_id, $description, $file_name)
+    {
+        try {
+            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in, honorifics_id, description, image) VALUES (:office, :office_head, :office_of_vp_in, :honorifics_id, :description, :image)";
+            $query = $this->db->connect()->prepare($sql);
+            
+            $query->bindParam(':office', $office);
+            $query->bindParam(':office_head', $office_head);
+            $query->bindParam(':office_of_vp_in', $office_of_vp_in);
+            $query->bindParam(':honorifics_id', $honorifics_id);
+            $query->bindParam(':description', $description);
+            $query->bindParam(':image', $file_name);
+            
+            if ($query->execute()) {
+                return true;
+            } else {
+                // Print error if insertion fails
+                print_r($query->errorInfo());
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
+    }
+
 
 }

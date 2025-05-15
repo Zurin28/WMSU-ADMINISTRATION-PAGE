@@ -918,9 +918,10 @@
     <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
 </div>
 <div class="staff-title">
-    <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>">
-        <?php echo htmlspecialchars($vicePres['title']); ?>
-    </a>
+    <a href="../Offices/office-template.php?title=<?php echo urlencode($vicePres['title']); ?>">
+    <?php echo htmlspecialchars($vicePres['title']); ?>
+</a>
+
 </div>
 </div>
 

@@ -6,54 +6,138 @@
     <title>Chief of Staff, Office of the President</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
         .office-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px 32px;
             text-align: center;
         }
+
         .office-title {
-            font-size: 2.2em;
-            font-weight: bold;
-            margin-bottom: 16px;
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
+
         .office-image {
             width: 220px;
             height: 220px;
             object-fit: cover;
             border-radius: 50%;
             margin-bottom: 24px;
-            border: 4px solid #eee;
+            border: 5px solid #e0e0e0;
         }
+
         .office-description {
             font-size: 1.15em;
-            color: #444;
-            margin-bottom: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 20px auto 60px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 24px 32px;
+        }
+
+        .section-header {
+            font-size: 1.75em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        thead {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        td {
+            font-weight: 500;
+            color: #2d3436;
         }
     </style>
 </head>
+
+<?php 
+require_once '../__includes/navbar.php';
+require_once '../classes/personnel.class.php';
+
+$personnelObj = new Personnel();
+$title = $_GET['title'] ?? '';
+$officeInfo = $personnelObj->fetchVicePresidentOfficeInfo($title);
+$officePersonnel = $personnelObj->fetchPersonnelByOfficeOfVpIn($title);
+?>
+
 <body>
-    <!-- Navigation Bar -->
-    <?php require_once '../__includes/navbar.php'; ?>
     <div class="office-container">
-        <div class="office-title">Office of the President</div>
-        <img src="../images/office-of-president.jpg" alt="Office of the President" class="office-image">
+        <div class="office-title">
+            <?= htmlspecialchars($officeInfo['office_of_vp_in'] ?? 'Unknown Office') ?>
+        </div>
+
+       
+        <img src="../images/<?= htmlspecialchars($officeInfo['image']) ?>" alt="Office Image" class="office-image">
+
         <div class="office-description">
-            The Office of the President is the central executive office responsible for the overall leadership and strategic direction of the institution. 
-            It oversees all major administrative, academic, and operational functions, ensuring the university’s mission and vision are realized.
+            <?= htmlspecialchars($officeInfo['description'] ?? 'No description available.') ?>
         </div>
     </div>
 
-    <table>
-        <th>
-
-        </th>
-        <td>
-            
-        </td>
-    </table>
+    <div class="section">
+        <div class="section-header">Personnel</div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Name</th></tr>
+                </thead>
+                <tbody>
+                    <?php if ($officePersonnel): ?>
+                        <?php foreach ($officePersonnel as $person): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($person['honorific_short'] . ' ' . $person['PersonnelName']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td>No personnel found for this office.</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
