@@ -33,17 +33,16 @@ class VicePres {
         return $data;
     }
 
-    function add_official($name, $title_id, $page_link, $honorifics_id, $office_name) {
+    function add_official($name, $title_id, $page_link, $honorifics_id) {
         try {
-            $sql = "INSERT INTO vice_presidents (name, title_id, page_link, honorifics_id, office_name) 
-                    VALUES (:name, :title_id, :page_link, :honorifics_id, :office_name)";
+            $sql = "INSERT INTO vice_presidents (name, title_id, page_link, honorifics_id) 
+                    VALUES (:name, :title_id, :page_link, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':name', $name);
             $query->bindParam(':title_id', $title_id);
             $query->bindParam(':page_link', $page_link);
             $query->bindParam(':honorifics_id', $honorifics_id);
-            $query->bindParam(':office_name', $office_name);
             
             return $query->execute();
         } catch (PDOException $e) {
@@ -70,15 +69,26 @@ class VicePres {
         return $data;
     }
 
+    // Add this new method to fetch designations
+    function fetchDesignations() {
+        $sql = "SELECT id, designation FROM designation_vp ORDER BY designation ASC";
+        $query = $this->db->connect()->prepare($sql);
+        
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
+
     function edit() {
         $sql = "UPDATE vice_presidents SET name = :name, title_id = :title_id, page_link = :page_link, 
-                honorifics_id = :honorifics_id, office_name = :office_name WHERE id = :id;";
+                honorifics_id = :honorifics_id WHERE id = :id;";
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':name', $this->name);
         $query->bindParam(':title_id', $this->title_id);
         $query->bindParam(':page_link', $this->page_link);
         $query->bindParam(':honorifics_id', $this->honorifics);
-        $query->bindParam(':office_name', $this->office_name);
         $query->bindParam(':id', $this->id);
         return $query->execute();
     }

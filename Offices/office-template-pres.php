@@ -107,7 +107,7 @@ $officePersonnel = $personnelObj->fetchPersonnelByOffice($title);
 <body>
     <div class="office-container">
         <div class="office-title">
-            <?= htmlspecialchars($officeInfo['office_of_vp_in'] ?? 'Unknown Office') ?>
+            <?= htmlspecialchars($officeInfo['office'] ?? 'Unknown Office') ?>
         </div>
 
        

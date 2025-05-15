@@ -2904,7 +2904,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropeditdesignation").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
     });
@@ -2940,7 +2940,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
       error: function () {
@@ -2993,7 +2993,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropeditdesignation").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
     });
@@ -3029,7 +3029,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
       error: function () {
@@ -3082,7 +3082,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropeditdesignation").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
     });
@@ -3118,7 +3118,7 @@ if (url.endsWith("Home")) {
         if (response.status === "success") {
           $("#staticBackdropDelete").modal("hide");
           $("form")[0].reset();
-          viewOthers(); // Reload accounts after update
+          viewDesignation(); // Reload accounts after update
         }
       },
       error: function () {
