@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title_id = clean_input($_POST['designation_opstaff']);
     $page_link = clean_input($_POST['page_link']);
     $honorifics = clean_input($_POST['honorifics']);
+    $office_name = clean_input($_POST['office_name']);
 
     // Set the properties of the Pres object
     $opstaffobj->id = $id;
@@ -19,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $opstaffobj->title_id = $title_id;
     $opstaffobj->page_link = $page_link;
     $opstaffobj->honorifics = $honorifics;
+    $opstaffobj->office_name = $office_name;
 
     if ($opstaffobj->edit()) {
         echo json_encode(['status' => 'success']);

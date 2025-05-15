@@ -638,7 +638,7 @@
                     ?></p>
                 <?php endforeach; ?>
             </div>
-            <a href="#org-chart" class="btn scroll-btn" id="learn-more-btn" aria-label="Learn more about WMSU organization">Learn More</a>
+            <a href="#" class="btn scroll-btn" id="learn-more-btn" aria-label="Learn more about WMSU organization">Learn More</a>
         </div>
     </section>
 
@@ -948,18 +948,17 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
     <div class="staff-row">
         <div class="staff-name">
             <?php 
-            // Display honorifics and name dynamically for OP staff
             echo htmlspecialchars($staff['honorific_short']) . ' ' . htmlspecialchars($staff['name']);
             ?>
         </div>
         <div class="staff-title">
+            <?php echo htmlspecialchars($staff['office_name']); ?>
             <a href="../Offices/<?php echo urlencode($staff['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: normal;">
                 <?php echo htmlspecialchars($staff['title']); ?>
             </a>
         </div>
     </div>
 <?php endforeach; ?>
-
 </div>
 
         

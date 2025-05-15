@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2025 at 02:04 PM
--- Server version: 11.4.5-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: May 15, 2025 at 06:09 AM
+-- Server version: 11.7.2-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -529,6 +529,7 @@ CREATE TABLE `opstaff` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title_id` int(100) NOT NULL,
+  `Office_name` varchar(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -539,11 +540,12 @@ CREATE TABLE `opstaff` (
 -- Dumping data for table `opstaff`
 --
 
-INSERT INTO `opstaff` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Berhana I. Flores', 4, 'chief-of-staff', 1, '2025-03-24 10:41:54', '2025-05-11 08:42:46'),
-(4, 'Darlyn P. Flores', 5, 'special-assistant-to-president', 2, '2025-03-24 10:42:32', '2025-03-24 10:42:32'),
-(5, 'Aldrin S. Valerio', 6, 'executive-assistant-to-president', 4, '2025-03-24 10:43:12', '2025-03-24 10:43:12'),
-(6, 'Shamir R. Kassim', 7, 'university-curriculum-chair', 1, '2025-03-24 10:44:00', '2025-03-24 10:44:00');
+INSERT INTO `opstaff` (`id`, `name`, `title_id`, `Office_name`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(3, 'Berhana I. Flores', 4, '', 'chief-of-staff', 1, '2025-03-24 10:41:54', '2025-05-11 08:42:46'),
+(4, 'Darlyn P. Flores', 5, '', 'special-assistant-to-president', 2, '2025-03-24 10:42:32', '2025-03-24 10:42:32'),
+(5, 'Aldrin S. Valerio', 6, '', 'executive-assistant-to-president', 4, '2025-03-24 10:43:12', '2025-03-24 10:43:12'),
+(6, 'Shamir R. Kassim', 7, '', 'university-curriculum-chair', 1, '2025-03-24 10:44:00', '2025-03-24 10:44:00'),
+(9, 'GORBIE ULGASAN', 5, 'awdawda', 'adawdawd', 11, '2025-05-15 02:25:05', '2025-05-15 02:25:05');
 
 -- --------------------------------------------------------
 
@@ -608,7 +610,6 @@ CREATE TABLE `page_description` (
 --
 
 INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
-(2, 'ADMINISTRATIVE OFFICIALS', 'wadsa'),
 (3, 'ADMINISTRATION PAGE', 'The WMSU Administration page offers a comprehensive look into the **individuals who lead and shape Western Mindanao State University**. Here, you will find the  **Board of Regents, university officials, and key representatives** whose leadership, dedication, and vision continue to drive the university toward **academic excellence, innovation, and inclusive growth**. \r\nThis section highlights the people behind WMSU’s progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.'),
 (4, 'BOARD OF REGENTS', 'The  **Board of Regents ** is the **highest policy-making body of Western Mindanao State University**. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution’s alignment with its academic mission and public mandate. \r\nThrough collaborative governance and informed decision-making, **the Board of Regents plays a vital role in upholding WMSU’s standards of excellence** and fostering its continued growth as a premier institution in the region.'),
 (5, 'ADMINISTRATIVE OFFICIALS', '​The **Administrative Officials** of **Western Mindanao State University (WMSU)** constitute the **comprehensive leadership team** responsible for the university\'s **strategic direction, academic excellence**, and **operational efficiency**. This organizational body includes the **University President, Vice Presidents overseeing various sectors** such as Academic Affairs, Administration and Finance, Research, Extension Services, and Resource Generation. Supporting the executive leadership are the Office of the President staff, the University and Board Secretary, and a cadre of Directors managing key departments like Finance, Admissions, Student Affairs, and Information Technology. \r\nThe **administrative framework extends** to Campus Administrators **across WMSU\'s satellite campuses**, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units. \r\nTogether, these officials uphold **WMSU\'s commitment** to **providing quality education** and **fostering community development.**\r\n'),
@@ -652,7 +653,7 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-04-27 06:51:27');
+(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'office-of-president', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-05-15 02:54:51');
 
 -- --------------------------------------------------------
 
@@ -783,6 +784,7 @@ CREATE TABLE `vice_presidents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title_id` int(100) NOT NULL,
+  `Office_name` varchar(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -793,12 +795,12 @@ CREATE TABLE `vice_presidents` (
 -- Dumping data for table `vice_presidents`
 --
 
-INSERT INTO `vice_presidents` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Nursia M. Barjose', 1, 'ovp-for-academic-affair', 1, '2025-03-24 10:37:03', '2025-05-11 08:11:39'),
-(4, 'Joel G. Fernando', 2, 'ovp-for-research-and-extension', 1, '2025-03-24 10:38:20', '2025-04-16 00:39:50'),
-(5, 'Joselito D. Madroñal', 3, 'ovp-for-administrative-and-finance', 1, '2025-03-24 10:39:07', '2025-04-16 00:39:57'),
-(6, 'Teresita A. Narvaez', 4, 'ovp-for-resource-generation', 1, '2025-03-24 10:39:58', '2025-04-16 00:40:03'),
-(7, 'Fredelino M. San Juan', 5, 'ovp-for-student-affairs-and-services', 1, '2025-03-24 10:40:52', '2025-04-16 00:40:12');
+INSERT INTO `vice_presidents` (`id`, `name`, `title_id`, `Office_name`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(3, 'Nursia M. Barjose', 1, '', 'ovp-for-academic-affair', 1, '2025-03-24 10:37:03', '2025-05-11 08:11:39'),
+(4, 'Joel G. Fernando', 2, '', 'ovp-for-research-and-extension', 1, '2025-03-24 10:38:20', '2025-04-16 00:39:50'),
+(5, 'Joselito D. Madroñal', 3, '', 'ovp-for-administrative-and-finance', 1, '2025-03-24 10:39:07', '2025-04-16 00:39:57'),
+(6, 'Teresita A. Narvaez', 4, '', 'ovp-for-resource-generation', 1, '2025-03-24 10:39:58', '2025-04-16 00:40:03'),
+(7, 'Fredelino M. San Juan', 5, '', 'ovp-for-student-affairs-and-services', 1, '2025-03-24 10:40:52', '2025-04-16 00:40:12');
 
 -- --------------------------------------------------------
 
@@ -1124,7 +1126,7 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `opstaff`
 --
 ALTER TABLE `opstaff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `organizational_chart`
