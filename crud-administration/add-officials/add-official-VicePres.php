@@ -3,17 +3,18 @@ require_once '../../classes/Vicepres.class.php';
 require_once '../../classes/honorifics.class.php';
 
 $honorificsObj = new Honorifics();
-
+$designationsObj = new VicePres();
+$designations = $designationsObj->fetchDesignations(); // Fetch all designations
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $title = $_POST['title'];
+    $title_id = $_POST['title_id'];
     $page_link = $_POST['page_link'];
     $honorifics_id = $_POST['honorifics']; // Get the selected honorifics ID
 
     $vicepresobj = new VicePres();
 
     // Assuming `add_official()` accepts name and title as parameters
-    if ($vicepresobj->add_official($name, $title, $page_link, $honorifics_id)) {
+    if ($vicepresobj->add_official($name, $title_id, $page_link, $honorifics_id)) {
         echo "Official added successfully!";
         header('Location: ../../sample-admin/Home');
     } else {
@@ -61,8 +62,15 @@ if (isset($_POST['submit'])) {
 </div>
 
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control border-danger" style="border-width: 2px;" required>
+                <label for="title_id">Designation</label>
+                <select name="title_id" id="title_id" class="form-control border-danger" style="border-width: 2px;" required>
+                    <option value="">Select designation</option>
+                    <?php
+                    foreach ($designations as $designation) {
+                        echo "<option value='" . $designation['id'] . "'>" . htmlspecialchars($designation['designation']) . "</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">
