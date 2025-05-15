@@ -12,8 +12,10 @@
                         <table id="table-products" class="table table-centered table-nowrap mb-0">
                             <thead class="table-light">
                                 <tr>
+                                    <th>Image</th>
                                     <th>Office</th>
                                     <th>Office Head</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -28,8 +30,10 @@
                                     
                                 ?>
                                     <tr>
+                                        <td><img src="../images/<?= htmlspecialchars($presSubOffices['image']) ?>" alt="" width="100px"></td>
                                         <td><?= htmlspecialchars( $presSubOffices['office']) ?></td>
                                         <td><?= htmlspecialchars($presSubOffices['honorific_short'] . ' ' .$presSubOffices['office_head'] ?? 'N/A') ?></td>
+                                        <td><?= htmlspecialchars($presSubOffices['description'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Edit</a>
                                             <a href="" class="btn btn-sm btn-outline-danger me-1 delete-presSubOffices" data-id="<?= $presSubOffices['id'] ?>">Delete</a>
@@ -56,9 +60,11 @@
                         <table id="table-products" class="table table-centered table-nowrap mb-0">
                             <thead class="table-light">
                                 <tr>
+                                    <th>Image</th>
                                     <th>Office</th>
                                     <th>Office Head</th>
                                     <th>Office OF VP in</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -73,9 +79,11 @@
                                     
                                 ?>
                                     <tr>
+                                        <td><img src="../images/<?= htmlspecialchars($VicepresSubOffices['image']) ?>" alt="" width="100px"></td>
                                         <td><?= htmlspecialchars( $VicepresSubOffices['office']) ?></td>
                                         <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
                                         <td><?= htmlspecialchars($VicepresSubOffices['office_of_vp_in'] ?? 'N/A') ?></td>
+                                        <td><?= htmlspecialchars($VicepresSubOffices['description'] ?? 'N/A') ?></td>
                                         <td class="text-nowrap">
                                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Edit</a>
                                             <a href="" class="btn btn-sm btn-outline-danger me-1 delete-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Delete</a>

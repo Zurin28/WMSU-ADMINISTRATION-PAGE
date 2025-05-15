@@ -2232,23 +2232,29 @@ if (url.endsWith("Home")) {
       dataType: "json", // Expect JSON response
       success: function (PresSubOffices) {
         $("#office").val(PresSubOffices.office);
+        $("#description").val(PresSubOffices.description);
         $("#honorifics").val(PresSubOffices.honorifics_id).trigger("change"); // Set the selected category
         $("#office_head").val(PresSubOffices.office_head);
       },
     });
   }
 
-  // Function to update a new official
+    // Function to update a new official
   function updatePresSubOffices(id) {
+    var form = $('#form-edit-pressuboffice')[0];
+    var formData = new FormData(form);
+
     $.ajax({
       type: "POST",
-      url: `../crud-administration/update-officials/update-pres_suboffices.php?id=${id}`, // Correct URL
-      data: $("form").serialize(),
+      url: `../crud-administration/update-officials/update-pres_suboffices.php?id=${id}`,
+      data: formData,
+      processData: false,
+      contentType: false,
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
           $("#staticBackdropeditpressuboffice").modal("hide");
-          $("form")[0].reset();
+          $("#form-edit-pressuboffice")[0].reset();
           viewSubOffices(); // Reload accounts after update
         }
       },
@@ -2324,6 +2330,7 @@ if (url.endsWith("Home")) {
       dataType: "json", // Expect JSON response
       success: function (vicepresSubOffices) {
         $("#office").val(vicepresSubOffices.office);
+        $("#description").val(vicepresSubOffices.description);
         $("#honorifics").val(vicepresSubOffices.honorifics_id).trigger("change"); // Set the selected category
         $("#office_head").val(vicepresSubOffices.office_head);
         $("#office_of_vp_in").val(vicepresSubOffices.office_of_vp_in);
@@ -2333,15 +2340,20 @@ if (url.endsWith("Home")) {
 
   // Function to update a new official
   function updateVicepresSubOffices(id) {
+    var form = $('#form-edit-vicepressuboffice')[0];
+    var formData = new FormData(form);
+
     $.ajax({
       type: "POST",
-      url: `../crud-administration/update-officials/update-Vicepres_suboffices.php?id=${id}`, // Correct URL
-      data: $("form").serialize(),
+      url: `../crud-administration/update-officials/update-Vicepres_suboffices.php?id=${id}`,
+      data: formData,
+      processData: false,
+      contentType: false,
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
           $("#staticBackdropeditvicepressuboffice").modal("hide");
-          $("form")[0].reset();
+          $("#form-edit-vicepressuboffice")[0].reset();
           viewSubOffices(); // Reload accounts after update
         }
       },

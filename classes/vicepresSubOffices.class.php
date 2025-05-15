@@ -70,17 +70,40 @@ class VicepresSubOffices {
         return $data;
     }
 
-function edit()
-    {
-        $sql = "UPDATE vice_president_suboffices SET office = :office, office_head = :office_head, office_of_vp_in = :office_of_vp_in, honorifics_id = :honorifics_id WHERE id = :id;";
+function edit() {
+    try {
+        // If an image is provided, include it in the update
+        if ($this->file_name) {
+            $sql = "UPDATE vice_president_suboffices 
+                    SET office_head = :office_head, honorifics_id = :honorifics_id, office_of_vp_in = :office_of_vp_in,
+                        office = :office, image = :image, description = :description
+                    WHERE id = :id";
+        } else {
+            $sql = "UPDATE vice_president_suboffices 
+                    SET office_head = :office_head, honorifics_id = :honorifics_id, office_of_vp_in = :office_of_vp_in,
+                        office = :office, description = :description
+                    WHERE id = :id";
+        }
+
         $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':office', $this->office);
+
         $query->bindParam(':office_head', $this->office_head);
-        $query->bindParam(':office_of_vp_in', $this->office_of_vp_in);
         $query->bindParam(':honorifics_id', $this->honorifics);
-        $query->bindParam(':id', $this->id);
+        $query->bindParam(':office', $this->office);
+        $query->bindParam(':description', $this->description);
+        $query->bindParam(':office_of_vp_in', $this->office_of_vp_in);
+        $query->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        if ($this->file_name) {
+            $query->bindParam(':image', $this->file_name);
+        }
+
         return $query->execute();
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
     }
+}
 
 
     function deleteOfficial($id) {

@@ -15,7 +15,7 @@ class VicePres {
                 vp.id,
                 vp.name,
                 vp.title_id,
-                vp.office_name,  /* Add office_name to select */
+                
                 dvp.designation AS title,
                 vp.page_link,
                 h.short AS honorific_short
