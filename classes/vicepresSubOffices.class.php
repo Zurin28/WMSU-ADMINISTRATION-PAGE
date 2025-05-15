@@ -70,17 +70,40 @@ class VicepresSubOffices {
         return $data;
     }
 
-function edit()
-    {
-        $sql = "UPDATE vice_president_suboffices SET office = :office, office_head = :office_head, office_of_vp_in = :office_of_vp_in, honorifics_id = :honorifics_id WHERE id = :id;";
+function edit() {
+    try {
+        // If an image is provided, include it in the update
+        if ($this->file_name) {
+            $sql = "UPDATE vice_president_suboffices 
+                    SET office_head = :office_head, honorifics_id = :honorifics_id, office_of_vp_in = :office_of_vp_in,
+                        office = :office, image = :image, description = :description
+                    WHERE id = :id";
+        } else {
+            $sql = "UPDATE vice_president_suboffices 
+                    SET office_head = :office_head, honorifics_id = :honorifics_id, office_of_vp_in = :office_of_vp_in,
+                        office = :office, description = :description
+                    WHERE id = :id";
+        }
+
         $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':office', $this->office);
+
         $query->bindParam(':office_head', $this->office_head);
-        $query->bindParam(':office_of_vp_in', $this->office_of_vp_in);
         $query->bindParam(':honorifics_id', $this->honorifics);
-        $query->bindParam(':id', $this->id);
+        $query->bindParam(':office', $this->office);
+        $query->bindParam(':description', $this->description);
+        $query->bindParam(':office_of_vp_in', $this->office_of_vp_in);
+        $query->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        if ($this->file_name) {
+            $query->bindParam(':image', $this->file_name);
+        }
+
         return $query->execute();
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
     }
+}
 
 
     function deleteOfficial($id) {
@@ -99,6 +122,33 @@ function edit()
             $data = $query->fetchAll(PDO::FETCH_ASSOC);
         }
         return $data;
+    }
+
+    // Upload
+    function upload($office, $office_head, $office_of_vp_in, $honorifics_id, $description, $file_name)
+    {
+        try {
+            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in, honorifics_id, description, image) VALUES (:office, :office_head, :office_of_vp_in, :honorifics_id, :description, :image)";
+            $query = $this->db->connect()->prepare($sql);
+            
+            $query->bindParam(':office', $office);
+            $query->bindParam(':office_head', $office_head);
+            $query->bindParam(':office_of_vp_in', $office_of_vp_in);
+            $query->bindParam(':honorifics_id', $honorifics_id);
+            $query->bindParam(':description', $description);
+            $query->bindParam(':image', $file_name);
+            
+            if ($query->execute()) {
+                return true;
+            } else {
+                // Print error if insertion fails
+                print_r($query->errorInfo());
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
+            return false;
+        }
     }
 
 

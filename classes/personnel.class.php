@@ -144,4 +144,74 @@ class Personnel {
         return $query->execute();
     }
 
+    function fetchAcademicAffairsPersonnel()
+{
+    $sql = "SELECT p.*, h.short AS honorific_short
+            FROM personnel p
+            LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
+            LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
+            WHERE vp.office_of_vp_in = 'Academic Affairs'";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function fetchVicePresidentOfficeInfo($title)
+{
+    $sql = "SELECT *
+            FROM vice_president_suboffices
+            WHERE office_of_vp_in = :office_of_vp_in
+            LIMIT 1";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office_of_vp_in', $title);
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+public function fetchPresidentOfficeInfo($title)
+{
+    $sql = "SELECT *
+            FROM president_suboffices
+            WHERE office = :office
+            LIMIT 1";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office', $title);
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+public function fetchPersonnelByOfficeOfVpIn($title)
+{
+    $sql = "SELECT p.*, vp.office_of_vp_in, h.short AS honorific_short
+            FROM personnel p
+            LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
+            LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
+            WHERE vp.office_of_vp_in = :office_of_vp_in";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office_of_vp_in', $title);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function fetchPersonnelByOffice($title)
+{
+    $sql = "SELECT p.*, ps.office, h.short AS honorific_short
+            FROM personnel p
+            LEFT JOIN president_suboffices ps ON p.PresSuboffice_id = ps.id
+            LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
+            WHERE ps.office = :office";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office', $title);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+
 }

@@ -31,6 +31,7 @@ if(isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Official</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
@@ -48,7 +49,7 @@ if(isset($_POST['submit'])) {
             <div>
                 <label>Upload Image</label>
                 <div class="image-upload">
-                    <button type="button" class="image-upload-btn" onclick="document.getElementById('image').click()">Select Image</button>
+                    <button type="button" class="image-upload-btn form-control border-danger" style="border-width: 2px;" onclick="document.getElementById('image').click()">Select Image</button>
                     <span id="file-selected">No file selected</span>
                 </div>
                 <input type="file" name="image" id="image" accept="image/*"hidden required>
@@ -57,7 +58,7 @@ if(isset($_POST['submit'])) {
 
             <div class="form-group">
     <label for="description">Description</label>
-    <textarea name="description" id="description" rows="4" maxlength="50" style="width: 100%;"></textarea>
+    <textarea name="description" id="description" rows="4" maxlength="50" style="width: 100%; border-width: 2px;" class="form-control border-danger"></textarea>
 </div>
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>

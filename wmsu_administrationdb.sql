@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2025 at 06:09 AM
--- Server version: 11.7.2-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: May 15, 2025 at 11:28 AM
+-- Server version: 11.4.5-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -541,11 +541,11 @@ CREATE TABLE `opstaff` (
 --
 
 INSERT INTO `opstaff` (`id`, `name`, `title_id`, `Office_name`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Berhana I. Flores', 4, '', 'chief-of-staff', 1, '2025-03-24 10:41:54', '2025-05-11 08:42:46'),
-(4, 'Darlyn P. Flores', 5, '', 'special-assistant-to-president', 2, '2025-03-24 10:42:32', '2025-03-24 10:42:32'),
-(5, 'Aldrin S. Valerio', 6, '', 'executive-assistant-to-president', 4, '2025-03-24 10:43:12', '2025-03-24 10:43:12'),
-(6, 'Shamir R. Kassim', 7, '', 'university-curriculum-chair', 1, '2025-03-24 10:44:00', '2025-03-24 10:44:00'),
-(9, 'GORBIE ULGASAN', 5, 'awdawda', 'adawdawd', 11, '2025-05-15 02:25:05', '2025-05-15 02:25:05');
+(3, 'Berhana I. Flores', 4, 'ww', 'chief-of-staff', 1, '2025-03-24 02:41:54', '2025-05-15 08:12:05'),
+(4, 'Darlyn P. Flores', 5, '', 'special-assistant-to-president', 2, '2025-03-24 02:42:32', '2025-03-24 02:42:32'),
+(5, 'Aldrin S. Valerio', 6, '', 'executive-assistant-to-president', 4, '2025-03-24 02:43:12', '2025-03-24 02:43:12'),
+(6, 'Shamir R. Kassim', 7, '', 'university-curriculum-chair', 1, '2025-03-24 02:44:00', '2025-03-24 02:44:00'),
+(9, 'GORBIE ULGASAN', 5, 'awdawda', 'adawdawd', 11, '2025-05-14 18:25:05', '2025-05-14 18:25:05');
 
 -- --------------------------------------------------------
 
@@ -610,6 +610,7 @@ CREATE TABLE `page_description` (
 --
 
 INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
+(2, 'ADMINISTRATIVE OFFICIALS', 'wadsa'),
 (3, 'ADMINISTRATION PAGE', 'The WMSU Administration page offers a comprehensive look into the **individuals who lead and shape Western Mindanao State University**. Here, you will find the  **Board of Regents, university officials, and key representatives** whose leadership, dedication, and vision continue to drive the university toward **academic excellence, innovation, and inclusive growth**. \r\nThis section highlights the people behind WMSU’s progress — the decision-makers and advocates who work tirelessly to uphold its mission and empower its community.'),
 (4, 'BOARD OF REGENTS', 'The  **Board of Regents ** is the **highest policy-making body of Western Mindanao State University**. Composed of distinguished leaders from various sectors—including education, government, and the private sector—the Board is responsible for setting the strategic direction of the university, approving key policies, and ensuring the institution’s alignment with its academic mission and public mandate. \r\nThrough collaborative governance and informed decision-making, **the Board of Regents plays a vital role in upholding WMSU’s standards of excellence** and fostering its continued growth as a premier institution in the region.'),
 (5, 'ADMINISTRATIVE OFFICIALS', '​The **Administrative Officials** of **Western Mindanao State University (WMSU)** constitute the **comprehensive leadership team** responsible for the university\'s **strategic direction, academic excellence**, and **operational efficiency**. This organizational body includes the **University President, Vice Presidents overseeing various sectors** such as Academic Affairs, Administration and Finance, Research, Extension Services, and Resource Generation. Supporting the executive leadership are the Office of the President staff, the University and Board Secretary, and a cadre of Directors managing key departments like Finance, Admissions, Student Affairs, and Information Technology. \r\nThe **administrative framework extends** to Campus Administrators **across WMSU\'s satellite campuses**, Principals and Assistant Principals of the Integrated Laboratory Schools, as well as Assistant Directors, Chairpersons, and Coordinators who ensure the seamless operation of both academic and non-academic units. \r\nTogether, these officials uphold **WMSU\'s commitment** to **providing quality education** and **fostering community development.**\r\n'),
@@ -628,6 +629,14 @@ CREATE TABLE `personnel` (
   `personnel_honorifics_id` int(11) DEFAULT NULL,
   `PersonnelName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `personnel`
+--
+
+INSERT INTO `personnel` (`id`, `VpSuboffice_id`, `PresSuboffice_id`, `personnel_honorifics_id`, `PersonnelName`) VALUES
+(5, 11, NULL, 5, 'Hazy'),
+(6, NULL, 2, 1, 'asa');
 
 -- --------------------------------------------------------
 
@@ -653,7 +662,7 @@ CREATE TABLE `president` (
 --
 
 INSERT INTO `president` (`id`, `name`, `title`, `title_bor`, `page_link`, `image`, `rank`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'office-of-president', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-05-15 02:54:51');
+(5, 'MA. CARLA A. OCHOTORENA', 'University President', 'University President', 'uwas', 'carla-ochotorena.jpg', 1, 8, '2025-04-07 12:37:11', '2025-04-27 06:51:27');
 
 -- --------------------------------------------------------
 
@@ -666,15 +675,19 @@ CREATE TABLE `president_suboffices` (
   `office` varchar(100) NOT NULL,
   `office_head` varchar(100) NOT NULL,
   `honorifics_id` int(100) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `president_suboffices`
 --
 
-INSERT INTO `president_suboffices` (`id`, `office`, `office_head`, `honorifics_id`, `description`) VALUES
-(2, 'awda', 'ada', 13, '');
+INSERT INTO `president_suboffices` (`id`, `office`, `office_head`, `honorifics_id`, `description`, `image`) VALUES
+(2, 'Chief of Staff, Office of the President', 'Berhana I. Flores', 1, 'asd', 'LABORATY-VISIT-COLLAGE--(8).png'),
+(3, 'Special Assistant to the President', 'Darlyn P. Flores', 2, 'soda', 'cte.jpg'),
+(4, 'Executive Assistant to the Office of the President', 'Aldrin S. Valerio', 2, 'what', 'Screenshot 2025-03-23 212204.png'),
+(5, 'Executive Assistant for Special Academic Concerns at the Office of the President on concurrent as Un', 'Shamir R. Kassim', 2, 'what', 'executive-assistant.jpg');
 
 -- --------------------------------------------------------
 
@@ -784,7 +797,6 @@ CREATE TABLE `vice_presidents` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title_id` int(100) NOT NULL,
-  `Office_name` varchar(100) NOT NULL,
   `page_link` varchar(255) DEFAULT NULL,
   `honorifics_id` int(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -795,12 +807,12 @@ CREATE TABLE `vice_presidents` (
 -- Dumping data for table `vice_presidents`
 --
 
-INSERT INTO `vice_presidents` (`id`, `name`, `title_id`, `Office_name`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
-(3, 'Nursia M. Barjose', 1, '', 'ovp-for-academic-affair', 1, '2025-03-24 10:37:03', '2025-05-11 08:11:39'),
-(4, 'Joel G. Fernando', 2, '', 'ovp-for-research-and-extension', 1, '2025-03-24 10:38:20', '2025-04-16 00:39:50'),
-(5, 'Joselito D. Madroñal', 3, '', 'ovp-for-administrative-and-finance', 1, '2025-03-24 10:39:07', '2025-04-16 00:39:57'),
-(6, 'Teresita A. Narvaez', 4, '', 'ovp-for-resource-generation', 1, '2025-03-24 10:39:58', '2025-04-16 00:40:03'),
-(7, 'Fredelino M. San Juan', 5, '', 'ovp-for-student-affairs-and-services', 1, '2025-03-24 10:40:52', '2025-04-16 00:40:12');
+INSERT INTO `vice_presidents` (`id`, `name`, `title_id`, `page_link`, `honorifics_id`, `created_at`, `updated_at`) VALUES
+(3, 'Nursia M. Barjose', 1, 'ovp-for-academic-affair', 1, '2025-03-24 10:37:03', '2025-05-11 08:11:39'),
+(4, 'Joel G. Fernando', 2, 'ovp-for-research-and-extension', 1, '2025-03-24 10:38:20', '2025-04-16 00:39:50'),
+(5, 'Joselito D. Madroñal', 3, 'ovp-for-administrative-and-finance', 1, '2025-03-24 10:39:07', '2025-04-16 00:39:57'),
+(6, 'Teresita A. Narvaez', 4, 'ovp-for-resource-generation', 1, '2025-03-24 10:39:58', '2025-04-16 00:40:03'),
+(7, 'Fredelino M. San Juan', 5, 'ovp-for-student-affairs-and-services', 1, '2025-03-24 10:40:52', '2025-04-16 00:40:12');
 
 -- --------------------------------------------------------
 
@@ -814,16 +826,20 @@ CREATE TABLE `vice_president_suboffices` (
   `office_head` varchar(100) NOT NULL,
   `office_of_vp_in` varchar(100) NOT NULL,
   `honorifics_id` int(100) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vice_president_suboffices`
 --
 
-INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`, `description`) VALUES
-(2, 'awda', 'adad', 'adwawd', 7, ''),
-(3, 'lupa', 'rob', 'water', 10, '');
+INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`, `description`, `image`) VALUES
+(5, 'VP Administrative Finance', 'Joselito D. Madroñala', 'Vice President for Administration and Finance', 1, 'adw', 'cte.jpg'),
+(6, 'VP Research Extension', 'Joel G. Fernando', 'Vice President for Research Extension Services & External Linkages', 1, 'soda', 'mundoc_blank.jpg'),
+(7, 'VP Resource', 'Teresita A. Narvaez', 'Vice President for Resource Generation in concurrent capacity as Agribusiness Department Chair', 1, 'new', 'IMG20240628145029.jpg'),
+(8, 'VP students', 'Fredelino M. San Juan', 'Vice President for Student Affairs and Services in concurrent capacity as Director of Special Progra', 1, 'what', 'LABORATY-VISIT-COLLAGE--(8).png'),
+(11, 'VP Academic', 'Nursia M. Barjose', 'Vice President for Academic Affairs', 1, ' The Office of the Vice President for Academic Affairs is responsible for the development and implementation of academic policies and programs.              It ensures the quality of instruction, research, and extension services, and promotes academic excellence across all colleges and departments.', 'ethel.jpg');
 
 --
 -- Indexes for dumped tables
@@ -939,9 +955,7 @@ ALTER TABLE `managers`
 -- Indexes for table `opstaff`
 --
 ALTER TABLE `opstaff`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_honorifics_opstaff` (`honorifics_id`),
-  ADD KEY `fk_title_id_opstaff` (`title_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `organizational_chart`
@@ -1150,7 +1164,7 @@ ALTER TABLE `page_description`
 -- AUTO_INCREMENT for table `personnel`
 --
 ALTER TABLE `personnel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `president`
@@ -1162,7 +1176,7 @@ ALTER TABLE `president`
 -- AUTO_INCREMENT for table `president_suboffices`
 --
 ALTER TABLE `president_suboffices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `section_chiefs`
@@ -1192,7 +1206,7 @@ ALTER TABLE `vice_presidents`
 -- AUTO_INCREMENT for table `vice_president_suboffices`
 --
 ALTER TABLE `vice_president_suboffices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -1257,13 +1271,6 @@ ALTER TABLE `ils_principals`
 --
 ALTER TABLE `managers`
   ADD CONSTRAINT `fk_honorifics_managers` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
-
---
--- Constraints for table `opstaff`
---
-ALTER TABLE `opstaff`
-  ADD CONSTRAINT `fk_honorifics_opstaff` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`),
-  ADD CONSTRAINT `fk_title_id_opstaff` FOREIGN KEY (`title_id`) REFERENCES `designation_opstaff` (`id`);
 
 --
 -- Constraints for table `other_services`

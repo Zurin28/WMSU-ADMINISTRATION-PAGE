@@ -30,7 +30,7 @@
 
           <div class="mb-2">
             <label for="honorifics" class="form-label">Honorifics</label>
-            <select class="form-select" id="honorifics" name="honorifics">
+            <select class="form-select" id="honorifics" name="honorifics" required>
               <option value="">--Select--</option>
             </select>
             <div class="invalid-feedback"></div>
@@ -39,6 +39,18 @@
           <div class="mb-2">
             <label for="office_head" class="form-label">Office Head</label>
             <input type="text" class="form-control" id="office_head" name="office_head" required />
+          </div>
+
+          <div class="mb-2">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required />
+          </div>
+
+          <!-- Image -->
+          <div class="mb-2">
+            <label for="image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="image" name="image" />
+            <div class="invalid-feedback"></div>
           </div>
 
         </div>

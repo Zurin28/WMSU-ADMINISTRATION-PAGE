@@ -1406,9 +1406,10 @@ if(isset($_GET['logout'])) {
     <?php echo htmlspecialchars($vicePres['honorific_short']) . ' ' . htmlspecialchars($vicePres['name']); ?>
 </div>
 <div class="staff-title">
-    <a href="../Offices/<?php echo urlencode($vicePres['page_link']); ?>">
-        <?php echo htmlspecialchars($vicePres['title']); ?>
-    </a>
+    <a href="../Offices/office-template.php?title=<?php echo urlencode($vicePres['title']); ?>">
+    <?php echo htmlspecialchars($vicePres['title']); ?>
+</a>
+
 </div>
 </div>
 
@@ -1440,9 +1441,10 @@ $staffMembers = $opStaff->fetchAll(); // Fetch all Office of the President staff
         </div>
         <div class="staff-title">
             <?php echo htmlspecialchars($staff['office_name']); ?>
-            <a href="../Offices/<?php echo urlencode($staff['page_link']); ?>" style="color: #000; text-decoration: underline; font-weight: normal;">
-                <?php echo htmlspecialchars($staff['title']); ?>
-            </a>
+            <div class="staff-title">
+    <a href="../Offices/office-template-pres.php?title=<?php echo urlencode($staff['title']); ?>">
+    <?php echo htmlspecialchars($staff['title']); ?>
+</a>
         </div>
     </div>
 <?php endforeach; ?>
