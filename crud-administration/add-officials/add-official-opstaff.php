@@ -3,23 +3,25 @@ require_once '../../classes/opstaff.class.php';
 require_once '../../classes/honorifics.class.php';
 
 $honorificsObj = new Honorifics();
+$opstaffobj = new OpStaff();
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $title = $_POST['title'];
+    $title_id = $_POST['title_id'];
     $page_link = $_POST['page_link'];
-    $honorifics_id = $_POST['honorifics']; // Get the selected honorifics ID
+    $honorifics_id = $_POST['honorifics'];
+    $office_name = $_POST['office_name'];
 
-    $opstaffobj = new OpStaff();
-
-    // Assuming `add_official()` accepts name and title as parameters
-    if ($opstaffobj->add_official($name, $title, $page_link, $honorifics_id)) {
-        echo "Official added successfully!";
+    if ($opstaffobj->add_official($name, $title_id, $page_link, $honorifics_id, $office_name)) {
         header('Location: ../../sample-admin/Home');
+        exit;
     } else {
         echo "Failed to insert into the database.";
     }
 }
+
+// Get all designations directly using OpStaff class
+$designations = $opstaffobj->fetchDesignations();
 ?>
 
 <!DOCTYPE html>
@@ -45,23 +47,33 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
-    <label for="honorifics">Designation</label>
-    <select name="honorifics" id="honorifics" required>
-        <option value="">Select a designation</option>
-        <?php
-            $honorific = $honorificsObj->fetchHonorifics();
-            foreach ($honorific as $honorifics){
-        ?>
-            <option value="<?= $honorifics['id'] ?>"><?= htmlspecialchars($honorifics['name']) ?></option>
-        <?php
-            }
-        ?>
-    </select>
-</div>
+                <label for="honorifics">Honorific</label>
+                <select name="honorifics" id="honorifics" required>
+                    <option value="">Select an honorific</option>
+                    <?php
+                    $honorific = $honorificsObj->fetchHonorifics();
+                    foreach ($honorific as $hon) {
+                        echo "<option value='" . $hon['id'] . "'>" . htmlspecialchars($hon['name']) . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" required>
+                <label for="title_id">Designation</label>
+                <select name="title_id" id="title_id" required>
+                    <option value="">Select designation</option>
+                    <?php
+                    foreach ($designations as $designation) {
+                        echo "<option value='" . $designation['id'] . "'>" . htmlspecialchars($designation['designation']) . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="office_name">Office Name</label>
+                <input type="text" name="office_name" id="office_name" required>
             </div>
 
             <div class="form-group">

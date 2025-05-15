@@ -1,9 +1,41 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    // Basic validation
+    if (!empty($email) && !empty($password)) {
+        // Check for admin credentials
+        if ($email === 'admin@wmsu.edu.ph' && $password === 'admin123') {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_type'] = 'admin';
+            header('Location: ../sample-admin/Home.php');
+            exit;
+        } 
+        // Check for user credentials
+        else if ($email === 'user@wmsu.edu.ph' && $password === 'user123') {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_type'] = 'user';
+            header('Location: ../admin/copy.php');
+            exit;
+        } 
+        else {
+            $error = "Invalid email or password";
+        }
+    } else {
+        $error = "Please fill in all fields";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/home.css">
     <style>
         html, body {
@@ -26,118 +58,74 @@
             width: 100%;
             padding: 36px 32px 28px 32px;
             margin: 0 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         .login-title {
             color: #7C0902;
-            font-size: 2em;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 600;
             margin-bottom: 24px;
-            letter-spacing: 1px;
             text-align: center;
         }
         .form-group {
-            width: 100%;
-            margin-bottom: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-bottom: 20px;
         }
         .form-label {
             display: block;
-            margin-bottom: 6px;
-            color: #7C0902;
-            font-weight: 600;
-            font-size: 1em;
-            letter-spacing: 0.5px;
-            width: 100%;
-            text-align: left;
-            max-width: 260px;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
         }
         .form-control {
             width: 100%;
-            max-width: 260px;
-            padding: 12px;
-            border: 1.5px solid #7C0902;
-            border-radius: 5px;
-            font-size: 1em;
-            background: #f9f9f9;
-            color: #333;
-            font-family: inherit;
+            padding: 10px 12px;
+            border: 1.5px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
             transition: border-color 0.2s;
-            margin: 0 auto;
-            display: block;
         }
         .form-control:focus {
-            border-color: #a00d0d;
+            border-color: #7C0902;
             outline: none;
-            background: #fff;
         }
         .btn-primary {
             width: 100%;
             padding: 12px;
             background: #7C0902;
-            color: #fff;
+            color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: bold;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
-            letter-spacing: 1px;
-            margin-top: 8px;
         }
         .btn-primary:hover {
-            background: #a00d0d;
+            background: #660000;
         }
         .error {
-            color: #d8000c;
-            background: #ffd2d2;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 16px;
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 8px;
             text-align: center;
-            border: 1px solid #d8000c;
-            width: 100%;
-        }
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 24px 8px 18px 8px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="login-card">
-        <div class="login-title">Admin Login</div>
-        <?php
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            if ($email === 'admin' && $password === 'admin') {
-                header('Location: ../sample-admin/Home');
-                exit();
-            } else {
-                $error = 'Invalid email or password.';
-            }
-        }
-        if ($error) {
-            echo '<div class="error">' . htmlspecialchars($error) . '</div>';
-        }
-        ?>
-        <form method="post" action="" style="width:100%;">
+        <div class="login-title">Login</div>
+        <?php if (isset($error)): ?>
+            <div class="error"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
+        <form method="post" action="">
             <div class="form-group">
                 <label class="form-label" for="email">Email</label>
-                <input class="form-control" type="text" name="email" id="email" placeholder="Email" required autocomplete="off">
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
-                <input class="form-control" type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button class="btn-primary" type="submit">Login</button>
+            <button type="submit" class="btn-primary">Login</button>
         </form>
     </div>
 </body>

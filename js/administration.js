@@ -97,6 +97,22 @@ if (url.endsWith("Home")) {
     });
 });
 
+        // Update the category filter handler
+        $('#category-filter').on('change', function() {
+            var selectedCategory = $(this).val().toLowerCase();
+            if (selectedCategory) {
+                $('.official-row').hide();
+                $('.category-' + selectedCategory).show();
+                
+                // If vice presidents is selected, ensure office_name column is visible
+                if (selectedCategory === 'vicepres') {
+                    $('th:nth-child(3), td:nth-child(3)').show(); // Show office_name column
+                }
+            } else {
+                $('.official-row').show();
+            }
+        });
+
 
         $(".edit-pres").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior
@@ -1012,18 +1028,19 @@ if (url.endsWith("Home")) {
 
   function fetchRecordopstaffs(id) {
     $.ajax({
-      url: `../crud-administration/fetching/fetch-opstaff.php?id=${id}`, // URL for fetching categories
-      type: "POST", // Use GET request
-      dataType: "json", // Expect JSON response
-      success: function (opstaffs) {
-        $("#name").val(opstaffs.name);
-        $("#designation_opstaff").val(opstaffs.title_id).trigger("change"); // Set the selected honorifics
-        $("#honorifics").val(opstaffs.honorifics_id).trigger("change"); // Set the selected honorifics
-        $("#title").val(opstaffs.title);
-        $("#page_link").val(opstaffs.page_link);
-      },
+        url: `../crud-administration/fetching/fetch-opstaff.php?id=${id}`,
+        type: "POST",
+        dataType: "json",
+        success: function (opstaffs) {
+            $("#name").val(opstaffs.name);
+            $("#designation_opstaff").val(opstaffs.title_id).trigger("change");
+            $("#honorifics").val(opstaffs.honorifics_id).trigger("change");
+            $("#title").val(opstaffs.title);
+            $("#page_link").val(opstaffs.page_link);
+            $("#office_name").val(opstaffs.office_name);
+        },
     });
-  }
+}
 
   // Function to update a new official
   function updateopstaffs(id) {
