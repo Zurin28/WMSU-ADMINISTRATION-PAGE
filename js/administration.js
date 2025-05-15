@@ -1033,6 +1033,7 @@ if (url.endsWith("Home")) {
         dataType: "json",
         success: function (opstaffs) {
             $("#name").val(opstaffs.name);
+            $("#Office_name").val(opstaffs.Office_name);
             $("#designation_opstaff").val(opstaffs.title_id).trigger("change");
             $("#honorifics").val(opstaffs.honorifics_id).trigger("change");
             $("#title").val(opstaffs.title);

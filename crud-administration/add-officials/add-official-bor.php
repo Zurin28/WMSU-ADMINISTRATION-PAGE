@@ -76,6 +76,7 @@ if (move_uploaded_file($image_tmp, $image_path)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Official</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
@@ -89,12 +90,12 @@ if (move_uploaded_file($image_tmp, $image_path)) {
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" class="form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
                 <label for="honorifics">Honorifics</label>
-                <select name="honorifics" id="honorifics" required>
+                <select name="honorifics" id="honorifics" class="form-control border-danger" style="border-width: 2px;" required>
                     <option value="">Select Honorifics</option>
                     <?php
                         $honorific = $honorificsObj->fetchHonorifics();
@@ -109,7 +110,7 @@ if (move_uploaded_file($image_tmp, $image_path)) {
 
             <div class="form-group">
                 <label for="title_id">Designation</label>
-                <select name="title_id" id="title_id" required>
+                <select name="title_id" id="title_id" class="form-control border-danger" style="border-width: 2px;" required>
                     <option value="">Select designation</option>
                     <?php
                         $designations = $designationBorObj->fetchdesignation_bor();
@@ -135,7 +136,7 @@ if (move_uploaded_file($image_tmp, $image_path)) {
             <!-- Represented By Honorifics -->
 <div class="form-group">
     <label for="representedby_honorifics_id">Represented By Honorifics</label>
-    <select name="representedby_honorifics_id" id="representedby_honorifics_id">
+    <select name="representedby_honorifics_id" id="representedby_honorifics_id" class="form-control border-danger" style="border-width: 2px;">
         <option value="">Select honorific</option>
         <?php
             $honorific = $honorificsObj->fetchHonorifics();
@@ -149,7 +150,7 @@ if (move_uploaded_file($image_tmp, $image_path)) {
 <!-- Represented By Name -->
 <div class="form-group">
     <label for="representedby_name">Represented By Name</label>
-    <input type="text" name="representedby_name" id="representedby_name" >
+    <input type="text" name="representedby_name" id="representedby_name" class="form-control border-danger" style="border-width: 2px;" >
 </div>
 
 <!-- Represented By Image -->

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title_id = clean_input($_POST['designation_opstaff']);
     $page_link = clean_input($_POST['page_link']);
     $honorifics = clean_input($_POST['honorifics']);
-    $office_name = clean_input($_POST['office_name']);
+    $office_name = clean_input($_POST['Office_name']);
 
     // Set the properties of the Pres object
     $opstaffobj->id = $id;

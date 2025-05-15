@@ -100,8 +100,8 @@ require_once '../classes/personnel.class.php';
 
 $personnelObj = new Personnel();
 $title = $_GET['title'] ?? '';
-$officeInfo = $personnelObj->fetchVicePresidentOfficeInfo($title);
-$officePersonnel = $personnelObj->fetchPersonnelByOfficeOfVpIn($title);
+$officeInfo = $personnelObj->fetchPresidentOfficeInfo($title);
+$officePersonnel = $personnelObj->fetchPersonnelByOffice($title);
 ?>
 
 <body>

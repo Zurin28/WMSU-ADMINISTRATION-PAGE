@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Officials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
@@ -52,12 +53,12 @@ if (isset($_POST['submit'])) {
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="office">Office</label>
-                <input type="text" name="office" id="office" required>
+                <input type="text" name="office" id="office" class="form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
     <label for="honorifics">Honorifics</label>
-    <select name="honorifics" id="honorifics" required>
+    <select name="honorifics" id="honorifics" class="form-control border-danger" style="border-width: 2px;" required>
         <option value="">Select a Honorifics</option>
         <?php
             $honorific = $honorificsObj->fetchHonorifics();
@@ -72,17 +73,17 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
                 <label for="office_head">Office Head</label>
-                <input type="text" name="office_head" id="office_head" required>
+                <input type="text" name="office_head" id="office_head" class=" form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
                 <label for="office_of_vp_in">Office of Vice President in</label>
-                <input type="text" name="office_of_vp_in" id="office_of_vp_in" required>
+                <input type="text" name="office_of_vp_in" id="office_of_vp_in" class=" form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" name="description" id="description" required>
+                <input type="text" name="description" id="description" class=" form-control border-danger" style="border-width: 2px;" required>
 
                 <div class="form-group">
                 <label>Upload Image</label>

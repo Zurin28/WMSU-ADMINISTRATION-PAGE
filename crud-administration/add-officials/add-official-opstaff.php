@@ -30,6 +30,7 @@ $designations = $opstaffobj->fetchDesignations();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Officials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/insert.css">
 </head>
 <body>
@@ -43,12 +44,12 @@ $designations = $opstaffobj->fetchDesignations();
         <form action="" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" class="form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
                 <label for="honorifics">Honorific</label>
-                <select name="honorifics" id="honorifics" required>
+                <select name="honorifics" id="honorifics" class="form-control border-danger" style="border-width: 2px;" required>
                     <option value="">Select an honorific</option>
                     <?php
                     $honorific = $honorificsObj->fetchHonorifics();
@@ -61,7 +62,7 @@ $designations = $opstaffobj->fetchDesignations();
 
             <div class="form-group">
                 <label for="title_id">Designation</label>
-                <select name="title_id" id="title_id" required>
+                <select name="title_id" id="title_id" class="form-control border-danger" style="border-width: 2px;" required>
                     <option value="">Select designation</option>
                     <?php
                     foreach ($designations as $designation) {
@@ -73,12 +74,12 @@ $designations = $opstaffobj->fetchDesignations();
 
             <div class="form-group">
                 <label for="office_name">Office Name</label>
-                <input type="text" name="office_name" id="office_name" required>
+                <input type="text" name="office_name" id="office_name" class="form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <div class="form-group">
                 <label for="page_link">Page Link</label>
-                <input type="text" name="page_link" id="page_link" required>
+                <input type="text" name="page_link" id="page_link" class="form-control border-danger" style="border-width: 2px;" required>
             </div>
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>

@@ -30,7 +30,9 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Personnel</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/insert.css">
+   
 </head>
 <body>
     <div class="header">
@@ -45,7 +47,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
     <label for="honorifics">Honorifics</label>
-    <select name="honorifics" id="honorifics" required>
+    <select name="honorifics" class="form-control border-danger" style="border-width: 2px;" id="honorifics" required>
         <option value="">Select a Honorifics</option>
         <?php
             $honorific = $honorificsObj->fetchHonorifics();
@@ -59,7 +61,7 @@ if (isset($_POST['submit'])) {
 </div>
             <div class="form-group">
                 <label for="offices">Sub Office</label>
-                <select name="offices" id="offices" required>
+                <select name="offices" class="form-control border-danger" style="border-width: 2px;" id="offices" required>
                     <option value="">Select a Sub Office</option>
                     <?php
                         $subOffices = $presSubOfficesObj->fetchSubOffices();
@@ -73,7 +75,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
                 <label for="PersonnelName">Name</label>
-                <input type="text" name="PersonnelName" id="PersonnelName" required>
+                <input type="text" name="PersonnelName" id="PersonnelName" class="form-control border-danger"  required>
             </div>
 
             <button type="submit" name="submit" class="submit-btn">Submit</button>

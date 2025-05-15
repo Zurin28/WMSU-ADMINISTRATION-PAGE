@@ -170,6 +170,18 @@ public function fetchVicePresidentOfficeInfo($title)
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
+public function fetchPresidentOfficeInfo($title)
+{
+    $sql = "SELECT *
+            FROM president_suboffices
+            WHERE office = :office
+            LIMIT 1";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office', $title);
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
 
 public function fetchPersonnelByOfficeOfVpIn($title)
 {
@@ -184,6 +196,21 @@ public function fetchPersonnelByOfficeOfVpIn($title)
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function fetchPersonnelByOffice($title)
+{
+    $sql = "SELECT p.*, ps.office, h.short AS honorific_short
+            FROM personnel p
+            LEFT JOIN president_suboffices ps ON p.PresSuboffice_id = ps.id
+            LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
+            WHERE ps.office = :office";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':office', $title);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 
