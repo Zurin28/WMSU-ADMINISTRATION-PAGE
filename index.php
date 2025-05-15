@@ -14,8 +14,8 @@ $uri .= $_SERVER['HTTP_HOST'];
 // Append the current request URI (e.g., /path/to/page) to the host name
 $uri .= $_SERVER["REQUEST_URI"];
 
-// Redirect to the 'login' page by appending 'login' to the URI
-header('Location: ' . $uri . "admin/homepage");
+// Redirect to the admin login page
+header('Location: ' . $uri . "crud-administration/admin_login.php");
 
 // Ensure no further code is executed after the redirect
 exit;

@@ -6,15 +6,17 @@
     <title>Office of the Vice President for Resource Generation</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <style>
-        .office-container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 32px;
-            text-align: center;
-        }
+       .office-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 32px;
+        text-align: center;
+        padding-top: 80px; /* Added for navbar spacing */
+        margin-top: 40px; /* Added for additional spacing */
+    }
         .office-title {
             font-size: 2.2em;
             font-weight: bold;
