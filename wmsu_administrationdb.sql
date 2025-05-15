@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2025 at 10:18 AM
--- Server version: 11.7.2-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: May 14, 2025 at 02:04 PM
+-- Server version: 11.4.5-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,7 +165,7 @@ INSERT INTO `board_of_regents` (`id`, `name`, `title_id`, `image`, `rank`, `hono
 (10, 'ADRIAN P. SEMORLAN', 10, 'semorlan.jpg', 4, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:38:14'),
 (11, 'AHMAD G. MUNDOC', 11, 'florencioblank.jpg', 5, 8, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:42'),
 (12, 'AL-GHANI D. MOHAMMAD', 12, 'MOHAMMAD.jpg', 2, 1, NULL, NULL, NULL, '2025-05-13 05:30:53', '2025-05-13 05:35:19'),
-(20, 'ETHEL AGNES P. VALENZUELA', 14, 'ethel.jpg', 3, 8, NULL, NULL, NULL, '2025-05-13 05:28:34', '2025-05-13 05:35:42');
+(20, 'ETHEL AGNES P. VALENZUELA', 12, 'ethel.jpg', 3, 8, NULL, NULL, NULL, '2025-05-13 05:28:34', '2025-05-14 11:33:31');
 
 -- --------------------------------------------------------
 
@@ -617,6 +617,20 @@ INSERT INTO `page_description` (`id`, `page`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `personnel`
+--
+
+CREATE TABLE `personnel` (
+  `id` int(11) NOT NULL,
+  `VpSuboffice_id` int(11) DEFAULT NULL,
+  `PresSuboffice_id` int(11) DEFAULT NULL,
+  `personnel_honorifics_id` int(11) DEFAULT NULL,
+  `PersonnelName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `president`
 --
 
@@ -806,7 +820,8 @@ CREATE TABLE `vice_president_suboffices` (
 --
 
 INSERT INTO `vice_president_suboffices` (`id`, `office`, `office_head`, `office_of_vp_in`, `honorifics_id`, `description`) VALUES
-(2, 'awda', 'adad', 'adwawd', 7, '');
+(2, 'awda', 'adad', 'adwawd', 7, ''),
+(3, 'lupa', 'rob', 'water', 10, '');
 
 --
 -- Indexes for dumped tables
@@ -944,6 +959,15 @@ ALTER TABLE `other_services`
 --
 ALTER TABLE `page_description`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `personnel`
+--
+ALTER TABLE `personnel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `VpSuboffice_id` (`VpSuboffice_id`),
+  ADD KEY `PresSuboffice_id` (`PresSuboffice_id`),
+  ADD KEY `personnel_honorifics_id` (`personnel_honorifics_id`);
 
 --
 -- Indexes for table `president`
@@ -1121,6 +1145,12 @@ ALTER TABLE `page_description`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `personnel`
+--
+ALTER TABLE `personnel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `president`
 --
 ALTER TABLE `president`
@@ -1160,7 +1190,7 @@ ALTER TABLE `vice_presidents`
 -- AUTO_INCREMENT for table `vice_president_suboffices`
 --
 ALTER TABLE `vice_president_suboffices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -1238,6 +1268,14 @@ ALTER TABLE `opstaff`
 --
 ALTER TABLE `other_services`
   ADD CONSTRAINT `fk_honorifics_otherservices` FOREIGN KEY (`honorifics_id`) REFERENCES `honorifics` (`id`);
+
+--
+-- Constraints for table `personnel`
+--
+ALTER TABLE `personnel`
+  ADD CONSTRAINT `personnel_ibfk_1` FOREIGN KEY (`VpSuboffice_id`) REFERENCES `vice_president_suboffices` (`id`),
+  ADD CONSTRAINT `personnel_ibfk_2` FOREIGN KEY (`PresSuboffice_id`) REFERENCES `president_suboffices` (`id`),
+  ADD CONSTRAINT `personnel_ibfk_3` FOREIGN KEY (`personnel_honorifics_id`) REFERENCES `honorifics` (`id`);
 
 --
 -- Constraints for table `president`

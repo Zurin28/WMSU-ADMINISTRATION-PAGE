@@ -44,6 +44,22 @@
             </a>
         </li>
 
+        <!-- Personnel -->
+        <li class="nav-item">
+            <a href="Personnel" id="Personnel-link" class="nav-link">
+                <i class="bi bi-three-dots"></i>
+                <span class="fs-6 ms-2">Personnel</span>
+            </a>
+        </li>
+
+        <!-- Designation -->
+        <li class="nav-item">
+            <a href="Designation" id="Designation-link" class="nav-link">
+                <i class="bi bi-three-dots"></i>
+                <span class="fs-6 ms-2">Designation</span>
+            </a>
+        </li>
+
         <!-- Others -->
         <li class="nav-item">
             <a href="Others" id="Others-link" class="nav-link">
@@ -51,6 +67,8 @@
                 <span class="fs-6 ms-2">Others</span>
             </a>
         </li>
+
+        
 
     </ul>
 </div>

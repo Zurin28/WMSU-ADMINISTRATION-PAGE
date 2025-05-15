@@ -81,20 +81,9 @@
       <span>SELECT FROM BELOW:</span>
     </div>
     <div class="link-list">
-      <a href="../add-officials/add-official-bor.php">BOARD OF REGENTS</a>
-      <a href="../add-options/add-administrativeOfficials.php">ADMINISTRATIVE OFFICIALS</a>
-      <a href="../add-officials/add-official-presSubOffices.php">PRESIDENT’S SUBOFFICES</a>
-      <a href="../add-officials/add-official-vicepresSubOffices.php">VICE PRESIDENT’S SUBOFFICES</a>
-      <a href="add-personnel.php">PERSONNEL</a>
-      <a href="../add-officials/add-official-AcademicDean.php">ACADEMIC DEANS</a>
-      <a href="../add-officials/add-official-AssociateDean.php">ASSOCIATE DEANS</a>
-      <a href="../add-officials/add-official-ExternalStudiesUnit.php">EXTERNAL STUDIES UNIT</a>
-      <a href="../add-officials/add-honorifics.php">HONORIFICS</a>
-      <a href="../add-officials/add-bor-designation.php">BOR DESIGNATION</a>
-      <a href="../add-officials/add-opstaff-designation.php">OP STAFF DESIGNATION</a>
-      <a href="../add-officials/add-vp-designation.php">VP DESIGNATION</a>
-      <a href="../add-officials/add-organizationalChart.php">ORGANIZATIONAL CHART</a>
-      <a href="select-page.php">PAGE DESCRIPTION</a>
+    <a href="../add-officials/add-president-personnel.php">President Sub Office</a>
+    <a href="../add-officials/add-vicepres-personnel.php">Vice President Sub Office</a>
+  
     </div>
   </div>
 </body>
