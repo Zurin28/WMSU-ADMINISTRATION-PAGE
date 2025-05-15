@@ -583,6 +583,16 @@
     </style>
     <script src="../js/smooth-scroll.js" defer></script>
 </head>
+<?php
+session_start();
+// Clear session variables
+if(isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header('Location: ../crud-administration/admin_login.php');
+    exit();
+}
+?>
 <header> </header>
 <body>
     <?php require_once '../__includes/navbar.php'; ?>

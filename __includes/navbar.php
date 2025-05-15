@@ -96,7 +96,7 @@
                     </div>
             </div>
             <div class="MyWmsu-btn">
-                <a class="MyWmsu-link inter-regular" href="">MyWMSU</a>
+                <a class="MyWmsu-link inter-regular" href="../crud-administration/admin_login.php">Logout</a>
             </div>
         </div>
     </section>
