@@ -95,7 +95,7 @@ if (move_uploaded_file($image_tmp, $image_path)) {
             <div class="form-group">
                 <label for="honorifics">Honorifics</label>
                 <select name="honorifics" id="honorifics" required>
-                    <option value="">Select honorific</option>
+                    <option value="">Select Honorifics</option>
                     <?php
                         $honorific = $honorificsObj->fetchHonorifics();
                         foreach ($honorific as $honorifics){
