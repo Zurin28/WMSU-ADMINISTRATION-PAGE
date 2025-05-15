@@ -43,9 +43,9 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
-    <label for="honorifics">Designation</label>
+    <label for="honorifics">Honorifics</label>
     <select name="honorifics" id="honorifics" required>
-        <option value="">Select a designation</option>
+        <option value="">Select a Honorifics</option>
         <?php
             $honorific = $honorificsObj->fetchHonorifics();
             foreach ($honorific as $honorifics){

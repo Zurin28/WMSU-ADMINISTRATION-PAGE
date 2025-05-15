@@ -57,9 +57,9 @@ if(isset($_POST['submit'])) {
                 <input type="text" name="name" id="name" required>
             </div>
 
-            <label for="honorifics">Designation</label>
+            <label for="honorifics">Honorifics</label>
     <select name="honorifics" id="honorifics" required>
-        <option value="">Select a designation</option>
+        <option value="">Select a Honorifics</option>
         <?php
             $honorific = $honorificsObj->fetchHonorifics();
             foreach ($honorific as $honorifics){
