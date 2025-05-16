@@ -67,18 +67,25 @@ class Personnel {
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function fetchVicePresidentPersonnel()
-    {
-        $sql = "SELECT p.*, vp.office, vp.office_of_vp_in, h.short AS honorific_short
-                FROM personnel p
-                LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
-                LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
-                WHERE p.VpSuboffice_id IS NOT NULL";
-        
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
+function fetchVicePresidentPersonnel()
+{
+    $sql = "SELECT 
+                p.*, 
+                vp.office, 
+                vp.office_of_vp_in_fk_designation_vp, 
+                h.short AS honorific_short,
+                d.designation AS designation_name
+            FROM personnel p
+            LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
+            LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
+            LEFT JOIN designation_vp d ON vp.office_of_vp_in_fk_designation_vp = d.id
+            WHERE p.VpSuboffice_id IS NOT NULL";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     function fetchPresidentSuboffices()
     {
@@ -183,33 +190,59 @@ public function fetchPresidentOfficeInfo($title)
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-public function fetchPersonnelByOfficeOfVpIn($title)
+public function fetchPersonnelByDesignation($designation)
 {
-    $sql = "SELECT p.*, vp.office_of_vp_in, h.short AS honorific_short
+    $sql = "SELECT 
+                p.*, 
+                d.designation AS designation, 
+                h.short AS honorific_short
             FROM personnel p
             LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
+            LEFT JOIN designation_vp d ON vp.office_of_vp_in_fk_designation_vp = d.id
             LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
-            WHERE vp.office_of_vp_in = :office_of_vp_in";
+            WHERE d.designation = :designation";
 
     $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':office_of_vp_in', $title);
+    $query->bindParam(':designation', $designation);
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-public function fetchPersonnelByOffice($title)
+public function fetchPersonnelByOfficeId($officeId)
 {
-    $sql = "SELECT p.*, ps.office, h.short AS honorific_short
+    $sql = "SELECT p.*, h.short AS honorific_short, vp.office, vp.description, vp.image
             FROM personnel p
-            LEFT JOIN president_suboffices ps ON p.PresSuboffice_id = ps.id
             LEFT JOIN honorifics h ON p.personnel_honorifics_id = h.id
-            WHERE ps.office = :office";
+            LEFT JOIN vice_president_suboffices vp ON p.VpSuboffice_id = vp.id
+            WHERE vp.id = :officeId";
 
     $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':office', $title);
+    $query->bindParam(':officeId', $officeId);
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
+
+public function fetchSubOfficesByDesignationVP($designation)
+{
+    $sql = "SELECT 
+                vp.id AS office_id,
+                vp.office,
+                vp.description,
+                vp.image
+            FROM vice_president_suboffices vp
+            LEFT JOIN designation_vp d ON vp.office_of_vp_in_fk_designation_vp = d.id
+            WHERE d.designation = :designation
+            ORDER BY vp.office ASC";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':designation', $designation);
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 
