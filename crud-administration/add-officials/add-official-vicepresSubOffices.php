@@ -2,16 +2,20 @@
 require_once '../../classes/vicepresSubOffices.class.php';
 require_once '../../classes/honorifics.class.php';
 
-$honorificsObj = new Honorifics();
 
+
+
+    $vicepresSubOfficesObj = new VicePresSubOffices();
+
+$honorificsObj = new Honorifics();
+$honorifics = $honorificsObj->fetchHonorifics(); // Fetch all honorifics
+$designations = $vicepresSubOfficesObj->fetchDesignations(); // Fetch all designations
 if (isset($_POST['submit'])) {
     $office = $_POST['office'];
     $office_head = $_POST['office_head'];
-    $office_of_vp_in = $_POST['office_of_vp_in'];
     $honorifics_id = $_POST['honorifics'];
     $description = $_POST['description'];
-
-    $vicepresSubOfficesObj = new VicePresSubOffices();
+    $office_of_vp_in_fk_designation_vp = $_POST['office_of_vp_in_fk_designation_vp']; // Get the selected office of VP in ID
 
     // ✅ Define upload-related variables
     $file_name = $_FILES['image']['name'];
@@ -19,7 +23,7 @@ if (isset($_POST['submit'])) {
     $folder = "../../images/" . basename($file_name);
 
     if (move_uploaded_file($tempname, $folder)) {
-        if ($vicepresSubOfficesObj->upload($office, $office_head, $office_of_vp_in, $honorifics_id, $description ,$file_name)) {
+        if ($vicepresSubOfficesObj->upload($office, $office_head, $office_of_vp_in_fk_designation_vp, $honorifics_id, $description ,$file_name)) {
             echo "Official added successfully!";
             header('Location: ../../sample-admin/Home');
             exit(); // best practice to stop execution after redirect
@@ -76,9 +80,18 @@ if (isset($_POST['submit'])) {
                 <input type="text" name="office_head" id="office_head" class=" form-control border-danger" style="border-width: 2px;" required>
             </div>
 
-            <div class="form-group">
-                <label for="office_of_vp_in">Office of Vice President in</label>
-                <input type="text" name="office_of_vp_in" id="office_of_vp_in" class=" form-control border-danger" style="border-width: 2px;" required>
+            
+
+                <div class="form-group">
+                <label for="office_of_vp_in_fk_designation_vp">Office Of VP in</label>
+                <select name="office_of_vp_in_fk_designation_vp" id="office_of_vp_in_fk_designation_vp" class="form-control border-danger" style="border-width: 2px;" required>
+                    <option value="">Select Office</option>
+                    <?php
+                    foreach ($designations as $designation) {
+                        echo "<option value='" . $designation['id'] . "'>" . htmlspecialchars($designation['designation']) . "</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
             <div class="form-group">

@@ -10,39 +10,40 @@ class VicepresSubOffices {
         $this->db = new Database();
     }
 
-    // Fetch all products
-    function fetchAll()
-    {
-        $sql = "
-            SELECT 
-                vps.*, 
-                h.short AS honorific_short
-            FROM vice_president_suboffices AS vps
-            LEFT JOIN honorifics AS h ON vps.honorifics_id = h.id
-        ";
-    
-        // Prepare the query
-        $query = $this->db->connect()->prepare($sql);
-    
-        // Execute the query and fetch data
-        $data = null;
-        if ($query->execute()) {
-            $data = $query->fetchAll(PDO::FETCH_ASSOC);
-        }
-    
-        // Return the data
-        return $data;
+function fetchAll()
+{
+    $sql = "
+        SELECT 
+            vps.*, 
+            h.short AS honorific_short,
+            d.designation AS designation_name
+        FROM vice_president_suboffices AS vps
+        LEFT JOIN honorifics AS h ON vps.honorifics_id = h.id
+        LEFT JOIN designation_vp AS d ON vps.office_of_vp_in_fk_designation_vp = d.id
+    ";
+
+    // Prepare the query
+    $query = $this->db->connect()->prepare($sql);
+
+    // Execute the query and fetch data
+    $data = null;
+    if ($query->execute()) {
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function add_official($office, $office_head, $office_of_vp_in, $honorifics_id)
+    return $data;
+}
+
+
+    function add_official($office, $office_head, $office_of_vp_in_fk_designation_vp, $honorifics_id)
     {
         try {
-            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in, honorifics_id) VALUES (:office, :office_head, :office_of_vp_in, :honorifics_id)";
+            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in_fk_designation_vp, honorifics_id) VALUES (:office, :office_head, :office_of_vp_in_fk_designation_vp, :honorifics_id)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':office', $office);
             $query->bindParam(':office_head', $office_head);
-            $query->bindParam(':office_of_vp_in', $office_of_vp_in);
+            $query->bindParam(':office_of_vp_in_fk_designation_vp', $office_of_vp_in_fk_designation_vp);
             $query->bindParam(':honorifics_id', $honorifics_id);
             
             if ($query->execute()) {
@@ -56,6 +57,18 @@ class VicepresSubOffices {
             echo "Database error: " . $e->getMessage();
             return false;
         }
+    }
+
+        // Add this new method to fetch designations
+    function fetchDesignations() {
+        $sql = "SELECT id, designation FROM designation_vp ORDER BY designation ASC";
+        $query = $this->db->connect()->prepare($sql);
+        
+        $data = null;
+        if ($query->execute()) {
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
     }
 
     function fetchRecord($recordID)
@@ -125,15 +138,15 @@ function edit() {
     }
 
     // Upload
-    function upload($office, $office_head, $office_of_vp_in, $honorifics_id, $description, $file_name)
+    function upload($office, $office_head, $office_of_vp_in_fk_designation_vp, $honorifics_id, $description, $file_name)
     {
         try {
-            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in, honorifics_id, description, image) VALUES (:office, :office_head, :office_of_vp_in, :honorifics_id, :description, :image)";
+            $sql = "INSERT INTO vice_president_suboffices (office, office_head, office_of_vp_in_fk_designation_vp, honorifics_id, description, image) VALUES (:office, :office_head, :office_of_vp_in_fk_designation_vp, :honorifics_id, :description, :image)";
             $query = $this->db->connect()->prepare($sql);
             
             $query->bindParam(':office', $office);
             $query->bindParam(':office_head', $office_head);
-            $query->bindParam(':office_of_vp_in', $office_of_vp_in);
+            $query->bindParam(':office_of_vp_in_fk_designation_vp', $office_of_vp_in_fk_designation_vp);
             $query->bindParam(':honorifics_id', $honorifics_id);
             $query->bindParam(':description', $description);
             $query->bindParam(':image', $file_name);
