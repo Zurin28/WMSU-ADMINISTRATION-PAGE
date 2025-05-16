@@ -63,7 +63,7 @@
                         <tr>
                             <td class="name-cell"><?= htmlspecialchars($person['honorific_short'] . ' ' . $person['PersonnelName']) ?></td>
                             <td><?= htmlspecialchars($person['office'] ?? 'N/A') ?></td>
-                            <td><?= htmlspecialchars($person['office_of_vp_in'] ?? 'N/A') ?></td>
+                            <td><?= htmlspecialchars($person['designation_name'] ?? 'N/A') ?></td>
                             <td class="text-nowrap">
                             <a href="" class="btn btn-sm btn-outline-success me-1 edit-personnelVicePresident" data-id="<?= $person['id'] ?>">Edit</a>
                             <a href="" class="btn btn-sm btn-outline-danger me-1 delete-personnelVicePresident" data-id="<?= $person['id'] ?>">Delete</a>

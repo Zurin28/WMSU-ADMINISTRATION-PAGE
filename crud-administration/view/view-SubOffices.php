@@ -69,30 +69,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                require_once '../../classes/VicepresSubOffices.class.php';
+                               <?php
+require_once '../../classes/VicepresSubOffices.class.php';
 
-                                $VicepresSubOfficesObj = new VicepresSubOffices();
-                                $VicepresSubOffice = $VicepresSubOfficesObj->fetchAll(); // Fetch all officials
-                            
-                                foreach ($VicepresSubOffice as $VicepresSubOffices) {
-                                    
-                                ?>
-                                    <tr>
-                                        <td><img src="../images/<?= htmlspecialchars($VicepresSubOffices['image']) ?>" alt="" width="100px"></td>
-                                        <td><?= htmlspecialchars( $VicepresSubOffices['office']) ?></td>
-                                        <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
-                                        <td><?= htmlspecialchars($VicepresSubOffices['office_of_vp_in'] ?? 'N/A') ?></td>
-                                        <td><?= htmlspecialchars($VicepresSubOffices['description'] ?? 'N/A') ?></td>
-                                        <td class="text-nowrap">
-                                            <a href="" class="btn btn-sm btn-outline-success me-1 edit-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Edit</a>
-                                            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Delete</a>
-                                            
-                                        </td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
+$VicepresSubOfficesObj = new VicepresSubOffices();
+$VicepresSubOffice = $VicepresSubOfficesObj->fetchAll(); // Fetch all officials
+
+foreach ($VicepresSubOffice as $VicepresSubOffices) {
+?>
+    <tr>
+        <td><img src="../images/<?= htmlspecialchars($VicepresSubOffices['image']) ?>" alt="" width="100px"></td>
+        <td><?= htmlspecialchars($VicepresSubOffices['office']) ?></td>
+        <td><?= htmlspecialchars($VicepresSubOffices['honorific_short'] . ' ' . $VicepresSubOffices['office_head'] ?? 'N/A') ?></td>
+        <td><?= htmlspecialchars($VicepresSubOffices['designation_name'] ?? 'N/A') ?></td>
+        <td><?= htmlspecialchars($VicepresSubOffices['description'] ?? 'N/A') ?></td>
+        <td class="text-nowrap">
+            <a href="" class="btn btn-sm btn-outline-success me-1 edit-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Edit</a>
+            <a href="" class="btn btn-sm btn-outline-danger me-1 delete-VicepresSubOffices" data-id="<?= $VicepresSubOffices['id'] ?>">Delete</a>
+        </td>
+    </tr>
+<?php
+}
+?>
+
                             </tbody>
                         </table>
                     </div>

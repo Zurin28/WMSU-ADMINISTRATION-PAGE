@@ -1,3 +1,31 @@
+
+<?php 
+require_once '../__includes/navbar.php';
+require_once '../classes/personnel.class.php';
+
+$personnelObj = new Personnel();
+$designation = $_GET['title'] ?? '';
+
+// Fetch all sub-offices under this designation
+$offices = $personnelObj->fetchSubOfficesByDesignationVP($designation);
+
+// Grouped data holds office info and personnel
+$groupedData = [];
+
+foreach ($offices as $office) {
+    $personnelList = $personnelObj->fetchPersonnelByOfficeId($office['office']);
+
+    $groupedData[] = [
+        'office' => $office['office'],
+        'description' => $office['description'],
+        'image' => $office['image'],
+        'personnel' => array_map(function ($p) {
+            return $p['honorific_short'] . ' ' . $p['PersonnelName'];
+        }, $personnelList)
+    ];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,50 +122,32 @@
     </style>
 </head>
 
-<?php 
-require_once '../__includes/navbar.php';
-require_once '../classes/personnel.class.php';
-
-$personnelObj = new Personnel();
-$title = $_GET['title'] ?? '';
-$officeInfo = $personnelObj->fetchVicePresidentOfficeInfo($title);
-$officePersonnel = $personnelObj->fetchPersonnelByOfficeOfVpIn($title);
-?>
 
 <body>
-    <div class="office-container">
-        <div class="office-title">
-            <?= htmlspecialchars($officeInfo['office_of_vp_in'] ?? 'Unknown Office') ?>
+    <?php foreach ($groupedData as $office): ?>
+        <div class="office-container">
+            <div class="office-title"><?= htmlspecialchars($office['office']) ?></div>
+            <img src="../images/<?= htmlspecialchars($office['image']) ?>" alt="Office Image" class="office-image">
+            <div class="office-description"><?= htmlspecialchars($office['description']) ?></div>
         </div>
 
-       
-        <img src="../images/<?= htmlspecialchars($officeInfo['image']) ?>" alt="Office Image" class="office-image">
-
-        <div class="office-description">
-            <?= htmlspecialchars($officeInfo['description'] ?? 'No description available.') ?>
+        <div class="section">
+            <div class="section-header">Personnel</div>
+            <div class="table-responsive">
+                <table>
+                    <thead><tr><th>Name</th></tr></thead>
+                    <tbody>
+                        <?php if (!empty($office['personnel'])): ?>
+                            <?php foreach ($office['personnel'] as $name): ?>
+                                <tr><td><?= htmlspecialchars($name) ?></td></tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr><td>No personnel found for this office.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-
-    <div class="section">
-        <div class="section-header">Personnel</div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr><th>Name</th></tr>
-                </thead>
-                <tbody>
-                    <?php if ($officePersonnel): ?>
-                        <?php foreach ($officePersonnel as $person): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($person['honorific_short'] . ' ' . $person['PersonnelName']) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr><td>No personnel found for this office.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <?php endforeach; ?>
 </body>
 </html>
